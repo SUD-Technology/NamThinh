@@ -1,0 +1,114 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    /* display: flex; */
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+:root {
+    --first: #2250ab !important;
+    --second: white !important;
+}
+
+.header-index {
+    width: 100vw;
+    height: 50px;
+    line-height: 50px;
+    background-color: var(--first);
+}
+
+.content-index {
+    position: relative;
+    width: 100vw;
+    height: 800px;
+    background: url('https://assets.weforum.org/global_future_council/image/xALg-7b0WN5aLOY6aejbKW3NepG-PEipzKnEuyS8ZlI.jpeg') fixed no-repeat;
+    background-size: cover;
+}
+
+.footer-index {
+    width: 100vw;
+    height: 45px;
+    line-height: 45px;
+    background-color: var(--first);
+}
+
+
+.main-content {
+    margin-top: 30px;
+}
+
+.content-row {
+    position: relative;
+    padding: 0 !important;
+    
+    width: 100%;
+}
+
+.img-box {
+    /* position: absolute; */
+    padding: 0 !important;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1.2px solid #a0a0a0;
+    object-fit: contain;
+}
+
+.img-box > img {
+    width: calc(100%);
+    display: block;
+    margin: auto;
+    overflow: hidden;
+}
+
+.img-box p {
+    color: white;
+    font-weight: 600;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    width: 100%;
+    text-align: center;
+}
+
+.barrier {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.logo:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+    -webkit-transition: all .25s ease-in-out;
+    -o-transition: all .25s ease-in-out;
+    transition: all .25s ease-in-out;
+    /* width: 100%; */
+    overflow: hidden;
+}
+
+.barrier:hover {
+    cursor: pointer;
+    
+}
+
+.center {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    height: inherit;
+  }

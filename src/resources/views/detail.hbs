@@ -5,7 +5,7 @@
                 <div class="col-md-4">
                     {{!-- <img src="/img/logo.png" alt=""> --}}
                     <div data-toggle="modal" data-target=".bd-example-modal-lg" class="slider-for">
-                        <div class="product1"><img data-id="1" src="/img/hero-image-mustang.jpeg" height="auto"
+                        <div class="product1"><img data-id="1" src="/img/{{data.pimg}}" height="auto"
                                 width="80px"></div>
                         <div class="product1"><img src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg"
                                 data-id="2" height="auto" width="80px"></div>
@@ -68,16 +68,16 @@
 
                 <div class="col-md-8">
                     <div class="ct">
-                        <h5 class="title">BRIDGESTONE TURANZA GR80 225/45R18 MÃ 225/45R18</h5>
-                        <div class="title mb-3">BRIDGESTONE TURANZA GR100 225/45R18 MÃ 225/45R18</div>
+                        <h5 class="title">{{data.name}}</h5>
+                        <div class="title mb-3">{{data.desc}}</div>
                         <div class="des"><span style="text-transform:none; color: var(--cam);">Mã sản phẩm: </span>
-                            20181116-381</div>
+                            {{data.pid}}</div>
                         <div class="date-count-view">
                             <time>16/11/2018- Lượt xem : 764</time>
                         </div>
 
                         <div class="price large-size mb-4">
-                            Liên hệ
+                            {{data.price}}
                         </div>
 
                         <table height="80" style="width: 100%;">
@@ -89,16 +89,15 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 52px;"><span>Showroom :</span></td>
-                                    <td style="width: 330px;"><span>TRUNG TÂM LỐP XE THÀNH PHÁT </span></td>
+                                    <td style="width: 330px;"><span>{{data.showroom}} </span></td>
                                 </tr>
                                 <tr>
                                     <td style="width: 52px;"><span>Hotline :</span></td>
-                                    <td style="width: 330px;"><span><a href="tel:0903912553">0903912553</a></span></td>
+                                    <td style="width: 330px;"><span><a href="tel:{{data.phone}}">{{data.phone}}</a></span></td>
                                 </tr>
                                 <tr>
                                     <td style="width: 52px;"><span>Địa chỉ :</span></td>
-                                    <td style="width: 330px;"><span>48 Lý Thái Tổ, Phường 2, Quận 3, Thành Phố Hồ Chí
-                                            Minh</span> <a target="_blank" class="hoverred" href=""> ( Xem bản đồ ) </a>
+                                    <td style="width: 330px;"><span>{{data.address}}</span> <a target="_blank" class="hoverred" href=""> ( Xem bản đồ ) </a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -117,11 +116,11 @@
                                 </tr>
                                 <tr>
                                     <td style="width: 52px;"><span>Họ tên :</span></td>
-                                    <td style="width: 330px;"><span>Phòng Kinh Doanh</span></td>
+                                    <td style="width: 330px;"><span>{{data.represent}}</span></td>
                                 </tr>
                                 <tr>
                                     <td style="width: 52px;"><span>Hotline :</span></td>
-                                    <td style="width: 330px;"><span><a href="tel:0903912553"> 0903912553</a></span></td>
+                                    <td style="width: 330px;"><span><a href="tel:{{data.phone}}"> {{data.phone}}</a></span></td>
                                 </tr>
                             </tbody>
                         </table>

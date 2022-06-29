@@ -6,7 +6,7 @@ mongoose.plugin(slug);
 const Products = new Schema({
     product_id: {type: String, maxlength: 9, unique: true},
     product_name: {type: String, required: true, unique: true},
-    subtitle: {type: String, required: true},
+    description: {type: String, required: true},
     product_img: {type: String, required: true},
     price: {type: Number},
     showroom: {type: String, required: true},

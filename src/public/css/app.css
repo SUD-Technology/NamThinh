@@ -36,9 +36,9 @@ a:hover {
   margin-left: -2px;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
-  background-color: var(--cam);
+  background-color: var(--xanh);
   color: #fff;
-  border-color: var(--cam);
+  border-color: var(--xanh);
 }
 
 #btn-search:hover {
@@ -48,8 +48,8 @@ a:hover {
 
 /* btn cart */
 #btn-cart {
-  background-color: var(--cam);
-  border-color: var(--cam);
+  background-color: var(--xanh);
+  border-color: var(--xanh);
   color: #fff;
 }
 
@@ -64,12 +64,12 @@ a:hover {
 }
 
 #btn-cart:hover span {
-  background-color: var(--cam);
+  background-color: var(--xanh);
 }
 
 /* Product cart - start */
 #thead-cart {
-  background-color: var(--cam);
+  background-color: var(--xanh);
   color: #fff;
 }
 
@@ -94,15 +94,15 @@ a:hover {
 .btn-primary {
   font-size: 20px;
   font-weight: 500;
-  background-color: var(--cam);
+  background-color: var(--xanh);
   color: #fff;
-  border-color: var(--cam);
+  border-color: var(--xanh);
 }
 
 .btn-primary:hover {
   background-color: var(--xanh);
   border-color: var(--xanh);
-  color: var(--cam);
+  color: var(--xanh);
 }
 
 .btn-primary2 {
@@ -114,8 +114,8 @@ a:hover {
 }
 
 .btn-primary2:hover {
-  background-color: var(--cam);
-  border-color: var(--cam);
+  background-color: var(--xanh);
+  border-color: var(--xanh);
   color: var(--xanh);
 }
 
@@ -130,7 +130,7 @@ a:hover {
 }
 
 #cart-container table tbody td a:hover {
-  color: var(--cam);
+  color: var(--xanh);
 }
 
 #cart-container table tbody button {
@@ -163,9 +163,82 @@ a:hover {
 
 :root {
   --cam: #db701e !important;
-  --xanh: #3a4c85 !important;
+  --xanh: #2250ab !important;
+  --trang: white !important;
 }
 
+/* Product */
+
+.product-page {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.product-list {
+  margin-top: 50px;
+}
+
+.center {
+  display: flex;
+  margin: 0;
+  width: 100%;
+  justify-content: center;
+  text-align: center;
+  height: 380px;
+}
+
+.product-main {
+  display: grid;
+  list-style:none;
+  font-size: 13px;
+  gap: 10px;
+  grid-template-columns: 210px 210px 210px 210px;
+  grid-template-rows: 289px 289px 311px 289px 289px;
+  padding: 0px 10px;
+}
+
+.items-product {
+  border-color: var(--xanh);
+  border-style: solid;
+  border-width: 1px;
+  display: list-item;
+  font-family: UTM;
+  font-size: 13px;
+  text-align: center;
+}
+
+.items-price {
+  font-weight: 700;
+  padding: 2px 10px 6px;
+  text-align: center;
+}
+
+.items-title {
+  padding: 0 0 0 3px;
+  text-align: center;
+}
+
+.items-title a {
+  color: var(--xanh);
+  display: inline;
+  text-align: center;
+}
+
+.items-title p {
+  color: var(--cam);
+  font-size: 18px;
+  font-weight: 500px;
+  text-align: center;
+}
+
+.scoop-mtext {
+  /* color: #ffffff; */
+  display: inline;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: left;
+}
+
+/* End Product */
 
 .dropdown:hover .dropdown-menu {
   display: block;
@@ -218,7 +291,7 @@ a:hover {
   margin-top: 10px;
   height: 40px;
   margin-bottom: 20px;
-  background-color: var(--cam);
+  background-color: var(--xanh);
 }
 
 .main-bar {
@@ -240,6 +313,10 @@ a:hover {
   color: rgb(7, 50, 129);
 }
 
+.nav-item {
+  margin: 0 20px;
+}
+
 /* .nav-bottom {
   width: 100%;
   height: 50px;
@@ -253,7 +330,7 @@ a:hover {
 
 
 .semi-nav ul li a:hover {
-  color: var(--xanh);
+  color: var(--cam);
 }
 
 
@@ -278,7 +355,7 @@ a:hover {
   background: white;
   flex-grow: 1;
   padding: 30px 30px 40px;
-  box-shadow: 0px 0px 4px 2px var(--cam);
+  box-shadow: 0px 0px 4px 2px var(--xanh);
   border-radius: 0.5rem;
 }
 
@@ -364,7 +441,7 @@ a:hover {
 .h-title {
   font-size: 24px;
   font-weight: 500;
-  border-bottom: solid 1px var(--cam);
+  border-bottom: solid 1px var(--xanh);
   padding-bottom: 5px;
   margin-top: 33px;
   margin-bottom: 30px;
@@ -422,7 +499,7 @@ a:hover {
 }
 
 .title>a:hover {
-  color: var(--cam);
+  color: var(--xanh);
 }
 
 .price {
@@ -448,8 +525,8 @@ a:hover {
 }
 
 .phone {
-  border: 2px solid var(--cam);
-  background-color: var(--cam);
+  border: 2px solid var(--xanh);
+  background-color: var(--xanh);
   padding: 5px;
 
 }
@@ -543,7 +620,7 @@ a:hover {
 
 /* Comment-heading */
 .heading {
-  border-left: 4px solid var(--cam);
+  border-left: 4px solid var(--xanh);
   padding: 10px;
 }
 
@@ -650,7 +727,7 @@ a:hover {
 
 
   #right-sidebar .sidebar-body li a {
-    color: var(--cam);
+    color: var(--xanh);
     display: flex;
     justify-content: space-between;
   }
@@ -658,7 +735,7 @@ a:hover {
 
 
   #right-sidebar .sidebar-body li:hover a {
-    background-color: var(--cam);
+    background-color: var(--xanh);
     color: #fff;
   }
 
@@ -669,7 +746,7 @@ a:hover {
   }
 
   #right-sidebar .sidebar-body li ul li:hover {
-    color: var(--cam);
+    color: var(--xanh);
     background-color: var(--xanh);
   }
 
@@ -681,7 +758,7 @@ a:hover {
   }
 
   .sidebar-header i {
-    color: var(--cam);
+    color: var(--xanh);
     font-size: 20px;
   }
 
@@ -698,7 +775,7 @@ a:hover {
   }
 
   #right-sidebar .sidebar-body li ul li {
-    border-right: 5px solid var(--cam);
+    border-right: 5px solid var(--xanh);
   }
 
   .sidebar-body a {
@@ -707,12 +784,12 @@ a:hover {
   }
 
   .sidebar-body a:hover {
-    color: var(--cam);
+    color: var(--xanh);
   }
 
   #btn-cart-sidebar {
-    background-color: var(--cam);
-    border-color: var(--cam);
+    background-color: var(--xanh);
+    border-color: var(--xanh);
     color: #fff;
   }
 
@@ -722,7 +799,7 @@ a:hover {
   }
 
   #btn-cart-sidebar:hover span {
-    background-color: var(--cam);
+    background-color: var(--xanh);
   }
 
   #btn-cart-sidebar span {
