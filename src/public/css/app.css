@@ -9,6 +9,13 @@ html {
   font-size: 14px;
 }
 
+ul {
+  list-style-type: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
 
 /* Header */
 
@@ -49,14 +56,24 @@ html {
 #btn-cart:hover {
   background-color: var(--xanh);
   border-color: var(--xanh);
+
 }
 
+#btn-cart span {
+  background-color: var(--xanh);
+}
+
+#btn-cart:hover span {
+  background-color: var(--cam);
+}
 
 /* Product cart - start */
 #thead-cart {
-  background-color: var(--xanh);
+  background-color: var(--cam);
   color: #fff;
 }
+
+
 
 #cart-container table tbody img {
   width: 200px;
@@ -67,16 +84,64 @@ html {
   color: #fff;
 }
 
-#cart-container table tbody i:hover {
-  color: red;
-}
+
 
 #total-cart {
   text-align: center;
   font-size: 20px;
 }
 
+.btn-primary {
+  font-size: 20px;
+  font-weight: 500;
+  background-color: var(--cam);
+  color: #fff;
+  border-color: var(--cam);
+}
 
+.btn-primary:hover {
+  background-color: var(--xanh);
+  border-color: var(--xanh);
+  color: var(--cam);
+}
+
+.btn-primary2 {
+  font-size: 20px;
+  font-weight: 500;
+  background-color: var(--xanh);
+  color: #fff;
+  border-color: var(--xanh);
+}
+
+.btn-primary2:hover {
+  background-color: var(--cam);
+  border-color: var(--cam);
+  color: var(--xanh);
+}
+
+#cart-container table tbody tr:last-child td {
+  border-top: 5px solid var(--xanh);
+}
+
+#cart-container table tbody a {
+  color: #000;
+  font-size: 19px;
+  font-weight: 450;
+}
+
+#cart-container table tbody td a:hover {
+  color: var(--cam);
+}
+
+#cart-container table tbody button {
+  background-color: var(--xanh);
+  border-color: var(--xanh);
+}
+
+#cart-container table tbody button:hover {
+  background-color: rgb(199, 53, 53);
+  border-color: rgb(199, 53, 53);
+}
 
 /* Product cart - end */
 
@@ -179,6 +244,7 @@ html {
   width: 100%;
   height: 50px;
 } */
+
 
 .semi-nav ul li a {
   color: white;
@@ -495,3 +561,265 @@ html {
 .contact-map iframe {
   width: 100%;
 }
+
+
+/* input type number */
+
+
+/* Responsive */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+  /* Header */
+  .main-bar {
+    margin-bottom: 100px;
+  }
+
+  .main-bar .header {
+    position: relative;
+  }
+
+  .header .row-ibl {
+    text-align: center;
+  }
+
+  .header-content .nav-top,
+  #btn-cart {
+    display: none;
+  }
+
+  .nav-bottom form {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+
+
+  .nav-bottom form input {
+    margin: 0 !important;
+  }
+
+
+  .nav-bottom div:first-child {
+    border: 0 !important;
+  }
+
+  .nav-bottom select {
+    width: 32.6666%;
+    display: inline-block;
+    margin: 5px 0px 0px 0px !important;
+
+  }
+
+  #btn-search {
+    display: inline-block;
+    margin: -5px 0px 0px 0px !important;
+    width: 31.6666%
+  }
+
+  .header img {
+    width: 50% !important;
+  }
+
+  /* Sidebar */
+
+  .sidebar {
+    display: block !important;
+    position: fixed;
+    top: 0;
+
+    width: 70%;
+    background-color: #fff;
+    height: 100%;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  #left-sidebar {
+    left: -400px;
+  }
+
+  #right-sidebar {
+    right: -400px;
+  }
+
+  #right-sidebar .sidebar-body {
+    font-weight: 600;
+  }
+
+
+  #right-sidebar .sidebar-body li a {
+    color: var(--cam);
+    display: flex;
+    justify-content: space-between;
+  }
+
+
+
+  #right-sidebar .sidebar-body li:hover a {
+    background-color: var(--cam);
+    color: #fff;
+  }
+
+  #right-sidebar .sidebar-body li a i {
+    font-size: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  #right-sidebar .sidebar-body li ul li:hover {
+    color: var(--cam);
+    background-color: var(--xanh);
+  }
+
+
+  .sidebar-header {
+    padding: 10px;
+    margin: 5px;
+    text-align: right;
+  }
+
+  .sidebar-header i {
+    color: var(--cam);
+    font-size: 20px;
+  }
+
+  .sidebar-body {
+    text-align: left;
+  }
+
+  #left-sidebar .sidebar-body li {
+    border-left: 10px solid var(--xanh);
+  }
+
+  #right-sidebar .sidebar-body li {
+    border-right: 10px solid var(--xanh);
+  }
+
+  #right-sidebar .sidebar-body li ul li {
+    border-right: 5px solid var(--cam);
+  }
+
+  .sidebar-body a {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .sidebar-body a:hover {
+    color: var(--cam);
+  }
+
+  #btn-cart-sidebar {
+    background-color: var(--cam);
+    border-color: var(--cam);
+    color: #fff;
+  }
+
+  #btn-cart-sidebar:hover {
+    background-color: var(--xanh);
+    border-color: var(--xanh);
+  }
+
+  #btn-cart-sidebar:hover span {
+    background-color: var(--cam);
+  }
+
+  #btn-cart-sidebar span {
+    background-color: var(--xanh);
+  }
+
+  .header-bars {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .bars-btn {
+    display: block !important;
+    color: #000;
+    font-size: 22px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  /* Navbar */
+  .navbar {
+    display: none;
+  }
+
+
+
+  /* home page */
+  .h-title {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .row .item {
+    margin-bottom: 30px;
+  }
+
+  /* about page */
+  .modal-dialog {
+    display: flex;
+    height: 100%;
+  }
+
+  .modal-content {
+    margin-top: 40%;
+    margin-bottom: 60%;
+    background-color: transparent !important;
+    border: 0 !important;
+  }
+
+  /* Cart page */
+  #cart-container {
+    overflow-x: auto;
+  }
+
+
+  #cart-container table {
+    white-space: nowrap;
+  }
+
+  #cart-container table td {
+    text-align: left !important;
+  }
+
+  #cart-container table tr th img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  #cart-container table input {
+    width: 100% !important;
+  }
+
+  #cart-container table tbody a {
+    color: #000;
+    font-size: 16px;
+    font-weight: 450;
+  }
+
+  #total-cart {
+    font-size: 16px;
+    font-weight: 450;
+    overflow-x: hidden !important;
+  }
+
+
+
+
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+/* @media only screen and (min-width: 600px) {...} */
+
+/* Medium devices (landscape tablets, 768px and up) */
+/* @media only screen and (min-width: 768px) {...} */
+
+/* Large devices (laptops/desktops, 992px and up) */
+/* @media only screen and (min-width: 992px) {...} */
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+/* @media only screen and (min-width: 1200px) {...} */

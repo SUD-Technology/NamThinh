@@ -13,9 +13,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     {{!-- Font Awesome --}}
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    {{!-- Zoom-image --}}
+    <script src="/zoom/js-image-zoom.js"></script>
     {{!-- Slick css --}}
     <link rel="stylesheet" type="text/css" href="/slick/slick.css" />
     <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css" />
+
     {{!-- Slick --}}
     <script type="text/javascript" src="/slick/slick.min.js"></script>
     <link rel="stylesheet" href="/css/app.css">
@@ -82,13 +85,13 @@
 </head>
 
 <body>
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0"
-        nonce="yImrZYyz"></script>
-    {{>header}}
 
+    {{>header}}
     {{>navbar}}
     <div class="container">
+        <div id="fb-root"></div>
+        <script async defer crossorigin="anonymous"
+            src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0" nonce="yImrZYyz"></script>
         {{{body}}}
     </div>
     {{> footer}}
@@ -111,6 +114,8 @@
 
 
     <script src='https://cdn.jsdelivr.net/gh/vietblogdao/js/districts.min.js'></script>
+
+
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.6.1/jquery.zoom.min.js"

@@ -34,6 +34,63 @@ $(document).ready(function () {
         })
     })
 
+    // 
+
+    $(function () {
+        $('#bar-btn-left').click(() => {
+            $('#left-sidebar').animate({ left: "0px" });
+            $('#right-sidebar').animate({ right: "-400" });
+            $('#collapse2').slideUp();
+            $('#collapse1').slideUp();
+        })
+
+        $('#left-times').click(() => {
+            $('#left-sidebar').animate({ left: "-400" });
+        })
+
+        $('#bar-btn-right').click(() => {
+            $('#right-sidebar').animate({ right: "0px" });
+            $('#left-sidebar').animate({ left: "-400" });
+        })
+        $('#right-times').click(() => {
+            $('#right-sidebar').animate({ right: "-400" });
+            $('#collapse2').slideUp();
+            $('#collapse1').slideUp();
+        })
+    })
+
+
+    $(function () {
+        $('#collapse1').slideUp();
+        $('#collapse-btn1').click(() => {
+            $('#collapse1').slideToggle();
+            $('#collapse2').slideUp();
+
+        })
+    })
+
+    $(function () {
+        $('#collapse2').slideUp();
+        $('#collapse-btn2').click(() => {
+            $('#collapse2').slideToggle();
+            $('#collapse1').slideUp();
+
+        })
+    })
+
+    // Zoom image
+
+
+    $(function () {
+        $('.carousel-item').each(function () {
+            var originalImagePath = $(this).find('img').data('original-image');
+            $(this).zoom({
+                url: originalImagePath,
+                magnify: 3
+            });
+        });
+    });
+
 });
 
 // City Select
@@ -137,12 +194,4 @@ $('.owl-carousel').owlCarousel({
 
 
 
-$(function () {
-    $('.zoom-image').each(function () {
-        var originalImagePath = $(this).find('img').data('original-image');
-        $(this).zoom({
-            url: originalImagePath,
-            magnify: 1
-        });
-    });
-});
+

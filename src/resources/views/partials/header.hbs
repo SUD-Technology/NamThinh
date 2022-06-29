@@ -3,11 +3,87 @@
         <div class="container">
             <div class="row row-ibl mid col-mar-0">
                 <div class="col-md-3 col-xs-12 sm-center">
-                    <a id="logo" href="/" title="">
-                        <img src="/img/logo.png" alt="" title="" />
-                    </a>
+                    <div style="display: none;" class="sidebar" id="left-sidebar">
+                        <div class="sidebar-header">
+                            <a id="left-times" type="button"><i class="fas fa-times"></i></a>
+                        </div>
+                        <div class="sidebar-body">
+                            <a id="btn-cart-sidebar" class="btn btn-outline-success my-2 ml-2" href="/cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                Giỏ hàng
+                                <span class="badge badge-pill badge-primary">00</span>
+                            </a>
+                            <ul class="list-group">
+                                <li><a class="list-group-item" href="/pages/gioi-thieu">Giới thiệu</a></li>
+                                <li><a class="list-group-item" href="/blogs/tin-tuc">Tin tức</a></li>
+                                <li><a class="list-group-item" style="color: #db701e;" class="smooth active"
+                                        href="/register">Đăng Ký Showroom
+                                        trên
+                                        NamThinh.vn</a></li>
+                                <li><a class="list-group-item smooth" href="#" title="">Chăm sóc khách hàng</a></li>
+                                <li><a class="list-group-item smooth" href="/users/login" title="">Đăng nhập</a></li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+
+
+                    <div style="display: none;" class="sidebar" id="right-sidebar">
+                        <div class="sidebar-header">
+                            <a id="right-times" type="button"><i class="fas fa-times"></i></a>
+                        </div>
+                        <div class="sidebar-body">
+                            <ul class="list-group">
+                                <li>
+
+                                    <a id="collapse-btn1" class="list-group-item">VỀ NAM THỊNH
+                                        <i class="fas fa-angle-down"></i>
+                                    </a>
+                                    <ul id="collapse1" class="list-group">
+                                        <li class="list-group-item">Giới thiệu</li>
+                                        <li class="list-group-item">Liên hệ</li>
+                                    </ul>
+
+                                </li>
+                                <li><a class="list-group-item">VỀ LỐP XE</a></li>
+                                <li><a class="list-group-item">VỀ Ô TÔ</a></li>
+                                <li><a class="list-group-item">KHUYẾN MÃI</a></li>
+                                <li>
+                                    <a id="collapse-btn2" class="list-group-item">CHÍNH SÁCH
+                                        <i class="fas fa-angle-down"></i>
+                                    </a>
+                                    <ul id="collapse2" class="list-group">
+                                        <li class="list-group-item">Chính sách giao hàng</li>
+                                        <li class="list-group-item">Chính sách đại lý</li>
+                                        <li class="list-group-item">Chính sách cộng tác viên</li>
+                                        <li class="list-group-item">Chính sách bảo hành</li>
+                                    </ul>
+                                </li>
+                                <li><a class="list-group-item">SHOWROOM</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+
+                    <div class="header-bars">
+                        <a id="bar-btn-left" type="button" style="display: none;" class="bars-btn"><i
+                                class="fas fa-bars"></i></a>
+
+                        <a id="logo" href="/" title="">
+                            <img src="/img/logo.png" alt="" title="" />
+                        </a>
+                        <a id="bar-btn-right" type="button" style="display: none;" class="bars-btn"><i
+                                class="fas fa-bars"></i></a>
+                    </div>
+
+
                 </div>
-                <div class="col-md-9 col-xs-12 text-right sm-center">
+
+
+
+                <div class="col-md-9 col-xs-12 text-right sm-center header-content">
                     <div class="nav-top">
                         <ul>
                             <li><a href="/pages/gioi-thieu">Giới thiệu</a></li>
@@ -41,10 +117,10 @@
                                 <span class="badge badge-pill badge-primary">00</span>
                             </a>
                         </form>
-
-
                     </div>
+
                 </div>
+
             </div>
         </div>
     </div>
