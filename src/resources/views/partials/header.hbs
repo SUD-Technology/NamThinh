@@ -15,12 +15,13 @@
                             </a>
                             <ul class="list-group">
                                 <li><a class="list-group-item" href="/pages/gioi-thieu">Giới thiệu</a></li>
-                                <li><a class="list-group-item" href="/blogs/tin-tuc">Tin tức</a></li>
+                                {{!-- <li><a class="list-group-item" href="/blogs/tin-tuc">Tin tức</a></li> --}}
                                 <li><a class="list-group-item" style="color: #db701e;" class="smooth active"
                                         href="/register">Đăng Ký Showroom
                                         trên
                                         NamThinh.vn</a></li>
-                                <li><a class="list-group-item smooth" href="#" title="">Chăm sóc khách hàng</a></li>
+                                {{!-- <li><a class="list-group-item smooth" href="#" title="">Chăm sóc khách hàng</a>
+                                </li> --}}
                                 <li><a class="list-group-item smooth" href="/users/login" title="">Đăng nhập</a></li>
 
                             </ul>
@@ -86,11 +87,11 @@
                 <div class="col-md-9 col-xs-12 text-right sm-center header-content">
                     <div class="nav-top">
                         <ul>
-                            <li><a href="/pages/gioi-thieu">Giới thiệu</a></li>
-                            <li><a href="/blogs/tin-tuc">Tin tức</a></li>
+                            {{!-- <li><a href="/pages/gioi-thieu">Giới thiệu</a></li> --}}
+                            {{!-- <li><a href="/blogs/tin-tuc">Tin tức</a></li> --}}
                             <li><a style="color: #db701e;" class="smooth active" href="/register">Đăng Ký Showroom trên
                                     NamThinh.vn</a></li>
-                            <li><a class="smooth" href="#" title="">Chăm sóc khách hàng</a></li>
+                            {{!--   <li><a class="smooth" href="#" title="">Chăm sóc khách hàng</a></li> --}}
                             <li><a class="smooth" href="/users/login" title="">Đăng nhập</a></li>
                         </ul>
                     </div>
@@ -100,14 +101,6 @@
                             <div class="rounded border border-dark">
                                 <input class="form-control search mw-50 ml-auto" type="search"
                                     placeholder="Tìm kiếm xe, phụ tùng,.." aria-label="Search">
-                                <select class="form-control search" name="calc_shipping_provinces_header" required="">
-                                    <option value="">Tỉnh/Thành</option>
-                                </select>
-                                <select class="form-control search" name="calc_shipping_district_header" required="">
-                                    <option value="">Quận/Huyện</option>
-                                </select>
-                                <input class="billing_address_1_header" name="" type="hidden" value="">
-                                <input class="billing_address_2_header" name="" type="hidden" value="">
                                 <button id="btn-search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm
                                     kiếm</button>
                             </div>

@@ -17,6 +17,74 @@ a:hover {
   text-decoration: none;
 }
 
+
+/* Leave message: start */
+.leave-msg {
+  position: fixed;
+  bottom: 0;
+  right: 5px;
+  background-color: #2250ab;
+  border-radius: 5px 5px 0 0;
+  width: 300px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.leave-msg header {
+  display: flex;
+  color: #ffff;
+  justify-content: space-between;
+}
+
+.leave-msg header span {
+  font-size: 18px;
+  padding: 10px 20px;
+  font-weight: 500;
+}
+
+.rotate {
+  transform: rotate(180deg) translateY(5px) !important;
+}
+
+.leave-msg header i {
+  font-size: 20px;
+  padding: 10px;
+  transform: rotate(0deg) translateY(5px);
+}
+
+.leave-msg-body {
+  background-color: #fff;
+  padding-bottom: 40px;
+}
+
+.leave-msg-body form {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10px 0 10px;
+}
+
+.group-form {
+  display: flex;
+  flex-direction: column;
+  margin: 5px 0;
+}
+
+.group-form label {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.leave-msg-body form button {
+  border: 0;
+  padding: 5px 0;
+  background-color: var(--xanh);
+  color: #fff;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+/* Leave message: end */
+
+
 /* Welcome page: start */
 
 .welcome-page {
@@ -376,7 +444,7 @@ a:hover {
 
 .product-main {
   display: grid;
-  list-style:none;
+  list-style: none;
   font-size: 13px;
   gap: 10px;
   grid-template-columns: 210px 210px 210px 210px;
@@ -826,6 +894,7 @@ a:hover {
 .contact-map iframe {
   width: 100%;
 }
+
 
 
 /* input type number */

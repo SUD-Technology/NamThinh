@@ -34,6 +34,15 @@ $(document).ready(function () {
         })
     })
 
+    // leave message: start
+    $(function () {
+        $('#leaver-header').click(() => {
+            $('.leave-msg-body').slideToggle();
+            $('#leaver-header i').toggleClass('rotate')
+        })
+    })
+    // leave message: end
+
     // 
 
     $(function () {
