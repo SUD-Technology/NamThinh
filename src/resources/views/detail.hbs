@@ -1,36 +1,345 @@
-<div class="container my-5">
-    <div class="row">
-        <div class="col-md-9">
-            <div class="row">
-                <div class="col-md-4">
-                    {{!-- <img src="/img/logo.png" alt=""> --}}
-                    <div data-toggle="modal" data-target=".bd-example-modal-lg" class="slider-for">
-                        <div class="product1"><img data-id="1" src="/img/{{data.pimg}}" height="auto"
+   
+<div class="product-page">
+    <div class="row pagi">
+        <span class="sub-title">Thiết bị ô tô xe máy</span>
+    </div>
+
+    <div class="title-details flexbetwen">
+        <h2>{{data.pname}} <span style="color: #ec3233">{{data.pid}}</span> </h2>
+        <iframe src="https://www.facebook.com/plugins/like.php?href=http://tanphat.com/vi/san-pham/cau-chi-cho-dong-ho-kiem-tra-dien-63-a&amp;width=172&amp;layout=button_count&amp;action=like&amp;size=small&amp;show_faces=true&amp;share=true&amp;height=46&amp;appId=663428044065589" width="172" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    </div>
+
+    <div class="row product-detail-box p-3">
+        <div class="col-md-5 px-2">
+            <div data-toggle="modal" data-target=".bd-example-modal-lg" class="slider-for">
+                        <div class="product1">
+                            <img data-id="1" src="http://tanphat.com/storage/upload/catalog/products/Cau%20nang%202%20tru%20Nussbaum%20(3).jpg" height="450px"
+                                width="80px">
+                                <div class="barrier d-none"></div>
+                        </div>
+                        <div class="product1"><img src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg"
+                                data-id="2" height="450px" width="80px"></div>
+                        <div class="product1"><img src="/img/hero-image-mustang.jpeg" data-id="3" height="450px"
                                 width="80px"></div>
                         <div class="product1"><img src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg"
-                                data-id="2" height="auto" width="80px"></div>
-                        <div class="product1"><img src="/img/hero-image-mustang.jpeg" data-id="3" height="auto"
-                                width="80px"></div>
-                        <div class="product1"><img src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg"
-                                data-id="4" height="auto" width="80px"></div>
-                    </div>
+                                data-id="4" height="450px" width="80px"></div>
+                        
+            </div>
+            
 
-                    <div class="slider-nav">
-                        <div class="product2"><img src="/img/hero-image-mustang.jpeg" height="auto" width="80px"></div>
-                        <div class="product2"><img src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg"
-                                height="auto" width="80px"></div>
-                        <div class="product2"><img src="/img/hero-image-mustang.jpeg" height="auto" width="80px"></div>
-                        <div class="product2"><img src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg"
-                                height="auto" width="80px"></div>
-                    </div>
-
+            <div class="slider-nav mt-3">
+                <div class="product2">
+                    <img src="/img/hero-image-mustang.jpeg" height="auto" width="120px">
                 </div>
 
-                {{!-- Image Modal --}}
+                <div class="product2">
+                    <img src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg"
+                        height="auto" width="120px">
+                </div>
+
+                <div class="product2">
+                    <img src="/img/hero-image-mustang.jpeg" height="auto" width="120px">
+                </div>
+
+                <div class="product2">
+                    <img src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg"
+                        height="auto" width="120px">
+                </div>
+            </div>   
+        </div>
+
+        
+
+        <div class="col-md-4 px-1">
+            <div class="price-box text-center">
+                <span class="pt">
+                    Giá
+                </span>
+
+                <p>{{data.price}}</p>
+            </div>
+
+            <div class="detail">
+                <table height="80" style="width: 100%">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 214px;" colspan="2">
+                                        <h5 class="title">Thông tin nhà cung cấp </h5>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 100px;"><span>Showroom :</span></td>
+                                    <td style="width: 330px;"><span>{{data.showroom}} </span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 52px;"><span>Hotline :</span></td>
+                                    <td style="width: 330px;"><span><a href="tel:{{data.phone}}">{{data.phone}}</a></span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 52px;"><span>Địa chỉ :</span></td>
+                                    <td style="width: 330px;"><span>{{data.address}}</span> <a target="_blank" class="hoverred" href=""> ( Xem bản đồ ) </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+            </table>
+            <hr>
+            <p><span><a class="hoverred" href="/showroom/86">Xem thêm các sản phẩm khác cùng nhà cung cấp
+                        &gt;&gt;&gt;</a></span></p>
+            <hr>
+
+            <table height="80" style="width: 100%;">
+                <tbody>
+                    <tr>
+                        <td style="width: 214px;" colspan="2">
+                            <h5 class="title">Thông tin người đại diện</h5>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px;"><span>Họ tên :</span></td>
+                        <td style="width: 330px;"><span>{{data.represent}}</span></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 52px;"><span>Hotline :</span></td>
+                        <td style="width: 330px;"><span><a href="tel:{{data.phone}}"> {{data.phone}}</a></span></td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            
+        </div>
+
+        <div class="col-md-3 px-2 sidelk">
+            <div class="sp-sidebar">
+                <div class="sidetitle">
+                    <h3>Sản phẩm tương tự</h3>
+                </div>
+            </div>
+
+            <div class="lksp">
+                                        <li class="flexbetwen">
+                <div class="lksp-img">
+                  <a href="http://tanphat.com/vi/san-pham/cau-nang-4-tru-4-5-tan-nussbaum-combi-lift-4-40s">
+                                     <img src="http://tanphat.com/storage/upload/cache/catalog/products/Cau-nang-4-tru-Nussbaum-91x87.jpg">
+                                      </a>
+                </div>
+                <div class="lksp-ex">
+                  <div class="ex-title">
+                    <a href="http://tanphat.com/vi/san-pham/cau-nang-4-tru-4-5-tan-nussbaum-combi-lift-4-40s">Cầu nâng 4 trụ 4,5 tấn Nussbaum Combi Lift</a>
+                  </div>
+                  <div class="ex-code">
+                    <p>4.40S</p>
+                  </div>
+                  <!-- price -->
+                                                          <div class="ex-price text-center">
+                      <div><span> Liên hệ  </span></div>
+                    </div>
+                                                        <!--/. end price  -->
+                </div>
+              </li>
+                            <li class="flexbetwen">
+                <div class="lksp-img">
+                  <a href="http://tanphat.com/vi/san-pham/cau-nang-cat-keo-nang-toan-xe-kieu-uni-lift-3500-nt">
+                                     <img src="http://tanphat.com/storage/upload/cache/catalog/products/cau-nang-cat-keo-nang-toan-xe-91x87.png">
+                                      </a>
+                </div>
+                <div class="lksp-ex">
+                  <div class="ex-title">
+                    <a href="http://tanphat.com/vi/san-pham/cau-nang-cat-keo-nang-toan-xe-kieu-uni-lift-3500-nt">Cầu nâng cắt kéo nâng toàn xe kiểu Uni Lift</a>
+                  </div>
+                  <div class="ex-code">
+                    <p>3500-NT</p>
+                  </div>
+                  <!-- price -->
+                                                          <div class="ex-price text-center">
+                      <div><span> Liên hệ  </span></div>
+                    </div>
+                                                        <!--/. end price  -->
+                </div>
+              </li>
+                            <li class="flexbetwen">
+                <div class="lksp-img">
+                  <a href="http://tanphat.com/vi/san-pham/cau-nang-2-tru-guangli-3-2-tan-rong-long-cau-3m-qjy-32-2c">
+                                     <img src="http://tanphat.com/storage/upload/cache/catalog/products/cau-nang-2-tru-guangli-3-2-tan-rong-long-cau-3m-qjy-32-2c-91x87.png">
+                                      </a>
+                </div>
+                <div class="lksp-ex">
+                  <div class="ex-title">
+                    <a href="http://tanphat.com/vi/san-pham/cau-nang-2-tru-guangli-3-2-tan-rong-long-cau-3m-qjy-32-2c">Cầu nâng 2 trụ Guangli 3,2 tấn rộng lòng cầu 3m</a>
+                  </div>
+                  <div class="ex-code">
+                    <p>QJY 3.2-2C</p>
+                  </div>
+                  <!-- price -->
+                                                          <div class="ex-price text-center">
+                      <div><span> Liên hệ  </span></div>
+                    </div>
+                                                        <!--/. end price  -->
+                </div>
+              </li>
+                            <li class="flexbetwen">
+                <div class="lksp-img">
+                  <a href="http://tanphat.com/vi/san-pham/cau-nang-2-tru-koisu-4-tan-loai-co-cong-kpl-4-2a">
+                                     <img src="http://tanphat.com/storage/upload/cache/catalog/products/K.PL-4.0-2A-91x87.png">
+                                      </a>
+                </div>
+                <div class="lksp-ex">
+                  <div class="ex-title">
+                    <a href="http://tanphat.com/vi/san-pham/cau-nang-2-tru-koisu-4-tan-loai-co-cong-kpl-4-2a">Cầu nâng 2 trụ Koisu 4,0 tấn loại có cổng</a>
+                  </div>
+                  <div class="ex-code">
+                    <p>K.PL-4.0-2A</p>
+                  </div>
+                  <!-- price -->
+                                                          <div class="ex-price text-center">
+                      <div><span> Liên hệ  </span></div>
+                    </div>
+                                                        <!--/. end price  -->
+                </div>
+              </li>
+                            <li class="flexbetwen">
+                <div class="lksp-img">
+                  <a href="http://tanphat.com/vi/san-pham/cau-nang-2-tru-koisu-4-tan-loai-khong-cong-kpl-4-2b">
+                                     <img src="http://tanphat.com/storage/upload/cache/catalog/products/cau-nang-2-tru-Koisu-KPL-4.0-2B-91x87.jpg">
+                                      </a>
+                </div>
+                <div class="lksp-ex">
+                  <div class="ex-title">
+                    <a href="http://tanphat.com/vi/san-pham/cau-nang-2-tru-koisu-4-tan-loai-khong-cong-kpl-4-2b">Cầu nâng 2 trụ Koisu 4,0 tấn loại không cổng</a>
+                  </div>
+                  <div class="ex-code">
+                    <p>K.PL-4.0-2B</p>
+                  </div>
+                  <!-- price -->
+                                                          <div class="ex-price text-center">
+                      <div><span> Liên hệ  </span></div>
+                    </div>
+                                                        <!--/. end price  -->
+                </div>
+              </li>
+                                      </div>
+        </div>
+    </div>
+
+    <div class="heading">
+            <h2 class="p-2">THÔNG TIN SẢN PHẨM</h2>
+    </div>
+
+    <div class="product-desc flexbetwen">
+        <div class="infoproduct">
+            <!-- <table>
+              <tbody>
+                <tr>
+                  <td><img src="http://tanphat.com/assets/frontend/img/yes.png"></td>
+                  <td>attr</td>
+                </tr>
+              </tbody>
+            </table> -->
+            <p>Cầu nâng 2 trụ Nussbaum 4,0 tấn loại có cổng Power Lift HF 4000 được nhập khẩu từ Đức (Châu Âu) là thương hiệu cầu nâng nổi tiếng và có chất lượng tốt nhất được Châu Âu đánh giá cao và được phê duyệt sử dụng bởi nhiều hãng xe ô tô.</p>
+
+            <p>&nbsp;</p>
+
+            <p><strong>Đặc điểm</strong></p>
+
+            <p>&ZeroWidthSpace;&ZeroWidthSpace;&ZeroWidthSpace;&ZeroWidthSpace;&ZeroWidthSpace;- Trụ được làm bằng thép dập nguyên tấm, đảm bảo độ cứng vững cao.</p>
+
+            <p>- Khóa cơ khí hoạt động điện, có thể hạ cầu trực tiếp mà không cần nâng cầu lên.</p>
+
+            <p>- Công nghệ HyperFlow giúp tự động xả Air giúp cân bằng cầu nâng.</p>
+
+            <p>- Sử dụng đồng bộ thủy lực, không sử dụng dây cáp.</p>
+
+            <p>- Tay nâng bất đối xứng giúp trọng tâm xe nằm xa 2 trụ giúp tăng không gian thao tác.</p>
+
+            <p>&nbsp;</p>
+
+            <p><strong>Thông số kỹ thuật</strong></p>
+
+            <p>- Tải trọng nâng: 4 Tấn</p>
+
+            <p>- Chiều cao nâng: 2050 mm</p>
+
+            <p>- Thời gian nâng/hạ: 35/28 giây</p>
+
+            <p>- Chiều rộng thông xe: 2509 mm</p>
+
+            <p>- Khoảng cách giữa 2 trụ: 2766 mm</p>
+
+            <p>- Chiều cao tổng thể: 4040 mm</p>
+
+            <p>- Vị trí thấp nhất của tay nâng: 95 - 140 mm</p>
+
+            <p>- Tay nâng dài: 1130 - 1840 mm</p>
+
+            <p>- Công suất Mô tơ: 3 Kw</p>
+
+            <p>- Cấp nguồn: 3 pha 400V / 50Hz</p>
+
+            <p>&nbsp;</p>
+          </div>
+    </div>
+
+    <div class="heading heading-comment">
+        <h2 class="p-2">BÌNH LUẬN VỀ SẢN PHẨM</h2>
+    </div>
+    <div class="product-desc flexbetwen">
+        
+                    {{!-- Comment start --}}
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="">
+                                <div class="fb-comments" data-href="https://hoangbo.com" data-width=""
+                                    data-numposts="5"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mx-auto">
+            <div class="ctrl-box md-content ">
+                <h5 class="title uppercase text-center">Liên hệ <span style="color: var(--cam);"> nhà cung cấp</span>
+                </h5>
+                <form method="POST" action="/form/contact" class="form-validate" data-callback="reload_page"
+                    novalidate="novalidate">
+                    <input type="hidden" name="showroom_email" value="sale@trungtamvoxe.com">
+                    <div class="form-group border-0 py-0">
+                        <input type="fullname" class="form-control" id="fullname" name="fullname"
+                            placeholder="Họ Tên (*)" required="" aria-required="true">
+                    </div>
+                    <div class="form-group border-0 py-0">
+                        <input type="email" class="form-control" id="email" name="email"
+                            placeholder="Email (Không bắt buộc)">
+                    </div>
+                    <div class="form-group border-0 py-0">
+                        <input type="phone" class="form-control" id="phone" name="phone" placeholder="Số Điện Thoại (*)"
+                            required="" aria-required="true">
+                    </div>
+                    <div class="form-group border-0 py-0">
+                        <textarea class="form-control small-size" rows="4" name="content"
+                            readonly="">Xin chào, tôi vừa xem BRIDGESTONE TURANZA GR100 225/45R18 MÃ 225/45R18 trên hanaco.vn , hãy liên hệ tôi để tư vấn thêm.  Xin cảm ơn!</textarea>
+                    </div>
+
+                    <div class="form-group text-center border-0">
+                        <button type="submit" class="mx-auto d-block btn btn-primary btn-inline-product">Gửi yêu
+                            cầu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+                    {{!-- Comment end --}}
+            
+    </div>
+
+    
+
+</div>
+
+
+ {{!-- Image Modal --}}
                 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
                     aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
+                        <div class="modal-content h-100">
                             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <div class="carousel-item">
@@ -65,150 +374,3 @@
                     </div>
                 </div>
                 {{!-- --}}
-
-                <div class="col-md-8">
-                    <div class="ct">
-                        <h5 class="title">{{data.name}}</h5>
-                        <div class="title mb-3">{{data.desc}}</div>
-                        <div class="des"><span style="text-transform:none; color: var(--cam);">Mã sản phẩm: </span>
-                            {{data.pid}}</div>
-                        <div class="date-count-view">
-                            <time>16/11/2018- Lượt xem : 764</time>
-                        </div>
-
-                        <div class="price large-size mb-4">
-                            {{data.price}}
-                        </div>
-
-                        <table height="80" style="width: 100%;">
-                            <tbody>
-                                <tr>
-                                    <td style="width: 214px;" colspan="2">
-                                        <h5 class="title">Thông tin nhà cung cấp </h5>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 52px;"><span>Showroom :</span></td>
-                                    <td style="width: 330px;"><span>{{data.showroom}} </span></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 52px;"><span>Hotline :</span></td>
-                                    <td style="width: 330px;"><span><a href="tel:{{data.phone}}">{{data.phone}}</a></span></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 52px;"><span>Địa chỉ :</span></td>
-                                    <td style="width: 330px;"><span>{{data.address}}</span> <a target="_blank" class="hoverred" href=""> ( Xem bản đồ ) </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <hr>
-                        <p><span><a class="hoverred" href="/showroom/86">Xem thêm các sản phẩm khác cùng nhà cung cấp
-                                    &gt;&gt;&gt;</a></span></p>
-                        <hr>
-
-                        <table height="80" style="width: 100%;">
-                            <tbody>
-                                <tr>
-                                    <td style="width: 214px;" colspan="2">
-                                        <h5 class="title">Thông tin người đại diện</h5>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 52px;"><span>Họ tên :</span></td>
-                                    <td style="width: 330px;"><span>{{data.represent}}</span></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 52px;"><span>Hotline :</span></td>
-                                    <td style="width: 330px;"><span><a href="tel:{{data.phone}}"> {{data.phone}}</a></span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="p-social mt-4">
-                            <div class="div-social">
-                                <a href="javascript;">
-                                    <div class="fb-like fb_iframe_widget"
-                                        data-href="https://hanaco.vn/bridgestone-turanza-gr100-22545r18-ma-22545r18"
-                                        data-layout="button_count" data-action="like" data-size="small"
-                                        data-show-faces="false" data-share="true" fb-xfbml-state="rendered"
-                                        fb-iframe-plugin-query="action=like&amp;app_id=258420356120629&amp;container_width=0&amp;href=https%3A%2F%2Fhanaco.vn%2Fbridgestone-turanza-gr100-22545r18-ma-22545r18&amp;layout=button_count&amp;locale=vi_VN&amp;sdk=joey&amp;share=true&amp;show_faces=false&amp;size=small">
-                                        <span style="vertical-align: bottom; width: 150px; height: 28px;"><iframe
-                                                name="f1cbd83c982b69" width="1000px" height="1000px"
-                                                data-testid="fb:like Facebook Social Plugin"
-                                                title="fb:like Facebook Social Plugin" frameborder="0"
-                                                allowtransparency="true" allowfullscreen="true" scrolling="no"
-                                                allow="encrypted-media"
-                                                src="https://www.facebook.com/v2.12/plugins/like.php?action=like&amp;app_id=258420356120629&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df203241e3b64b98%26domain%3Dhanaco.vn%26is_canvas%3Dfalse%26origin%3Dhttps%253A%252F%252Fhanaco.vn%252Ff20226c10de3e0c%26relation%3Dparent.parent&amp;container_width=0&amp;href=https%3A%2F%2Fhanaco.vn%2Fbridgestone-turanza-gr100-22545r18-ma-22545r18&amp;layout=button_count&amp;locale=vi_VN&amp;sdk=joey&amp;share=true&amp;show_faces=false&amp;size=small"
-                                                style="border: none; visibility: visible; width: 150px; height: 28px;"
-                                                class=""></iframe></span>
-                                    </div>
-                                </a>
-                                <a href="javascript;">
-                                    <div id="___plusone_0" style="position: absolute; width: 450px; left: -10000px;">
-                                        <iframe ng-non-bindable="" frameborder="0" hspace="0" marginheight="0"
-                                            marginwidth="0" scrolling="no"
-                                            style="position:absolute;top:-10000px;width:450px;margin:0px;border-style:none"
-                                            tabindex="0" vspace="0" width="100%" id="I0_1655456100716"
-                                            name="I0_1655456100716"
-                                            src="https://apis.google.com/u/0/se/0/_/+1/fastbutton?usegapi=1&amp;size=tall&amp;origin=https%3A%2F%2Fhanaco.vn&amp;url=https%3A%2F%2Fhanaco.vn%2Fbridgestone-turanza-gr100-22545r18-ma-22545r18&amp;gsrc=3p&amp;ic=1&amp;jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.en.dzXZWX9QTbE.O%2Fd%3D1%2Frs%3DAHpOoo_epIQDPHdjFr3MLkazUi2Jmy50dQ%2Fm%3D__features__#_methods=onPlusOne%2C_ready%2C_close%2C_open%2C_resizeMe%2C_renderstart%2Concircled%2Cdrefresh%2Cerefresh&amp;id=I0_1655456100716&amp;_gfid=I0_1655456100716&amp;parent=https%3A%2F%2Fhanaco.vn&amp;pfname=&amp;rpctoken=81582179"
-                                            data-gapiattached="true"></iframe>
-                                    </div>
-                                    <g:plusone size="tall" style="vertical-align: top;" data-gapiscan="true"
-                                        data-onload="true" data-gapistub="true"></g:plusone>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    {{!-- Comment start --}}
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="heading heading-comment">
-                                <h2>BÌNH LUẬN VỀ SẢN PHẨM</h2>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="">
-                                <div class="fb-comments" data-href="https://hoangbo.com" data-width=""
-                                    data-numposts="5"></div>
-                            </div>
-                        </div>
-                    </div>
-                    {{!-- Comment end --}}
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 px-2">
-            <div class="ctrl-box md-content ">
-                <h5 class="title uppercase text-center">Liên hệ <span style="color: var(--cam);"> nhà cung cấp</span>
-                </h5>
-                <form method="POST" action="/form/contact" class="form-validate" data-callback="reload_page"
-                    novalidate="novalidate">
-                    <input type="hidden" name="showroom_email" value="sale@trungtamvoxe.com">
-                    <div class="form-group border-0 py-0">
-                        <input type="fullname" class="form-control" id="fullname" name="fullname"
-                            placeholder="Họ Tên (*)" required="" aria-required="true">
-                    </div>
-                    <div class="form-group border-0 py-0">
-                        <input type="email" class="form-control" id="email" name="email"
-                            placeholder="Email (Không bắt buộc)">
-                    </div>
-                    <div class="form-group border-0 py-0">
-                        <input type="phone" class="form-control" id="phone" name="phone" placeholder="Số Điện Thoại (*)"
-                            required="" aria-required="true">
-                    </div>
-                    <div class="form-group border-0 py-0">
-                        <textarea class="form-control small-size" rows="4" name="content"
-                            readonly="">Xin chào, tôi vừa xem BRIDGESTONE TURANZA GR100 225/45R18 MÃ 225/45R18 trên hanaco.vn , hãy liên hệ tôi để tư vấn thêm.  Xin cảm ơn!</textarea>
-                    </div>
-
-                    <div class="form-group text-center border-0">
-                        <button type="submit" class="mx-auto d-block btn btn-primary btn-inline-product">Gửi yêu
-                            cầu</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
