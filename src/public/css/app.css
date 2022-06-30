@@ -17,6 +17,194 @@ a:hover {
   text-decoration: none;
 }
 
+/* Welcome page: start */
+
+.welcome-page {
+  background: url("/img/background/background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.w-header {
+  width: 100%;
+  margin-bottom: 30px;
+  color: #fff;
+  padding: 10px 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  text-align: center;
+}
+
+
+
+.w-body .container {
+  background-color: rgba(233, 232, 232, 0.8);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+}
+
+.hover {
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 60%;
+}
+
+.hover-home-page {
+  position: relative;
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  transition: all 0.3s;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.hover-home-page:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+
+}
+
+.hover-home-page img {
+  transition: all 0.3s;
+}
+
+.hover-home-page:hover img {
+  transform: scale(1.1);
+}
+
+.logo-access img {
+  width: 35% !important;
+}
+
+.logo-access .hover-overlay {
+  width: 100% !important;
+  height: 100%;
+}
+
+
+.logo-access .hover {
+  overflow: hidden;
+  position: relative;
+  padding-bottom: 20% !important;
+}
+
+.logo-access .hover-5:hover img {
+  width: 105%;
+  top: -5%;
+  left: -5%;
+  transform: translate(5%, 5%);
+
+}
+
+.logo-access .hover-5 .hover-overlay {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.logo-access .hover-5:hover .hover-overlay {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.logo-access .hover img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.3s;
+}
+
+.logo-access .hover-5::after {
+  content: '';
+  width: 100%;
+  height: 10px;
+  background: var(--xanh);
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  display: block;
+  transition: all 0.3s;
+  z-index: 999;
+}
+
+.hover-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 90;
+  transition: all 0.4s;
+}
+
+.hover img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.3s;
+}
+
+.hover-content {
+  position: relative;
+  z-index: 99;
+}
+
+.hover-5::after {
+  content: '';
+  width: 100%;
+  height: 20px;
+  background: var(--xanh);
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  display: block;
+  transition: all 0.3s;
+  z-index: 999;
+}
+
+.hover-5 .hover-overlay {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.hover-5-title {
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  transition: all 0.3s;
+  padding: 2rem 3rem;
+  z-index: 99;
+}
+
+.hover-5-title span {
+  transition: all 0.4s;
+  opacity: 0;
+  color: #fff;
+}
+
+.hover-5:hover img {
+  width: 105%;
+  top: 5%;
+  left: 5%;
+  transform: translate(-5%, -5%);
+}
+
+.hover-5:hover .hover-overlay {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.hover-5:hover .hover-5-title {
+  bottom: 0;
+}
+
+.hover-5:hover .hover-5-title span {
+  opacity: 1;
+}
+
+.hover-5:hover::after {
+  bottom: 0;
+}
+
+/* Welcome page: end */
+
 /* Header */
 
 .search {

@@ -86,6 +86,9 @@
 
 <body>
 
+    {{#if index}}
+    {{{body}}}
+    {{else}}
     {{>header}}
     {{>navbar}}
     <div class="container">
@@ -95,6 +98,8 @@
         {{{body}}}
     </div>
     {{> footer}}
+    {{/if}}
+
 
 
     {{!--

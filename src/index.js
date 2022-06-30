@@ -13,16 +13,16 @@ app.engine('hbs', handlebars.engine({
     extname: 'hbs'
 }))
 app.set('view engine', 'hbs')
-app.set('views', path.join(__dirname, 'resources\\views'))
+app.set('views', path.join(__dirname, 'resources/views'))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true})); 
+app.use(express.urlencoded({ extended: true }));
 db.connect();
 
 Products.find({})
     .then(products => {
-        if(products.length == 0) {
+        if (products.length == 0) {
             const default_product = {
                 product_id: 'LX001',
                 product_name: 'Lốp xe 1',
@@ -42,6 +42,10 @@ Products.find({})
     })
 
 app.get('/', (req, res) => {
+    res.render('index', { index: true })
+})
+
+app.get('/home', (req, res) => {
     res.render('home')
 })
 
@@ -59,6 +63,5 @@ app.get('/contact', (req, res) => {
 app.use('/users', UserRouter);
 app.use('/collections', CollectionRouter);
 app.use('/products', ProductRouter);
-
 
 app.listen(port, () => console.log('Server started'))
