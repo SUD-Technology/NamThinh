@@ -462,6 +462,57 @@ a:hover {
   margin-top: 20px;
 }
 
+
+.product-sidebar {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.product-sidebar-title {
+  background-color: var(--xanh);
+  padding: 10px 0;
+  color: #fff;
+  text-align: center;
+  border: 1px solid var(--xanh);
+}
+
+.product-sidebar-title h1 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.product-sidebar-body {
+  background-color: #e6e7e8;
+}
+
+.product-sidebar-body form {
+  width: 92%;
+  height: 300px;
+  overflow: auto;
+  margin: 5px 0 5px 20px;
+
+}
+
+.product-sidebar-body p {
+  width: 100%;
+  padding: 5px 0 5px 20px;
+  text-align: start;
+  background-color: #e6e7e8;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin: 0;
+}
+
+
+.product-sidebar-body li {
+  font-size: 16px;
+  display: flex;
+}
+
+.product-sidebar-body li input {
+  margin-right: 5px;
+}
+
+
+
 .sub-title {
   background-color: var(--xanh);
   color: white;
@@ -1375,7 +1426,7 @@ a:hover {
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
   .navbar {
     display: none;
   }
@@ -1388,7 +1439,7 @@ a:hover {
     display: flex;
     justify-content: space-between;
   }
-}
+} */
 
 /* Medium devices (landscape tablets, 768px and up) */
 /* @media only screen and (min-width: 768px) {...} */
