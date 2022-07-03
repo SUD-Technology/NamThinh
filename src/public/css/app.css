@@ -470,7 +470,6 @@ a:hover {
 .pagi {
   width: 100%;
   height: 60px;
-
   background-color: #e6e7e8;
   margin: 10px 0 0 0;
 }
@@ -628,7 +627,7 @@ a:hover {
 .sub-title {
   background-color: var(--xanh);
   color: yellow;
-  padding: 0 20px;
+  padding: 0 40px;
   line-height: 60px;
   font-size: 37px;
   font-weight: 800;
@@ -658,11 +657,19 @@ a:hover {
 .items-product {
   border-color: var(--xanh);
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   display: list-item;
   font-family: UTM;
   font-size: 13px;
   text-align: center;
+  border-radius: 0.5rem;
+}
+
+.items-product:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+  overflow: hidden;
+  border: 2px solid var(--cam);
 }
 
 .items-product p {
@@ -781,6 +788,7 @@ a:hover {
 }
 
 .product-desc p {
+  font-family:Verdana, Geneva, Tahoma, sans-serif !important;
   font-size: 15px !important;
 }
 
@@ -891,13 +899,14 @@ a:hover {
   text-transform: uppercase;
 }
 
+.navbar-list > .navbar-item > a:hover {
+  color: yellow;
+}
+
 .navbar-item i {
   font-size: 12px;
 }
 
-.navbar-item:hover {
-  background-color: #144d87 !important;
-}
 
 .navbar-item .navbar-menu {
   position: absolute;
