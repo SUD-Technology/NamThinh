@@ -788,7 +788,7 @@ a:hover {
 }
 
 .product-desc p {
-  font-family:Verdana, Geneva, Tahoma, sans-serif !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif !important;
   font-size: 15px !important;
 }
 
@@ -899,7 +899,7 @@ a:hover {
   text-transform: uppercase;
 }
 
-.navbar-list > .navbar-item > a:hover {
+.navbar-list>.navbar-item>a:hover {
   color: yellow;
 }
 
