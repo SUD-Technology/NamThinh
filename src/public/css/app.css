@@ -11,18 +11,19 @@
   /* color: darkblue ; */
 }
 
-body {
-  
-}
+body {}
 
-p, a, span, label {
+p,
+a,
+span,
+label {
   font-family: SVN !important;
-  
+
 }
 
 html {
   color: black;
-  
+
 }
 
 ul {
@@ -469,7 +470,7 @@ a:hover {
 .pagi {
   width: 100%;
   height: 60px;
-  
+
   background-color: #e6e7e8;
   margin: 10px 0 0 0;
 }
@@ -492,7 +493,7 @@ a:hover {
 
 .sidebar-item {
   padding: 5px;
-  
+
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.05);
   justify-content: space-between;
@@ -573,7 +574,7 @@ a:hover {
 
 .brand-sidebar p {
   font-size: 16px !important;
-  
+
 }
 
 .brand-sidebar-title {
@@ -630,7 +631,7 @@ a:hover {
   padding: 0 20px;
   line-height: 60px;
   font-size: 37px;
-  font-weight:800;
+  font-weight: 800;
   font-style: italic;
 }
 
@@ -905,7 +906,9 @@ a:hover {
   left: 0;
   min-width: 100%;
   z-index: 5;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.1s linear;
 }
 
 .navbar-list .navbar-item:nth-child(2) .navbar-menu {
@@ -926,7 +929,8 @@ a:hover {
 }
 
 .navbar-item:hover>.navbar-menu {
-  display: block;
+  visibility: visible;
+  opacity: 1;
 }
 
 .navbar-menu::before {
