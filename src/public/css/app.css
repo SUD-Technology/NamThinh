@@ -629,9 +629,10 @@ a:hover {
   color: yellow;
   padding: 0 40px;
   line-height: 60px;
-  font-size: 37px;
+  font-size: 30px;
   font-weight: 800;
   font-style: italic;
+  border-radius: 0 0.5rem 0.5rem 0;
 }
 
 
