@@ -65,18 +65,19 @@ a:hover {
 }
 
 .rotate {
-  transform: rotate(180deg) translateY(5px) !important;
+  transform: rotate(360deg) translateY(5px) !important;
 }
 
 .leave-msg header i {
   font-size: 20px;
   padding: 10px;
-  transform: rotate(0deg) translateY(5px);
+  transform: rotate(180deg) translateY(5px);
 }
 
 .leave-msg-body {
   background-color: #fff;
   padding-bottom: 40px;
+  display: none;
 }
 
 .leave-msg-body form {
@@ -1520,15 +1521,13 @@ a:hover {
   }
 
 
-  #right-sidebar .sidebar-body li a {
+  #right-sidebar .sidebar-body ul>li>a {
     color: var(--xanh);
     display: flex;
     justify-content: space-between;
   }
 
-
-
-  #right-sidebar .sidebar-body li:hover a {
+  #right-sidebar .sidebar-body li:hover>a {
     background-color: var(--xanh);
     color: #fff;
   }
@@ -1539,11 +1538,18 @@ a:hover {
     margin-bottom: auto;
   }
 
-  #right-sidebar .sidebar-body li ul li:hover {
-    color: #fff;
-    background-color: var(--xanh);
+  .list-group-item>a {
+    color: #000 !important;
   }
 
+  #right-sidebar .sidebar-body li ul li:hover {
+    background-color: var(--xanh);
+    border-right: 5px solid #cb0309;
+  }
+
+  #right-sidebar .sidebar-body li ul li:hover a {
+    color: #fff !important;
+  }
 
   .sidebar-header {
     padding: 10px;
