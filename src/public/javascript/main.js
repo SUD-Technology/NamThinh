@@ -37,8 +37,8 @@ $(document).ready(function () {
     // leave message: start
     $(function () {
         $('#leaver-header').click(() => {
-            $('.leave-msg-body').slideToggle();
-            $('#leaver-header i').toggleClass('rotate')
+            $('.leave-msg-body').slideToggle("slow");
+            $('#leaver-header i').toggleClass('rotate');
         })
     })
     // leave message: end
@@ -51,6 +51,7 @@ $(document).ready(function () {
             $('#right-sidebar').animate({ right: "-400" });
             $('#collapse2').slideUp();
             $('#collapse1').slideUp();
+            $('#collapse3').slideUp();
         })
 
         $('#left-times').click(() => {
@@ -65,6 +66,7 @@ $(document).ready(function () {
             $('#right-sidebar').animate({ right: "-400" });
             $('#collapse2').slideUp();
             $('#collapse1').slideUp();
+            $('#collapse3').slideUp();
         })
     })
 
@@ -74,7 +76,7 @@ $(document).ready(function () {
         $('#collapse-btn1').click(() => {
             $('#collapse1').slideToggle();
             $('#collapse2').slideUp();
-
+            $('#collapse3').slideUp();
         })
     })
 
@@ -83,7 +85,16 @@ $(document).ready(function () {
         $('#collapse-btn2').click(() => {
             $('#collapse2').slideToggle();
             $('#collapse1').slideUp();
+            $('#collapse3').slideUp();
+        })
+    })
 
+    $(function () {
+        $('#collapse3').slideUp();
+        $('#collapse-btn3').click(() => {
+            $('#collapse3').slideToggle();
+            $('#collapse1').slideUp();
+            $('#collapse2').slideUp();
         })
     })
 
