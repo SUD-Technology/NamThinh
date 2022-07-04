@@ -889,7 +889,7 @@ a:hover {
 
 .navbar-item {
   line-height: 39px;
-  padding: 0 20px;
+  padding: 0 40px;
   position: relative;
 }
 
@@ -1003,6 +1003,7 @@ a:hover {
 #DN {
   display: none;
 }
+
 
 .navbar-product-item:hover>#DN,
 .navbar-product-item:hover>#LMCT {
