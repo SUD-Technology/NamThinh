@@ -1,0 +1,184 @@
+
+
+
+{{!-- Body: start --}}
+<div class="container">
+    <div class="addProduct-header">
+        <div class="row pagi">
+            <span class="sub-title">Thêm sản phẩm</span>
+        </div>
+    </div>
+    <div class="addProduct-body">
+        <form class="form-horizontal" enctype="multipart/form-data" method="post">
+            <fieldset>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="product_id">MÃ SẢN PHẨM</label>
+                    <div class="col-md-8">
+                        <input id="product_id" name="product_id" placeholder="Mã sản phẩm" class="form-control input-md"
+                            required="" type="text">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="product_name">TÊN SẢN PHẨM</label>
+                    <div class="col-md-8">
+                        <input id="product_name" name="product_name" placeholder="Tên sản phẩm"
+                            class="form-control input-md" required="" type="text">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="available_quantity">MODEL</label>
+                    <div class="col-md-8">
+                        <input id="available_quantity" name="available_quantity" placeholder="Model"
+                            class="form-control input-md" required="" type="text">
+
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="product_categorie">DANH MỤC SẢN PHẨM</label>
+                    <div class="col-md-8">
+                        <select id="product_categorie" name="product_categorie" class="form-control">
+                            <option value="">--Chọn loại sản phẩm--</option>
+                            <optgroup label="Lốp Advance / Samson">
+                                <option value="">Lốp máy công trình: Lốp xe tải hạng nặng</option>
+                                <option value="">Lốp máy công trình: Lốp máy súc</option>
+                                <option value="">Lốp máy công trình: Lốp xe cẩu</option>
+                                <option value="">Lốp máy công trình: Lốp xe lu</option>
+                                <option value="">Lốp máy công nghiệp: Lốp đặc</option>
+                                <option value="">Lốp máy công nghiệp: Lốp công nghiệp khí nén</option>
+                                <option value="">Lốp máy nông nghiệp: Lốp nông nghiệp nhỏ</option>
+                                <option value="">Lốp máy nông nghiệp: Lốp nông nghiệp lớn</option>
+                            </optgroup>
+                            <optgroup label="Xe tải / Đầu kéo / Xe ben">
+                                <option value="">Xe tải thùng</option>
+                                <option value="">Xe đầu kéo</option>
+                                <option value="">Xe ben</option>
+                                <option value="">Sơ mi rơ móc</option>
+                            </optgroup>
+                            <optgroup label="Phụ tùng ô tô">
+                                <option value="">Xe tải thùng</option>
+                                <option value="">Xe đầu kéo</option>
+                                <option value="">Xe ben</option>
+                                <option value="">Sơ mi rơ móc</option>
+                            </optgroup>
+                            <optgroup label="Dầu nhớt">
+                                <option value="">Dầu nhớt ô tô / xe máy: Dầu động cơ</option>
+                                <option value="">Dầu nhớt ô tô / xe máy: Dầu hộp số</option>
+                                <option value="">Dầu nhớt ô tô / xe máy: Dầu láp</option>
+                                <option value="">Dầu nhớt công nghiêp: Dầu đa năng</option>
+                                <option value="">Dầu nhớt công nghiêp: Dầu bôi trơn</option>
+                                <option value="">Dầu nhớt công nghiêp: Dầu thủy lực</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="product_branch">THƯƠNG HIỆU</label>
+                    <div class="col-md-8">
+                        <input id="product_branch" name="product_branch" placeholder="Thương hiệu"
+                            class="form-control input-md" required="" type="text">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="product_origin">Xuất sứ</label>
+                    <div class="col-md-8">
+                        <input id="product_origin" name="product_origin" placeholder="Xuất sứ"
+                            class="form-control input-md" required="" type="text">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="product-image">HÌNH ẢNH SẢN PHẨM</label>
+                    <div class="col-md-8">
+                        <div class="form-group-container">
+                            <input id="product-image" accept="image/*" name="product-image"
+                                class="form-control input-md" onchange="preview()" type="file" multiple>
+                            <label for="product-image">
+                                <i class="fas fa-upload"></i>
+                                Chọn ảnh sản phẩm &nbsp;
+                            </label>
+                            <p id="num-of-file">Chưa có ảnh nào được chọn</p>
+                            <div id="images-upload">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="product_description">MÔ TẢ THÔNG TIN SẢN PHẨM</label>
+                    <div class="col-md-8">
+                        <textarea class="form-control" id="product_description" name="product_description"></textarea>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-footer">
+                    <button type="submit">Thêm sản phẩm</button>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="addProduct-footer">
+
+    </div>
+</div>
+
+{{!-- Body: end --}}
+
+
+<script src="https://cdn.tiny.cloud/1/j88ohxy0xzr1jtwyis9v2j14gxs7ym1374rj731gaz4wcqo0/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
+
+<!-- Footer -->
+<script>
+    let fileInput = document.getElementById("product-image")
+    let imageContainer = document.getElementById('images-upload')
+    let numOfFiles = document.getElementById('num-of-file')
+
+    function preview() {
+        imageContainer.innerHTML = ""
+        numOfFiles.textContent = `${fileInput.files.length} ảnh đã được chọn`;
+
+        for (i of fileInput.files) {
+            let reader = new FileReader()
+            let figure = document.createElement("figure")
+            let figCap = document.createElement("figcaption")
+
+            figCap.innerText = i.name
+            figure.appendChild(figCap)
+            reader.onload = () => {
+                let img = document.createElement("img");
+                img.setAttribute("src", reader.result);
+                figure.insertBefore(img, figCap);
+            }
+            imageContainer.appendChild(figure);
+            reader.readAsDataURL(i)
+        }
+    }
+
+    tinymce.init({
+        selector: '#product_description',
+        plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+    });
+</script>

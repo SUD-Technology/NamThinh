@@ -1,0 +1,48 @@
+{{!-- Body: start --}}
+<div class="container">
+    <div class="addProduct-header">
+        <div class="row pagi">
+            <span class="sub-title">Chỉnh sửa trang</span>
+        </div>
+    </div>
+    <div class="addProduct-body">
+        <form class="form-horizontal" enctype="multipart/form-data" method="post">
+            <fieldset>
+                <!-- Textarea -->
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <textarea class="form-control" id="edit-page" name="edit-page"><p>......</p></textarea>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-footer">
+                    <button type="submit">Lưu</button>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="addProduct-footer">
+
+    </div>
+</div>
+
+{{!-- Body: end --}}
+
+
+<script src="https://cdn.tiny.cloud/1/j88ohxy0xzr1jtwyis9v2j14gxs7ym1374rj731gaz4wcqo0/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
+
+<script>
+
+    tinymce.init({
+        selector: '#edit-page',
+        plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
+        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
+        toolbar_mode: 'floating',
+        tinycomments_mode: 'embedded',
+        tinycomments_author: 'Author name',
+    });
+</script>
