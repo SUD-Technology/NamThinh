@@ -111,6 +111,11 @@ $(document).ready(function () {
         });
     });
 
+    // Custom File Upload: start
+
+    // Custom File Upload: end
+
+
 });
 
 // City Select

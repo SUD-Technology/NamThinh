@@ -6,6 +6,7 @@ const path = require('path')
 const UserRouter = require('./routers/UserRouter');
 const CollectionRouter = require('./routers/CollectionRouter');
 const ProductRouter = require('./routers/ProductRouter');
+const AdminRouter = require('./routers/AdminRouter')
 const db = require('./config/db');
 const Products = require('./models/Products');
 
@@ -63,5 +64,5 @@ app.get('/contact', (req, res) => {
 app.use('/users', UserRouter);
 app.use('/collections', CollectionRouter);
 app.use('/products', ProductRouter);
-
+app.use('/admin', AdminRouter)
 app.listen(port, () => console.log('Server started'))
