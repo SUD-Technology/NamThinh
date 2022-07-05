@@ -6,7 +6,7 @@ mongoose.plugin(slug);
 const Collections = new Schema({
     collection_id: {type: String, unique: true, required: true},
     collection_name: {type: String, required: true},
-    slug: {type: String, slug: 'collection_name'},
+    slug: {type: String, slug: 'collection_name', unique: true},
 },
 {
     timestamps: true,

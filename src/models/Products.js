@@ -9,7 +9,7 @@ const Products = new Schema({
     description: {type: String, required: true},
     product_img: {type: String, required: true},
     brand_name: {type: String, required: true},
-    category: {type: String, required: true},
+    collection_id: {type: String, required: true},
     price: {type: Number},
     showroom: {type: String, required: true},
     represent: {type: String, required: true},
