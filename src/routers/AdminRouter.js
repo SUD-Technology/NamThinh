@@ -5,6 +5,10 @@ router.get('/', (req, res) => {
     res.render('admin', { admin: true })
 })
 
+router.get('/contact', (req, res) => {
+    res.render('contact', { admin: true, change: false })
+})
+
 router.get('/add-product', (req, res) => {
     res.render('addProduct', { admin: true })
 })
@@ -15,5 +19,9 @@ router.get('/edit', (req, res) => {
 
 router.get('/changePassword', (req, res) => {
     res.render('changePassword', { admin: true })
+})
+
+router.get('/customer-info', (req, res) => {
+    res.render('customerInfo', { admin: true })
 })
 module.exports = router;

@@ -9,9 +9,14 @@
                         </div>
                         <div class="sidebar-body">
                             <ul class="list-group">
+                                <li><a class="list-group-item smooth" href="/admin/customer-info" title=""> <i
+                                            class="fas fa-bell"></i>
+                                        Thông tin khách hàng</a></li>
+                                {{#if change}}
                                 <li><a class="list-group-item smooth" href="/admin/edit/{{pageName}}" title=""> <i
                                             class="fas fa-edit"></i>
                                         Chỉnh sửa trang</a></li>
+                                {{/if}}
                                 <li><a class="list-group-item smooth" href="/admin/changePassword" title=""> <i
                                             class="fas fa-key"></i>
                                         Đổi mật khẩu</a></li>
@@ -33,8 +38,8 @@
                                         <i class="fas fa-angle-down"></i>
                                     </a>
                                     <ul id="collapse1" class="list-group">
-                                        <li class="list-group-item"><a href="">Giới thiệu</a></li>
-                                        <li class="list-group-item"><a href="" class="">Liên hệ</a></li>
+                                        <li class="list-group-item"><a href="/admin/introduction">Giới thiệu</a></li>
+                                        <li class="list-group-item"><a href="/admin/contact" class="">Liên hệ</a></li>
                                     </ul>
 
                                 </li>
@@ -50,16 +55,16 @@
                                         <li class="list-group-item"><a href="" class="">Dầu nhớt</a></li>
                                     </ul>
                                 </li>
-                                <li><a class="list-group-item">KHUYẾN MÃI</a></li>
+                                <li><a href="/admin/discount" class="list-group-item">KHUYẾN MÃI</a></li>
                                 <li>
                                     <a id="collapse-btn2" class="list-group-item">CHÍNH SÁCH
                                         <i class="fas fa-angle-down"></i>
                                     </a>
                                     <ul id="collapse2" class="list-group">
-                                        <li class="list-group-item"><a href="">Chính sách giao hàng</a></li>
-                                        <li class="list-group-item"><a href="">Chính sách đại lý</a></li>
-                                        <li class="list-group-item"><a href="">Chính sách cộng tác viên</a></li>
-                                        <li class="list-group-item"><a href="">Chính sách bảo hành</a></li>
+                                        <li class="list-group-item"><a href="/admin/">Chính sách giao hàng</a></li>
+                                        <li class="list-group-item"><a href="/admin/">Chính sách đại lý</a></li>
+                                        <li class="list-group-item"><a href="/admin/">Chính sách cộng tác viên</a></li>
+                                        <li class="list-group-item"><a href="/admin/">Chính sách bảo hành</a></li>
                                     </ul>
                                 </li>
                                 <li><a class="list-group-item">SHOWROOM</a></li>
@@ -90,17 +95,18 @@
 
                     <div class="nav-bottom admin-nav">
                         <form class="form-inline my-2 my-lg-0 ">
-                            <a class="smooth mr-2 ml-2" href="/admin/edit/{{pageName}}" title=""> <i
-                                    class="fas fa-edit"></i>
-
+                            <a class="smooth mr-2 ml-2" href="/admin/customer-info"> <i class="fas fa-bell"></i>
+                                Thông tin khách hàng
+                            </a>
+                            {{#if change}}
+                            <a class="smooth mr-2 ml-2" href="/admin/edit/{{pageName}}"> <i class="fas fa-edit"></i>
                                 Chỉnh sửa trang
                             </a>
-                            <a class="smooth mr-2 ml-2" href="/admin/changePassword" title=""> <i
-                                    class="fas fa-key"></i>
+                            {{/if}}
+                            <a class="smooth mr-2 ml-2" href="/admin/changePassword"> <i class="fas fa-key"></i>
                                 Đổi mật khẩu
                             </a>
-                            <a class="smooth mr-2 ml-2" href="/admin/logout" title=""> <i
-                                    class="fas fa-sign-out-alt"></i>
+                            <a class="smooth mr-2 ml-2" href="/admin/logout"> <i class="fas fa-sign-out-alt"></i>
                                 Đăng xuất
                             </a>
                         </form>
@@ -116,14 +122,16 @@
 <nav class="navbar2">
     <div class="container">
         <ul class="navbar-list">
+            <li class="navbar-item"><a href="/"><i style="font-size: 20px;" class="fas fa-home"></i></a></li>
             <li class="navbar-item">
                 <a href="">Về Nam Thịnh <i class="fas fa-angle-down"></i></a>
+
                 <ul class="navbar-menu">
                     <li class="navbar-menu-item">
-                        <a href="">Giới thiệu</a>
+                        <a href="/admin/introduction">Giới thiệu</a>
                     </li>
                     <li class="navbar-menu-item">
-                        <a href="">Liên hệ</a>
+                        <a href="/admin/contact">Liên hệ</a>
                     </li>
                 </ul>
             </li>
