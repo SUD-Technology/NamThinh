@@ -1051,18 +1051,18 @@ input[type="file"] {
   transition: visibility 0s, opacity 0.1s linear;
 }
 
-.navbar-list .navbar-item:nth-child(2) .navbar-menu {
+.navbar-list .navbar-item:nth-child(3) .navbar-menu {
   width: 280px !important;
 }
 
 .navbar-product-item,
-.navbar-list .navbar-item:nth-child(2) .navbar-menu .navbar-menu-item {
+.navbar-list .navbar-item:nth-child(3) .navbar-menu .navbar-menu-item {
   display: flex;
   justify-content: space-between;
 }
 
 .navbar-product-item i,
-.navbar-list .navbar-item:nth-child(2) .navbar-menu .navbar-menu-item i {
+.navbar-list .navbar-item:nth-child(3) .navbar-menu .navbar-menu-item i {
   font-size: 16px;
   line-height: 40px;
   margin: 0 12px;
