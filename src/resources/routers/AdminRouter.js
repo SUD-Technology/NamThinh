@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const AdminController = require('../controllers/AdminController')
-const store = require('../middlewares/multer')
+const store = require('../middlewares/multer');
 
 
 router.get('/', (req, res) => {

@@ -1,5 +1,4 @@
 const Collections = require('../models/Collections');
-const { collection } = require('../models/Products');
 const Products = require('../models/Products');
 
 const menuItems = [
@@ -159,7 +158,7 @@ const CollectionController = {
                         pname: product.product_name,
                         pimg: product.product_img,
                         pid: product.product_id,
-                        price: product.price.toLocaleString('vi', {style: 'currency', currency: 'VND'})
+                        price: product.price ? product.price.toLocaleString('vi', {style: 'currency', currency: 'VND'}) : 'Liên hệ'
                     }
                 })
                 return res.render('collections', {title,data});
