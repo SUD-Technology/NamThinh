@@ -1,21 +1,25 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-var slug = require('mongoose-slug-generator');
-mongoose.plugin(slug);
+
 
 const Products = new Schema({
     product_id: {type: String, maxlength: 9, unique: true},
     product_name: {type: String, required: true, unique: true},
-    description: {type: String, required: true},
     product_img: {type: String, required: true},
+    description: {type: String, required: true},
     brand_name: {type: String, required: true},
-    collection_id: {type: String, required: true},
+    specification: {type: Object},
+    classes: {
+        lv1: Number,
+        lv2: Number,
+        lv3: Number
+    },
     price: {type: Number},
-    showroom: {type: String, required: true},
-    represent: {type: String, required: true},
-    address: {type: String, required: true},
-    phone: {type: String, required: true},
-    slug: {type: String, slug: 'product_name'}
+    showroom: {type: String},
+    represent: {type: String},
+    address: {type: String},
+    phone: {type: String},
+    slug: {type: String, required: true}
 },
     {
         timestamps: true

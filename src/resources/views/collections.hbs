@@ -103,17 +103,18 @@
             </div>
 
             <div class="col-md-9 list-product-main">
-
-                <li onclick='window.location.href="/products/lop-xe-1"' class="items-product text-center">
-                    <img src="/img/Caunang.jpg" alt="">
+                {{#each data}}
+                <li onclick='window.location.href="/products/Lop-xe-tai-nang-GL283A+"' class="items-product text-center">
+                    <img width="100%" src="/img/products/{{pimg}}" alt="">
                     <div class="items-title">
-                        <a href="">Cầu nâng 2 trụ Nussbaum 4 tấn loại có cổng Power Lift</a>
-                        <p>HF 4000</p>
+                        <a href="">{{pname}}</a>
+                        <p>{{pid}}</p>
                     </div>
                     <div class="items-price">
-                        Liên hệ
+                        {{price}}
                     </div>
                 </li>
+                {{/each}}
                 <li onclick='window.location.href="/products/lop-xe-1"' class="items-product text-center">
                     <img src="/img/Caunang.jpg" alt="">
                     <div class="items-title">
