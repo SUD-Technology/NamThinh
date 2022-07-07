@@ -1,10 +1,206 @@
-<h2 class="h-title">
-            <span><a href="javascript:void(0)">Xe tải</a></span>
-            <a class="link-more-1" href="showroom/86/lop-o-to-3">Xem tất cả</a>
-        </h2>
-<div class="row my-5">
-    
-    <div class="item d-flex col-md-3 px-0">
+<div class="product-page">
+    <div class="row center top-product mb-4">
+        <img src="/img/subhead.png" alt="">
+    </div>
+
+    {{!-- Lốp xe --}}
+    <div class="classify-products">
+        <div class="row pagi">
+            <span class="sub-title">Lốp Advance / Samson</span>
+        </div>
+
+        <div class="row product-list data-metatip=" true"">
+            <div class="col-md-3">
+
+                <div class="product-sidebar mb-5">
+                    <div class="product-sidebar-body">
+                        <ul class="sidebar-list">
+                            <li class="sidebar-item">
+                                <a href="">Lốp xe tải - xe khách</a>
+                                <ul class="sidebar-dropdown-menu">
+                                    <li class="sidebar-dropdown-item"><a href="">Lốp tải nhẹ</a></li>
+                                    <li class="sidebar-dropdown-item"><a href="">Lốp tải nặng</a></li>
+                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe khách - xe bus</a></li>
+
+                                </ul>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="">Lốp Máy công trình</a>
+                                <ul class="sidebar-dropdown-menu">
+                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe tải hạng nặng</a>
+                                    </li>
+                                    <li class="sidebar-dropdown-item"><a href="">Lốp máy xúc</a></li>
+                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe cẩu</a></li>
+                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe lu</a></li>
+                                </ul>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="">Lốp xe công nghiệp</a>
+                                <ul class="sidebar-dropdown-menu">
+                                    <li class="sidebar-dropdown-item"><a href="">Lốp đặc</a>
+                                    </li>
+                                    <li class="sidebar-dropdown-item"><a href="">Lốp công nghiệp khí nén</a></li>
+
+                                </ul>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="">Lốp nông nghiệp</a>
+                                <ul class="sidebar-dropdown-menu">
+                                    <li class="sidebar-dropdown-item"><a href="">Lốp nông nghiệp nhỏ</a>
+                                    </li>
+                                    <li class="sidebar-dropdown-item"><a href="">Lốp nông nghiệp lớn</a></li>
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="brand-sidebar">
+                    <div class="brand-sidebar-title">
+                        <h1>Thương hiệu</h1>
+                    </div>
+                    <div class="brand-sidebar-body">
+                        <p>Chọn thương hiệu</p>
+                        <form action="">
+                            <div class="scroll">
+                                <ul>
+                                    <li>
+                                        <span class="m-0">
+                                            <input id="brand-1" type="checkbox">
+                                            <label for="brand-1" class="h5">Honda</label>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="m-0">
+                                            <input id="brand-2" type="checkbox">
+                                            <label for="brand-2" class="h5">Yamaha</label>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="m-0">
+                                            <input id="brand-3" type="checkbox">
+                                            <label for="brand-3" class="h5">Suzuki</label>
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span class="m-0">
+                                            <input id="brand-4" type="checkbox">
+                                            <label for="brand-4" class="h5">Toyota</label>
+                                        </span>
+                                    </li>
+
+
+
+
+
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-9 list-product-main">
+                {{#each data}}
+                <li onclick='window.location.href="/products/Lop-xe-tai-nang-GL283A+"' class="items-product text-center">
+                    <img width="100%" src="/img/products/{{pimg}}" alt="">
+                    <div class="items-title">
+                        <a href="">{{pname}}</a>
+                        <p>{{pid}}</p>
+                    </div>
+                    <div class="items-price">
+                        {{price}}
+                    </div>
+                </li>
+                {{/each}}
+                <li onclick='window.location.href="/products/lop-xe-1"' class="items-product text-center">
+                    <img src="/img/Caunang.jpg" alt="">
+                    <div class="items-title">
+                        <a href="">Cầu nâng 2 trụ Nussbaum 4 tấn loại có cổng Power Lift</a>
+                        <p>HF 4000</p>
+                    </div>
+                    <div class="items-price">
+                        Liên hệ
+                    </div>
+                </li>
+                <li onclick='window.location.href="/products/lop-xe-1"' class="items-product text-center">
+                    <img src="/img/Caunang.jpg" alt="">
+                    <div class="items-title">
+                        <a href="">Cầu nâng 2 trụ Nussbaum 4 tấn loại có cổng Power Lift</a>
+                        <p>HF 4000</p>
+                    </div>
+                    <div class="items-price">
+                        Liên hệ
+                    </div>
+                </li>
+                <li onclick='window.location.href="/products/lop-xe-1"' class="items-product text-center">
+                    <img src="/img/Caunang.jpg" alt="">
+                    <div class="items-title">
+                        <a href="">Cầu nâng 2 trụ Nussbaum 4 tấn loại có cổng Power Lift</a>
+                        <p>HF 4000</p>
+                    </div>
+                    <div class="items-price">
+                        Liên hệ
+                    </div>
+                </li>
+                <li onclick='window.location.href="/products/lop-xe-1"' class="items-product text-center">
+                    <img src="/img/Caunang.jpg" alt="">
+                    <div class="items-title">
+                        <a href="">Cầu nâng 2 trụ Nussbaum 4 tấn loại có cổng Power Lift</a>
+                        <p>HF 4000</p>
+                    </div>
+                    <div class="items-price">
+                        Liên hệ
+                    </div>
+                </li>
+                <li onclick='window.location.href="/products/lop-xe-1"' class="items-product text-center">
+                    <img src="/img/Caunang.jpg" alt="">
+                    <div class="items-title">
+                        <a href="">Cầu nâng 2 trụ Nussbaum 4 tấn loại có cổng Power Lift</a>
+                        <p>HF 4000</p>
+                    </div>
+                    <div class="items-price">
+                        Liên hệ
+                    </div>
+                </li>
+                <li onclick='window.location.href="/products/lop-xe-1"' class="items-product text-center">
+                    <img src="/img/Caunang.jpg" alt="">
+                    <div class="items-title">
+                        <a href="">Cầu nâng 2 trụ Nussbaum 4 tấn loại có cổng Power Lift</a>
+                        <p>HF 4000</p>
+                    </div>
+                    <div class="items-price">
+                        Liên hệ
+                    </div>
+                </li>
+                <li onclick='window.location.href="/products/lop-xe-1"' class="items-product text-center">
+                    <img src="/img/Caunang.jpg" alt="">
+                    <div class="items-title">
+                        <a href="">Cầu nâng 2 trụ Nussbaum 4 tấn loại có cổng Power Lift</a>
+                        <p>HF 4000</p>
+                    </div>
+                    <div class="items-price">
+                        Liên hệ
+                    </div>
+                </li>
+
+            </div>
+        </div>
+        {{!-- <div class="d-flex float-right mb-3 p-2">
+            <a class="seeall" href="#"><span>Xem tất cả sản phẩm</span></a>
+        </div> --}}
+    </div>
+
+
+    {{!-- <h2 style="margin-top: 100px ;" class="h-title">
+        <span><a href="javascript:void(0)">Thế giới ô tô</a></span>
+        <a class="link-more-1" href="showroom/86/lop-o-to-3">Xem tất cả</a>
+    </h2>
+    <div class="row my-5">
+
+        <div class="item d-flex col-md-3 px-2">
             <div class="card w-100" style="width: 18rem;">
                 <a href="" class="image-container">
                     <img src="/img/hero-image-mustang.jpeg" class="card-img-top" alt="...">
@@ -12,30 +208,25 @@
                 <div class="card-body">
                     <div class="ct">
                         <h5 class="title">
-                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>  
+                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>
                         </h5>
                         <div class="price my-2">Liên hệ</div>
-                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom: </span> TRUNG TÂM LỐP XE NAM Thịnh</div>
-                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ Chí Minh</div>
-                        
+                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom:
+                            </span>
+                            TRUNG TÂM LỐP XE NAM Thịnh</div>
+                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ
+                            Chí
+                            Minh</div>
+
                     </div>
                 </div>
-                <div class="w-100 phone text-center">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                            <a href="#">090xxxxxxx</a>
-                        </div>
+                <div onclick="location.href='/users/login';" class="w-100 phone text-center">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a href="/about">090xxxxxxx</a>
+                </div>
             </div>
-        </div>  
-        
-</div>
-
-<h2 class="h-title">
-            <span><a href="javascript:void(0)">Xe du lịch</a></span>
-            <a class="link-more-1" href="showroom/86/lop-o-to-3">Xem tất cả</a>
-        </h2>
-<div class="row my-5">
-    
-    <div class="item d-flex col-md-3 px-0">
+        </div>
+        <div class="item d-flex col-md-3 px-2">
             <div class="card w-100" style="width: 18rem;">
                 <a href="" class="image-container">
                     <img src="/img/hero-image-mustang.jpeg" class="card-img-top" alt="...">
@@ -43,22 +234,309 @@
                 <div class="card-body">
                     <div class="ct">
                         <h5 class="title">
-                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>  
+                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>
                         </h5>
                         <div class="price my-2">Liên hệ</div>
-                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom: </span> TRUNG TÂM LỐP XE NAM Thịnh</div>
-                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ Chí Minh</div>
-                        
+                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom:
+                            </span>
+                            TRUNG TÂM LỐP XE NAM Thịnh</div>
+                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ
+                            Chí
+                            Minh</div>
+
+                    </div>
+                </div>
+                <div onclick="location.href='/users/login';" class="w-100 phone text-center">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a href="#">090xxxxxxx</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="item d-flex col-md-3 px-2">
+            <div class="card w-100" style="width: 18rem;">
+                <a href="" class="image-container">
+                    <img src="/img/hero-image-mustang.jpeg" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <div class="ct">
+                        <h5 class="title">
+                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>
+                        </h5>
+                        <div class="price my-2">Liên hệ</div>
+                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom:
+                            </span>
+                            TRUNG TÂM LỐP XE NAM Thịnh</div>
+                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ
+                            Chí
+                            Minh</div>
+
+                    </div>
+                </div>
+                <div onclick="location.href='/users/login';" class="w-100 phone text-center">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a href="#">090xxxxxxx</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="item d-flex col-md-3 px-2">
+            <div class="card w-100" style="width: 18rem;">
+                <a href="" class="image-container">
+                    <img src="/img/hero-image-mustang.jpeg" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <div class="ct">
+                        <h5 class="title">
+                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>
+                        </h5>
+                        <div class="price my-2">Liên hệ</div>
+                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom:
+                            </span>
+                            TRUNG TÂM LỐP XE NAM Thịnh</div>
+                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ
+                            Chí
+                            Minh</div>
+
+                    </div>
+                </div>
+                <div onclick="location.href='/users/login';" class="w-100 phone text-center">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a href="#">090xxxxxxx</a>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <h2 class="h-title">
+        <span><a href="javascript:void(0)">Lốp ô tô</a></span>
+        <a class="link-more-1" href="showroom/86/lop-o-to-3">Xem tất cả</a>
+    </h2>
+    <div class="row my-5">
+
+        <div class="item d-flex col-md-3 px-2">
+            <div class="card w-100" style="width: 18rem;">
+                <a href="" class="image-container">
+                    <img src="/img/hero-image-mustang.jpeg" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <div class="ct">
+                        <h5 class="title">
+                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>
+                        </h5>
+                        <div class="price my-2">Liên hệ</div>
+                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom:
+                            </span>
+                            TRUNG TÂM LỐP XE NAM Thịnh</div>
+                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ
+                            Chí
+                            Minh</div>
+
+                    </div>
+                </div>
+                <div onclick="location.href='/users/login';" class="w-100 phone text-center">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a href="#">090xxxxxxx</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="item d-flex col-md-3 px-2">
+            <div class="card w-100" style="width: 18rem;">
+                <a href="" class="image-container">
+                    <img src="/img/hero-image-mustang.jpeg" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <div class="ct">
+                        <h5 class="title">
+                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>
+                        </h5>
+                        <div class="price my-2">Liên hệ</div>
+                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom:
+                            </span>
+                            TRUNG TÂM LỐP XE NAM Thịnh</div>
+                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ
+                            Chí
+                            Minh</div>
+
+                    </div>
+                </div>
+                <div onclick="location.href='/users/login';" class="w-100 phone text-center">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a href="#">090xxxxxxx</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="item d-flex col-md-3 px-2">
+            <div class="card w-100" style="width: 18rem;">
+                <a href="" class="image-container">
+                    <img src="/img/hero-image-mustang.jpeg" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <div class="ct">
+                        <h5 class="title">
+                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>
+                        </h5>
+                        <div class="price my-2">Liên hệ</div>
+                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom:
+                            </span>
+                            TRUNG TÂM LỐP XE NAM Thịnh</div>
+                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ
+                            Chí
+                            Minh</div>
+
+                    </div>
+                </div>
+                <div onclick="location.href='/users/login';" class="w-100 phone text-center">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a href="#">090xxxxxxx</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="item d-flex col-md-3 px-2">
+            <div class="card w-100" style="width: 18rem;">
+                <a href="" class="image-container">
+                    <img src="/img/hero-image-mustang.jpeg" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <div class="ct">
+                        <h5 class="title">
+                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>
+                        </h5>
+                        <div class="price my-2">Liên hệ</div>
+                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom:
+                            </span>
+                            TRUNG TÂM LỐP XE NAM Thịnh</div>
+                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ
+                            Chí
+                            Minh</div>
+
+                    </div>
+                </div>
+                <div onclick="location.href='/users/login';" class="w-100 phone text-center">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a href="#">090xxxxxxx</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <h2 class="h-title">
+        <span><a href="javascript:void(0)">Phụ tùng ô tô</a></span>
+        <a class="link-more-1" href="showroom/86/lop-o-to-3">Xem tất cả</a>
+    </h2>
+    <div class="row my-5">
+
+        <div class="item d-flex col-md-3 px-2">
+            <div class="card w-100" style="width: 18rem;">
+                <a href="" class="image-container">
+                    <img src="/img/hero-image-mustang.jpeg" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <div class="ct">
+                        <h5 class="title">
+                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>
+                        </h5>
+                        <div class="price my-2">Liên hệ</div>
+                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom:
+                            </span>
+                            TRUNG TÂM LỐP XE NAM Thịnh</div>
+                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ
+                            Chí
+                            Minh</div>
+
                     </div>
                 </div>
                 <div class="w-100 phone text-center">
-                            <i class="fa fa-phone" aria-hidden="true"></i>
-                            <a href="#">090xxxxxxx</a>
-                        </div>
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a href="#">090xxxxxxx</a>
+                </div>
             </div>
-        </div>  
-        
+        </div>
+        <div class="item d-flex col-md-3 px-2">
+            <div class="card w-100" style="width: 18rem;">
+                <a href="" class="image-container">
+                    <img src="/img/hero-image-mustang.jpeg" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <div class="ct">
+                        <h5 class="title">
+                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>
+                        </h5>
+                        <div class="price my-2">Liên hệ</div>
+                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom:
+                            </span>
+                            TRUNG TÂM LỐP XE NAM Thịnh</div>
+                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ
+                            Chí
+                            Minh</div>
+
+                    </div>
+                </div>
+                <div onclick="location.href='/users/login';" class="w-100 phone text-center">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a href="#">090xxxxxxx</a>
+                </div>
+            </div>
+        </div>
+        <div class="item d-flex col-md-3 px-2">
+            <div class="card w-100" style="width: 18rem;">
+                <a href="" class="image-container">
+                    <img src="/img/hero-image-mustang.jpeg" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <div class="ct">
+                        <h5 class="title">
+                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>
+                        </h5>
+                        <div class="price my-2">Liên hệ</div>
+                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom:
+                            </span>
+                            TRUNG TÂM LỐP XE NAM Thịnh</div>
+                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ
+                            Chí
+                            Minh</div>
+
+                    </div>
+                </div>
+                <div onclick="location.href='/users/login';" class="w-100 phone text-center">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a href="#">090xxxxxxx</a>
+                </div>
+            </div>
+        </div>
+        <div class="item d-flex col-md-3 px-2">
+            <div class="card w-100" style="width: 18rem;">
+                <a href="" class="image-container">
+                    <img src="/img/hero-image-mustang.jpeg" class="card-img-top" alt="...">
+                </a>
+                <div class="card-body">
+                    <div class="ct">
+                        <h5 class="title">
+                            <a href="" title="">VỎ XE BRIDGESTONE 185/55R16 TURANZA ER37</a>
+                        </h5>
+                        <div class="price my-2">Liên hệ</div>
+                        <div class="showroom my-3"><span style="text-transform:none; color: var(--cam);">Showroom:
+                            </span>
+                            TRUNG TÂM LỐP XE NAM Thịnh</div>
+                        <div class="address"><i aria-hidden="true" class="fa fa-map-marker"></i> Quận 3, Thành Phố Hồ
+                            Chí
+                            Minh</div>
+
+                    </div>
+                </div>
+                <div onclick="location.href='/users/login';" class="w-100 phone text-center">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <a href="#">090xxxxxxx</a>
+                </div>
+            </div>
+        </div>
+
+    </div> --}}
 </div>
-
-
-

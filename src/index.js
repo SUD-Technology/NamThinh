@@ -9,6 +9,7 @@ const ProductRouter = require('./routers/ProductRouter');
 const AdminRouter = require('./routers/AdminRouter')
 const db = require('./config/db');
 const Products = require('./models/Products');
+const slugify = require('slugify');
 
 app.engine('hbs', handlebars.engine({
     extname: 'hbs'
@@ -25,17 +26,51 @@ Products.find({})
     .then(products => {
         if (products.length == 0) {
             const default_product = {
-                product_id: 'LX001',
-                product_name: 'Lốp xe 1',
+                product_id: 'GL283A+',
+                product_name: 'Lốp xe tải nặng',
+                product_img: 'GL283A+.png',
                 description: 'Sản phẩm demo đang trong quá trình thử nghiệm',
-                product_img: 'lopxe.jpg',
-                price: 1900000,
-                showroom: '93 Hoàng Hoa Thám Q.Tân Bình',
-                represent: 'Trần Minh Long',
-                address: '12 Nguyễn Văn Quá Q.Gò Vấp',
-                phone: '090523823',
-                collection_id: 'lop-xe',
-                slug: 'lop-xe-1',
+                brand_name: 'ADVANCE/SAMSON',
+                specification: [
+                    {
+                        size: '7.00R16',
+                        ratio: '14PR',
+                        depth: '12mm',
+                        load: '118/114',
+                        speed: 'L',
+                        wheel: '5.50F'
+                    },
+                    {
+                        size: '7.50R16',
+                        ratio: '14PR',
+                        depth: '14mm',
+                        load: '122/118',
+                        speed: 'L',
+                        wheel: '6.00G'
+                    },
+                    {
+                        size: '8.25R16',
+                        ratio: '16PR',
+                        depth: '14.5mm',
+                        load: '128/124',
+                        speed: 'K',
+                        wheel: '6.50H'
+                    },
+                ],
+                classes: {
+                    lv1: 1,
+                    lv2: 1,
+                    lv3: 2
+                },
+                price: 0,
+                slug: slugify('Lốp xe tải nặng GL283A+', {
+                    replacement: '-',
+                    remove: false,
+                    lower: false,
+                    strict: false,
+                    locale: 'vi',
+                    trim: true
+                })
             }
 
             new Products(default_product).save()

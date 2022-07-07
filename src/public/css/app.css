@@ -769,8 +769,19 @@ input[type="file"] {
   list-style: none;
   font-size: 13px;
   gap: 10px;
+  
   grid-template-columns: 210px 210px 210px 210px;
   grid-template-rows: 289px 289px;
+  padding: 0px 10px;
+}
+
+.list-product-main {
+  display: grid;
+  list-style: none;
+  font-size: 13px;
+  gap: 10px;
+  grid-template-columns: 210px 210px 210px 210px;
+  grid-template-rows: 289px 289px 289px 289px 289px;
   padding: 0px 10px;
 }
 
@@ -1008,7 +1019,7 @@ input[type="file"] {
 
 .navbar-item {
   line-height: 39px;
-  padding: 0 20px;
+  padding: 0 40px;
   position: relative;
 }
 
@@ -1122,6 +1133,7 @@ input[type="file"] {
 #DN {
   display: none;
 }
+
 
 .navbar-product-item:hover>#DN,
 .navbar-product-item:hover>#LMCT {
