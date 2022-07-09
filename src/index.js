@@ -3,12 +3,12 @@ const app = express()
 const port = process.env.PORT || 8080
 const handlebars = require('express-handlebars')
 const path = require('path')
-const UserRouter = require('./routers/UserRouter');
-const CollectionRouter = require('./routers/CollectionRouter');
-const ProductRouter = require('./routers/ProductRouter');
-const AdminRouter = require('./routers/AdminRouter')
+const UserRouter = require('./resources/routers/UserRouter');
+const CollectionRouter = require('./resources/routers/CollectionRouter');
+const ProductRouter = require('./resources/routers/ProductRouter');
+const AdminRouter = require('./resources/routers/AdminRouter')
 const db = require('./config/db');
-const Products = require('./models/Products');
+const Products = require('./resources/models/Products');
 const slugify = require('slugify');
 
 app.engine('hbs', handlebars.engine({
