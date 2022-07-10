@@ -1,16 +1,20 @@
-<div class="product-page">
+{{!-- <div class="product-page"> --}}
     <div class="row center top-product mb-4">
-        <img src="/img/subhead.png" alt="">
+        <img src="/img/banner-pro.jpg" alt="">
     </div>
 
     {{!-- Lốp xe --}}
     <div class="classify-products">
         <div class="row pagi">
-            <span class="sub-title">Lốp Advance / Samson</span>
+            <div class="ribbon ribbon-top-right"><span> Best Seller</span></div>
+                        <div class="ribbon ribbon-top-right"><span> Best Seller</span></div>
+            <span class="sub-title">Lốp Advance / Samson </span>
+            <img class="bgc-title" src="/img/title.png" alt="">
+            
         </div>
 
         <div class="row product-list data-metatip=" true"">
-            <div class="col-md-3">
+            {{!-- <div class="col-md-3">
 
                 <div class="product-sidebar mb-5">
                     <div class="product-sidebar-body">
@@ -100,9 +104,9 @@
                     </div>
                 </div>
 
-            </div>
+            </div> --}}
 
-            <div class="col-md-9 product-main">
+            <div class="col-md-12 product-main">
                 {{#each data.Lop}}
                 <li onclick='window.location.href="/products/{{pslug}}"' class="items-product smooth text-center">
                     <div class="img-box">
@@ -133,82 +137,16 @@
     {{!-- Ô tô --}}
     <div class="classify-products">
         <div class="row pagi">
+            <div class="ribbon ribbon-top-right"><span> Best Seller</span></div>
             <span class="sub-title">Xe tải - Đầu kéo - Xe ben</span>
+            <img class="bgc-title" src="/img/title.png" alt="">
         </div>
 
         <div class="row product-list data-metatip=" true"">
-            <div class="col-md-3">
 
-                <div class="product-sidebar mb-5">
-                    <div class="product-sidebar-body">
-                        <ul class="sidebar-list">
-                            <li class="sidebar-item">
-                                <a href="">Xe tải thùng</a>
+                
 
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="">Xe đầu kéo</a>
-
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="">Xe ben</a>
-
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="">...</a>
-
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="brand-sidebar">
-                    <div class="brand-sidebar-title">
-                        <h1>Thương hiệu</h1>
-                    </div>
-                    <div class="brand-sidebar-body">
-                        <p>Chọn thương hiệu</p>
-                        <form action="">
-                            <div class="scroll">
-                                <ul>
-                                    <li>
-                                        <span class="m-0">
-                                            <input id="brand-1" type="checkbox">
-                                            <label for="brand-1" class="h5">Honda</label>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="m-0">
-                                            <input id="brand-2" type="checkbox">
-                                            <label for="brand-2" class="h5">Yamaha</label>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="m-0">
-                                            <input id="brand-3" type="checkbox">
-                                            <label for="brand-3" class="h5">Suzuki</label>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="m-0">
-                                            <input id="brand-4" type="checkbox">
-                                            <label for="brand-4" class="h5">Toyota</label>
-                                        </span>
-                                    </li>
-
-
-
-
-
-                                </ul>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-9 product-main">
+            <div class="col-md-12 product-main">
                 {{#each data.Xe}}
                 <li onclick='window.location.href="/products/{{pslug}}"' class="items-product smooth text-center">
                     <div class="img-box">
@@ -240,105 +178,15 @@
     {{!-- Phụ tùng ô tô --}}
     <div class="classify-products">
         <div class="row pagi">
+                        <div class="ribbon ribbon-top-right"><span> Best Seller</span></div>
             <span class="sub-title">Phụ tùng ô tô</span>
+            <img class="bgc-title" src="/img/title.png" alt="">
         </div>
 
         <div class="row product-list data-metatip=" true"">
-            <div class="col-md-3">
+            
 
-                <div class="product-sidebar mb-5">
-                    <div class="product-sidebar-body">
-                        <ul class="sidebar-list">
-                            <li class="sidebar-item">
-                                <a href="">...</a>
-                                <ul class="sidebar-dropdown-menu">
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp tải nhẹ</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp tải nặng</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe khách - xe bus</a></li>
-
-                                </ul>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="">...</a>
-                                <ul class="sidebar-dropdown-menu">
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe tải hạng nặng</a>
-                                    </li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp máy xúc</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe cẩu</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe lu</a></li>
-                                </ul>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="">...</a>
-                                <ul class="sidebar-dropdown-menu">
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe tải hạng nặng</a>
-                                    </li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp máy xúc</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe cẩu</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe lu</a></li>
-                                </ul>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="">...</a>
-                                <ul class="sidebar-dropdown-menu">
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe tải hạng nặng</a>
-                                    </li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp máy xúc</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe cẩu</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe lu</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="brand-sidebar">
-                    <div class="brand-sidebar-title">
-                        <h1>Thương hiệu</h1>
-                    </div>
-                    <div class="brand-sidebar-body">
-                        <p>Chọn thương hiệu</p>
-                        <form action="">
-                            <div class="scroll">
-                                <ul>
-                                    <li>
-                                        <span class="m-0">
-                                            <input id="brand-1" type="checkbox">
-                                            <label for="brand-1" class="h5">Honda</label>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="m-0">
-                                            <input id="brand-2" type="checkbox">
-                                            <label for="brand-2" class="h5">Yamaha</label>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="m-0">
-                                            <input id="brand-3" type="checkbox">
-                                            <label for="brand-3" class="h5">Suzuki</label>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="m-0">
-                                            <input id="brand-4" type="checkbox">
-                                            <label for="brand-4" class="h5">Toyota</label>
-                                        </span>
-                                    </li>
-
-
-
-
-
-                                </ul>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-9 product-main">
+            <div class="col-md-12 product-main">
                 {{#each data.PhuTung}}
                     <li onclick='window.location.href="/products/{{pslug}}"' class="items-product smooth text-center">
                         <div class="img-box">
@@ -368,86 +216,15 @@
     {{!-- Dầu nhớt --}}
     <div class="classify-products">
         <div class="row pagi">
+                        <div class="ribbon ribbon-top-right"><span> Best Seller</span></div>
             <span class="sub-title">Dầu nhớt</span>
+            <img class="bgc-title" src="/img/title.png" alt="">
         </div>
 
         <div class="row product-list data-metatip=" true"">
-            <div class="col-md-3">
+            
 
-                <div class="product-sidebar mb-5">
-                    <div class="product-sidebar-body">
-                        <ul class="sidebar-list">
-                            <li class="sidebar-item">
-                                <a href="">Dầu nhớt ô tô / xe máy</a>
-                                <ul class="sidebar-dropdown-menu">
-                                    <li class="sidebar-dropdown-item"><a href="">Dầu động sơ</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Dầu hộp số</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Dầu Láp</a></li>
-
-                                </ul>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="">Dầu nhớt công nghiệp</a>
-                                <ul class="sidebar-dropdown-menu">
-                                    <li class="sidebar-dropdown-item"><a href="">Dầu đa năng</a>
-                                    </li>
-                                    <li class="sidebar-dropdown-item"><a href="">Dầu bôi trơn</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Dầu thủy lực</a></li>
-
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="brand-sidebar">
-                    <div class="brand-sidebar-title">
-                        <h1>Thương hiệu</h1>
-                    </div>
-                    <div class="brand-sidebar-body">
-                        <p>Chọn thương hiệu</p>
-                        <form action="">
-                            <div class="scroll">
-                                <ul>
-                                    <li>
-                                        <span class="m-0">
-                                            <input id="brand-1" type="checkbox">
-                                            <label for="brand-1" class="h5">Honda</label>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="m-0">
-                                            <input id="brand-2" type="checkbox">
-                                            <label for="brand-2" class="h5">Yamaha</label>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="m-0">
-                                            <input id="brand-3" type="checkbox">
-                                            <label for="brand-3" class="h5">Suzuki</label>
-                                        </span>
-                                    </li>
-                                    <li>
-                                        <span class="m-0">
-                                            <input id="brand-4" type="checkbox">
-                                            <label for="brand-4" class="h5">Toyota</label>
-                                        </span>
-                                    </li>
-
-
-
-
-
-                                </ul>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-9 product-main">
+            <div class="col-md-12 product-main">
                 {{#each data.Dau}}
                     <li onclick='window.location.href="/products/{{pslug}}"' class="items-product  text-center">
                         <div class="img-box">
@@ -818,4 +595,4 @@
         </div>
 
     </div> --}}
-</div>
+{{!-- </div> --}}
