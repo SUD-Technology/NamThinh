@@ -109,7 +109,7 @@ const CollectionController = {
         
         const level = keys.length;
         
-        if(signal.includes(0) ||  level >= 4 || level <= 0) {
+        if(signal.includes(0) ||  level >= 4 || level <= 0 || keys[0] > 3) {
             return res.json({success: false, msg: 'Không tìm thầy sản phẩm nào'});
         }
         
