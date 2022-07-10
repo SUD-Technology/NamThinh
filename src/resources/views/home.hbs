@@ -106,12 +106,12 @@
                 {{#each data.Lop}}
                 <li onclick='window.location.href="/products/{{pslug}}"' class="items-product smooth text-center">
                     <div class="img-box">
-                        <img src="/img/products/{{pimg}}" alt="">
+                        <img  class="smooth" src="/img/products/{{pimg}}" alt="">
                     </div>
 
                     <div class="info-box">
                         <div class="items-title">
-                            <a href="">{{pname}}</a>
+                            <a href="/products/{{pslug}}">{{pname}}</a>
                             <p>{{pid}}</p>
                         </div>
                         <div class="items-price">
@@ -212,12 +212,12 @@
                 {{#each data.Xe}}
                 <li onclick='window.location.href="/products/{{pslug}}"' class="items-product smooth text-center">
                     <div class="img-box">
-                        <img src="/img/products/{{pimg}}" alt="">
+                        <img  class="smooth" src="/img/products/{{pimg}}" alt="">
                     </div>
 
                     <div class="info-box">
                         <div class="items-title">
-                            <a href="">{{pname}}</a>
+                            <a href="/products/{{pslug}}">{{pname}}</a>
                             <p>{{pid}}</p>
                         </div>
                         <div class="items-price">
@@ -342,12 +342,12 @@
                 {{#each data.PhuTung}}
                     <li onclick='window.location.href="/products/{{pslug}}"' class="items-product smooth text-center">
                         <div class="img-box">
-                            <img src="/img/products/{{pimg}}" alt="">
+                            <img  class="smooth" src="/img/products/{{pimg}}" alt="">
                         </div>
 
                         <div class="info-box">
                             <div class="items-title">
-                                <a href="">{{pname}}</a>
+                                <a href="/products/{{pslug}}">{{pname}}</a>
                                 <p>{{pid}}</p>
                             </div>
                             <div class="items-price">
@@ -449,14 +449,14 @@
 
             <div class="col-md-9 product-main">
                 {{#each data.Dau}}
-                    <li onclick='window.location.href="/products/{{pslug}}"' class="items-product smooth text-center">
+                    <li onclick='window.location.href="/products/{{pslug}}"' class="items-product  text-center">
                         <div class="img-box">
-                            <img src="/img/products/{{pimg}}" alt="">
+                            <img  class="smooth" src="/img/products/{{pimg}}" alt="">
                         </div>
 
                         <div class="info-box">
                             <div class="items-title">
-                                <a href="">{{pname}}</a>
+                                <a href="/products/{{pslug}}">{{pname}}</a>
                                 <p>{{pid}}</p>
                             </div>
                             <div class="items-price">

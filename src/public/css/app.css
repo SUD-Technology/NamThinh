@@ -780,7 +780,7 @@ input[type="file"] {
   gap: 10px;
   
   grid-template-columns: 210px 210px 210px 210px;
-  grid-template-rows: 320px 320px;
+  grid-template-rows: 330px 330px;
   padding: 0px 10px;
 }
 
@@ -790,7 +790,7 @@ input[type="file"] {
   font-size: 13px;
   gap: 10px;
   grid-template-columns: 210px 210px 210px 210px;
-  grid-template-rows: 320px 320px 320px 320px 320px;
+  grid-template-rows: 330px 330px 330px 330px 330px;
   padding: 0px 10px;
 }
 
@@ -804,6 +804,7 @@ input[type="file"] {
   font-size: 13px;
   text-align: center;
   border-radius: 0.5rem 0.5rem 0 0;
+  box-shadow: 1px 1px 18px #efecec;
 }
 
 .img-box {
@@ -824,10 +825,10 @@ input[type="file"] {
   position: relative;
 }
 
-.items-product:hover {
+.items-product img:hover {
   cursor: pointer;
   transform: scale(1.05);
-  box-shadow: 1px 1px 18px #efecec;
+  
   overflow: hidden;
   /* border: 2px solid var(--xanh); */
 }
@@ -838,7 +839,7 @@ input[type="file"] {
 }
 
 .items-price {
-  border-top: 2px solid var(--xanh);
+  border: 2px solid var(--xanh);
   font-weight: 700;
   padding: 2px 10px 6px;
   text-align: center;
@@ -849,7 +850,15 @@ input[type="file"] {
   color: white;
   font-family: 'Open Sans';
   font-size: 15px;
+  border-radius: 0.25rem;
 }
+
+.items-price:hover {
+  cursor: pointer;
+  background-color: var(--cam);
+  border: 2px solid var(--cam);
+}
+
 
 .seeall span {
   font-size: 16px !important;
@@ -861,9 +870,15 @@ input[type="file"] {
 }
 
 .items-title a {
-  color: var(--xanh);
+  color: gray;
   display: inline;
+  font-size: 16px;
+  padding: 5px;
   text-align: center;
+}
+
+.items-title a:hover {
+  color: var(--xanh);
 }
 
 .items-title p {
