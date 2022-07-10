@@ -104,18 +104,23 @@
 
             <div class="col-md-9 list-product-main">
                 {{#each data}}
-                <li onclick='window.location.href="/products/Lop-xe-tai-nang-GL283A+"' class="items-product text-center">
-                    <img width="100%" src="/img/products/{{pimg}}" alt="">
-                    <div class="items-title">
+                <li onclick='window.location.href="/products/{{pslug}}"' class="items-product smooth text-center">
+                    <div class="img-box">
+                        <img width="100%" src="/img/products/{{pimg}}" alt="">
+                        
+                    </div>
+                    <div class="info-box">
+                        <div class="items-title">
                         <a href="">{{pname}}</a>
                         <p>{{pid}}</p>
                     </div>
                     <div class="items-price">
                         {{price}}
                     </div>
+                    </div>
                 </li>
                 {{/each}}
-                <li onclick='window.location.href="/products/lop-xe-1"' class="items-product text-center">
+                {{!-- <li onclick='window.location.href="/products/lop-xe-1"' class="items-product text-center">
                     <img src="/img/Caunang.jpg" alt="">
                     <div class="items-title">
                         <a href="">Cầu nâng 2 trụ Nussbaum 4 tấn loại có cổng Power Lift</a>
@@ -184,7 +189,7 @@
                     <div class="items-price">
                         Liên hệ
                     </div>
-                </li>
+                </li> --}}
 
             </div>
         </div>

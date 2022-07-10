@@ -132,6 +132,7 @@ const CollectionController = {
                             pname: product.product_name,
                             pimg: product.product_img,
                             pid: product.product_id,
+                            pslug: product.slug,
                             price: product.price ? product.price.toLocaleString('vi', {style: 'currency', currency: 'VND'}) : 'Liên hệ'
                         }
                     })
@@ -158,6 +159,7 @@ const CollectionController = {
                         pname: product.product_name,
                         pimg: product.product_img,
                         pid: product.product_id,
+                        pslug: product.slug,
                         price: product.price ? product.price.toLocaleString('vi', {style: 'currency', currency: 'VND'}) : 'Liên hệ'
                     }
                 })
@@ -184,6 +186,7 @@ const CollectionController = {
                             pname: product.product_name,
                             pimg: product.product_img,
                             pid: product.product_id,
+                            pslug: product.slug,
                             price: product.price.toLocaleString('vi', {style: 'currency', currency: 'VND'})
                         }
                     })

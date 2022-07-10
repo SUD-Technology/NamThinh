@@ -81,8 +81,45 @@ app.get('/', (req, res) => {
     res.render('index', { index: true })
 })
 
-app.get('/home', (req, res) => {
-    res.render('home')
+app.get('/home', (req, res, next) => {
+    var data = {
+        Lop: [],
+        Xe: [],
+        PhuTung: [],
+        Dau: []
+    }
+
+    Products.find({})
+        .then(products => {
+            products.forEach(product => {
+                const type = product.classes.lv1;
+                const current_product = {
+                    pname: product.product_name,
+                    pimg: product.product_img,
+                    pid: product.product_id,
+                    pslug: product.slug,
+                    price: product.price ? product.price.toLocaleString('vi', {style: 'currency', currency: 'VND'}) : 'Liên hệ'
+                }
+
+                if(type == 1) {
+                    data.Lop.push(current_product);
+                }
+                else if(type == 2) {
+                    data.Xe.push(current_product);
+                }
+                else if(type == 3) {
+                    data.PhuTung.push(current_product);
+                }
+                else if(type == 4) {
+                    data.Dau.push(current_product);
+                }
+                else {
+                    return res.json({success: false, msg: 'Sản phẩm chưa được kiểm duyệt', current_product});
+                }
+            })
+            return res.render('home', {data})
+        })
+        .catch(next);
 })
 
 app.get('/register', (req, res) => {
