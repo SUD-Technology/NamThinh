@@ -9,6 +9,7 @@ const ProductRouter = require('./resources/routers/ProductRouter');
 const AdminRouter = require('./resources/routers/AdminRouter')
 const db = require('./config/db');
 const Products = require('./resources/models/Products');
+const getProductList = require('./resources/middlewares/products');
 const slugify = require('slugify');
 
 app.engine('hbs', handlebars.engine({
@@ -81,7 +82,7 @@ app.get('/', (req, res) => {
     res.render('index', { index: true })
 })
 
-app.get('/home', (req, res, next) => {
+app.get('/home', getProductList, (req, res, next) => {
     var data = {
         Lop: [],
         Xe: [],
@@ -89,37 +90,35 @@ app.get('/home', (req, res, next) => {
         Dau: []
     }
 
-    Products.find({})
-        .then(products => {
-            products.forEach(product => {
-                const type = product.classes.lv1;
-                const current_product = {
-                    pname: product.product_name,
-                    pimg: product.product_img,
-                    pid: product.product_id,
-                    pslug: product.slug,
-                    price: product.price ? product.price.toLocaleString('vi', {style: 'currency', currency: 'VND'}) : 'Liên hệ'
-                }
+    const products = req.products;
+    products.forEach(product => {
+        const type = product.classes.lv1;
+        const current_product = {
+            pname: product.product_name,
+            pimg: product.product_img,
+            pid: product.product_id,
+            pslug: product.slug,
+            price: product.price ? product.price.toLocaleString('vi', {style: 'currency', currency: 'VND'}) : 'Liên hệ'
+        }
 
-                if(type == 1) {
-                    data.Lop.push(current_product);
-                }
-                else if(type == 2) {
-                    data.Xe.push(current_product);
-                }
-                else if(type == 3) {
-                    data.PhuTung.push(current_product);
-                }
-                else if(type == 4) {
-                    data.Dau.push(current_product);
-                }
-                else {
-                    return res.json({success: false, msg: 'Sản phẩm chưa được kiểm duyệt', current_product});
-                }
-            })
-            return res.render('home', {data})
-        })
-        .catch(next);
+        if(type == 1 && data.Lop.length < 10) {
+            data.Lop.push(current_product);
+        }
+        else if(type == 2 && data.Lop.length < 10) {
+            data.Xe.push(current_product);
+        }
+        else if(type == 3 && data.Lop.length < 10) {
+            data.PhuTung.push(current_product);
+        }
+        else if(type == 4 && data.Lop.length < 10) {
+            data.Dau.push(current_product);
+        }
+        else {
+            return res.json({success: false, msg: 'Sản phẩm chưa được kiểm duyệt', current_product});
+        }
+    })
+    
+    return res.render('home', {data})
 })
 
 app.get('/register', (req, res) => {
@@ -133,6 +132,36 @@ app.get('/cart', (req, res) => {
 app.get('/contact', (req, res) => {
     res.render('contact')
 })
+
+app.get('/222', (req, res, next) => {
+    const product_name = 'Mỡ bôi trơn cho máy bơm bê tông';
+    const product_id = 'Eneos CP Grease L';
+    const new_prod = {
+        product_id,
+        product_name,
+        product_img: 'Eneos CP Grease L.png',
+        description: 'Trống',
+        brand_name: 'Phụ tùng',
+        price: 0,
+        classes: {
+            lv1: 4,
+            lv2: 2
+        },
+        slug: slugify(product_name + ' ' + product_id, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+    }
+
+    new Products(new_prod).save()
+    .then(res.redirect('/home'));
+    
+})
+
 app.use('/users', UserRouter);
 app.use('/collections', CollectionRouter);
 app.use('/products', ProductRouter);
