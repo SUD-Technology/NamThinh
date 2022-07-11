@@ -105,20 +105,19 @@ app.get('/home', getProductList, (req, res, next) => {
         if (type == 1 && data.Lop.length < 10) {
             data.Lop.push(current_product);
         }
-        else if (type == 2 && data.Lop.length < 10) {
+        else if (type == 2 && data.Xe.length < 10) {
             data.Xe.push(current_product);
         }
-        else if (type == 3 && data.Lop.length < 10) {
+        else if (type == 3 && data.PhuTung.length < 10) {
             data.PhuTung.push(current_product);
         }
-        else if (type == 4 && data.Lop.length < 10) {
+        else if (type == 4 && data.Dau.length < 10) {
             data.Dau.push(current_product);
         }
         else {
-            return res.json({ success: false, msg: 'Sản phẩm chưa được kiểm duyệt', current_product });
+            res.json({ success: false, msg: 'Sản phẩm chưa được kiểm duyệt', current_product });
         }
     })
-
     return res.render('home', { data })
 })
 
@@ -135,18 +134,18 @@ app.get('/contact', (req, res) => {
 })
 
 app.get('/222', (req, res, next) => {
-    const product_name = 'Mỡ bôi trơn cho máy bơm bê tông';
-    const product_id = 'Eneos CP Grease L';
+    const product_name = 'Xe Tải Thùng Kín Bửng Nâng Hạ';
+    const product_id = 'Isuzu 1T4';
     const new_prod = {
         product_id,
         product_name,
-        product_img: 'Eneos CP Grease L.png',
+        product_img: 'Isuzu 1T4.png',
         description: 'Trống',
-        brand_name: 'Phụ tùng',
+        brand_name: 'Xe tải',
         price: 0,
         classes: {
-            lv1: 4,
-            lv2: 2
+            lv1: 2,
+            lv2: 1
         },
         slug: slugify(product_name + ' ' + product_id, {
             replacement: '-',
