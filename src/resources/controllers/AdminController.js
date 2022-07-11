@@ -1,8 +1,11 @@
 const fs = require('fs')
+const Products = require('../models/Products')
 
 const AdminController = {
     addProduct: (req, res) => {
         const file = req.files
+        const { product_id, product_name, product_model, product_categories, product_branch, product_origin, product_description } = req.body
+        let listImages = []
         if (!file) {
             res.json({ code: 1, message: "error" })
         } else {
@@ -10,7 +13,6 @@ const AdminController = {
                 let img = fs.readFileSync(file.path)
                 return img.toString('base64')
             })
-            let listImages = []
             imaArray.map((src, index) => {
                 let finalImg = {
                     filename: file[index].originalname,
@@ -19,8 +21,33 @@ const AdminController = {
                 }
                 listImages.push(finalImg)
             })
-            res.json({ code: 0, message: listImages })
         }
+        const classes = {
+            lv1: Number(product_categories[0]),
+            lv2: Number(product_categories[1]),
+            lv3: Number(product_categories[2])
+        }
+        const slug = product_name.replace(/ /g, '-') + '-' + product_id
+        const product = {
+            product_id: product_id,
+            product_name: product_name,
+            product_img: listImages,
+            main_img: listImages[0],
+            description: product_description,
+            product_model: product_model,
+            product_origin: product_origin,
+            brand_name: product_branch,
+            classes: classes,
+            slug: slug
+        }
+
+        return new Products(product).save()
+            .then(() => {
+                res.json({ code: 1, message: "Thêm sản phẩm thành công" })
+            })
+            .catch((err) => {
+                res.json({ code: 0, message: "Thêm sản phẩm thất bại", err: err })
+            })
     },
 }
 

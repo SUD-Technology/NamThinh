@@ -95,30 +95,31 @@ app.get('/home', getProductList, (req, res, next) => {
         const type = product.classes.lv1;
         const current_product = {
             pname: product.product_name,
-            pimg: product.product_img,
+            pimg: product.product_img[0],
             pid: product.product_id,
             pslug: product.slug,
-            price: product.price ? product.price.toLocaleString('vi', {style: 'currency', currency: 'VND'}) : 'Liên hệ'
+            price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+            description: product.description
         }
 
-        if(type == 1 && data.Lop.length < 10) {
+        if (type == 1 && data.Lop.length < 10) {
             data.Lop.push(current_product);
         }
-        else if(type == 2 && data.Lop.length < 10) {
+        else if (type == 2 && data.Lop.length < 10) {
             data.Xe.push(current_product);
         }
-        else if(type == 3 && data.Lop.length < 10) {
+        else if (type == 3 && data.Lop.length < 10) {
             data.PhuTung.push(current_product);
         }
-        else if(type == 4 && data.Lop.length < 10) {
+        else if (type == 4 && data.Lop.length < 10) {
             data.Dau.push(current_product);
         }
         else {
-            return res.json({success: false, msg: 'Sản phẩm chưa được kiểm duyệt', current_product});
+            return res.json({ success: false, msg: 'Sản phẩm chưa được kiểm duyệt', current_product });
         }
     })
-    
-    return res.render('home', {data})
+
+    return res.render('home', { data })
 })
 
 app.get('/register', (req, res) => {
@@ -158,8 +159,8 @@ app.get('/222', (req, res, next) => {
     }
 
     new Products(new_prod).save()
-    .then(res.redirect('/home'));
-    
+        .then(res.redirect('/home'));
+
 })
 
 app.use('/users', UserRouter);

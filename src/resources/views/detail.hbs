@@ -6,7 +6,7 @@
     <div class="title-details flexbetwen">
         <h2>{{data.pname}} <span class="h2" style="color: #ec3233">{{data.pid}}</span> </h2>
         <iframe
-            src="https://www.facebook.com/plugins/like.php?href=http://tanphat.com/vi/san-pham/cau-chi-cho-dong-ho-kiem-tra-dien-63-a&amp;width=172&amp;layout=button_count&amp;action=like&amp;size=small&amp;show_faces=true&amp;share=true&amp;height=46&amp;appId=663428044065589"
+            src="https://www.facebook.com/plugins/like.php?href=https://tanphat.com/products/{{data.pslug}};width=172&amp;layout=button_count&amp;action=like&amp;size=small&amp;show_faces=true&amp;share=true&amp;height=46&amp;appId=663428044065589"
             width="172" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
             allowtransparency="true" allow="encrypted-media"></iframe>
     </div>
@@ -14,38 +14,34 @@
     <div class="row product-detail-box p-3">
         <div class="col-md-5 px-2">
             <div data-toggle="modal" data-target=".bd-example-modal-lg" class="slider-for">
+                {{#each data.pimg}}
+                {{#each this}}
+                {{#if contentType}}
+                {{#if @first}}
                 <div class="product1">
-                    <img data-id="1" src="/img/products/{{data.pimg}}" height="450vh" width="100%">
+                    <img data-id="0" src="data:{{this.contentType}};base64,{{this.imageBase64}}" height="450vh"
+                        width="100%">
                     <div class="barrier d-none"></div>
                 </div>
-                <div class="product1"><img src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg"
-                        data-id="2" height="450vh" width="80px"></div>
-                <div class="product1"><img src="/img/hero-image-mustang.jpeg" data-id="3" height="450vh" width="80px">
-                </div>
-                <div class="product1"><img src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg"
-                        data-id="4" height="450vh" width="80px"></div>
-
+                {{else}}
+                <div class="product1"><img src="data:{{this.contentType}};base64,{{this.imageBase64}}" data-id="1"
+                        height="450vh" width="80px"></div>
+                {{/if}}
+                {{/if}}
+                {{/each}}
+                {{/each}}
             </div>
 
-
             <div class="slider-nav mt-3">
+                {{#each data.pimg}}
+                {{#each this}}
+                {{#if contentType}}
                 <div class="product2">
-                    <img src="/img/hero-image-mustang.jpeg" height="auto" width="120px">
+                    <img src="data:{{this.contentType}};base64,{{this.imageBase64}}" height="auto" width="120px">
                 </div>
-
-                <div class="product2">
-                    <img src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg" height="auto"
-                        width="120px">
-                </div>
-
-                <div class="product2">
-                    <img src="/img/hero-image-mustang.jpeg" height="auto" width="120px">
-                </div>
-
-                <div class="product2">
-                    <img src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg" height="auto"
-                        width="120px">
-                </div>
+                {{/if}}
+                {{/each}}
+                {{/each}}
             </div>
         </div>
 
@@ -64,33 +60,27 @@
                 <table height="80" style="width: 100%">
                     <tbody>
                         <tr>
-                            <td style="width: 214px;" colspan="2">
-                                <h5 class="title">Thông tin nhà cung cấp </h5>
-                            </td>
+                            <td style="width: 100px;"><span>Model :</span></td>
+                            <td style="width: 330px;"><span>{{data.model}} </span></td>
                         </tr>
                         <tr>
-                            <td style="width: 100px;"><span>Showroom :</span></td>
-                            <td style="width: 330px;"><span>{{data.showroom}} </span></td>
+                            <td style="width: 52px;"><span>Mã hàng :</span></td>
+                            <td style="width: 330px;"><span>{{data.pid}}</span></td>
                         </tr>
                         <tr>
-                            <td style="width: 52px;"><span>Hotline :</span></td>
-                            <td style="width: 330px;"><span><a href="tel:{{data.phone}}">{{data.phone}}</a></span></td>
-                        </tr>
-                        <tr>
-                            <td style="width: 52px;"><span>Địa chỉ :</span></td>
-                            <td style="width: 330px;"><span>{{data.address}}</span> <a target="_blank" class="hoverred"
-                                    href=""> ( Xem bản đồ ) </a>
+                            <td style="width: 52px;"><span>Thương hiệu :</span></td>
+                            <td style="width: 330px;"><span>{{data.branch}}</span>
                             </td>
                         </tr>
                     </tbody>
                 </table>
                 <hr>
-                <p><span><a class="hoverred" href="/showroom/86">Xem thêm các sản phẩm khác cùng nhà cung cấp
-                            &gt;&gt;&gt;</a></span></p>
+                {{!-- <p><span><a class="hoverred" href="/showroom/86">Xem thêm các sản phẩm khác cùng nhà cung cấp
+                            &gt;&gt;&gt;</a></span></p> --}}
                 <hr>
 
                 <table height="80" style="width: 100%;">
-                    <tbody>
+                    {{!-- <tbody>
                         <tr>
                             <td style="width: 214px;" colspan="2">
                                 <h5 class="title">Thông tin người đại diện</h5>
@@ -104,7 +94,7 @@
                             <td style="width: 52px;"><span>Hotline :</span></td>
                             <td style="width: 330px;"><span><a href="tel:{{data.phone}}"> {{data.phone}}</a></span></td>
                         </tr>
-                    </tbody>
+                    </tbody> --}}
                 </table>
             </div>
 
@@ -231,58 +221,49 @@
 
     <div class="product-desc flexbetwen">
         <div class="infoproduct">
-            <!-- <table>
-              <tbody>
-                <tr>
-                  <td><img src="http://tanphat.com/assets/frontend/img/yes.png"></td>
-                  <td>attr</td>
-                </tr>
-              </tbody>
-            </table> -->
-            <p>Cầu nâng 2 trụ Nussbaum 4,0 tấn loại có cổng Power Lift HF 4000 được nhập khẩu từ Đức (Châu Âu) là thương
+            {{{data.description}}}
+            {{!-- <p>Cầu nâng 2 trụ Nussbaum 4,0 tấn loại có cổng Power Lift HF 4000 được nhập khẩu từ Đức (Châu Âu) là
+                thương
                 hiệu cầu nâng nổi tiếng và có chất lượng tốt nhất được Châu Âu đánh giá cao và được phê duyệt sử dụng
                 bởi nhiều hãng xe ô tô.</p>
-
             <p>&nbsp;</p>
 
             <p><strong>Đặc điểm</strong></p>
 
-            <p>&ZeroWidthSpace;&ZeroWidthSpace;&ZeroWidthSpace;&ZeroWidthSpace;&ZeroWidthSpace;- Trụ được làm bằng thép
-                dập nguyên tấm, đảm bảo độ cứng vững cao.</p>
+            <p>- </p>
 
-            <p>- Khóa cơ khí hoạt động điện, có thể hạ cầu trực tiếp mà không cần nâng cầu lên.</p>
+            <p>- </p>
 
-            <p>- Công nghệ HyperFlow giúp tự động xả Air giúp cân bằng cầu nâng.</p>
-
-            <p>- Sử dụng đồng bộ thủy lực, không sử dụng dây cáp.</p>
-
-            <p>- Tay nâng bất đối xứng giúp trọng tâm xe nằm xa 2 trụ giúp tăng không gian thao tác.</p>
-
+            <p>- </p>
             <p>&nbsp;</p>
 
             <p><strong>Thông số kỹ thuật</strong></p>
 
-            <p>- Tải trọng nâng: 4 Tấn</p>
+            <table style="border-collapse: collapse; width: 100%;" border="2">
+                <colgroup>
+                    <col style="width: 24.9235%;">
+                    <col style="width: 24.9235%;">
+                    <col style="width: 24.9235%;">
+                    <col style="width: 24.9235%;">
+                </colgroup>
+                <tbody style="text-align: center;">
+                    <tr>
+                        <td>H&atilde;ng sản xuất</td>
+                        <td>&nbsp;Xuất xứ:</td>
+                        <td>Năm sản xuất</td>
+                        <td>M&agrave;u nội thất</td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <p>- Chiều cao nâng: 2050 mm</p>
+            <p>&nbsp;</p> --}}
 
-            <p>- Thời gian nâng/hạ: 35/28 giây</p>
-
-            <p>- Chiều rộng thông xe: 2509 mm</p>
-
-            <p>- Khoảng cách giữa 2 trụ: 2766 mm</p>
-
-            <p>- Chiều cao tổng thể: 4040 mm</p>
-
-            <p>- Vị trí thấp nhất của tay nâng: 95 - 140 mm</p>
-
-            <p>- Tay nâng dài: 1130 - 1840 mm</p>
-
-            <p>- Công suất Mô tơ: 3 Kw</p>
-
-            <p>- Cấp nguồn: 3 pha 400V / 50Hz</p>
-
-            <p>&nbsp;</p>
         </div>
     </div>
 
@@ -295,7 +276,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="">
-                    <div class="fb-comments" data-href="https://hoangbo.com" data-width="" data-numposts="5"></div>
+                    <div class="fb-comments" data-href="https://tanphat.com/products/{{data.pslug}}" data-width=""
+                        data-numposts="5"></div>
                 </div>
             </div>
         </div>
@@ -348,20 +330,16 @@
         <div class="modal-content h-100">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
+                    {{#each data.pimg}}
+                    {{#each this}}
+                    {{#if contentType}}
                     <div class="carousel-item">
-                        <img class="img-fluid" src="/img/products/{{data.pimg}}" alt="First slide">
+                        <img class="img-fluid" src="data:{{this.contentType}};base64,{{this.imageBase64}}"
+                            alt="First slide">
                     </div>
-                    <div class="carousel-item">
-                        <img class="img-fluid" src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg"
-                            alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                        <img class="img-fluid" src="/img/hero-image-mustang.jpeg" alt="First slide">
-                    </div>
-                    <div class="carousel-item ">
-                        <img class="img-fluid" src="/img/speedkore-dodge-demon-1-1596473424-width1004height565.jpg"
-                            alt="Third slide">
-                    </div>
+                    {{/if}}
+                    {{/each}}
+                    {{/each}}
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

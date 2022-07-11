@@ -27,7 +27,7 @@ const menuItems = [
                 title: 'Lốp xe công nghiệp',
                 role: [
                     'Lốp đặc',
-                    'Lốp công nghiệp khí nén',     
+                    'Lốp công nghiệp khí nén',
                 ]
             },
             {
@@ -106,95 +106,98 @@ const CollectionController = {
         const keys = signal.split('').map(el => {
             return parseInt(el - 1);
         });
-        
+
         const level = keys.length;
-        
-        if(signal.includes(0) ||  level >= 4 || level <= 0 || keys[0] > 3) {
-            return res.json({success: false, msg: 'Không tìm thầy sản phẩm nào'});
+
+        if (signal.includes(0) || level >= 4 || level <= 0 || keys[0] > 3) {
+            return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
         }
-        
-        if(level == 3) {
+
+        if (level == 3) {
             const title = menuItems[keys[0]].submenu[keys[1]].role[keys[2]] || "";
-            if(!title) {
-                return res.json({success: false, msg: 'Không tìm thầy sản phẩm nào'});
+            if (!title) {
+                return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
             }
-            
+
             Products.find({})
                 .where('classes.lv1').equals(keys[0] + 1)
                 .where('classes.lv2').equals(keys[1] + 1)
                 .where('classes.lv3').equals(keys[2] + 1)
                 .then(products => {
-                    if(products.length == 0) {
-                        return res.json({success: false, msg: 'Không tìm thầy sản phẩm nào'});
+                    if (products.length == 0) {
+                        return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
                     }
                     const data = products.map(product => {
                         return {
                             pname: product.product_name,
-                            pimg: product.product_img,
+                            pimg: product.product_img[0],
                             pid: product.product_id,
                             pslug: product.slug,
-                            price: product.price ? product.price.toLocaleString('vi', {style: 'currency', currency: 'VND'}) : 'Liên hệ'
+                            description: product.description,
+                            price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
                         }
                     })
-                    return res.render('collections', {title, data});
+                    return res.render('collections', { title, data });
                 })
                 .catch(next)
         }
 
-        if(level == 2) {
+        if (level == 2) {
             const title = menuItems[keys[0]].submenu[keys[1]].title || "";
-            if(!title) {
-                return res.json({success: false, msg: 'Không tìm thầy sản phẩm nào'});
+            if (!title) {
+                return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
             }
 
             Products.find({})
-            .where('classes.lv1').equals(keys[0] + 1)
-            .where('classes.lv2').equals(keys[1] + 1)
-            .then(products => {
-                if(products.length == 0) {
-                    return res.json({success: false, msg: 'Không tìm thầy sản phẩm nào'});
-                }
-                const data = products.map(product => {
-                    return {
-                        pname: product.product_name,
-                        pimg: product.product_img,
-                        pid: product.product_id,
-                        pslug: product.slug,
-                        price: product.price ? product.price.toLocaleString('vi', {style: 'currency', currency: 'VND'}) : 'Liên hệ'
+                .where('classes.lv1').equals(keys[0] + 1)
+                .where('classes.lv2').equals(keys[1] + 1)
+                .then(products => {
+                    if (products.length == 0) {
+                        return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
                     }
+                    const data = products.map(product => {
+                        return {
+                            pname: product.product_name,
+                            pimg: product.product_img[0],
+                            pid: product.product_id,
+                            pslug: product.slug,
+                            description: product.description,
+                            price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
+                        }
+                    })
+                    return res.render('collections', { title, data });
                 })
-                return res.render('collections', {title,data});
-            })
-            .catch(next)
-            
+                .catch(next)
+
         }
 
-        if(level == 1) {
+        if (level == 1) {
             const title = menuItems[keys[0]].title || '';
-            if(!title) {
-                return res.json({success: false, msg: 'Không tìm thầy sản phẩm nào'});
+            if (!title) {
+                return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
             }
 
             Products.find({})
                 .where('classes.lv1').equals(keys[0] + 1)
                 .then(products => {
-                    if(products.length == 0) {
-                        return res.json({success: false, msg: 'Không tìm thầy sản phẩm nào'});
+                    if (products.length == 0) {
+                        return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
                     }
                     const data = products.map(product => {
                         return {
                             pname: product.product_name,
-                            pimg: product.product_img,
+                            pimg: product.product_img[0],
                             pid: product.product_id,
                             pslug: product.slug,
-                            price: product.price.toLocaleString('vi', {style: 'currency', currency: 'VND'})
+                            description: product.description,
+                            price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
                         }
                     })
-                    return res.render('collections', {title, data});
+                    return res.render('collections', { title, data });
                 })
                 .catch(next)
         }
-        
+
     }
 }
 
