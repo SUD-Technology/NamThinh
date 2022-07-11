@@ -113,9 +113,9 @@ app.get('/home', getProductList, (req, res, next) => {
         else if(type == 4 && data.Dau.length < 10) {
             data.Dau.push(current_product);
         }
-        else {
-            return res.json({success: false, msg: 'Sản phẩm chưa được kiểm duyệt', current_product});
-        }
+        // else {
+        //     break;
+        // }
     })
     
     return res.render('home', {data})
@@ -134,17 +134,17 @@ app.get('/contact', (req, res) => {
 })
 
 app.get('/222', (req, res, next) => {
-    const product_name = 'Xe Tải Thùng Kín Bửng Nâng Hạ';
-    const product_id = 'Isuzu 1T4';
+    const product_name = 'Lọc Dầu Xe Howo 420, Lọc Tinh';
+    const product_id = 'VG1540080110';
     const new_prod = {
         product_id,
         product_name,
-        product_img: 'Isuzu 1T4.png',
+        product_img: 'VG1540080110.png',
         description: 'Trống',
-        brand_name: 'Xe tải',
+        brand_name: 'Phụ tùng',
         price: 0,
         classes: {
-            lv1: 2,
+            lv1: 3,
             lv2: 1
         },
         slug: slugify(product_name + ' ' + product_id, {

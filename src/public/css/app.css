@@ -580,8 +580,10 @@ input[type="file"] {
 
 :root {
   --cam: #db701e !important;
-  --xanh: #2250ab !important;
+  --xanh: #3A5BA0 !important;
   --trang: white !important;
+  --do: #D61C4E !important;
+  --vang: #ebf374 !important;
 }
 
 /* Product */
@@ -765,7 +767,7 @@ img.bgc-title {
 
 .sub-title {
   background-color: var(--xanh);
-  color: #ebf374;
+  color: var(--vang);
   padding: 0 40px;
   line-height: 45px;
   font-size: 25px;
@@ -805,17 +807,16 @@ img.bgc-title {
   font-size: 13px;
   gap: 10px;
   grid-template-columns: 210px 210px 210px 210px;
-  grid-template-rows: 330px 330px 330px 330px 330px;
+  grid-template-rows: 335px 335px 335px 335px 335px;
   padding: 0px 10px;
 }
 
 .items-product {
   padding: 5px 5px;
   border-color: white;
-  border-style: solid;
+  border-style:solid;
   border-width: 2px;
   display: list-item;
-  font-family: UTM;
   font-size: 13px;
   text-align: center;
   border-radius: 0.5rem 0.5rem 0 0;
@@ -858,8 +859,9 @@ img.bgc-title {
 .items-price {
   border: 2px solid var(--xanh);
   font-weight: 700;
-  padding: 2px 10px 6px;
+  padding: 6px 10px 6px;
   text-align: center;
+  /* line-height: 25px; */
   position: absolute;
   width: 100%;
   bottom: 0;
@@ -870,10 +872,11 @@ img.bgc-title {
   border-radius: 0.25rem;
 }
 
+
 .items-price:hover {
   cursor: pointer;
-  background-color: var(--cam);
-  border: 2px solid var(--cam);
+  background-color: var(--do);
+  border: 2px solid var(--do);
 }
 
 
@@ -899,7 +902,7 @@ img.bgc-title {
 }
 
 .items-title p {
-  color: var(--cam);
+  color: var(--do) !important;
   font-size: 18px;
   font-weight: 500px;
   text-align: center;
@@ -948,7 +951,7 @@ img.bgc-title {
   font-size: 20px;
   font-weight: 600;
   color: white;
-  background-color: var(--cam);
+  background-color: var(--do);
   float: left;
 }
 
@@ -2126,14 +2129,14 @@ img.bgc-title {
   z-index: -1;
   content: '';
   display: block;
-  border: 5px solid #EB1D36;
+  border: 5px solid var(--do);
 }
 .ribbon span {
   position: absolute;
   display: block;
   width: 225px;
   padding: 15px 0;
-  background-color: #EB1D36;
+  background-color: var(--do);
   box-shadow: 0 5px 10px rgba(0,0,0,.1);
   color: #fff;
   font: 700 18px/1 'Lato', sans-serif;
