@@ -95,30 +95,30 @@ app.get('/home', getProductList, (req, res, next) => {
         const type = product.classes.lv1;
         const current_product = {
             pname: product.product_name,
-            pimg: product.product_img,
+            pimg: product.product_img[0],
             pid: product.product_id,
             pslug: product.slug,
-            price: product.price ? product.price.toLocaleString('vi', {style: 'currency', currency: 'VND'}) : 'Liên hệ'
+            price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+            description: product.description
         }
 
-        if(type == 1 && data.Lop.length < 10) {
+        if (type == 1 && data.Lop.length < 10) {
             data.Lop.push(current_product);
         }
-        else if(type == 2 && data.Xe.length < 10) {
+        else if (type == 2 && data.Xe.length < 10) {
             data.Xe.push(current_product);
         }
-        else if(type == 3 && data.PhuTung.length < 10) {
+        else if (type == 3 && data.PhuTung.length < 10) {
             data.PhuTung.push(current_product);
         }
-        else if(type == 4 && data.Dau.length < 10) {
+        else if (type == 4 && data.Dau.length < 10) {
             data.Dau.push(current_product);
         }
         // else {
         //     break;
         // }
     })
-    
-    return res.render('home', {data})
+    return res.render('home', { data })
 })
 
 app.get('/register', (req, res) => {
@@ -133,34 +133,6 @@ app.get('/contact', (req, res) => {
     res.render('contact')
 })
 
-app.get('/222', (req, res, next) => {
-    const product_name = 'Lọc Dầu Xe Howo 420, Lọc Tinh';
-    const product_id = 'VG1540080110';
-    const new_prod = {
-        product_id,
-        product_name,
-        product_img: 'VG1540080110.png',
-        description: 'Trống',
-        brand_name: 'Phụ tùng',
-        price: 0,
-        classes: {
-            lv1: 3,
-            lv2: 1
-        },
-        slug: slugify(product_name + ' ' + product_id, {
-            replacement: '-',
-            remove: false,
-            lower: false,
-            strict: false,
-            locale: 'vi',
-            trim: true
-        })
-    }
-
-    new Products(new_prod).save()
-    .then(res.redirect('/home'));
-    
-})
 
 app.use('/users', UserRouter);
 app.use('/collections', CollectionRouter);

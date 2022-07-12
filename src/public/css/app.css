@@ -588,8 +588,11 @@ input[type="file"] {
 
 /* Product */
 
-.container {
+.wrapper {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+}
+
+.container {
   margin-bottom: 50px;
   padding: 0;
 }
@@ -696,7 +699,7 @@ input[type="file"] {
 .brand-sidebar {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   color: darkblue;
-  
+
   width: 100%;
 }
 
@@ -758,11 +761,11 @@ input[type="file"] {
 
 
 img.bgc-title {
-    position: absolute;
-    z-index: 1;
-    height: 45px;
-    width: 10px;
-    left: 35%;
+  position: absolute;
+  z-index: 1;
+  height: 45px;
+  width: 10px;
+  left: 35%;
 }
 
 .sub-title {
@@ -777,7 +780,7 @@ img.bgc-title {
   width: 35%;
   text-align: center;
   /* border-radius: 0 0.7rem 0.7rem 0; */
-  
+
 }
 
 
@@ -795,7 +798,7 @@ img.bgc-title {
   list-style: none;
   font-size: 13px;
   gap: 10px;
-  
+
   grid-template-columns: 230px 230px 230px 230px 230px;
   grid-template-rows: 350px 350px;
   padding: 0px 20px;
@@ -846,7 +849,7 @@ img.bgc-title {
 .items-product img:hover {
   cursor: pointer;
   transform: scale(1.05);
-  
+
   overflow: hidden;
   /* border: 2px solid var(--xanh); */
 }
@@ -2123,6 +2126,7 @@ img.bgc-title {
   overflow: hidden;
   position: absolute;
 }
+
 .ribbon::before,
 .ribbon::after {
   position: absolute;
@@ -2131,6 +2135,7 @@ img.bgc-title {
   display: block;
   border: 5px solid var(--do);
 }
+
 .ribbon span {
   position: absolute;
   display: block;
@@ -2140,7 +2145,7 @@ img.bgc-title {
   box-shadow: 0 5px 10px rgba(0,0,0,.1);
   color: #fff;
   font: 700 18px/1 'Lato', sans-serif;
-  text-shadow: 0 1px 1px rgba(0,0,0,.2);
+  text-shadow: 0 1px 1px rgba(0, 0, 0, .2);
   text-transform: uppercase;
   text-align: center;
 }
@@ -2150,19 +2155,23 @@ img.bgc-title {
   top: -10px;
   right: -10px;
 }
+
 .ribbon-top-right::before,
 .ribbon-top-right::after {
   border-top-color: transparent;
   border-right-color: transparent;
 }
+
 .ribbon-top-right::before {
   top: 0;
   left: 0;
 }
+
 .ribbon-top-right::after {
   bottom: 0;
   right: 0;
 }
+
 .ribbon-top-right span {
   left: -25px;
   top: 30px;

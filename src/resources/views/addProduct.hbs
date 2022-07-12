@@ -30,49 +30,49 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="available_quantity">MODEL</label>
+                    <label class="col-md-4 control-label" for="product_model">MODEL</label>
                     <div class="col-md-8">
-                        <input id="available_quantity" name="available_quantity" placeholder="Model"
-                            class="form-control input-md" required="" type="text">
+                        <input id="product_model" name="product_model" placeholder="Model" class="form-control input-md"
+                            required="" type="text">
 
                     </div>
                 </div>
 
                 <!-- Select Basic -->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="product_categorie">DANH MỤC SẢN PHẨM</label>
+                    <label class="col-md-4 control-label" for="product_categories">DANH MỤC SẢN PHẨM</label>
                     <div class="col-md-8">
-                        <select id="product_categorie" name="product_categorie" required="" class="form-control">
+                        <select id="product_categories" name="product_categories" required="" class="form-control">
                             <option value="">--Chọn loại sản phẩm--</option>
                             <optgroup label="Lốp Advance / Samson">
-                                <option value="">Lốp máy công trình: Lốp xe tải hạng nặng</option>
-                                <option value="">Lốp máy công trình: Lốp máy súc</option>
-                                <option value="">Lốp máy công trình: Lốp xe cẩu</option>
-                                <option value="">Lốp máy công trình: Lốp xe lu</option>
-                                <option value="">Lốp máy công nghiệp: Lốp đặc</option>
-                                <option value="">Lốp máy công nghiệp: Lốp công nghiệp khí nén</option>
-                                <option value="">Lốp máy nông nghiệp: Lốp nông nghiệp nhỏ</option>
-                                <option value="">Lốp máy nông nghiệp: Lốp nông nghiệp lớn</option>
+                                <option value="111">Lốp máy công trình: Lốp xe tải hạng nặng</option>
+                                <option value="112">Lốp máy công trình: Lốp máy súc</option>
+                                <option value="113">Lốp máy công trình: Lốp xe cẩu</option>
+                                <option value="114">Lốp máy công trình: Lốp xe lu</option>
+                                <option value="121">Lốp máy công nghiệp: Lốp đặc</option>
+                                <option value="122">Lốp máy công nghiệp: Lốp công nghiệp khí nén</option>
+                                <option value="123">Lốp máy nông nghiệp: Lốp nông nghiệp nhỏ</option>
+                                <option value="124">Lốp máy nông nghiệp: Lốp nông nghiệp lớn</option>
                             </optgroup>
                             <optgroup label="Xe tải / Đầu kéo / Xe ben">
-                                <option value="">Xe tải thùng</option>
-                                <option value="">Xe đầu kéo</option>
-                                <option value="">Xe ben</option>
-                                <option value="">Sơ mi rơ móc</option>
+                                <option value="210">Xe tải thùng</option>
+                                <option value="220">Xe đầu kéo</option>
+                                <option value="230">Xe ben</option>
+                                <option value="240">Sơ mi rơ móc</option>
                             </optgroup>
                             <optgroup label="Phụ tùng ô tô">
-                                <option value="">Xe tải thùng</option>
-                                <option value="">Xe đầu kéo</option>
-                                <option value="">Xe ben</option>
-                                <option value="">Sơ mi rơ móc</option>
+                                <option value="310">Xe tải thùng</option>
+                                <option value="320">Xe đầu kéo</option>
+                                <option value="330">Xe ben</option>
+                                <option value="340">Sơ mi rơ móc</option>
                             </optgroup>
                             <optgroup label="Dầu nhớt">
-                                <option value="">Dầu nhớt ô tô / xe máy: Dầu động cơ</option>
-                                <option value="">Dầu nhớt ô tô / xe máy: Dầu hộp số</option>
-                                <option value="">Dầu nhớt ô tô / xe máy: Dầu láp</option>
-                                <option value="">Dầu nhớt công nghiêp: Dầu đa năng</option>
-                                <option value="">Dầu nhớt công nghiêp: Dầu bôi trơn</option>
-                                <option value="">Dầu nhớt công nghiêp: Dầu thủy lực</option>
+                                <option value="411">Dầu nhớt ô tô / xe máy: Dầu động cơ</option>
+                                <option value="412">Dầu nhớt ô tô / xe máy: Dầu hộp số</option>
+                                <option value="413">Dầu nhớt ô tô / xe máy: Dầu láp</option>
+                                <option value="421">Dầu nhớt công nghiêp: Dầu đa năng</option>
+                                <option value="422">Dầu nhớt công nghiêp: Dầu bôi trơn</option>
+                                <option value="423">Dầu nhớt công nghiêp: Dầu thủy lực</option>
                             </optgroup>
                         </select>
                     </div>
@@ -119,7 +119,30 @@
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="product_description">MÔ TẢ THÔNG TIN SẢN PHẨM</label>
                     <div class="col-md-8">
-                        <textarea class="form-control" id="product_description" name="product_description"></textarea>
+                        <textarea class="form-control" id="product_description" name="product_description">
+                            <p><strong>Thông số kỹ thuật</strong></p>
+                            <p>- Tải trọng nâng: 4 Tấn</p>
+
+                            <p>- Chiều cao nâng: 2050 mm</p>
+
+                            <p>- Thời gian nâng/hạ: 35/28 giây</p>
+
+                            <p>- Chiều rộng thông xe: 2509 mm</p>
+
+                            <p>- Khoảng cách giữa 2 trụ: 2766 mm</p>
+
+                            <p>- Chiều cao tổng thể: 4040 mm</p>
+
+                            <p>- Vị trí thấp nhất của tay nâng: 95 - 140 mm</p>
+
+                            <p>- Tay nâng dài: 1130 - 1840 mm</p>
+
+                            <p>- Công suất Mô tơ: 3 Kw</p>
+
+                            <p>- Cấp nguồn: 3 pha 400V / 50Hz</p>
+
+                            <p>&nbsp;</p>
+                        </textarea>
                     </div>
                 </div>
 
