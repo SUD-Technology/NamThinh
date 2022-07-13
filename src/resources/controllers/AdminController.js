@@ -59,11 +59,11 @@ const AdminController = {
     },
 
     deleteProduct: (req, res, next) => {
-        const _id = req.params.id;
-        Products.findOne({_id})
+        const product_id = req.params.id;
+        Products.findOne({product_id})
             .then(product => {
                 if(!product) {
-                    return res.json({success: false, msg: 'Sản phẩm không tồn tại'});
+                    return res.json({success: false, msg: 'Sản phẩm không tồn tại', product_id});
                 }
 
                 product.delete().then(res.redirect('/home'));

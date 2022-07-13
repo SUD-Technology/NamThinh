@@ -6,7 +6,8 @@
     {{!-- Lốp xe --}}
     <div class="classify-products">
         <div class="row pagi">
-            <span class="sub-title">Lốp Advance / Samson</span>
+            <span class="sub-title">{{title}}</span>
+            <img class="bgc-title" src="/img/title.png" alt="">
         </div>
 
         <div class="row product-list data-metatip=" true"">
@@ -15,43 +16,17 @@
                 <div class="product-sidebar mb-5">
                     <div class="product-sidebar-body">
                         <ul class="sidebar-list">
+                            {{#each submenu}}
                             <li class="sidebar-item">
-                                <a href="">Lốp xe tải - xe khách</a>
+                                <a href="{{src}}">{{title}}</a>
                                 <ul class="sidebar-dropdown-menu">
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp tải nhẹ</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp tải nặng</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe khách - xe bus</a></li>
-
+                                {{#each role}}
+                                    <li class="sidebar-dropdown-item"><a href="{{src}}">{{title}}</a></li>
+                                {{/each}}
                                 </ul>
                             </li>
-                            <li class="sidebar-item">
-                                <a href="">Lốp Máy công trình</a>
-                                <ul class="sidebar-dropdown-menu">
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe tải hạng nặng</a>
-                                    </li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp máy xúc</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe cẩu</a></li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp xe lu</a></li>
-                                </ul>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="">Lốp xe công nghiệp</a>
-                                <ul class="sidebar-dropdown-menu">
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp đặc</a>
-                                    </li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp công nghiệp khí nén</a></li>
-
-                                </ul>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="">Lốp nông nghiệp</a>
-                                <ul class="sidebar-dropdown-menu">
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp nông nghiệp nhỏ</a>
-                                    </li>
-                                    <li class="sidebar-dropdown-item"><a href="">Lốp nông nghiệp lớn</a></li>
-
-                                </ul>
-                            </li>
+                            {{/each}}
+                            
                         </ul>
                     </div>
                 </div>
