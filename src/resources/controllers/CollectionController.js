@@ -5,36 +5,76 @@ const menuItems = [
     // Lốp xe
     {
         title: 'Lốp xe Advance / Samson',
+        src: 'Lop-xe-Advance-Samson-1',
         submenu: [
             {
                 title: 'Lốp xe tải - xe khách',
+                src: 'Lop-xe-tai-xe-khach-11',
                 role: [
-                    'Lốp tải nhẹ',
-                    'Lốp tải nặng',
-                    'Lốp xe khách - xe bus'
+                    {
+                        title: 'Lốp tải nhẹ',
+                        src: 'Lop-tai-nhe-111',
+                    },
+                    {
+                        title: 'Lốp tải nặng',
+                        src: 'Lop-tai-nang-112',
+                    },
+                    {
+                        title: 'Lốp xe khách - xe bus',
+                        src: 'Lop-tai-nhe-113',
+                    },
+                    
                 ]
             },
             {
                 title: 'Lốp máy công trình',
+                src: 'Lop-may-cong-trinh-12',
                 role: [
-                    'Lốp xe tải hạng nặng',
-                    'Lốp máy xúc',
-                    'Lốp xe cẩu',
-                    'Lốp xe lu'
+                    {
+                        title: 'Lốp xe tải hạng nặng',
+                        src: 'Lop-xe-tai-hang-nang-121'
+                    },
+                    {
+                        title: 'Lốp máy xúc',
+                        src: 'Lop-may-xuc-122'
+                    },
+                    {
+                        title: 'Lốp xe cẩu',
+                        src: 'Lop-xe-cau-123'
+                    },
+                    {
+                        title: 'Lốp xe lu',
+                        src: 'Lop-xe-lu-124'
+                    },
+                    
                 ]
             },
             {
                 title: 'Lốp xe công nghiệp',
+                src: 'Lop-xe-cong-nghiep-13',
                 role: [
-                    'Lốp đặc',
-                    'Lốp công nghiệp khí nén',
+                    {
+                        title: 'Lốp đặc',
+                        src: 'Lop-dac-131'
+                    },
+                    {
+                        title: 'Lốp công nghiệp khí nén',
+                        src: 'Lop-cong-nghiep-khi-nen-132'
+                    }
                 ]
             },
             {
-                title: 'Lốp nông nghiệp',
+                title: 'Lốp xe nông nghiệp',
+                src: 'Lop-xe-nong-nghiep-14',
                 role: [
-                    'Lốp nông nghiệp nhỏ',
-                    'Lốp nông nghiệp lớn',
+                    {
+                        title: 'Lốp nông nghiệp nhỏ',
+                        src: 'Lop-nong-nghiep-nho-141'
+                    },
+                    {
+                        title:'Lốp nông nghiệp lớn',
+                        src: 'Lop-nong-nghiep-lon-142'
+                    }
                 ]
             }
         ]
@@ -42,57 +82,88 @@ const menuItems = [
     // Xe tải
     {
         title: 'Xe tải - Đầu kéo - Xe ben',
+        src: 'Xe-tai-dau-keo-xe-ben-2',
         submenu: [
             {
                 title: 'Xe tải thùng',
+                src: 'Xe-tai-thung-21'
             },
             {
                 title: 'Xe đầu kéo',
+                src: 'Xe-dau-keo-22'
             },
             {
                 title: 'Xe ben',
+                src: 'Xe-ben-23'
             },
             {
                 title: 'Sơ mi rơ mooc',
+                src: 'So-mi-ro-mooc-24'
             }
         ]
     },
     // Phụ tùng
     {
         title: 'Phụ tùng ô tô',
+        src: 'Phu-tung-o-to-3',
         submenu: [
             {
-                title: 'Xe tải thùng',
+                title: 'Phụ tùng xe tải thùng',
+                src: 'Phu-tung-xe-tai-thung-31'
             },
             {
-                title: 'Xe đầu kéo',
+                title: 'Phụ tùng xe đầu kéo',
+                src: 'Phu-tung-xe-dau-keo-32'
             },
             {
-                title: 'Xe ben',
+                title: 'Phụ tùng xe ben',
+                src: 'Phu-tung-xe-ben-33'
             },
             {
-                title: 'Sơ mi rơ mooc',
+                title: 'Phụ tùng sơ mi rơ mooc',
+                src: 'Phu-tung-so-mi-ro-mooc-34'
             }
         ]
     },
     // Dầu nhớt
     {
         title: 'Dầu nhớt',
+        src: 'Dau-nhot-4',
         submenu: [
             {
                 title: 'Dầu nhớt ô tô - xe máy',
+                src: 'Dau-nhot-o-to-xe-may-41',
                 role: [
-                    'Dầu động cơ',
-                    'Dầu hộp số',
-                    'Dầu láp'
+                    {
+                        title: 'Dầu động cơ',
+                        src: 'Dau-dong-co-411'
+                    },
+                    {
+                        title:'Dầu hộp số',
+                        src: 'Dau-hop-so-412'
+                    },
+                    {
+                        title:'Dầu láp',
+                        src: 'Dau-lap-413'
+                    }
                 ]
             },
             {
                 title: 'Dầu nhớt công nghiệp',
+                src: 'Dau-nhot-cong-nghiep-42',
                 role: [
-                    'Dầu đa năng',
-                    'Dầu bôi trơn',
-                    'Dầu thủy lực'
+                    {
+                        title: 'Dầu đa năng',
+                        src: 'Dau-da-nang-421'
+                    },
+                    {
+                        title: 'Dầu bôi trơn',
+                        src: 'Dau-boi-tron-422'
+                    },
+                    {
+                        title: 'Dầu thủy lực',
+                        src: 'Dau-thuy-luc-423'
+                    }
                 ]
             }
         ]
@@ -113,8 +184,10 @@ const CollectionController = {
             return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
         }
 
+        const submenu = menuItems[keys[0]].submenu;
+
         if (level == 3) {
-            const title = menuItems[keys[0]].submenu[keys[1]].role[keys[2]] || "";
+            const title = menuItems[keys[0]].submenu[keys[1]].role[keys[2]].title || "";
             if (!title) {
                 return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
             }
@@ -137,7 +210,7 @@ const CollectionController = {
                             price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
                         }
                     })
-                    return res.render('collections', { title, data });
+                    return res.render('collections', { title, submenu, data });
                 })
                 .catch(next)
         }
@@ -165,7 +238,7 @@ const CollectionController = {
                             price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
                         }
                     })
-                    return res.render('collections', { title, data });
+                    return res.render('collections', { title, submenu, data });
                 })
                 .catch(next)
 
@@ -193,7 +266,7 @@ const CollectionController = {
                             price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
                         }
                     })
-                    return res.render('collections', { title, data });
+                    return res.render('collections', { title, submenu, data });
                 })
                 .catch(next)
         }

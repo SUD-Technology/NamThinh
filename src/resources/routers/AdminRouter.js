@@ -34,5 +34,7 @@ router.get('/add-product', (req, res) => {
     res.render('addProduct', { admin: true })
 })
 router.post('/add-product', store.array('product-image', 12), AdminController.addProduct)
+router.get('/delete/:id', AdminController.deleteProduct)
+
 
 module.exports = router;

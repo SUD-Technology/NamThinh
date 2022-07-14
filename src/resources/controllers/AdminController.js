@@ -1,5 +1,6 @@
 const fs = require('fs')
 const Products = require('../models/Products')
+const slugify = require('slugify');
 
 const AdminController = {
     addProduct: (req, res) => {
@@ -27,7 +28,14 @@ const AdminController = {
             lv2: Number(product_categories[1]),
             lv3: Number(product_categories[2])
         }
-        const slug = product_name.replace(/ /g, '-') + '-' + product_id
+        const slug = slugify(product_name + ' ' + product_id, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
         const product = {
             product_id: product_id,
             product_name: product_name,
@@ -49,6 +57,18 @@ const AdminController = {
                 res.json({ code: 0, message: "Thêm sản phẩm thất bại", err: err })
             })
     },
+
+    deleteProduct: (req, res, next) => {
+        const product_id = req.params.id;
+        Products.findOne({product_id})
+            .then(product => {
+                if(!product) {
+                    return res.json({success: false, msg: 'Sản phẩm không tồn tại', product_id});
+                }
+
+                product.delete().then(res.redirect('/home'));
+            })
+    }
 }
 
 module.exports = AdminController

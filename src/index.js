@@ -114,9 +114,9 @@ app.get('/home', getProductList, (req, res, next) => {
         else if (type == 4 && data.Dau.length < 10) {
             data.Dau.push(current_product);
         }
-        else {
-            res.json({ success: false, msg: 'Sản phẩm chưa được kiểm duyệt', current_product });
-        }
+        // else {
+        //     break;
+        // }
     })
     return res.render('home', { data })
 })
@@ -133,34 +133,6 @@ app.get('/contact', (req, res) => {
     res.render('contact')
 })
 
-app.get('/222', (req, res, next) => {
-    const product_name = 'Xe Tải Thùng Kín Bửng Nâng Hạ';
-    const product_id = 'Isuzu 1T4';
-    const new_prod = {
-        product_id,
-        product_name,
-        product_img: 'Isuzu 1T4.png',
-        description: 'Trống',
-        brand_name: 'Xe tải',
-        price: 0,
-        classes: {
-            lv1: 2,
-            lv2: 1
-        },
-        slug: slugify(product_name + ' ' + product_id, {
-            replacement: '-',
-            remove: false,
-            lower: false,
-            strict: false,
-            locale: 'vi',
-            trim: true
-        })
-    }
-
-    new Products(new_prod).save()
-        .then(res.redirect('/home'));
-
-})
 
 app.use('/users', UserRouter);
 app.use('/collections', CollectionRouter);
