@@ -42,7 +42,11 @@ a:hover {
   color: #000;
 }
 
-
+/* Admin product manager: start */
+.find-product-form {
+  /* display: flex; */
+}
+/* Admin product manager: end */
 
 /* Admin page: start */
 .addProduct-body form {

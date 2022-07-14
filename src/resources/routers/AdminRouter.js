@@ -12,6 +12,9 @@ router.get('/contact', (req, res) => {
     res.render('contact', { admin: true, change: false })
 })
 
+router.get('/product-manager', (req, res) => {
+    res.render('productManager', { admin: true })
+})
 
 
 router.get('/edit', (req, res) => {
