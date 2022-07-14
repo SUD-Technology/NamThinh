@@ -1002,6 +1002,7 @@ img.bgc-title {
   display: flex;
   justify-content: space-between;
   float: none;
+  padding: 5px;
 }
 
 .infoproduct {
@@ -1998,7 +1999,7 @@ img.bgc-title {
   -webkit-line-clamp: 2;
   line-height: 19px;
 
-  font-size: 14px;
+  font-size: 14px !important;
 }
 
 .sidelk.soppt .lksp>li .lksp-ex .ex-price span {
@@ -2051,6 +2052,7 @@ img.bgc-title {
 }
 
 .sidelk .lksp>li .lksp-ex {
+  height: 100%;
   width: 140px;
   float: right;
   padding-left: 4px;

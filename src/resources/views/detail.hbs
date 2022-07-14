@@ -1,6 +1,7 @@
 <div class="product-page">
     <div class="row pagi">
         <span class="sub-title">Thiết bị ô tô xe máy</span>
+        <img class="bgc-title" src="/img/title.png" alt="">
     </div>
 
     <div class="title-details flexbetwen">
@@ -109,108 +110,33 @@
             </div>
 
             <div class="lksp">
+                {{#each similar}}
                 <li class="flexbetwen">
                     <div class="lksp-img">
-                        <a href="/img/Caunang.jpg">
-                            <img src="/img/Caunang.jpg">
+                        {{#each product_img}}
+                        {{#if contentType}}
+                        <a href="{{slug}}">
+                            <img src="data:{{contentType}};base64,{{imageBase64}}">
                         </a>
+                        {{/if}}
+                        {{/each}}
                     </div>
-                    <div class="lksp-ex">
+                    <div style="font-size: 14px" class="lksp-ex">
                         <div class="ex-title">
-                            <a href="/img/Caunang.jpg">Cầu nâng 4 trụ 4,5 tấn Nussbaum Combi Lift</a>
+                            <a href="{{slug}}">{{product_name}}</a>
                         </div>
                         <div class="ex-code">
-                            <p>4.40S</p>
+                            <p>{{product_id}}</p>
                         </div>
                         <!-- price -->
                         <div class="ex-price text-center">
-                            <div><span> Liên hệ </span></div>
+                            <div><span>{{price}}</span></div>
                         </div>
                         <!--/. end price  -->
                     </div>
                 </li>
-                <li class="flexbetwen">
-                    <div class="lksp-img">
-                        <a href="/img/Caunang.jpg">
-                            <img src="/img/Caunang.jpg">
-                        </a>
-                    </div>
-                    <div class="lksp-ex">
-                        <div class="ex-title">
-                            <a href="/img/Caunang.jpg">Cầu nâng cắt kéo nâng toàn xe kiểu Uni Lift</a>
-                        </div>
-                        <div class="ex-code">
-                            <p>3500-NT</p>
-                        </div>
-                        <!-- price -->
-                        <div class="ex-price text-center">
-                            <div><span> Liên hệ </span></div>
-                        </div>
-                        <!--/. end price  -->
-                    </div>
-                </li>
-                <li class="flexbetwen">
-                    <div class="lksp-img">
-                        <a href="/img/Caunang.jpg">
-                            <img src="/img/Caunang.jpg">
-                        </a>
-                    </div>
-                    <div class="lksp-ex">
-                        <div class="ex-title">
-                            <a href="/img/Caunang.jpg">Cầu nâng 2 trụ Guangli 3,2 tấn rộng lòng cầu 3m</a>
-                        </div>
-                        <div class="ex-code">
-                            <p>QJY 3.2-2C</p>
-                        </div>
-                        <!-- price -->
-                        <div class="ex-price text-center">
-                            <div><span> Liên hệ </span></div>
-                        </div>
-                        <!--/. end price  -->
-                    </div>
-                </li>
-                <li class="flexbetwen">
-                    <div class="lksp-img">
-                        <a href="/img/Caunang.jpg">
-                            <img src="/img/Caunang.jpg">
-                        </a>
-                    </div>
-                    <div class="lksp-ex">
-                        <div class="ex-title">
-                            <a href="/img/Caunang.jpg">Cầu
-                                nâng 2 trụ Koisu 4,0 tấn loại có cổng</a>
-                        </div>
-                        <div class="ex-code">
-                            <p>K.PL-4.0-2A</p>
-                        </div>
-                        <!-- price -->
-                        <div class="ex-price text-center">
-                            <div><span> Liên hệ </span></div>
-                        </div>
-                        <!--/. end price  -->
-                    </div>
-                </li>
-                <li class="flexbetwen">
-                    <div class="lksp-img">
-                        <a href="/img/Caunang.jpg">
-                            <img src="/img/Caunang.jpg">
-                        </a>
-                    </div>
-                    <div class="lksp-ex">
-                        <div class="ex-title">
-                            <a href="/img/Caunang.jpg">Cầu
-                                nâng 2 trụ Koisu 4,0 tấn loại không cổng</a>
-                        </div>
-                        <div class="ex-code">
-                            <p>K.PL-4.0-2B</p>
-                        </div>
-                        <!-- price -->
-                        <div class="ex-price text-center">
-                            <div><span> Liên hệ </span></div>
-                        </div>
-                        <!--/. end price  -->
-                    </div>
-                </li>
+                {{/each}}
+                
             </div>
         </div>
     </div>
