@@ -9,82 +9,47 @@
     <div class="product-manager-body">
         <form action="" class="find-product-form">
             <div class="form-group">
-                <div class="col-md-3">
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option value="">Chọn loại sản phẩm</option>
-                        <optgroup label="Lốp Advance / Samson">
-                            <option value="111">Lốp máy công trình: Lốp xe tải hạng nặng</option>
-                            <option value="112">Lốp máy công trình: Lốp máy súc</option>
-                            <option value="113">Lốp máy công trình: Lốp xe cẩu</option>
-                            <option value="114">Lốp máy công trình: Lốp xe lu</option>
-                            <option value="121">Lốp máy công nghiệp: Lốp đặc</option>
-                            <option value="122">Lốp máy công nghiệp: Lốp công nghiệp khí nén</option>
-                            <option value="123">Lốp máy nông nghiệp: Lốp nông nghiệp nhỏ</option>
-                            <option value="124">Lốp máy nông nghiệp: Lốp nông nghiệp lớn</option>
-                        </optgroup>
-                        <optgroup label="Xe tải / Đầu kéo / Xe ben">
-                            <option value="210">Xe tải thùng</option>
-                            <option value="220">Xe đầu kéo</option>
-                            <option value="230">Xe ben</option>
-                            <option value="240">Sơ mi rơ móc</option>
-                        </optgroup>
-                        <optgroup label="Phụ tùng ô tô">
-                            <option value="310">Xe tải thùng</option>
-                            <option value="320">Xe đầu kéo</option>
-                            <option value="330">Xe ben</option>
-                            <option value="340">Sơ mi rơ móc</option>
-                        </optgroup>
-                        <optgroup label="Dầu nhớt">
-                            <option value="411">Dầu nhớt ô tô / xe máy: Dầu động cơ</option>
-                            <option value="412">Dầu nhớt ô tô / xe máy: Dầu hộp số</option>
-                            <option value="413">Dầu nhớt ô tô / xe máy: Dầu láp</option>
-                            <option value="421">Dầu nhớt công nghiêp: Dầu đa năng</option>
-                            <option value="422">Dầu nhớt công nghiêp: Dầu bôi trơn</option>
-                            <option value="423">Dầu nhớt công nghiêp: Dầu thủy lực</option>
-                        </optgroup>
+                <div class="col-md-2">
+                    <select class="form-control" id="product-lv1">
+                        <option value="">-- Chọn loại sản phẩm --</option>
+                        <option value="1">LỐP ADVANCE/SAMSON</option>
+                        <option value="2">XE TẢI/ ĐẦU KÉO / XE BEN</option>
+                        <option value="3">PHỤ TÙNG Ô TÔ</option>
+                        <option value="4">DẦU NHỚT</option>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
+                    <select class="form-control" id="product-lv2">
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select class="form-control" id="product-lv3">
+
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option value="">Xuất xứ</option>
+                        {{#each origins}}
+                        <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col-md-2">
                     <select class="form-control" id="exampleFormControlSelect1">
                         <option value="">Thương hiệu</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        {{#each brands}}
+                        <option value="{{this}}">{{this}}</option>
+                        {{/each}}
                     </select>
                 </div>
-                <div class="col-md-3">
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option value="">Xuất xứ</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <select class="form-control" id="exampleFormControlSelect1">
-                        <option value="">Xuất xứ</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
                 <div class="col-md-2">
                     <button class="form-control">Tìm kiếm</button>
                 </div>
             </div>
-
-
         </form>
 
-        <table class="table table-hover table-bordered">
+        <table class="table table-hover table-bordered table-product">
             <thead>
                 <tr>
                     <th scope="col">STT</th>
@@ -93,46 +58,133 @@
                     <th scope="col">Model</th>
                     <th scope="col">Mã</th>
                     <th scope="col">Giá</th>
-                    <th scope="col">Định mức giá</th>
                     <th scope="col">Tồn</th>
                     <th scope="col">Kiểu hàng hóa</th>
-                    <th scope="col">Lưu ý</th>
-
                 </tr>
-            </thead>
+            </thead>`
             <tbody>
+                {{#each products}}
                 <tr>
-                    <th scope="row">1</th>
-                    <td ><img src="/img/bo1.jpg" alt=""></td>
+                    <th scope="row"></th>
+                    <td>
+                        {{#each pimg}}
+                        {{#if contentType}}
+                        <img src="data:{{contentType}};base64,{{imageBase64}}" alt="">
+                        {{/if}}
+                        {{/each}}
+                    </td>
+                    <td><a href="/products/{{pslug}}">{{pname}}</a></td>
+                    <td>{{model}}</td>
+                    <td>{{pid}}</td>
+                    <td>{{price}}</td>
                     <td>Otto</td>
                     <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Thornton</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="8">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>
 
 </div>
 {{!-- Body: end --}}
+
+
+<script>
+    const stt = document.querySelectorAll('.table-product tbody th')
+    stt.forEach((item, index) => {
+        item.innerHTML = `${index + 1}`
+    })
+
+    //
+    $('#product-lv1').change(function () {
+        var $option = $(this).find('option:selected')
+        if ($option.val() == '') {
+            $('#product-lv2').empty()
+            $('#product-lv2').append($('<option></option>').text(`-- Chọn danh mục sản phẩm --`).attr('value', ``))
+            $('#product-lv3').empty()
+            $('#product-lv3').append($('<option></option>').text(`-- Chọn danh mục sản phẩm --`).attr('value', ``))
+        } else if ($option.val() == 1) {
+            $('#product-lv2').empty()
+            $('#product-lv2').append($('<option></option>').text(`-- Chọn loại lốp --`).attr('value', ``))
+            $('#product-lv2').append($('<option></option>').text(`Lốp công trình`).attr('value', `1`))
+            $('#product-lv2').append($('<option></option>').text(`Lốp công nghiệp`).attr('value', `2`))
+            $('#product-lv2').append($('<option></option>').text(`Lốp nông nghiệp`).attr('value', `3`))
+        } else if ($option.val() == 2) {
+            $('#product-lv2').empty()
+            $('#product-lv2').append($('<option></option>').text(`-- Chọn loại xe --`).attr('value', ``))
+            $('#product-lv2').append($('<option></option>').text(`Xe tải thùng`).attr('value', `1`))
+            $('#product-lv2').append($('<option></option>').text(`Xe Đầu kéo`).attr('value', `2`))
+            $('#product-lv2').append($('<option></option>').text(`Xe ben`).attr('value', `3`))
+            $('#product-lv2').append($('<option></option>').text(`Sơ mi rơ móc`).attr('value', `4`))
+        } else if ($option.val() == 3) {
+            $('#product-lv2').empty()
+            $('#product-lv2').append($('<option></option>').text(`-- Chọn loại phụ tùng --`).attr('value', ``))
+            $('#product-lv2').append($('<option></option>').text(`Xe tải thùng`).attr('value', `1`))
+            $('#product-lv2').append($('<option></option>').text(`Xe Đầu kéo`).attr('value', `2`))
+            $('#product-lv2').append($('<option></option>').text(`Xe ben`).attr('value', `3`))
+            $('#product-lv2').append($('<option></option>').text(`Sơ mi rơ móc`).attr('value', `4`))
+        } else if ($option.val() == 4) {
+            $('#product-lv2').empty()
+            $('#product-lv2').append($('<option></option>').text(`-- Chọn loại dầu nhớt --`).attr('value', ``))
+            $('#product-lv2').append($('<option></option>').text(`Dầu nhớt ô tô / xe máy`).attr('value', `1`))
+            $('#product-lv2').append($('<option></option>').text(`Dầu nhớt công nghiệp`).attr('value', `2`))
+        }
+    });
+
+    $('#product-lv2').change(function () {
+        var $option = $(this).find('option:selected')
+        var level1 = $('#product-lv1').find('option:selected').val()
+
+        if ($option.val() == '') {
+            $('#product-lv3').empty()
+            $('#product-lv3').append($('<option></option>').text(`-- Chọn danh mục sản phẩm --`).attr('value', ``))
+        } else if (level1 == 1) {
+            if ($option.val() == 0) {
+                $('#product-lv3').append($('<option></option>').text(`-- Chọn loại lốp --`).attr('value', ``))
+            }
+            if ($option.val() == 1) {
+                $('#product-lv3').empty()
+                $('#product-lv3').append($('<option></option>').text(`-- Chọn loại lốp --`).attr('value', ``))
+                $('#product-lv3').append($('<option></option>').text(`Lốp xe tải hạng nặng`).attr('value', `1`))
+                $('#product-lv3').append($('<option></option>').text(`Lốp xe máy xúc`).attr('value', `2`))
+                $('#product-lv3').append($('<option></option>').text(`Lốp xe cẩu`).attr('value', `3`))
+                $('#product-lv3').append($('<option></option>').text(`Lốp xe lu`).attr('value', `4`))
+            } else if ($option.val() == 2) {
+                $('#product-lv3').empty()
+                $('#product-lv3').append($('<option></option>').text(`-- Chọn loại lốp --`).attr('value', ``))
+                $('#product-lv3').append($('<option></option>').text(`Lốp đặc`).attr('value', `1`))
+                $('#product-lv3').append($('<option></option>').text(`Lốp công nghiệp khí nén`).attr('value', `2`))
+            } else if ($option.val() == 3) {
+                $('#product-lv3').empty()
+                $('#product-lv3').append($('<option></option>').text(`-- Chọn loại lốp --`).attr('value', ``))
+                $('#product-lv3').append($('<option></option>').text(`Lốp nông nghiệp nhỏ`).attr('value', `1`))
+                $('#product-lv3').append($('<option></option>').text(`Lốp nông nghiệp lớn`).attr('value', `2`))
+            }
+        } else if (level1 == 2) {
+            if ($option.val() == 0) {
+                $('#product-lv3').append($('<option></option>').text(`-- Chọn loại xe --`).attr('value', ``))
+            }
+        } else if (level1 == 3) {
+            if ($option.val() == 0) {
+                $('#product-lv3').append($('<option></option>').text(`-- Chọn loại phụ tùng --`).attr('value', ``))
+            }
+        } else if (level1 == 4) {
+            if ($option.val() == 0) {
+                $('#product-lv3').append($('<option></option>').text(`-- Chọn loại dầu nhớt --`).attr('value', ``))
+            } else if ($option.val() == 1) {
+                $('#product-lv3').empty()
+                $('#product-lv3').append($('<option></option>').text(`-- Chọn loại dầu nhớt --`).attr('value', ``))
+                $('#product-lv3').append($('<option></option>').text(`Dầu động cơ`).attr('value', `1`))
+                $('#product-lv3').append($('<option></option>').text(`Dầu hợp số`).attr('value', `2`))
+                $('#product-lv3').append($('<option></option>').text(`Dầu láp`).attr('value', `3`))
+            } else if ($option.val() == 2) {
+                $('#product-lv3').empty()
+                $('#product-lv3').append($('<option></option>').text(`-- Chọn loại dầu nhớt --`).attr('value', ``))
+                $('#product-lv3').append($('<option></option>').text(`Dầu đa năng`).attr('value', `1`))
+                $('#product-lv3').append($('<option></option>').text(`Dầu bôi trơn`).attr('value', `2`))
+                $('#product-lv3').append($('<option></option>').text(`Dầu thủy lực`).attr('value', `3`))
+            }
+        }
+    })
+
+</script>

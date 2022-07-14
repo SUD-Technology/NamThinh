@@ -2,6 +2,10 @@ const fs = require('fs')
 const Products = require('../models/Products')
 const slugify = require('slugify');
 
+function unique(arr) {
+    return Array.from(new Set(arr)) //
+}
+
 const AdminController = {
     addProduct: (req, res) => {
         const file = req.files
@@ -51,7 +55,8 @@ const AdminController = {
 
         return new Products(product).save()
             .then(() => {
-                res.json({ code: 1, message: "Thêm sản phẩm thành công" })
+                // res.json({ code: 1, message: "Thêm sản phẩm thành công" })
+                res.redirect('/admin/add-product')
             })
             .catch((err) => {
                 res.json({ code: 0, message: "Thêm sản phẩm thất bại", err: err })
@@ -60,14 +65,50 @@ const AdminController = {
 
     deleteProduct: (req, res, next) => {
         const product_id = req.params.id;
-        Products.findOne({product_id})
+        Products.findOne({ product_id })
             .then(product => {
-                if(!product) {
-                    return res.json({success: false, msg: 'Sản phẩm không tồn tại', product_id});
+                if (!product) {
+                    return res.json({ success: false, msg: 'Sản phẩm không tồn tại', product_id });
                 }
 
                 product.delete().then(res.redirect('/home'));
             })
+    },
+
+    getProductManager: async (req, res, next) => {
+        await Products.find({}).limit(10)
+            .then(products => {
+                if (products.length == 0) {
+                    return res.json({ success: false, msg: 'Không có sản phẩm nào trong kho' });
+                }
+                else {
+                    let productList = []
+                    let brands = []
+                    let origins = []
+                    products.forEach(product => {
+                        const current_product = {
+                            pname: product.product_name,
+                            pimg: product.product_img[0],
+                            pid: product.product_id,
+                            pslug: product.slug,
+                            price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+                            model: product.product_model,
+                            origin: product.product_origin,
+
+                        }
+                        brands.push(product.brand_name)
+                        origins.push(product.product_origin)
+                        productList.push(current_product)
+                    })
+
+                    brands = unique(brands)
+                    origins = unique(origins)
+
+                    res.render('productManager', { admin: true, products: productList, brands, origins })
+                }
+            })
+        // let productList = []
+        // res.render('productManager', { admin: true, products: productList })
     }
 }
 

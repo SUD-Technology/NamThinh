@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
+
+// Controller
 const AdminController = require('../controllers/AdminController')
+// middleware
 const store = require('../middlewares/multer');
+const getProductList = require('../middlewares/products')
 
 
 router.get('/', (req, res) => {
@@ -12,9 +16,8 @@ router.get('/contact', (req, res) => {
     res.render('contact', { admin: true, change: false })
 })
 
-router.get('/product-manager', (req, res) => {
-    res.render('productManager', { admin: true })
-})
+
+router.get('/product-manager', AdminController.getProductManager)
 
 
 router.get('/edit', (req, res) => {
