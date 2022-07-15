@@ -1,4 +1,3 @@
-const Collections = require('../models/Collections');
 const Products = require('../models/Products');
 
 const menuItems = [
