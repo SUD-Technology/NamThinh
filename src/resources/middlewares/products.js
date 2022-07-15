@@ -1,7 +1,7 @@
 const Products = require("../models/Products")
 
-let getProductList = (req, res, next) => {
-    Products.find({})
+let getProductList = async (req, res, next) => {
+    await Products.find({})
         .then(products => {
             if (products.length == 0) {
                 return res.json({ success: false, msg: 'Không có sản phẩm nào trong kho' });

@@ -83,7 +83,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/home', getProductList, (req, res, next) => {
-    var data = {
+    let data = {
         Lop: [],
         Xe: [],
         PhuTung: [],

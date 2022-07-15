@@ -75,40 +75,77 @@ const AdminController = {
             })
     },
 
-    getProductManager: async (req, res, next) => {
-        await Products.find({}).limit(10)
-            .then(products => {
-                if (products.length == 0) {
-                    return res.json({ success: false, msg: 'Không có sản phẩm nào trong kho' });
-                }
-                else {
-                    let productList = []
-                    let brands = []
-                    let origins = []
-                    products.forEach(product => {
-                        const current_product = {
-                            pname: product.product_name,
-                            pimg: product.product_img[0],
-                            pid: product.product_id,
-                            pslug: product.slug,
-                            price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
-                            model: product.product_model,
-                            origin: product.product_origin,
+    getProductManager: (req, res, next) => {
+        let page = req.query.page;
+        if (page) {
+            page = parseInt(page)
+            let pageSize = 10
+            let skip = (page - 1) * pageSize
+            let nextPage = page + 1;
+            let previousPage = page <= 1 ? 1 : page - 1;
+            Products.find({}).skip(skip).limit(pageSize)
+                .then(products => {
+                    if (products.length == 0) {
+                        return res.json({ success: false, msg: 'Không có sản phẩm nào trong kho' });
+                    }
+                    else {
+                        let productList = []
+                        let brands = []
+                        let origins = []
+                        products.forEach(product => {
+                            const current_product = {
+                                pname: product.product_name,
+                                pimg: product.product_img[0],
+                                pid: product.product_id,
+                                pslug: product.slug,
+                                price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+                                model: product.product_model,
+                                origin: product.product_origin,
+                            }
+                            brands.push(product.brand_name)
+                            origins.push(product.product_origin)
+                            productList.push(current_product)
+                        })
 
-                        }
-                        brands.push(product.brand_name)
-                        origins.push(product.product_origin)
-                        productList.push(current_product)
-                    })
+                        brands = unique(brands)
+                        origins = unique(origins)
+                        res.render('productManager', { admin: true, products: productList, brands, origins, nextPage, previousPage })
+                    }
+                })
+        }
+        else {
+            Products.find({})
+                .then(products => {
+                    if (products.length == 0) {
+                        return res.json({ success: false, msg: 'Không có sản phẩm nào trong kho' });
+                    }
+                    else {
+                        let productList = []
+                        let brands = []
+                        let origins = []
+                        products.forEach(product => {
+                            const current_product = {
+                                pname: product.product_name,
+                                pimg: product.product_img[0],
+                                pid: product.product_id,
+                                pslug: product.slug,
+                                price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+                                model: product.product_model,
+                                origin: product.product_origin,
 
-                    brands = unique(brands)
-                    origins = unique(origins)
+                            }
+                            brands.push(product.brand_name)
+                            origins.push(product.product_origin)
+                            productList.push(current_product)
+                        })
 
-                    res.render('productManager', { admin: true, products: productList, brands, origins })
-                }
-            })
-        // let productList = []
-        // res.render('productManager', { admin: true, products: productList })
+                        brands = unique(brands)
+                        origins = unique(origins)
+
+                        res.render('productManager', { admin: true, products: productList, brands, origins })
+                    }
+                })
+        }
     }
 }
 
