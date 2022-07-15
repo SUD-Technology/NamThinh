@@ -1,26 +1,16 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const imageSchema = new mongoose.Schema({
-    filename: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    contentType: {
-        type: String,
-        required: true
-    },
-    imageBase64: {
-        type: String,
-        required: true
-    }
-})
+
 
 const Products = new Schema({
     product_id: { type: String, unique: true },
     product_name: { type: String, required: true },
-    product_img: { type: [imageSchema] },
+    product_img: { type: [{
+        filename: String,
+        contentType: String,
+        imageBase64: String
+    }] },
     description: { type: String, required: true },
     brand_name: { type: String, required: true },
     product_model: { type: String, require: true },

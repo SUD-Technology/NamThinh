@@ -82,7 +82,7 @@ app.get('/', (req, res) => {
     res.render('index', { index: true })
 })
 
-app.get('/home', getProductList, (req, res, next) => {
+app.get('/home', async (req, res, next) => {
     let data = {
         Lop: [],
         Xe: [],
@@ -90,7 +90,7 @@ app.get('/home', getProductList, (req, res, next) => {
         Dau: []
     }
 
-    const products = req.products;
+    const products = await Products.find({}).limit(10);
     products.forEach(product => {
         const type = product.classes.lv1;
         const current_product = {
