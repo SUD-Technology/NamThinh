@@ -89,9 +89,7 @@
                     <th scope="row"></th>
                     <td>
                         {{#each pimg}}
-                        {{#if contentType}}
-                        <img src="data:{{contentType}};base64,{{imageBase64}}" alt="">
-                        {{/if}}
+                        <img src="/uploads/{{filename}}" alt="">
                         {{/each}}
                     </td>
                     <td><a href="/products/{{pslug}}">{{pname}}</a></td>

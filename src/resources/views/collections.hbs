@@ -82,8 +82,8 @@
                 <li onclick='window.location.href="/products/{{pslug}}"' class="items-product smooth text-center">
                     <div class="img-box">
                         {{#each pimg}}
-                        {{#if contentType}}
-                        <img width="100%" src="data:{{contentType}};base64,{{imageBase64}}" alt="">
+                        {{#if filename}}
+                        <img width="100%" src="/uploads/{{filename}}" alt="">
                         {{/if}}
                         {{/each}}
                     </div>

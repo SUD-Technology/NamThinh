@@ -1,7 +1,7 @@
 const fs = require('fs')
 const Products = require('../models/Products')
 const slugify = require('slugify');
-
+const path = require('path')
 function unique(arr) {
     return Array.from(new Set(arr)) //
 }
@@ -14,15 +14,10 @@ const AdminController = {
         if (!file) {
             res.json({ code: 1, message: "error" })
         } else {
-            let imaArray = file.map((file) => {
-                let img = fs.readFileSync(file.path)
-                return img.toString('base64')
-            })
-            imaArray.map((src, index) => {
+            file.map(f => {
+                let filename = path.basename(f.path)
                 let finalImg = {
-                    filename: file[index].originalname,
-                    contentType: file[index].mimetype,
-                    imageBase64: src
+                    filename: filename
                 }
                 listImages.push(finalImg)
             })
@@ -44,7 +39,6 @@ const AdminController = {
             product_id: product_id,
             product_name: product_name,
             product_img: listImages,
-            main_img: listImages[0],
             description: product_description,
             product_model: product_model,
             product_origin: product_origin,
