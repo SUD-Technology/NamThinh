@@ -74,10 +74,10 @@ const AdminController = {
                 product.delete().then(res.redirect('/home'));
             })
     },
-
     getProductManager: (req, res, next) => {
         let page = req.query.page;
         if (page) {
+            let totalProduct = Products.find({}).count()
             page = parseInt(page)
             let pageSize = 10
             let skip = (page - 1) * pageSize
@@ -85,10 +85,12 @@ const AdminController = {
             let previousPage = page <= 1 ? 1 : page - 1;
             Products.find({}).skip(skip).limit(pageSize)
                 .then(products => {
+                    let endPage = false
                     if (products.length == 0) {
                         return res.json({ success: false, msg: 'Không có sản phẩm nào trong kho' });
-                    }
-                    else {
+                    } else if (products.length < 10) {
+                        endPage = true
+                    } else {
                         let productList = []
                         let brands = []
                         let origins = []
@@ -109,7 +111,7 @@ const AdminController = {
 
                         brands = unique(brands)
                         origins = unique(origins)
-                        res.render('productManager', { admin: true, products: productList, brands, origins, nextPage, previousPage })
+                        res.render('productManager', { admin: true, products: productList, brands, origins, nextPage, previousPage, page })
                     }
                 })
         }
