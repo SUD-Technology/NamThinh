@@ -36,7 +36,7 @@ app.get('/home', async (req, res, next) => {
         Dau: []
     }
 
-    const products = await Products.find({}).limit(10);
+    const products = await Products.find({});
     products.forEach(product => {
         const type = product.classes.lv1;
         const current_product = {
