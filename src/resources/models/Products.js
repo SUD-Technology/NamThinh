@@ -13,8 +13,8 @@ const Products = new Schema({
     }] },
     description: { type: String, required: true },
     brand_name: { type: String, required: true },
-    product_model: { type: String, require: true },
-    product_origin: { type: String, require: true },
+    product_model: { type: String, required: true, unique: true },
+    product_origin: { type: String, required: true },
     classes: {
         lv1: Number,
         lv2: Number,
