@@ -6,6 +6,10 @@ function unique(arr) {
     return Array.from(new Set(arr)) //
 }
 
+function listPage(length) {
+    return Array.from({ length: length }, (_, i) => i + 1)
+}
+
 const AdminController = {
     addProduct: (req, res) => {
         const file = req.files
@@ -69,9 +73,10 @@ const AdminController = {
             })
     },
     getProductManager: (req, res, next) => {
+        let totalProduct = Products.find({}).count()
+        let listPages = totalProduct <= 10 ? ['1'] : listPage(Math.round(totalProduct / 10))
         let page = req.query.page;
         if (page) {
-            let totalProduct = Products.find({}).count()
             page = parseInt(page)
             let pageSize = 10
             let skip = (page - 1) * pageSize
@@ -79,11 +84,8 @@ const AdminController = {
             let previousPage = page <= 1 ? 1 : page - 1;
             Products.find({}).skip(skip).limit(pageSize)
                 .then(products => {
-                    let endPage = false
                     if (products.length == 0) {
                         return res.json({ success: false, msg: 'Không có sản phẩm nào trong kho' });
-                    } else if (products.length < 10) {
-                        endPage = true
                     } else {
                         let productList = []
                         let brands = []
@@ -105,7 +107,7 @@ const AdminController = {
 
                         brands = unique(brands)
                         origins = unique(origins)
-                        res.render('productManager', { admin: true, products: productList, brands, origins, nextPage, previousPage, page })
+                        res.render('productManager', { admin: true, products: productList, brands, origins, listPages })
                     }
                 })
         }
