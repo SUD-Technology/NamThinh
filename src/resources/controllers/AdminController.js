@@ -13,17 +13,15 @@ function listPage(length) {
 const AdminController = {
     addProduct: (req, res) => {
         const file = req.files
+        console.log(file)
         const { product_id, product_name, product_model, product_categories, product_branch, product_origin, product_description } = req.body
         let listImages = []
         if (!file) {
             res.json({ code: 1, message: "error" })
         } else {
             file.map(f => {
-                let filename = path.basename(f.path)
-                let finalImg = {
-                    filename: filename
-                }
-                listImages.push(finalImg)
+                let url = f.firebaseUrl.split('/').pop();
+                listImages.push(url)
             })
         }
         const classes = {

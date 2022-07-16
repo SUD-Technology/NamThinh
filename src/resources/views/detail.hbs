@@ -16,33 +16,23 @@
         <div class="col-md-5 px-2">
             <div data-toggle="modal" data-target=".bd-example-modal-lg" class="slider-for">
                 {{#each data.pimg}}
-                {{#each this}}
-                {{#if @first}}
-                {{#if this.filename}}
+                
+                
                 <div class="product1">
-                    <img data-id="0" src="/uploads/{{this.filename}}" height="450vh" width="100%">
+                    <img data-id="0" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}" height="450vh" width="100%">
                     <div class="barrier d-none"></div>
                 </div>
-                {{/if}}
-                {{else}}
-                {{#if this.filename}}
-                <div class="product1"><img src="/uploads/{{this.filename}}" data-id="1" height="450vh" width="80px">
-                </div>
-                {{/if}}
-                {{/if}}
-                {{/each}}
+                
                 {{/each}}
             </div>
 
             <div class="slider-nav mt-3">
                 {{#each data.pimg}}
-                {{#each this}}
-                {{#if this.filename}}
+         
                 <div class="product2">
-                    <img src="/uploads/{{this.filename}}" height="auto" width="120px">
+                    <img src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}" height="auto" width="120px">
                 </div>
-                {{/if}}
-                {{/each}}
+        
                 {{/each}}
             </div>
         </div>

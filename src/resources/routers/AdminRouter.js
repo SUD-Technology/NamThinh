@@ -4,6 +4,7 @@ const router = express.Router();
 // Controller
 const AdminController = require('../controllers/AdminController')
 // middleware
+const uploadImage = require('../services/firebase');
 const store = require('../middlewares/multer');
 const getProductList = require('../middlewares/products')
 
@@ -36,7 +37,7 @@ router.get('/customer-info', (req, res) => {
 router.get('/add-product', (req, res) => {
     res.render('addProduct', { admin: true })
 })
-router.post('/add-product', store.array('product-image', 12), AdminController.addProduct)
+router.post('/add-product', store.array('product-image', 12), uploadImage, AdminController.addProduct)
 router.get('/delete/:id', AdminController.deleteProduct)
 
 

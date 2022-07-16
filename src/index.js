@@ -41,7 +41,7 @@ app.get('/home', async (req, res, next) => {
         const type = product.classes.lv1;
         const current_product = {
             pname: product.product_name,
-            pimg: product.product_img[0],
+            pimg: product.product_img || '',
             pid: product.product_id,
             pslug: product.slug,
             price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
