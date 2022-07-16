@@ -130,7 +130,6 @@ const AdminController = {
                                 price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
                                 model: product.product_model,
                                 origin: product.product_origin,
-
                             }
                             brands.push(product.brand_name)
                             origins.push(product.product_origin)

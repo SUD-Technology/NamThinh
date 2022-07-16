@@ -36,7 +36,7 @@ app.get('/home', async (req, res, next) => {
         Dau: []
     }
 
-    const products = await Products.find({}).select({product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, description: 1, classes: 1});
+    const products = await Products.find({}).select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, description: 1, classes: 1 });
     products.forEach(product => {
         const type = product.classes.lv1;
         const current_product = {
