@@ -1,7 +1,7 @@
 const fs = require('fs')
 const Products = require('../models/Products')
 const slugify = require('slugify');
-
+const path = require('path')
 function unique(arr) {
     return Array.from(new Set(arr)) //
 }
@@ -14,15 +14,10 @@ const AdminController = {
         if (!file) {
             res.json({ code: 1, message: "error" })
         } else {
-            let imaArray = file.map((file) => {
-                let img = fs.readFileSync(file.path)
-                return img.toString('base64')
-            })
-            imaArray.map((src, index) => {
+            file.map(f => {
+                let filename = path.basename(f.path)
                 let finalImg = {
-                    filename: file[index].originalname,
-                    contentType: file[index].mimetype,
-                    imageBase64: src
+                    filename: filename
                 }
                 listImages.push(finalImg)
             })
@@ -44,7 +39,6 @@ const AdminController = {
             product_id: product_id,
             product_name: product_name,
             product_img: listImages,
-            main_img: listImages[0],
             description: product_description,
             product_model: product_model,
             product_origin: product_origin,
@@ -74,10 +68,10 @@ const AdminController = {
                 product.delete().then(res.redirect('/home'));
             })
     },
-
     getProductManager: (req, res, next) => {
         let page = req.query.page;
         if (page) {
+            let totalProduct = Products.find({}).count()
             page = parseInt(page)
             let pageSize = 10
             let skip = (page - 1) * pageSize
@@ -85,10 +79,12 @@ const AdminController = {
             let previousPage = page <= 1 ? 1 : page - 1;
             Products.find({}).skip(skip).limit(pageSize)
                 .then(products => {
+                    let endPage = false
                     if (products.length == 0) {
                         return res.json({ success: false, msg: 'Không có sản phẩm nào trong kho' });
-                    }
-                    else {
+                    } else if (products.length < 10) {
+                        endPage = true
+                    } else {
                         let productList = []
                         let brands = []
                         let origins = []
@@ -109,7 +105,7 @@ const AdminController = {
 
                         brands = unique(brands)
                         origins = unique(origins)
-                        res.render('productManager', { admin: true, products: productList, brands, origins, nextPage, previousPage })
+                        res.render('productManager', { admin: true, products: productList, brands, origins, nextPage, previousPage, page })
                     }
                 })
         }

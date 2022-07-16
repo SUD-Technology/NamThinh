@@ -12,7 +12,7 @@
             <div class="form-group">
                 <div class="col-md-2">
                     <select class="form-control" id="product-lv1">
-                        <option value="">-- Chọn loại sản phẩm --</option>
+                        <option value="">-- Loại sản phẩm --</option>
                         <option value="1">LỐP ADVANCE/SAMSON</option>
                         <option value="2">XE TẢI/ ĐẦU KÉO / XE BEN</option>
                         <option value="3">PHỤ TÙNG Ô TÔ</option>
@@ -58,8 +58,8 @@
                         <span class="sr-only">Previous</span>
                     </a>
                 </li>
-                <li class="page-item"><a class="page-link" href="/admin/product-manager/?page=1">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="/admin/product-manager/?page={{page}}">{{page}}</a></li>
+                <li class="page-item"><a class="page-link" href="/admin/product-manager/?page={{nextPage}}">{{nextPage}}</a></li>
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item">
                     <a class="page-link" href="/admin/product-manager/?page={{nextPage}}" aria-label="Next">
@@ -89,9 +89,7 @@
                     <th scope="row"></th>
                     <td>
                         {{#each pimg}}
-                        {{#if contentType}}
-                        <img src="data:{{contentType}};base64,{{imageBase64}}" alt="">
-                        {{/if}}
+                        <img src="/uploads/{{filename}}" alt="">
                         {{/each}}
                     </td>
                     <td><a href="/products/{{pslug}}">{{pname}}</a></td>

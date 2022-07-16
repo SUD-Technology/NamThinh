@@ -20,8 +20,8 @@
 
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#each pimg}}
-                        {{#if contentType}}
-                        <img class="smooth" src="data:{{contentType}};base64,{{imageBase64}}" alt="">
+                        {{#if filename}}
+                        <img class="smooth" src="/uploads/{{filename}}" alt="">
                         {{/if}}
                         {{/each}}
                     </div>
@@ -65,8 +65,8 @@
 
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#each pimg}}
-                        {{#if contentType}}
-                        <img class="smooth" src="data:{{contentType}};base64,{{imageBase64}}" alt="">
+                        {{#if filename}}
+                        <img class="smooth" src="/uploads/{{filename}}" alt="">
                         {{/if}}
                         {{/each}}
                     </div>
@@ -110,8 +110,8 @@
                 <li class="items-product smooth text-center">
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#each pimg}}
-                        {{#if contentType}}
-                        <img class="smooth" src="data:{{contentType}};base64,{{imageBase64}}" alt="">
+                        {{#if filename}}
+                        <img class="smooth" src="/uploads/{{filename}}" alt="">
                         {{/if}}
                         {{/each}}
                     </div>
@@ -152,8 +152,8 @@
                 <li class="items-product  text-center">
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#each pimg}}
-                        {{#if contentType}}
-                            <img class="smooth" src="data:{{contentType}};base64,{{imageBase64}}" alt="">
+                        {{#if filename}}
+                        <img class="smooth" src="/uploads/{{filename}}" alt="">
                         {{/if}}
                         {{/each}}
                     </div>
