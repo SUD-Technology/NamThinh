@@ -252,18 +252,22 @@ input[type="file"] {
 /* Welcome page: start */
 
 .welcome-page {
-  background: url("/img/background/background.jpg") no-repeat center center fixed;
+  background: url("/img/background/background2.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
+
+
 .w-header {
   width: 100%;
+  height: 45px;
   margin-bottom: 30px;
   color: #fff;
   padding: 10px 0;
+  background-color: var(--xanh);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   text-align: center;
 }
@@ -271,9 +275,11 @@ input[type="file"] {
 
 
 .w-body .container {
-  background-color: rgba(233, 232, 232, 0.8);
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-
+  background-color: rgba(233, 232, 232, 0.5);
+  box-shadow: rgba(149, 157, 165, 0.8) 0px 8px 24px;
+  padding: 5px 16px 2px;
+  border-radius: 0.5rem;
+  
 }
 
 .hover {
@@ -394,7 +400,7 @@ input[type="file"] {
 }
 
 .hover-5 .hover-overlay {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .hover-5-title {
