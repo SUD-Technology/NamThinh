@@ -27,7 +27,7 @@ const ProductController = {
                         return {
                             product_name: prod.product_name,
                             product_id: prod.product_id,
-                            product_img: prod.product_img[0],
+                            product_img: prod.product_img,
                             price: prod.price ? prod.price.toLocaleString('vi', { style: 'currency', currency: 'VND'}) : 'Liên hệ',
                             slug: prod.slug
                         }
