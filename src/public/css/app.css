@@ -277,7 +277,7 @@ input[type="file"] {
 .w-body .container {
   background-color: rgba(233, 232, 232, 0.5);
   box-shadow: rgba(149, 157, 165, 0.8) 0px 8px 24px;
-  padding: 5px 16px 2px;
+  padding: 6px 17px 2px;
   border-radius: 0.5rem;
 
 }
@@ -310,8 +310,8 @@ input[type="file"] {
   transform: scale(1.1);
 }
 
-.logo-access img {
-  width: 35% !important;
+.logo-access img:hover {
+  transform: scale(1.1);
 }
 
 .logo-access .hover-overlay {
@@ -652,7 +652,7 @@ input[type="file"] {
 }
 
 .sidebar-item:hover i {
-  color: #fff;
+  color: black;
 }
 
 .sidebar-item i {
@@ -682,12 +682,13 @@ input[type="file"] {
 
 .sidebar-dropdown-item:hover,
 .sidebar-item:hover {
-  background-color: var(--xanh);
-  border-left: 5px solid rgb(199, 53, 53);
+  
+  /* background-color: var(--xanh); */
+  border-left: 5px solid var(--do);
 }
 
 .sidebar-item:hover>a {
-  color: #fff !important;
+  color: black !important;
 }
 
 
@@ -714,7 +715,7 @@ input[type="file"] {
 }
 
 .sidebar-dropdown-item:hover a {
-  color: #fff !important;
+  color: black !important;
 }
 
 /* product-sidebar: end */
@@ -832,8 +833,8 @@ img.bgc-title {
   list-style: none;
   font-size: 13px;
   gap: 10px;
-  grid-template-columns: 210px 210px 210px 210px;
-  grid-template-rows: 335px 335px 335px 335px 335px;
+  grid-template-columns: 213px 213px 213px 213px;
+  grid-template-rows: 340px 340px 340px 340px 340px;
   padding: 0px 10px;
 }
 
@@ -1105,10 +1106,17 @@ img.bgc-title {
 /* Navbar: start */
 .navbar2 {
   margin-top: 10px;
-  height: 40px;
+  height: 50px;
+  
   /* margin-bottom: 20px; */
   background-color: var(--xanh);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  position: sticky;
+  top: 15px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10000;
 }
 
 .navbar-list {
@@ -1118,20 +1126,26 @@ img.bgc-title {
 
 
 .navbar-item {
-  line-height: 39px;
-  padding: 0 40px;
+  line-height: 50px;
+  padding: 0px 40px;
   position: relative;
 }
 
+.navbar-item:hover {
+  background-color: var(--do);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+}
+
 .navbar-item a {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 500;
   color: #fff;
   text-transform: uppercase;
 }
 
 .navbar-list>.navbar-item>a:hover {
-  color: yellow;
+  /* color: yellow; */
 }
 
 .navbar-item i {
@@ -1889,9 +1903,7 @@ footer img {
   }
 
   /* Welcome page */
-  .logo-access img {
-    width: 70% !important;
-  }
+ 
 
   /* home page */
   .h-title {

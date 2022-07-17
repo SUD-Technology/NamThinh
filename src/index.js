@@ -9,8 +9,7 @@ const ProductRouter = require('./resources/routers/ProductRouter');
 const AdminRouter = require('./resources/routers/AdminRouter')
 const db = require('./config/db');
 const Products = require('./resources/models/Products');
-const getProductList = require('./resources/middlewares/products');
-const slugify = require('slugify');
+
 
 app.engine('hbs', handlebars.engine({
     extname: 'hbs'
@@ -21,6 +20,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(require("cookie-parser")("abc"));
+app.use(require("express-session")());
 db.connect();
 
 
@@ -41,7 +42,7 @@ app.get('/home', async (req, res, next) => {
         const type = product.classes.lv1;
         const current_product = {
             pname: product.product_name,
-            pimg: product.product_img[0],
+            pimg: product.product_img || '',
             pid: product.product_id,
             pslug: product.slug,
             price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
