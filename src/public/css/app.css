@@ -279,7 +279,7 @@ input[type="file"] {
   box-shadow: rgba(149, 157, 165, 0.8) 0px 8px 24px;
   padding: 5px 16px 2px;
   border-radius: 0.5rem;
-  
+
 }
 
 .hover {
@@ -1337,6 +1337,20 @@ img.bgc-title {
 
 .about-us {
   color: white;
+}
+
+footer h6 {
+  font-weight: 600;
+}
+
+footer p {
+  font-size: 14px !important;
+}
+
+footer img {
+  width: 280px;
+  position: relative;
+  left: -50px;
 }
 
 
