@@ -104,13 +104,13 @@
                 {{#each similar}}
                 <li class="flexbetwen">
                     <div class="lksp-img">
-                        {{#each product_img}}
                         
                         <a href="{{slug}}">
-                            <img src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}">
+                        {{#each product_img}}
+                            <img class="smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}">
+                        {{/each}}
                         </a>
                         
-                        {{/each}}
                     </div>
                     <div style="font-size: 14px" class="lksp-ex">
                         <div class="ex-title">
