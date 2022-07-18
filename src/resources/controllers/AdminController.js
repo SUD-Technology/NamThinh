@@ -48,15 +48,15 @@ const AdminController = {
             classes: classes,
             slug: slug
         }
-
-        return new Products(product).save()
-            .then(() => {
-                // res.json({ code: 1, message: "Thêm sản phẩm thành công" })
-                res.redirect('/admin/add-product')
-            })
-            .catch((err) => {
-                res.json({ code: 0, message: "Thêm sản phẩm thất bại", err: err })
-            })
+        res.json({ code: 1, message: "Thêm sản phẩm thành công", listImage: listImages })
+        // return new Products(product).save()
+        //     .then(() => {
+        //         // res.json({ code: 1, message: "Thêm sản phẩm thành công" })
+        //         res.redirect('/admin/add-product')
+        //     })
+        //     .catch((err) => {
+        //         res.json({ code: 0, message: "Thêm sản phẩm thất bại", err: err })
+        //     })
     },
 
     deleteProduct: (req, res, next) => {

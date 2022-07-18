@@ -1,6 +1,6 @@
-var admin = require("firebase-admin");
+let admin = require("firebase-admin");
 
-var serviceAccount = require("../../config/namthinh-69ec0-firebase-adminsdk-1de5t-82a7c4cd8a.json");
+let serviceAccount = require("../../config/namthinh-69ec0-firebase-adminsdk-1de5t-82a7c4cd8a.json");
 
 const BUCKET_URL = "namthinh-69ec0.appspot.com"
 
@@ -34,9 +34,7 @@ const uploadImage = (req, res, next) => {
 
         stream.on('finish', async () => {
             await file.makePublic();
-            
             req.files[index].firebaseUrl = `https://storage.googleapis.com/${BUCKET_URL}/${filename}`;
-
             next();
         })
 
