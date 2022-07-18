@@ -21,12 +21,14 @@ const uploadImage = (req, res, next) => {
         const filename = Date.now() + '.' + image.originalname.split('.').pop();
         
         const file = bucket.file(filename);
-
+        
         const stream = file.createWriteStream({
             metadata: {
                 contentType: image.mimetype,
             },
         });
+
+        req.files[index].firebaseUrl = `https://storage.googleapis.com/${BUCKET_URL}/${filename}`;
 
         stream.on('error', (e) => {
             console.log(e);
@@ -35,8 +37,6 @@ const uploadImage = (req, res, next) => {
         stream.on('finish', async () => {
             await file.makePublic();
             
-            req.files[index].firebaseUrl = `https://storage.googleapis.com/${BUCKET_URL}/${filename}`;
-
             next();
         })
 
