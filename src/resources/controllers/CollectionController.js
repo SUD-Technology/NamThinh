@@ -22,7 +22,7 @@ const menuItems = [
                         title: 'Lốp xe khách - xe bus',
                         src: 'Lop-tai-nhe-113',
                     },
-                    
+
                 ]
             },
             {
@@ -45,7 +45,7 @@ const menuItems = [
                         title: 'Lốp xe lu',
                         src: 'Lop-xe-lu-124'
                     },
-                    
+
                 ]
             },
             {
@@ -71,7 +71,7 @@ const menuItems = [
                         src: 'Lop-nong-nghiep-nho-141'
                     },
                     {
-                        title:'Lốp nông nghiệp lớn',
+                        title: 'Lốp nông nghiệp lớn',
                         src: 'Lop-nong-nghiep-lon-142'
                     }
                 ]
@@ -138,11 +138,11 @@ const menuItems = [
                         src: 'Dau-dong-co-411'
                     },
                     {
-                        title:'Dầu hộp số',
+                        title: 'Dầu hộp số',
                         src: 'Dau-hop-so-412'
                     },
                     {
-                        title:'Dầu láp',
+                        title: 'Dầu láp',
                         src: 'Dau-lap-413'
                     }
                 ]
@@ -184,7 +184,7 @@ const CollectionController = {
         }
 
         const submenu = menuItems[keys[0]].submenu;
-        
+
         if (level == 3) {
             const title = menuItems[keys[0]].submenu[keys[1]].role[keys[2]].title || "";
             if (!title) {
@@ -196,7 +196,7 @@ const CollectionController = {
                 .where('classes.lv2').equals(keys[1] + 1)
                 .where('classes.lv3').equals(keys[2] + 1)
                 .then(products => {
-                    return handleProducts(res, submenu, title, products);
+                    return handleProducts(req, res, submenu, title, products);
                 })
                 .catch(next)
         }
@@ -211,7 +211,7 @@ const CollectionController = {
                 .where('classes.lv1').equals(keys[0] + 1)
                 .where('classes.lv2').equals(keys[1] + 1)
                 .then(products => {
-                    return handleProducts(res, submenu, title, products);
+                    return handleProducts(req, res, submenu, title, products);
                 })
                 .catch(next)
 
@@ -226,7 +226,7 @@ const CollectionController = {
             Products.find({})
                 .where('classes.lv1').equals(keys[0] + 1)
                 .then(products => {
-                    return handleProducts(res, submenu, title, products);
+                    return handleProducts(req, res, submenu, title, products);
                 })
                 .catch(next)
         }
@@ -237,19 +237,19 @@ const CollectionController = {
 }
 
 
-function handleProducts(res, submenu, title, products) {
+function handleProducts(req, res, submenu, title, products) {
     let brand_list = [];
 
     if (products.length == 0) {
         return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
     }
     const data = products.map(product => {
-        if(!brand_list.includes(product.brand_name))
+        if (!brand_list.includes(product.brand_name))
             brand_list.push(product.brand_name);
 
         return {
             pname: product.product_name,
-            pimg: product.product_img,
+            pimg: product.product_img[0],
             pid: product.product_id,
             brand: product.brand_name,
             pslug: product.slug,
@@ -257,16 +257,17 @@ function handleProducts(res, submenu, title, products) {
             price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
         }
     })
-    return res.render('collections', { 
-        title, 
+    return res.render('collections', {
+        title,
         submenu,
         brand_list: brand_list.map((br, idx) => {
             return {
                 id: idx + 1,
                 name: br
             }
-        }), 
-        data 
+        }),
+        data,
+        admin: req.session.username
     });
 }
 

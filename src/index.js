@@ -9,7 +9,10 @@ const ProductRouter = require('./resources/routers/ProductRouter');
 const AdminRouter = require('./resources/routers/AdminRouter')
 const db = require('./config/db');
 const Products = require('./resources/models/Products');
-
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
+const flash = require('express-flash')
+const bodyParser = require('body-parser')
 
 app.engine('hbs', handlebars.engine({
     extname: 'hbs'
@@ -24,6 +27,12 @@ app.use(require("cookie-parser")("abc"));
 app.use(require("express-session")());
 db.connect();
 
+
+// Session & Cookie
+app.use(cookieParser('tkh'))
+app.use(session({ cookie: { maxAge: 300000 } }))
+app.use(flash())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', (req, res) => {
     res.render('index', { index: true })
@@ -42,7 +51,7 @@ app.get('/home', async (req, res, next) => {
         const type = product.classes.lv1;
         const current_product = {
             pname: product.product_name,
-            pimg: product.product_img || '',
+            pimg: product.product_img[0],
             pid: product.product_id,
             pslug: product.slug,
             price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
@@ -61,11 +70,8 @@ app.get('/home', async (req, res, next) => {
         else if (type == 4 && data.Dau.length < 10) {
             data.Dau.push(current_product);
         }
-        // else {
-        //     break;
-        // }
     })
-    return res.render('home', { data })
+    return res.render('home', { data, admin: req.session.username })
 })
 
 app.get('/register', (req, res) => {

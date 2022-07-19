@@ -6,11 +6,10 @@ const AdminController = require('../controllers/AdminController')
 // middleware
 const uploadImage = require('../services/firebase');
 const store = require('../middlewares/multer');
-const getProductList = require('../middlewares/products')
-
+const checkLogin = require('../auth/checkLogin')
 
 router.get('/', (req, res) => {
-    res.render('admin', { admin: true })
+    res.render('home', { admin: true })
 })
 
 router.get('/contact', (req, res) => {

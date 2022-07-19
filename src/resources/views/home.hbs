@@ -20,9 +20,10 @@
 
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#each pimg}}
-                       
-                        <img class="smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}" alt="">
-                        
+
+                        <img class="smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}"
+                            alt="">
+
                         {{/each}}
                     </div>
 
@@ -64,9 +65,10 @@
                 <li class="items-product smooth text-center">
 
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
-                        {{#each pimg}}
-                            <img class="smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}" alt="">
-                        {{/each}}
+                        {{#if pimg}}
+                        <img class="smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{pimg}}"
+                            alt="">
+                        {{/if}}
                     </div>
 
 
@@ -107,11 +109,10 @@
                 {{#each data.PhuTung}}
                 <li class="items-product smooth text-center">
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
-                        {{#each pimg}}
-                        
-                        <img class="smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}" alt="">
-                        
-                        {{/each}}
+                        {{#if pimg}}
+                        <img class="smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{pimg}}"
+                            alt="">
+                        {{/if}}
                     </div>
 
                     <div class="info-box">
@@ -149,11 +150,12 @@
                 {{#each data.Dau}}
                 <li class="items-product  text-center">
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
-                        {{#each pimg}}
-                        
-                        <img class="smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}" alt="">
-                        
-                        {{/each}}
+                        {{#if pimg}}
+
+                        <img class="smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{pimg}}"
+                            alt="">
+
+                        {{/if}}
                     </div>
 
                     <div class="info-box">

@@ -62,10 +62,6 @@
                 <li class="page-item"><a class="page-link" href="/admin/product-manager/?page={{this}}">{{this}}</a>
                 </li>
                 {{/each}}
-
-                {{!-- <li class="page-item"><a class="page-link"
-                        href="/admin/product-manager/?page={{nextPage}}">{{nextPage}}</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li> --}}
                 <li class="page-item">
                     <a class="page-link" href="/admin/product-manager/?page={{nextPage}}" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
@@ -93,11 +89,9 @@
                 <tr>
                     <th scope="row"></th>
                     <td>
-                        {{#each pimg}}
-                        {{#if filename}}
-                        <img src="/uploads/{{filename}}" alt="">
+                        {{#if pimg}}
+                        <img src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{pimg}}" alt="">
                         {{/if}}
-                        {{/each}}
                     </td>
                     <td><a href="/products/{{pslug}}">{{pname}}</a></td>
                     <td>{{model}}</td>

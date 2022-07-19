@@ -682,7 +682,7 @@ input[type="file"] {
 
 .sidebar-dropdown-item:hover,
 .sidebar-item:hover {
-  
+
   /* background-color: var(--xanh); */
   border-left: 5px solid var(--do);
 }
@@ -1107,7 +1107,7 @@ img.bgc-title {
 .navbar2 {
   margin-top: 10px;
   height: 50px;
-  
+
   /* margin-bottom: 20px; */
   background-color: var(--xanh);
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -1367,6 +1367,13 @@ footer img {
   left: -50px;
 }
 
+footer h6 {
+  color: var(--cam);
+}
+
+footer .form-group input {
+  color: #fff !important;
+}
 
 /* login page */
 
@@ -1903,7 +1910,7 @@ footer img {
   }
 
   /* Welcome page */
- 
+
 
   /* home page */
   .h-title {

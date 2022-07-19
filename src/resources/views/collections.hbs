@@ -20,13 +20,13 @@
                             <li class="sidebar-item smooth">
                                 <a href="{{src}}">{{title}}</a>
                                 <ul class="sidebar-dropdown-menu">
-                                {{#each role}}
+                                    {{#each role}}
                                     <li class="sidebar-dropdown-item smooth"><a href="{{src}}">{{title}}</a></li>
-                                {{/each}}
+                                    {{/each}}
                                 </ul>
                             </li>
                             {{/each}}
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -59,13 +59,13 @@
 
             <div class="col-md-9 list-product-main">
                 {{#each data}}
-                <li onclick='window.location.href="/products/{{pslug}}"' class="-{{brand}} items-product smooth text-center">
+                <li onclick='window.location.href="/products/{{pslug}}"'
+                    class="-{{brand}} items-product smooth text-center">
                     <div class="img-box">
-                        {{#each pimg}}
-                        
-                        <img class="smooth" width="100%" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}" alt="">
-                        
-                        {{/each}}
+                        {{#if pimg}}
+                        <img class="smooth" width="100%"
+                            src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{pimg}}" alt="">
+                        {{/if}}
                     </div>
                     <div class="info-box">
                         <div class="items-title">
@@ -78,7 +78,7 @@
                     </div>
                 </li>
                 {{/each}}
-                
+
 
             </div>
         </div>
@@ -94,13 +94,13 @@
     function filterProducts(id) {
         const brand_name = $(`.brand-${id}`).text();
         $('.items-product').removeClass('d-none');
-        
-        if($(`#brand-${id}`).is(':checked')) {
-            $(`input[id!="brand-${id}"]`).prop('checked', false);    
-            $('li[class^="-"]').not(`.-${brand_name}`).addClass('d-none');     
+
+        if ($(`#brand-${id}`).is(':checked')) {
+            $(`input[id!="brand-${id}"]`).prop('checked', false);
+            $('li[class^="-"]').not(`.-${brand_name}`).addClass('d-none');
         }
         else {
             $(`li[class^=-]`).not(`-${brand_name}`).removeClass('d-none');
-        }   
+        }
     }
 </script>
