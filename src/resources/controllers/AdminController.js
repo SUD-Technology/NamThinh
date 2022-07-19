@@ -50,11 +50,10 @@ const AdminController = {
         }
         return new Products(product).save()
             .then(() => {
-                // res.json({ code: 1, message: "Thêm sản phẩm thành công" })
                 res.redirect('/admin/add-product')
             })
             .catch((err) => {
-                res.json({ code: 0, message: "Thêm sản phẩm thất bại", err: err })
+                return res.json({ code: 0, message: "Thêm sản phẩm thất bại", err: err })
             })
     },
 
@@ -65,7 +64,6 @@ const AdminController = {
                 if (!product) {
                     return res.json({ success: false, msg: 'Sản phẩm không tồn tại', product_id });
                 }
-
                 product.delete().then(res.redirect('/home'));
             })
     },
