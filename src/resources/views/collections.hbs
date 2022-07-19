@@ -3,6 +3,8 @@
         <img src="/img/subhead.png" alt="">
     </div>
 
+    
+
     {{!-- Lốp xe --}}
     <div class="classify-products">
         <div class="row pagi">
@@ -57,7 +59,14 @@
 
             </div>
 
+                {{#if msg}}
+            <div class="col-md-9">
+                    <div class="text-center w-100 h4">{{msg}}</div>
+            </div>
+                {{/if}}
+
             <div class="col-md-9 list-product-main">
+                
                 {{#each data}}
                 <li onclick='window.location.href="/products/{{pslug}}"'
                     class="-{{brand}} items-product smooth text-center">

@@ -180,7 +180,7 @@ const CollectionController = {
         const level = keys.length;
 
         if (signal.includes(0) || level >= 4 || level <= 0 || keys[0] > 3) {
-            return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
+            return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
         }
 
         const submenu = menuItems[keys[0]].submenu;
@@ -188,7 +188,7 @@ const CollectionController = {
         if (level == 3) {
             const title = menuItems[keys[0]].submenu[keys[1]].role[keys[2]].title || "";
             if (!title) {
-                return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
+                return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
             }
 
             Products.find({})
@@ -204,7 +204,7 @@ const CollectionController = {
         if (level == 2) {
             const title = menuItems[keys[0]].submenu[keys[1]].title || "";
             if (!title) {
-                return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
+                return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
             }
 
             Products.find({})
@@ -220,7 +220,7 @@ const CollectionController = {
         if (level == 1) {
             const title = menuItems[keys[0]].title || '';
             if (!title) {
-                return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
+                return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
             }
 
             Products.find({})
@@ -241,7 +241,7 @@ function handleProducts(req, res, submenu, title, products) {
     let brand_list = [];
 
     if (products.length == 0) {
-        return res.json({ success: false, msg: 'Không tìm thầy sản phẩm nào' });
+        return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
     }
     const data = products.map(product => {
         if (!brand_list.includes(product.brand_name))
