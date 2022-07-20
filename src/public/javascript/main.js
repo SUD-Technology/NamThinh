@@ -127,6 +127,9 @@ $(document).ready(function () {
       );
 
     
+    $('#tire-products').on('click', '.pagination a', function(e) {
+        e.preventDefault();
+    })
 
 
     $(function () {
