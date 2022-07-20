@@ -1,6 +1,6 @@
 const { validationResult } = require('express-validator')
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcryptjs')
 const Users = require('../models/Users')
 
 function hashPassword(password) {
@@ -29,7 +29,7 @@ const UserController = {
                         res.redirect('/users/login');
                     } else {
                         account = acc
-                        return bcrypt.compare(password, acc.password)
+                        return bcrypt.compareSync(password, acc.password)
                     }
                 })
                 .then(match => {
