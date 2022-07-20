@@ -129,6 +129,15 @@ $(document).ready(function () {
     
     $('#tire-products').on('click', '.pagination a', function(e) {
         e.preventDefault();
+        const url = $(this).attr('href');
+        if(url != '') {
+            $.ajax({
+                url: url,
+                success: (data) => {
+                    $('#tire-products .product-main').html(data);
+                }
+            })
+        }
     })
 
 

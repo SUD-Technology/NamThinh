@@ -842,16 +842,18 @@ img.bgc-title {
 }
 
 .items-product {
-  padding: 5px 5px;
+  /* padding: 5px 5px; */
   border-color: white;
   border-style: solid;
   border-width: 2px;
   display: list-item;
   font-size: 13px;
   text-align: center;
-  border-radius: 0.5rem 0.5rem 0 0;
+  border-radius: 0.5rem 0.5rem;
   
 }
+
+
 
 
 .img-box {

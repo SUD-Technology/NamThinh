@@ -186,18 +186,22 @@ const CollectionController = {
 
         const submenu = menuItems[keys[0]].submenu;
 
+        const page = parseInt(req.query.page) || 1;
+        const view = req.query.view || '';
+        const skip = view == 'home' ? 10 : 20;
+
         if (level == 3) {
             const title = menuItems[keys[0]].submenu[keys[1]].role[keys[2]].title || "";
             if (!title) {
                 return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
             }
 
-            Products.find({})
+            Products.find({}).skip(skip * (page - 1))
                 .where('classes.lv1').equals(keys[0] + 1)
                 .where('classes.lv2').equals(keys[1] + 1)
                 .where('classes.lv3').equals(keys[2] + 1)
                 .then(products => {
-                    return handleProducts(req, res, submenu, title, products);
+                    return handleProducts(req, res, view, submenu, title, products);
                 })
                 .catch(next)
         }
@@ -208,11 +212,11 @@ const CollectionController = {
                 return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
             }
 
-            Products.find({})
+            Products.find({}).skip(skip * (page - 1))
                 .where('classes.lv1').equals(keys[0] + 1)
                 .where('classes.lv2').equals(keys[1] + 1)
                 .then(products => {
-                    return handleProducts(req, res, submenu, title, products);
+                    return handleProducts(req, res, view, submenu, title, products);
                 })
                 .catch(next)
 
@@ -224,10 +228,10 @@ const CollectionController = {
                 return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
             }
 
-            Products.find({})
+            Products.find({}).skip(skip * (page - 1))
                 .where('classes.lv1').equals(keys[0] + 1)
                 .then(products => {
-                    return handleProducts(req, res, submenu, title, products);
+                    return handleProducts(req, res, view, submenu, title, products);
                 })
                 .catch(next)
         }
@@ -238,7 +242,7 @@ const CollectionController = {
 }
 
 
-function handleProducts(req, res, submenu, title, products) {
+function handleProducts(req, res, view, submenu, title, products) {
     let brand_list = [];
 
     if (products.length == 0) {
@@ -258,6 +262,38 @@ function handleProducts(req, res, submenu, title, products) {
             price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
         }
     })
+
+    var html = '';
+    if(data.length > 0) {
+        data.forEach((d, index) => {
+            if(index == 10) return;
+            html+= `
+                <li class="items-product smooth text-center">
+
+                    <div onclick='window.location.href="/products/${d.pslug}"' class="img-box">
+                        <img class="smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/${d.pimg}"
+                            alt="">
+                    </div>
+
+                    <div class="info-box">
+                        <div class="items-title">
+                            <a href="/products/${d.pslug}">${d.pname}</a>
+                            <p>${d.pid}</p>
+                        </div>
+                        <div class="items-price">
+                            ${d.price}
+                        </div>
+                    </div>
+
+                </li>
+            `
+        });
+
+    }
+    
+    if(view == 'home')
+        return res.send(html);
+        
     return res.render('collections', {
         title,
         submenu,
