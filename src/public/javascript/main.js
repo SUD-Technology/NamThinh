@@ -120,6 +120,12 @@ $(document).ready(function () {
 
     // Zoom image
 
+    $(".hover").mouseleave(
+        function () {
+          $(this).removeClass("hover");
+        }
+      );
+
 
     $(function () {
         $('.carousel-item').each(function () {

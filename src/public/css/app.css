@@ -14,7 +14,9 @@
   /* color: darkblue ; */
 }
 
-body {}
+body {
+  /* background-color: #FFF8F3; */
+}
 
 p,
 a,
@@ -616,6 +618,7 @@ input[type="file"] {
 }
 
 .container {
+  
   margin-bottom: 50px;
   padding: 0;
 }
@@ -847,7 +850,7 @@ img.bgc-title {
   font-size: 13px;
   text-align: center;
   border-radius: 0.5rem 0.5rem 0 0;
-  box-shadow: 1px 1px 18px #efecec;
+  
 }
 
 
@@ -1110,7 +1113,7 @@ img.bgc-title {
 
   /* margin-bottom: 20px; */
   background-color: var(--xanh);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.36) 0px 3px 8px;
   position: sticky;
   top: 15px;
   position: -webkit-sticky;
@@ -2234,4 +2237,106 @@ footer .form-group input {
   left: -25px;
   top: 30px;
   transform: rotate(45deg);
+}
+
+.border-rus {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+  border-radius: 8px;
+}
+
+
+@import url(https://fonts.googleapis.com/css?family=Monsterrat:400,700;);
+.snip1538 {
+  background-color: #222222;
+  color: #ffffff;
+  font-family: 'Monsterrat', sans-serif;
+  font-size: 16px;
+  margin: 0px;
+  height: 185px;
+  
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  
+}
+
+.snip1538 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+}
+
+.snip1538:after {
+  background-color: var(--xanh);
+  bottom: 0;
+  content: '';
+  height: 0%;
+  left: 0;
+  position: absolute;
+  width: 10px;
+  -webkit-transition: all 0.45s ease;
+  transition: all 0.45s ease;
+  
+}
+
+.snip1538 img {
+  vertical-align: top;
+  max-width: 100%;
+  backface-visibility: hidden;
+  height: 185px;
+}
+
+.snip1538 figcaption {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  align-items: center;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1em;
+  opacity: 0;
+  border-radius: 0.5rem;
+}
+
+.snip1538 h3 {
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 1px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.snip1538 h3 span {
+  display: block;
+  font-weight: 700;
+}
+
+.snip1538 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.snip1538:hover > img,
+.snip1538.hover > img {
+  opacity: 0.1;
+}
+
+.snip1538:hover:after,
+.snip1538.hover:after {
+  height: 100%;
+}
+
+.snip1538:hover figcaption,
+.snip1538.hover figcaption {
+  opacity: 1;
 }

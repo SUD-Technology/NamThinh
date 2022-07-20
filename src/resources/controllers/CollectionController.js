@@ -180,6 +180,7 @@ const CollectionController = {
         const level = keys.length;
 
         if (signal.includes(0) || level >= 4 || level <= 0 || keys[0] > 3) {
+            const title = 'Không tồn tại';
             return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
         }
 
