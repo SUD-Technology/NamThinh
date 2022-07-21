@@ -1,68 +1,60 @@
-<div id="wrapper" class="mb-5">
-    <form action="" id="form-login">
-        <h1 class="form-heading text-uppercase">Đăng Ký</h1>
+<div id="wrapper" class="mb-5 mt-5">
+    <form action="" id="form-login" method="post">
+        <h1 class="form-heading text-uppercase">Tạo tài khoản</h1>
+
         <div class="form-group">
-            <i class="fas fa-user"></i>
-            <input type="text" class="form-input" placeholder="Tên Showroom">
+            <i class="fas fa-id-card"></i>
+            <input name="fullname" value="{{fullname}}" type="text" class="form-input" placeholder="Họ tên" required>
+        </div>
+        <div class="form-group">
+            <i class="fas fa-mobile"></i>
+            <input name="phone" value="{{phone}}" type="text" class="form-input" placeholder="Số điện thoại" required>
         </div>
         <div class="form-group">
             <i class="fas fa-envelope"></i>
-            <input type="email" class="form-input" placeholder="Email">
+            <input name="email" value="{{email}}" type="email" class="form-input" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <i class="fas fa-building"></i>
+            <select name="position" class="form-input" required>
+                <option value="">-- Vị trí --</option>
+                <option value="sale">Sale</option>
+                <option value="accountant">Kế toán</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <i class="fas fa-user"></i>
+            <input value="{{username}}" name="username" type="text" class="form-input" placeholder="Tên đăng nhập"
+                required>
         </div>
         <div class="form-group">
             <i class="fas fa-key"></i>
-            <input type="password" class="form-input" placeholder="Mật khẩu">
+            <input value="{{password}}" name="password" type="password" class="form-input" placeholder="Mật khẩu"
+                required>
             <div id="eye">
                 <i class="far fa-eye"></i>
             </div>
         </div>
         <div class="form-group">
             <i class="fas fa-key"></i>
-            <input type="password" class="form-input" placeholder="Xác nhận mật khẩu">
+            <input name="rePassword" type="password" class="form-input" placeholder="Xác nhận mật khẩu" required>
             <div id="eye2">
                 <i class="far fa-eye"></i>
             </div>
         </div>
-        <div class="form-group">
-            <i class="fas fa-phone"></i>
-            <input type="text" class="form-input" placeholder="Số điện thoại">
+        {{#if error}}
+        <div class="alert alert-danger" role="alert">
+            {{error}}
         </div>
-        <div class="form-group">
-            <i class="fas fa-id-card"></i>
-            <input type="text" class="form-input" placeholder="Chứng minh nhân dân hoặc mã số thuế">
-        </div>
-        <div class="form-group">
-            <i class="fas fa-map-marked"></i>
-            <input type="text" class="form-input" placeholder="Linh Google Map (Không bắt buộc)">
-        </div>
-        <div class="form-group">
-            <i class="fas fa-map-marker-alt"></i>
-            <input type="text" class="form-input" placeholder="Địa chỉ">
-        </div>
-        <div class="form-group">
-            <i class="fas fa-city"></i>
-            <select class="form-input" name="calc_shipping_provinces" required="">
-                <option value="">Tỉnh/Thành</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <i class="fas fa-building"></i>
-            <select class="form-input" name="calc_shipping_district" required="">
-                <option value="">Quận/Huyện</option>
-            </select>
-        </div>
-        <input class="billing_address_1" name="" type="hidden" value="">
-        <input class="billing_address_2" name="" type="hidden" value="">
-        <div class="form-group">
-            <i class="fas fa-user-tie"></i>
-            <input type="text" class="form-input" placeholder="Người đại diện">
-        </div>
-        <div class="form-group">
-            <i class="fas fa-mobile"></i>
-            <input type="text" class="form-input" placeholder="Số điện thoại">
-        </div>
-        <div class="col-6 mx-auto">
+        {{/if}}
 
+        {{#if success}}
+        <div class="alert alert-success" role="alert">
+            {{success}}
+        </div>
+        {{/if}}
+
+        <div class="col-6 mx-auto">
             <input type="submit" value="Đăng ký" class="form-submit">
         </div>
     </form>

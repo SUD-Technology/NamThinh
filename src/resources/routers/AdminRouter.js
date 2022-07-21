@@ -33,6 +33,7 @@ router.get('/customer-info', (req, res) => {
 })
 
 
+
 router.get('/add-product', (req, res) => {
     res.render('addProduct', { admin: true })
 })

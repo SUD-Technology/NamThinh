@@ -10,6 +10,26 @@ const Users = new Schema({
     password: {
         type: String,
         required: true
+    },
+    fullname: {
+        type: String,
+        required: true
+    },
+    position: {
+        type: String,
+        enum: ["sale", "accountant"],
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    avatar: {
+        type: String
     }
 })
 

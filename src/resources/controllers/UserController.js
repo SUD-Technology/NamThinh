@@ -71,15 +71,54 @@ const UserController = {
         }
     },
 
-    register: (req, res, next) => {
-        const user = {
-            username: 'admin',
-            password: hashPassword('123456')
+    getRegister: (req, res, next) => {
+        let error = req.flash('error') || "";
+        let username = req.flash('username') || "";
+        let password = req.flash('password') || "";
+        let email = req.flash('email') || "";
+        let phone = req.flash('phone') || "";
+        let success = req.flash('success') || "";
+        let fullname = req.flash('fullname')
+        res.render('register', { success, error, fullname, username, password, email, phone })
+    },
+
+    postRegister: (req, res, next) => {
+        let result = validationResult(req)
+        if (result.errors.length === 0) {
+            const user = {
+                username: req.body.username,
+                password: hashPassword(req.body.password),
+                fullname: req.body.fullname,
+                position: req.body.position,
+                email: req.body.email,
+                phone: req.body.phone
+            }
+            return new Users(user).save()
+                .then(() => {
+                    req.flash('success', 'Đăng ký thành công');
+                    res.redirect('/users/register');
+                })
+                .catch(() => {
+                    req.flash('error', 'Đăng ký thất bại');
+                    res.redirect('/users/register');
+                })
+
+        } else {
+            result = result.mapped();
+            let message;
+            for (let f in result) {
+                message = result[f].msg;
+                break;
+            }
+            const { username, fullname, email, phone, password } = req.body
+            req.flash('error', message);
+            req.flash('username', username);
+            req.flash('fullname', fullname);
+            req.flash('email', email);
+            req.flash('phone', phone);
+            req.flash('password', password);
+            res.redirect('/users/register')
         }
-        new Users(user).save()
-            .then((err) => {
-                res.json({ message: 'Đăng ký thành công' })
-            })
     },
 
     getLogout: (req, res) => {
