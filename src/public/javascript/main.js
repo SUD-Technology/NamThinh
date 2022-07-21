@@ -138,22 +138,24 @@ $(document).ready(function () {
             let nextUrl = ''
     
             if(current.text() !== '1') {
-                $('.prevPage').removeClass('d-none');
+                $('.prevPage').css('visibility', 'visible');
             }else {
-                $('.prevPage').addClass('d-none');
+                $('.prevPage').css('visibility', 'hidden');;
             }
     
             if(current.text() == '4') {
-                $('.nextPage').addClass('d-none');
+                $('.nextPage').css('visibility', 'hidden');;
             }else {
-                $('.nextPage').removeClass('d-none');
+                $('.nextPage').css('visibility', 'visible');;
             }
     
             if(current.hasClass('prevPage')) {
                 if(!last.prev().hasClass('prevPage')){
                     last.removeClass('current');
                     last.prev().addClass('current');
-                    
+                    if(last.prev().prev().hasClass('prevPage')) {
+                        $('.prevPage').css('visibility', 'hidden');; 
+                    }
                 }
                 nextUrl = currentUrl.slice(0,-1) + (currentPage - 1);
             }
@@ -162,7 +164,9 @@ $(document).ready(function () {
                     
                     last.removeClass('current');
                     last.next().addClass('current');
-                    
+                    if(last.next().next().hasClass('nextPage')) {
+                        $('.nextPage').css('visibility', 'hidden');; 
+                    }
                 }
                 nextUrl = currentUrl.slice(0,-1) + (currentPage + 1);
             }else {
@@ -183,7 +187,7 @@ $(document).ready(function () {
         })
     }
     loadProducts('tire-products')
-    loadProducts('car-products')
+    loadProducts('truck-products')
     loadProducts('tool-products')
     loadProducts('oil-products')
 

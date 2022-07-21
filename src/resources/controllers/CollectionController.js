@@ -178,17 +178,15 @@ const CollectionController = {
         });
 
         const level = keys.length;
+        const submenu = menuItems[keys[0]].submenu;
+        const page = parseInt(req.query.page) || 1;
+        const view = req.query.view || '';
+        const skip = view == 'home' ? 10 : 20;
 
         if (signal.includes(0) || level >= 4 || level <= 0 || keys[0] > 3) {
             const title = 'Không tồn tại';
             return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
         }
-
-        const submenu = menuItems[keys[0]].submenu;
-
-        const page = parseInt(req.query.page) || 1;
-        const view = req.query.view || '';
-        const skip = view == 'home' ? 10 : 20;
 
         if (level == 3) {
             const title = menuItems[keys[0]].submenu[keys[1]].role[keys[2]].title || "";
@@ -246,6 +244,9 @@ function handleProducts(req, res, view, submenu, title, products) {
     let brand_list = [];
 
     if (products.length == 0) {
+        if(view == 'home') {
+            return res.send(`<div class="  text-center h3"></div><div class=" text-center h3"></div><div class="d-flex justified-content-center text-center h5">Không tìm thấy sản phẩm</div>`);
+        }
         return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
     }
     const data = products.map(product => {
@@ -267,7 +268,7 @@ function handleProducts(req, res, view, submenu, title, products) {
     if(data.length > 0) {
         data.forEach((d, index) => {
             if(index == 10) return;
-            html+= `
+            html += `
                 <li class="items-product smooth text-center">
 
                     <div onclick='window.location.href="/products/${d.pslug}"' class="img-box">
@@ -289,6 +290,9 @@ function handleProducts(req, res, view, submenu, title, products) {
             `
         });
 
+    }else {
+        console.log('passed')
+        html += `<div>Không tìm thấy sản phẩm</div>`
     }
     
     if(view == 'home')
