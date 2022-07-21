@@ -126,19 +126,69 @@ $(document).ready(function () {
         }
       );
 
+
+    function loadProducts(id) {
+        $(`#${id}`).on('click', '.pagination a', function(e) {
+            e.preventDefault();
+            
+            var current = $(this).parent();
+            var last = current.siblings('.current');
+            var currentUrl = last.children().attr('href');
+            let currentPage =  parseInt(last.children().attr('title'));
+            let nextUrl = ''
     
-    $('#tire-products').on('click', '.pagination a', function(e) {
-        e.preventDefault();
-        const url = $(this).attr('href');
-        if(url != '') {
-            $.ajax({
-                url: url,
-                success: (data) => {
-                    $('#tire-products .product-main').html(data);
+            if(current.text() !== '1') {
+                $('.prevPage').removeClass('d-none');
+            }else {
+                $('.prevPage').addClass('d-none');
+            }
+    
+            if(current.text() == '4') {
+                $('.nextPage').addClass('d-none');
+            }else {
+                $('.nextPage').removeClass('d-none');
+            }
+    
+            if(current.hasClass('prevPage')) {
+                if(!last.prev().hasClass('prevPage')){
+                    last.removeClass('current');
+                    last.prev().addClass('current');
+                    
                 }
-            })
-        }
-    })
+                nextUrl = currentUrl.slice(0,-1) + (currentPage - 1);
+            }
+            else if(current.hasClass('nextPage')) {
+                if(!last.next().hasClass('nextPage')){
+                    
+                    last.removeClass('current');
+                    last.next().addClass('current');
+                    
+                }
+                nextUrl = currentUrl.slice(0,-1) + (currentPage + 1);
+            }else {
+                current.siblings().removeClass('current');
+                current.addClass('current');
+            }
+            
+            const url = nextUrl || $(this).attr('href') || '';
+            
+            if(url != '') {
+                $.ajax({
+                    url: url,
+                    success: (data) => {
+                        $(`#${id} .product-main`).html(data);
+                    }
+                })
+            }
+        })
+    }
+    loadProducts('tire-products')
+    loadProducts('car-products')
+    loadProducts('tool-products')
+    loadProducts('oil-products')
+
+
+    
 
 
     $(function () {

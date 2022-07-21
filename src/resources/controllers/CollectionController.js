@@ -196,7 +196,7 @@ const CollectionController = {
                 return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
             }
 
-            Products.find({}).skip(skip * (page - 1))
+            Products.find({}).skip(skip * (page - 1)).limit(skip)
                 .where('classes.lv1').equals(keys[0] + 1)
                 .where('classes.lv2').equals(keys[1] + 1)
                 .where('classes.lv3').equals(keys[2] + 1)
@@ -212,7 +212,7 @@ const CollectionController = {
                 return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
             }
 
-            Products.find({}).skip(skip * (page - 1))
+            Products.find({}).skip(skip * (page - 1)).limit(skip)
                 .where('classes.lv1').equals(keys[0] + 1)
                 .where('classes.lv2').equals(keys[1] + 1)
                 .then(products => {
@@ -228,7 +228,7 @@ const CollectionController = {
                 return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
             }
 
-            Products.find({}).skip(skip * (page - 1))
+            Products.find({}).skip(skip * (page - 1)).limit(skip)
                 .where('classes.lv1').equals(keys[0] + 1)
                 .then(products => {
                     return handleProducts(req, res, view, submenu, title, products);
