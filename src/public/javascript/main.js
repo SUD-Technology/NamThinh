@@ -120,6 +120,80 @@ $(document).ready(function () {
 
     // Zoom image
 
+    $(".hover-2").mouseleave(
+        function () {
+          $(this).removeClass("hover");
+        }
+      );
+
+
+    function loadProducts(id) {
+        $(`#${id}`).on('click', '.pagination a', function(e) {
+            e.preventDefault();
+            
+            var current = $(this).parent();
+            var last = current.siblings('.current');
+            var currentUrl = last.children().attr('href');
+            let currentPage =  parseInt(last.children().attr('title'));
+            let nextUrl = ''
+    
+            if(current.text() !== '1') {
+                $('.prevPage').css('visibility', 'visible');
+            }else {
+                $('.prevPage').css('visibility', 'hidden');;
+            }
+    
+            if(current.text() == '4') {
+                $('.nextPage').css('visibility', 'hidden');;
+            }else {
+                $('.nextPage').css('visibility', 'visible');;
+            }
+    
+            if(current.hasClass('prevPage')) {
+                if(!last.prev().hasClass('prevPage')){
+                    last.removeClass('current');
+                    last.prev().addClass('current');
+                    if(last.prev().prev().hasClass('prevPage')) {
+                        $('.prevPage').css('visibility', 'hidden');; 
+                    }
+                }
+                nextUrl = currentUrl.slice(0,-1) + (currentPage - 1);
+            }
+            else if(current.hasClass('nextPage')) {
+                if(!last.next().hasClass('nextPage')){
+                    
+                    last.removeClass('current');
+                    last.next().addClass('current');
+                    if(last.next().next().hasClass('nextPage')) {
+                        $('.nextPage').css('visibility', 'hidden');; 
+                    }
+                }
+                nextUrl = currentUrl.slice(0,-1) + (currentPage + 1);
+            }else {
+                current.siblings().removeClass('current');
+                current.addClass('current');
+            }
+            
+            const url = nextUrl || $(this).attr('href') || '';
+            
+            if(url != '') {
+                $.ajax({
+                    url: url,
+                    success: (data) => {
+                        $(`#${id} .product-main`).html(data);
+                    }
+                })
+            }
+        })
+    }
+    loadProducts('tire-products')
+    loadProducts('truck-products')
+    loadProducts('tool-products')
+    loadProducts('oil-products')
+
+
+    
+
 
     $(function () {
         $('.carousel-item').each(function () {
