@@ -138,15 +138,15 @@ $(document).ready(function () {
             let nextUrl = ''
     
             if(current.text() !== '1') {
-                $('.prevPage').css('visibility', 'visible');
+                $(current).siblings('.prevPage').css('visibility', 'visible');
             }else {
-                $('.prevPage').css('visibility', 'hidden');;
+                $(current).siblings('.prevPage').css('visibility', 'hidden');;
             }
     
             if(current.next().hasClass('nextPage')) {
-                $('.nextPage').css('visibility', 'hidden');;
+                $(current).siblings('.nextPage').css('visibility', 'hidden');;
             }else {
-                $('.nextPage').css('visibility', 'visible');;
+                $(current).siblings('.nextPage').css('visibility', 'visible');;
             }
     
             if(current.hasClass('prevPage')) {
@@ -154,7 +154,7 @@ $(document).ready(function () {
                     last.removeClass('current');
                     last.prev().addClass('current');
                     if(last.prev().prev().hasClass('prevPage')) {
-                        $('.prevPage').css('visibility', 'hidden');; 
+                        $(current).css('visibility', 'hidden');
                     }
                 }
                 nextUrl = currentUrl.slice(0,-1) + (currentPage - 1);
@@ -165,7 +165,7 @@ $(document).ready(function () {
                     last.removeClass('current');
                     last.next().addClass('current');
                     if(last.next().next().hasClass('nextPage')) {
-                        $('.nextPage').css('visibility', 'hidden');; 
+                        $(current).css('visibility', 'hidden'); 
                     }
                 }
                 nextUrl = currentUrl.slice(0,-1) + (currentPage + 1);
