@@ -126,7 +126,7 @@ $(document).ready(function () {
         }
       );
 
-
+    // Pagination Homepage
     function loadProducts(id) {
         $(`#${id}`).on('click', '.pagination a', function(e) {
             e.preventDefault();
@@ -190,10 +190,14 @@ $(document).ready(function () {
     loadProducts('truck-products')
     loadProducts('tool-products')
     loadProducts('oil-products')
-
+    // End Pagination Homepage
 
     
-
+    $('.items-product').hover(function() {
+        $(this).children().children('.img-product').css('transform', 'scale(1.07)')
+    }, function() {
+        $(this).children().children('.img-product').css('transform', 'scale(1)')
+    })
 
     $(function () {
         $('.carousel-item').each(function () {

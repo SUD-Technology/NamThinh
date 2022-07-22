@@ -171,7 +171,8 @@ const menuItems = [
 
 const CollectionController = {
     getACollection: (req, res, next) => {
-        const parts = (req.params.slug).split('-');
+        const slug = req.params.slug;
+        const parts = slug.split('-');
         const signal = parts[parts.length - 1];
         const keys = signal.split('').map(el => {
             return parseInt(el - 1);
@@ -199,7 +200,7 @@ const CollectionController = {
                 .where('classes.lv2').equals(keys[1] + 1)
                 .where('classes.lv3').equals(keys[2] + 1)
                 .then(products => {
-                    return handleProducts(req, res, view, submenu, title, products);
+                    return handleProducts(req, res, view, submenu, title, products, slug);
                 })
                 .catch(next)
         }
@@ -214,7 +215,7 @@ const CollectionController = {
                 .where('classes.lv1').equals(keys[0] + 1)
                 .where('classes.lv2').equals(keys[1] + 1)
                 .then(products => {
-                    return handleProducts(req, res, view, submenu, title, products);
+                    return handleProducts(req, res, view, submenu, title, products, slug);
                 })
                 .catch(next)
 
@@ -225,11 +226,11 @@ const CollectionController = {
             if (!title) {
                 return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
             }
-
+            
             Products.find({}).skip(skip * (page - 1)).limit(skip)
                 .where('classes.lv1').equals(keys[0] + 1)
                 .then(products => {
-                    return handleProducts(req, res, view, submenu, title, products);
+                    return handleProducts(req, res, view, submenu, title, products, slug);
                 })
                 .catch(next)
         }
@@ -240,14 +241,14 @@ const CollectionController = {
 }
 
 
-function handleProducts(req, res, view, submenu, title, products) {
+function handleProducts(req, res, view, submenu, title, products, slug) {
     let brand_list = [];
-
+    
     if (products.length == 0) {
         if(view == 'home') {
             return res.send(`<div class="  text-center h3"></div><div class=" text-center h3"></div><div class="d-flex justified-content-center text-center h5">Không tìm thấy sản phẩm</div>`);
         }
-        return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
+        return res.render('collections', {title,slug, msg: 'Không tìm thấy sản phẩm nào'});
     }
     const data = products.map(product => {
         if (!brand_list.includes(product.brand_name))
@@ -308,6 +309,7 @@ function handleProducts(req, res, view, submenu, title, products) {
             }
         }),
         data,
+        slug,
         admin: req.session.username
     });
 }

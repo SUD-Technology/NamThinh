@@ -32,8 +32,7 @@ const ProductController = {
                             slug: prod.slug
                         }
                     });
-                    
-                    
+                        
                     shuffle(similar);
                     
                     return res.render('detail', { data, similar: similar.slice(0,5) });
