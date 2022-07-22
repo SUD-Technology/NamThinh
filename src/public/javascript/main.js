@@ -143,7 +143,7 @@ $(document).ready(function () {
                 $('.prevPage').css('visibility', 'hidden');;
             }
     
-            if(current.text() == '4') {
+            if(current.next().hasClass('nextPage')) {
                 $('.nextPage').css('visibility', 'hidden');;
             }else {
                 $('.nextPage').css('visibility', 'visible');;

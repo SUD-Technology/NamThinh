@@ -791,7 +791,7 @@ input[type="file"] {
 img.bgc-title {
   position: absolute;
   z-index: 1;
-  height: 45px;
+  height: 46px;
   width: 10px;
   left: 35%;
 }
@@ -828,7 +828,7 @@ img.bgc-title {
   gap: 10px;
 
   grid-template-columns: 230px 230px 230px 230px 230px;
-  grid-template-rows: 350px 350px;
+  grid-template-rows: 340px 340px;
   padding: 0px 20px;
 }
 
@@ -935,7 +935,7 @@ img.bgc-title {
 .items-title a {
   color: gray;
   display: inline;
-  font-size: 16px;
+  font-size: 15px;
   padding: 5px;
   text-align: center;
 }

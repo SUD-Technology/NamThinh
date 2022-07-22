@@ -30,7 +30,9 @@
                     
                     
                     <li class="page-4"  class="hidden-phone "><a title="4" href="/collections/{{slug}}?page=4" class="pagenav">4</a></li>
-                    
+                    <li class="page-5"  class="hidden-phone "><a title="5" href="/collections/{{slug}}?page=5" class="pagenav">5</a></li>
+
+                    <li class="page-6"  class="hidden-phone "><a title="6" href="/collections/{{slug}}?page=6" class="pagenav">6</a></li>
                     
                     <li class="nextPage"><a title="Trang sau" href="" class="pagenav"><i class="fa fa-chevron-right"></i></a></li>
                     
@@ -135,14 +137,16 @@
                     
                     
                     
-                    <li class="page-3"  class="hidden-phone"><a title="3" href="/collections/{{slug}}?page=3" class="pagenav">3</a></li>
-                    
-                    
+                    <li class="page-3"  class="hidden-phone"><a title="3" href="/collections/{{slug}}?page=3" class="pagenav">3</a></li>        
                     
                     <li class="page-4"  class="hidden-phone "><a title="4" href="/collections/{{slug}}?page=4" class="pagenav">4</a></li>
+
+                    <li class="page-5"  class="hidden-phone "><a title="5" href="/collections/{{slug}}?page=5" class="pagenav">5</a></li>
+
+                    <li class="page-6"  class="hidden-phone "><a title="6" href="/collections/{{slug}}?page=6" class="pagenav">6</a></li>
                     
                     
-                    <li onclick="" class="nextPage"><a title="Trang sau" href="" class="pagenav"><i class="fa fa-chevron-right"></i></a></li>
+                    <li class="nextPage"><a title="Trang sau" href="" class="pagenav"><i class="fa fa-chevron-right"></i></a></li>
                     
                 </ul>
                 <input type="hidden" name="limitstart" value="0">
@@ -157,12 +161,48 @@
 
 <script>
     $(document).ready(function() {
-        const page = getUrlVars()['page'] || 1;
+        const page = getUrlVars()['page'] || '1';
+        if(page != '1') {
+            $('.prevPage').css('visibility', 'visible');
+        }
+        
         let id = '.page-' + page;
-        console.log(id)
+
         $(id).siblings().removeClass('current');
         $(id).addClass('current');
     })
+
+    $('.nextPage').click(function(e) {
+        e.preventDefault();
+        const slug = window.location.pathname
+        
+        nextPage(slug)
+    })
+
+    $('.prevPage').click(function(e) {
+        e.preventDefault();
+        const slug = window.location.pathname;
+
+        prevPage(slug)
+    })
+
+    function nextPage(slug) {
+        const current = getUrlVars()['page'] || '1';
+        const next = (parseInt(current) + 1);
+
+        if(!$('.current').next().hasClass('nextPage')) {
+            window.location.replace(`${slug}?page=${next}`);
+
+        }
+    }
+
+    function prevPage(slug) {
+        const current = getUrlVars()['page'] || '1';
+        if(current > '1') {
+            const prev = (parseInt(current) - 1);
+            window.location.replace(`${slug}?page=${prev}`);
+        }
+    }
 
     function getUrlVars() {
         var vars = [], hash;
