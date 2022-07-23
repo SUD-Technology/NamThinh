@@ -2337,3 +2337,52 @@ span.ico-product.ico-new {
   font-size: 12px;
   z-index: 4;
 }
+
+/* Zalo Contact */
+.contact-box-bottom {
+  position: fixed;
+  bottom: 20px;
+  left: 10px;
+  z-index: 10000;
+}
+
+.contact-box-wrapper {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  margin-bottom: 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .2);
+}
+
+.contact-box-wrapper:last-child {
+  margin-bottom: 0;
+}
+
+.contact-icon-box {
+  display: block;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  line-height: 38px;
+  border: 1px solid #e5e5e5;
+  border-radius: 999px;
+}
+
+.contact-info {
+  padding-left: 10px;
+}
+
+.contact-info b,
+.contact-info span {
+  display: block;
+}
+
+.contact-info span {
+  color: #868686;
+  font-size: 12px;
+}
+
+/* End Zalo contact */
