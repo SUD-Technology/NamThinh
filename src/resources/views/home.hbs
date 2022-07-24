@@ -9,10 +9,10 @@
         <div class="col-md-3 ">
             <ul class="text-left product-portfolio">
                 <li class="portfolio-menu-head"><i class="fa fa-bars"></i><span>&nbsp; Danh mục sản phẩm</span></p></li>
-                <li class="portfolio-menu"><a class="menu-link" href="/collections/Lop-Advance-Samson-1"><span class="menu-icon"> <img width="20px" height="20px" src="/img/tire-logo.png" alt=""></span> Lốp xe tải</a></li>
-                <li class="portfolio-menu"><a class="menu-link" href="/collections/Xe-tai-dau-keo-xe-ben-2"><span class="menu-icon"> <img width="20px" height="20px" src="/img/truck-logo.png" alt=""></span> Xe tải</a></li>
-                <li class="portfolio-menu"><a class="menu-link" href="/collections/Phu-tung-o-to-3"><span class="menu-icon"> <img width="20px" height="20px" src="/img/tool-logo.png" alt=""></span> Phụ tùng</a></li>
-                <li class="portfolio-menu"><a class="menu-link" href="/collections/Dau-nhot-4"><span class="menu-icon"> <img width="20px" height="20px" src="/img/oil-logo.png" alt=""></span> Dầu nhớt</a></li>
+                <li class="portfolio-menu"><a style="font-family: 'Open Sans' !important;" class="menu-link" href="/collections/Lop-Advance-Samson-1"><span class="menu-icon"> <img width="20px" height="20px" src="/img/tire-logo.png" alt=""></span> Lốp xe tải </a></li>
+                <li class="portfolio-menu"><a style="font-family: 'Open Sans' !important;" class="menu-link" href="/collections/Xe-tai-dau-keo-xe-ben-2"><span class="menu-icon"> <img width="20px" height="20px" src="/img/truck-logo.png" alt=""></span> Xe tải - Đầu kéo - Xe ben</a></li>
+                <li class="portfolio-menu"><a style="font-family: 'Open Sans' !important;" class="menu-link" href="/collections/Phu-tung-o-to-3"><span class="menu-icon"> <img width="20px" height="20px" src="/img/tool-logo.png" alt=""></span> Phụ tùng ô tô</a></li>
+                <li class="portfolio-menu"><a style="font-family: 'Open Sans' !important;" class="menu-link" href="/collections/Dau-nhot-4"><span class="menu-icon"> <img width="20px" height="20px" src="/img/oil-logo.png" alt=""></span> Dầu nhớt</a></li>
                 
             </ul>
         </div>
@@ -85,87 +85,92 @@
 
     {{!-- Lốp xe --}}
     <div id="tire-products" class="classify-products">
-        <div class="row pagi">
-            {{!-- <div class="ribbon ribbon-top-right"><span> Best Seller</span></div> --}}
-
-            <span onclick='window.location.href="/collections/Lop-Advance-Samson-1"'  class="sub-title">Lốp Advance / Samson </span>
-            <img class="bgc-title" src="/img/title.png" alt="">
-            <div style="line-height: 45px;" class="ml-auto px-3">
-                <a class="seeall" href="/collections/Lop-Advance-Samson-1"><span>Xem tất cả sản phẩm <i class="fas fa-angle-double-right"></i></span></a>
-            </div>
-            
-        </div>
+        
 
         <div class="row product-list data-metatip=" true"">
-            <div class="col-md-12 product-main">
-                {{#each data.Lop}}
-                <li class="items-product smooth text-center">
-                    <span class="ico-product ico-new"> Hot</span>
-                    <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
-                        {{#each pimg}}
-
-                        <img class="img-product smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}"
-                            alt="">
-
-                        {{/each}}
-                    </div>
-
-                    <div class="info-box">
-                        <div class="items-title">
-                            <a href="/products/{{pslug}}">{{pname}}</a>
-                            <p>{{pid}}</p>
-                        </div>
-                        <div class="items-price">
-                            {{price}}
-                        </div>
-                    </div>
-
-                </li>
-                {{/each}}
-
-
-            </div>
-        </div>
-        {{!-- <div class="d-flex float-right mb-3 p-2">
-            <a class="seeall" href="#"><span>Xem tất cả sản phẩm</span></a>
-        </div> --}}
-
-        <div class="text-center d-flex justify-content-center mt-4">
-	
-            <div class="pagination">
-                <ul class="pagination-list">
-                        
-                    <li class="prevPage" style="visibility: hidden;"><a title="Trang trước" href="" class="pagenav"><i class="fa fa-chevron-left"></i></a></li>
-                    
-                    <li class="hidden-phone current"><a title="1" href="/collections/Lop-Advance-Samson-1?view=home&page=1" class="pagenav">1</a></li>
-                    
-                    
-                    
-                    <li class="hidden-phone"><a title="2" href="/collections/Lop-Advance-Samson-1?view=home&page=2" class="pagenav">2</a></li>
-                    
-                    
-                    
-                    <li class="hidden-phone"><a title="3" href="/collections/Lop-Advance-Samson-1?view=home&page=3" class="pagenav">3</a></li>
-                    
-                    
-                    
-                    {{!-- <li class="hidden-phone "><a title="4" href="/collections/Lop-Advance-Samson-1?view=home&page=4" class="pagenav">4</a></li> --}}
-                    
+            <div class="row pagi">
                 
-                    
-                    
-                    <li class="nextPage"><a title="Trang sau" href="" class="pagenav"><i class="fa fa-chevron-right"></i></a></li>
-                    
-                </ul>
-                <input type="hidden" name="limitstart" value="0">
+
+                <span onclick='window.location.href="/collections/Lop-Advance-Samson-1"'  class="sub-title">Lốp Advance / Samson </span>
+                <img class="bgc-title" src="/img/title.png" alt="">
+                <div style="line-height: 45px;" class="ml-auto px-3">
+                    <a class="seeall" href="/collections/Lop-Advance-Samson-1"><span>Xem tất cả sản phẩm <i class="fas fa-angle-double-right"></i></span></a>
+                </div>
+                
             </div>
+
+            <div class="col-md-12 product-main">
+                    {{#each data.Lop}}
+                    <li class="items-product smooth text-center">
+                        <span class="ico-product ico-new"> Hot</span>
+                        <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
+                            {{#each pimg}}
+
+                            <img class="img-product smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}"
+                                alt="">
+
+                            {{/each}}
+                        </div>
+
+                        <div class="info-box">
+                            <div class="items-title">
+                                <a href="/products/{{pslug}}">{{pname}}</a>
+                                <p>{{pid}}</p>
+                            </div>
+                            <div class="items-price">
+                                {{price}}
+                            </div>
+                        </div>
+
+                    </li>
+                    {{/each}}
+
+
+                </div>
             
+            <div class="text-center w-100 d-flex justify-content-center mt-4">
+	
+                <div class="pagination">
+                    <ul class="pagination-list">
+                            
+                        <li class="prevPage" style="visibility: hidden;"><a title="Trang trước" href="" class="pagenav"><i class="fa fa-chevron-left"></i></a></li>
+                        
+                        <li class="hidden-phone current"><a title="1" href="/collections/Lop-Advance-Samson-1?view=home&page=1" class="pagenav">1</a></li>
+                        
+                        
+                        
+                        <li class="hidden-phone"><a title="2" href="/collections/Lop-Advance-Samson-1?view=home&page=2" class="pagenav">2</a></li>
+                        
+                        
+                        
+                        <li class="hidden-phone"><a title="3" href="/collections/Lop-Advance-Samson-1?view=home&page=3" class="pagenav">3</a></li>
+                        
+                        
+                        
+                        {{!-- <li class="hidden-phone "><a title="4" href="/collections/Lop-Advance-Samson-1?view=home&page=4" class="pagenav">4</a></li> --}}
+                        
+                    
+                        
+                        
+                        <li class="nextPage"><a title="Trang sau" href="" class="pagenav"><i class="fa fa-chevron-right"></i></a></li>
+                        
+                    </ul>
+                    <input type="hidden" name="limitstart" value="0">
+                </div>
+                
+            </div>
         </div>
+        
+
+        
     </div>
 
     {{!-- Ô tô --}}
     <div id="truck-products" class="classify-products">
-        <div class="row pagi">
+        
+
+        <div class="row product-list data-metatip=" true"">
+            <div class="row pagi">
             {{!-- <div class="ribbon ribbon-top-right"><span> Best Seller</span></div> --}}
             <span onclick='window.location.href="/collections/Xe-tai-dau-keo-xe-ben-2"'  class="sub-title">Xe tải - Đầu kéo - Xe ben</span>
             <img class="bgc-title" src="/img/title.png" alt="">
@@ -173,9 +178,6 @@
                 <a class="seeall" href="/collections/Xe-tai-dau-keo-xe-ben-2"><span>Xem tất cả sản phẩm <i class="fas fa-angle-double-right"></i></span></a>
             </div>
         </div>
-
-        <div class="row product-list data-metatip=" true"">
-
 
 
             <div class="col-md-12 product-main">
@@ -206,9 +208,7 @@
 
 
             </div>
-        </div>
-
-        <div class="text-center d-flex justify-content-center mt-4">
+            <div class="text-center w-100 d-flex justify-content-center mt-4">
 	
             <div class="pagination">
                 <ul class="pagination-list">
@@ -237,21 +237,24 @@
             </div>
             
         </div>
+        </div>
+
+        
     </div>
 
     {{!-- Phụ tùng ô tô --}}
     <div id="tool-products" class="classify-products">
-        <div class="row pagi">
-            {{!-- <div class="ribbon ribbon-top-right"><span> Best Seller</span></div> --}}
-            <span onclick='window.location.href="/collections/Phu-tung-o-to-3"'  class="sub-title">Phụ tùng ô tô</span>
-            <img class="bgc-title" src="/img/title.png" alt="">
-            <div style="line-height: 45px;" class="ml-auto px-3">
-                <a class="seeall" href="/collections/Phu-tung-o-to-3"><span>Xem tất cả sản phẩm <i class="fas fa-angle-double-right"></i></span></a>
-            </div>
-        </div>
+        
 
         <div class="row product-list data-metatip=" true"">
-
+            <div class="row pagi">
+                {{!-- <div class="ribbon ribbon-top-right"><span> Best Seller</span></div> --}}
+                <span onclick='window.location.href="/collections/Phu-tung-o-to-3"'  class="sub-title">Phụ tùng ô tô</span>
+                <img class="bgc-title" src="/img/title.png" alt="">
+                <div style="line-height: 45px;" class="ml-auto px-3">
+                    <a class="seeall" href="/collections/Phu-tung-o-to-3"><span>Xem tất cả sản phẩm <i class="fas fa-angle-double-right"></i></span></a>
+                </div>
+            </div>
 
             <div class="col-md-12 product-main">
                 {{#each data.PhuTung}}
@@ -278,43 +281,48 @@
                 {{/each}}
 
             </div>
-        </div>
-        <div class="text-center d-flex justify-content-center mt-4">
+
+            <div class="text-center w-100 d-flex justify-content-center mt-4">
 	
-            <div class="pagination">
-                <ul class="pagination-list">
+                <div class="pagination">
+                    <ul class="pagination-list">
+                            
+                        <li class="prevPage" style="visibility: hidden;"><a title="Trang trước" href="" class="pagenav"><i class="fa fa-chevron-left"></i></a></li>
                         
-                    <li class="prevPage" style="visibility: hidden;"><a title="Trang trước" href="" class="pagenav"><i class="fa fa-chevron-left"></i></a></li>
+                        <li class="hidden-phone current"><a title="1" href="/collections/Phu-tung-o-to-3?view=home&page=1" class="pagenav">1</a></li>
+                        
+                        
+                        
+                        <li class="hidden-phone"><a title="2" href="/collections/Phu-tung-o-to-3?view=home&page=2" class="pagenav">2</a></li>
+                        
+                        
+                        
+                        <li class="hidden-phone"><a title="3" href="/collections/Phu-tung-o-to-3?view=home&page=3" class="pagenav">3</a></li>
+                        
+                        
+                        
+                        {{!-- <li class="hidden-phone "><a title="4" href="/collections/Phu-tung-o-to-3?view=home&page=4" class="pagenav">4</a></li> --}}
+                        
                     
-                    <li class="hidden-phone current"><a title="1" href="/collections/Phu-tung-o-to-3?view=home&page=1" class="pagenav">1</a></li>
-                    
-                    
-                    
-                    <li class="hidden-phone"><a title="2" href="/collections/Phu-tung-o-to-3?view=home&page=2" class="pagenav">2</a></li>
-                    
-                    
-                    
-                    <li class="hidden-phone"><a title="3" href="/collections/Phu-tung-o-to-3?view=home&page=3" class="pagenav">3</a></li>
-                    
-                    
-                    
-                    {{!-- <li class="hidden-phone "><a title="4" href="/collections/Phu-tung-o-to-3?view=home&page=4" class="pagenav">4</a></li> --}}
-                    
+                        
+                        
+                        <li class="nextPage"><a title="Trang sau" href="" class="pagenav"><i class="fa fa-chevron-right"></i></a></li>
+                        
+                    </ul>
+                    <input type="hidden" name="limitstart" value="0">
+                </div>
                 
-                    
-                    
-                    <li class="nextPage"><a title="Trang sau" href="" class="pagenav"><i class="fa fa-chevron-right"></i></a></li>
-                    
-                </ul>
-                <input type="hidden" name="limitstart" value="0">
             </div>
-            
         </div>
+        
     </div>
 
     {{!-- Dầu nhớt --}}
     <div id="oil-products" class="classify-products">
-        <div class="row pagi">
+        
+
+        <div class="row product-list data-metatip=" true"">
+            <div class="row pagi">
             {{!-- <div class="ribbon ribbon-top-right"><span> Best Seller</span></div> --}}
             <span onclick='window.location.href="/collections/Dau-nhot-4"'  class="sub-title">Dầu nhớt</span>
             <img class="bgc-title" src="/img/title.png" alt="">
@@ -322,9 +330,6 @@
                 <a class="seeall" href="/collections/Dau-nhot-4"><span>Xem tất cả sản phẩm <i class="fas fa-angle-double-right"></i></span></a>
             </div>
         </div>
-
-        <div class="row product-list data-metatip=" true"">
-
 
             <div class="col-md-12 product-main">
                 {{#each data.Dau}}
@@ -352,8 +357,8 @@
                 </li>
                 {{/each}}
             </div>
-        </div>
-        <div class="text-center d-flex justify-content-center mt-4">
+
+            <div class="text-center w-100 d-flex justify-content-center mt-4">
 	
             <div class="pagination">
                 <ul class="pagination-list">
@@ -384,6 +389,8 @@
             </div>
             
         </div>
+        </div>
+        
     </div>
 
     

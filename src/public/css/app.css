@@ -5,7 +5,7 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 @import url('http://fonts.googleapis.com/css?family=Roboto');
-@import url(https://fonts.googleapis.com/css?family=Monsterrat:400,700;);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700;);
 
 * {
   padding: 0;
@@ -23,7 +23,7 @@ p,
 a,
 span,
 label {
-  font-family: 'Monsterrat', 'Roboto', SVN, 'Open Sans' !important;
+  font-family:  'Roboto', SVN, 'Open Sans' !important;
 
 }
 
@@ -605,7 +605,7 @@ input[type="file"] {
 }
 
 :root {
-  --cam: #db701e !important;
+  --cam:  #ebb651 !important;
   --xanh: #3A5BA0 !important;
   --trang: white !important;
   --do: #D61C4E !important;
@@ -618,6 +618,14 @@ input[type="file"] {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+.product-page .pagi{
+  margin-bottom:  0 !important; 
+}
+
+.product-page .sub-title:hover {
+  cursor:default;
+}
+
 .container {
   
   margin-bottom: 50px;
@@ -628,7 +636,7 @@ input[type="file"] {
   width: 100%;
   height: 45px;
   background-color: #e6e7e8;
-  margin: 10px 0 10px 0 !important;
+  margin: 0 0 15px 0 !important;
   position: relative;
   margin-bottom: 50px;
 }
@@ -639,19 +647,24 @@ input[type="file"] {
 
 .product-list {
   margin-top: 20px;
+  margin-bottom: 30px !important;
+  /* border: 1px solid rgba(0, 0, 0, .25); */
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-top: none;
 }
 
 /* product-sidebar: start */
 .product-sidebar {
-  box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
+  /* box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px; */
 }
 
 
 .sidebar-item {
-  padding: 5px;
-
+  padding: 10px 10px;
+  background-color: white;
   position: relative;
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, .05);
+  /* border: 1px solid rgba(0, 0, 0, 0.05); */
   justify-content: space-between;
 }
 
@@ -664,7 +677,11 @@ input[type="file"] {
 }
 
 .sidebar-item a {
-  color: darkblue !important;
+  display: block;
+  width: 100%;
+  font-size: 16px !important;
+  font-family: 'Monsterrat';
+  color: #3f3f3f;
 }
 
 .sidebar-item::after {
@@ -713,7 +730,7 @@ input[type="file"] {
 }
 
 .sidebar-dropdown-item {
-  padding: 5px;
+  padding: 10px 10px;
   color: #000 !important;
   border: 1px solid rgba(0, 0, 0, 0.05);
 }
@@ -799,6 +816,7 @@ img.bgc-title {
 .sub-title {
   background-color: var(--xanh);
   color: var(--vang);
+  font-family: 'Open Sans' !important;
   padding: 0 40px;
   line-height: 45px;
   font-size: 25px;
@@ -933,7 +951,7 @@ img.bgc-title {
 }
 
 .seeall {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .items-title {
@@ -1163,6 +1181,9 @@ img.bgc-title {
 }
 
 .navbar-item a {
+  line-height: 50px;
+  display: block;
+  width: 100%;
   font-size: 16px;
   font-weight: 500;
   color: #fff;
@@ -2335,6 +2356,10 @@ footer .form-group input {
   background-color: var(--do);
 }
 
+.current a.sidebar-item-link {
+  color: white !important;
+}
+
 .pagination-list li.current{
 	background: #75cfad;
 }
@@ -2404,7 +2429,7 @@ span.ico-product.ico-new {
   height: 440px;
   margin-right: -10px;
   background-color: var(--trang);
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 .portfolio-menu-head {
@@ -2436,13 +2461,15 @@ span.ico-product.ico-new {
 
 }
 
-.portfolio-menu a {
-  font-size: 16px;
+.portfolio-menu a.menu-link {
+  font-size: 15px;
   display: block;
   width: 100%;
   font-weight: 600;
+  font-family: 'Open Sans' 'Roboto', 'Monstegrat' !important;
   color: #505050;
   padding:3px 20px 2px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, .05);
 }
 
 .portfolio-menu .menu-link:hover {

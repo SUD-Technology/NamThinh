@@ -7,8 +7,8 @@
 
     {{!-- Lốp xe --}}
     <div class="classify-products">
-        <div style="height: 49px;" class="row pagi">
-            <span class="sub-title">{{title}}</span>
+        <div style="height: 49px" class="row pagi">
+            <span style="line-height: 49px;" class="sub-title">{{title}}</span>
             <img style="height: 49px;" class="bgc-title" src="/img/title.png" alt="">
             <div class="ml-auto ">
 	
@@ -43,15 +43,22 @@
         </div>
         </div>
 
-        <div class="row product-list data-metatip=" true"">
+        <div class="row product-list data-metatip="true"">
             <div class="col-md-3">
 
                 <div class="product-sidebar mb-5">
                     <div class="product-sidebar-body">
                         <ul class="sidebar-list">
+                            <li class="sidebar-item smooth current">
+                                <a class="sidebar-item-link" href="{{level1.src}}">Tất cả</a>
+                                
+                            </li>
                             {{#each submenu}}
                             <li class="sidebar-item smooth">
-                                <a href="{{src}}">{{title}}</a>
+                                <a class="sidebar-item-link" href="{{src}}">{{title}}</a>
+                                {{#if role}}
+                                <i class="fa fa-chevron-right"></i>
+                                {{/if}}
                                 <ul class="sidebar-dropdown-menu">
                                     {{#each role}}
                                     <li class="sidebar-dropdown-item smooth"><a href="{{src}}">{{title}}</a></li>
@@ -167,6 +174,14 @@
         $(`#${nav}`).siblings().removeClass('current');
         $(`#${nav}`).addClass('current');
 
+        const menuName = $('.sub-title').text();
+
+        const menu = $('.sidebar-item-link').filter(function() {
+            return $(this).text() === menuName
+        }).parent()
+        menu.siblings().removeClass('current');
+        menu.addClass('current');
+
         const page = getUrlVars()['page'] || '1';
         if(page != '1') {
             $('.prevPage').css('visibility', 'visible');
@@ -176,23 +191,25 @@
 
         $(id).siblings().removeClass('current');
         $(id).addClass('current');
+
+        $('.nextPage').click(function(e) {
+            e.preventDefault();
+            nextPage(pathname)
+        })
+
+        $('.prevPage').click(function(e) {
+            e.preventDefault();
+            prevPage(pathname)
+        })
     })
 
-    $('.nextPage').click(function(e) {
-        e.preventDefault();
-        nextPage(pathname)
-    })
-
-    $('.prevPage').click(function(e) {
-        e.preventDefault();
-        prevPage(pathname)
-    })
+    
 
     function nextPage(slug) {
         const current = getUrlVars()['page'] || '1';
         const next = (parseInt(current) + 1);
 
-        if(!$('.current').next().hasClass('nextPage')) {
+        if(!$('.pagination .current').next().hasClass('nextPage')) {
             window.location.replace(`${slug}?page=${next}`);
 
         }
