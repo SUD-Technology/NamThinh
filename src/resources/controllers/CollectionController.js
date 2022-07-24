@@ -261,7 +261,7 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
         if(view == 'home') {
             return res.send(`<div class="  text-center h3"></div><div class=" text-center h3"></div><div class="d-flex justified-content-center text-center h5">Không tìm thấy sản phẩm</div>`);
         }
-        return res.render('collections', {title, level1, slug, msg: 'Không tìm thấy sản phẩm nào'});
+        return res.render('collections', {title, level1, submenu, slug, msg: 'Không tìm thấy sản phẩm nào'});
     }
     const data = products.map(product => {
         if (!brand_list.includes(product.brand_name))
