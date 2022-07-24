@@ -653,6 +653,10 @@ input[type="file"] {
   border-top: none;
 }
 
+.product-page .product-list  {
+  box-shadow: none;
+}
+
 /* product-sidebar: start */
 .product-sidebar {
   /* box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px; */
