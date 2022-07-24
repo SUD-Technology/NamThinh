@@ -614,8 +614,8 @@ input[type="file"] {
 
 /* Product */
 
-.wrapper {
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px;
+.product-page {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .container {
@@ -811,6 +811,11 @@ img.bgc-title {
 
 }
 
+.sub-title:hover {
+  cursor: pointer;
+  color: white;
+}
+
 
 .center {
   display: flex;
@@ -888,9 +893,9 @@ img.bgc-title {
 
 .items-product img:hover {
   cursor: pointer;
-  /* transform: scale(1.05);
+  transform: scale(1.07);
 
-  overflow: hidden; */
+  overflow: hidden;
   /* border: 2px solid var(--xanh); */
 }
 
@@ -1141,24 +1146,24 @@ img.bgc-title {
 
 .navbar-list {
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
 
 
 .navbar-item {
   line-height: 50px;
-  padding: 0px 40px;
+  padding: 0px 37px;
   position: relative;
 }
 
 .navbar-item:hover {
   background-color: var(--do);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   cursor: pointer;
 }
 
 .navbar-item a {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
   color: #fff;
   text-transform: uppercase;
@@ -1193,6 +1198,7 @@ img.bgc-title {
 .navbar-list .navbar-item:nth-child(3) .navbar-menu .navbar-menu-item {
   display: flex;
   justify-content: space-between;
+  
 }
 
 .navbar-product-item i,
@@ -1224,6 +1230,8 @@ img.bgc-title {
 .navbar-menu-item a {
   color: #000;
   margin-left: 20px;
+  display: block;
+  width: 100%;
 }
 
 .navbar-product-item:hover,
@@ -1918,6 +1926,7 @@ footer .form-group input {
   .navbar2,
   .navbar {
     display: none;
+    height: 52px !important;
   }
 
   .nav-bottom form a {
@@ -2322,6 +2331,10 @@ footer .form-group input {
 	color: black;
 }
 
+.current {
+  background-color: var(--do);
+}
+
 .pagination-list li.current{
 	background: #75cfad;
 }
@@ -2386,3 +2399,77 @@ span.ico-product.ico-new {
 }
 
 /* End Zalo contact */
+
+.product-portfolio {
+  height: 440px;
+  margin-right: -10px;
+  background-color: var(--trang);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.portfolio-menu-head {
+  height: 45px;
+  line-height: 45px;
+  padding:0 20px;
+  background-color: var(--xanh);
+  color: white;
+  
+}
+
+.portfolio-menu-head span, .portfolio-menu-head i {
+  font-size: 16px;
+  
+}
+
+
+.portfolio-menu {
+  line-height: 40px;
+  min-height: 40px;
+  
+  
+}
+
+.menu-icon {
+  display: inline-block;
+    width: 30px;
+    text-align: left;
+
+}
+
+.portfolio-menu a {
+  font-size: 16px;
+  display: block;
+  width: 100%;
+  font-weight: 600;
+  color: #505050;
+  padding:3px 20px 2px;
+}
+
+.portfolio-menu .menu-link:hover {
+  background-color: var(--do);
+  color: white;
+}
+
+.portfolio-title {
+  font-size: 16px !important;
+  display: inline-block;
+}
+
+.header-banner figure {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.header-banner-slide img {
+  max-height: 440px;
+}
+
+.carousel-control-prev {
+  justify-content: left;
+  margin-left: 30px;
+}
+
+
+.carousel-control-next {
+  justify-content: right;
+  margin-right: 30px;
+}

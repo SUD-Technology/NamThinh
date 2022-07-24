@@ -194,20 +194,20 @@ $(document).ready(function () {
 
     
     $('.items-product').hover(function() {
-        $(this).children().children('.img-product').css('transform', 'scale(1.07)')
+        $(this).children('.img-box').children('.img-product').css('transform', 'scale(1.07)')
     }, function() {
-        $(this).children().children('.img-product').css('transform', 'scale(1)')
+        $(this).children('.img-box').children('.img-product').css('transform', 'scale(1)')
     })
 
-    $(function () {
-        $('.carousel-item').each(function () {
-            var originalImagePath = $(this).find('img').data('original-image');
-            $(this).zoom({
-                url: originalImagePath,
-                magnify: 3
-            });
-        });
-    });
+    // $(function () {
+    //     $('.carousel-item').each(function () {
+    //         var originalImagePath = $(this).find('img').data('original-image');
+    //         $(this).zoom({
+    //             url: originalImagePath,
+    //             magnify: 3
+    //         });
+    //     });
+    // });
 
     // Custom File Upload: start
 

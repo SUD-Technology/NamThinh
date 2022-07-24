@@ -161,6 +161,12 @@
 
 <script>
     $(document).ready(function() {
+        const pathname = window.location.pathname;
+        const nav = pathname.split('/')[1];
+        
+        $(`#${nav}`).siblings().removeClass('current');
+        $(`#${nav}`).addClass('current');
+
         const page = getUrlVars()['page'] || '1';
         if(page != '1') {
             $('.prevPage').css('visibility', 'visible');
@@ -174,16 +180,12 @@
 
     $('.nextPage').click(function(e) {
         e.preventDefault();
-        const slug = window.location.pathname
-        
-        nextPage(slug)
+        nextPage(pathname)
     })
 
     $('.prevPage').click(function(e) {
         e.preventDefault();
-        const slug = window.location.pathname;
-
-        prevPage(slug)
+        prevPage(pathname)
     })
 
     function nextPage(slug) {
