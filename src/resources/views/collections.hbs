@@ -177,9 +177,9 @@
         $(`#${nav}`).addClass('current');
 
         const menuName = $('.sub-title').text();
-
+        console.log(menuName);
         const menu = $('.sidebar-item-link').filter(function() {
-            return $(this).text() === menuName
+            return $(this).text().trim() === menuName
         }).parent()
         menu.siblings().removeClass('current');
         menu.addClass('current');
