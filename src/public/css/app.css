@@ -763,11 +763,11 @@ input[type="file"] {
 }
 
 .brand-sidebar-title {
-  background-color: var(--cam);
+  background-color: var(--xanh);
   padding: 10px 0;
   color: #fff;
   text-align: center;
-  border: 1px solid var(--cam);
+  border: 1px solid var(--xanh);
 }
 
 .brand-sidebar-title h1 {
