@@ -664,7 +664,7 @@ input[type="file"] {
 
 
 .sidebar-item {
-  padding: 10px 10px;
+  
   background-color: white;
   position: relative;
   border: 1px solid rgba(0, 0, 0, .05);
@@ -681,6 +681,7 @@ input[type="file"] {
 }
 
 .sidebar-item a {
+  padding: 10px 10px;
   display: block;
   width: 100%;
   font-size: 16px !important;
@@ -734,7 +735,7 @@ input[type="file"] {
 }
 
 .sidebar-dropdown-item {
-  padding: 10px 10px;
+  /* padding: 10px 10px; */
   color: #000 !important;
   border: 1px solid rgba(0, 0, 0, 0.05);
 }

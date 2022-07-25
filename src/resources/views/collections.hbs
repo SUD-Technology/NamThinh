@@ -55,10 +55,12 @@
                             </li>
                             {{#each submenu}}
                             <li class="sidebar-item smooth">
-                                <a class="sidebar-item-link" href="{{src}}">{{title}}</a>
-                                {{#if role}}
-                                <i class="fa fa-chevron-right"></i>
-                                {{/if}}
+                                <a class="sidebar-item-link" href="{{src}}">{{title}}
+                                    {{#if role}}
+                                        <i class="d-flex float-right fa fa-chevron-right"></i>
+                                    {{/if}}
+                                </a>
+                                
                                 <ul class="sidebar-dropdown-menu">
                                     {{#each role}}
                                     <li class="sidebar-dropdown-item smooth"><a href="{{src}}">{{title}}</a></li>
