@@ -634,8 +634,8 @@ input[type="file"] {
 
 .pagi {
   width: 100%;
-  height: 45px;
-  background-color: #e6e7e8;
+  /* height: 46px; */
+  background-color: #F1F1F1;
   margin: 0 0 15px 0 !important;
   position: relative;
   margin-bottom: 50px;
