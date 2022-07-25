@@ -47,6 +47,7 @@
             <div class="col-md-3">
 
                 <div class="product-sidebar mb-5">
+                    
                     <div class="product-sidebar-body">
                         <ul class="sidebar-list">
                             <li class="sidebar-item smooth current">
@@ -78,13 +79,13 @@
                         <h1>Thương hiệu</h1>
                     </div>
                     <div class="brand-sidebar-body">
-                        <p>Chọn thương hiệu</p>
+                        {{!-- <p>Chọn thương hiệu</p> --}}
                         <form action="">
                             <div class="scroll">
                                 <ul>
                                     {{#each brand_list}}
                                     <li>
-                                        <span class="m-0">
+                                        <span class="single-brand m-0">
                                             <input onclick="filterProducts({{id}})" id="brand-{{id}}" type="checkbox">
                                             <label for="brand-{{id}}" class="h5 brand-{{id}}">{{name}}</label>
                                         </span>
