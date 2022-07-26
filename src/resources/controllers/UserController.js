@@ -1,7 +1,8 @@
 const { validationResult } = require('express-validator')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const Users = require('../models/Users')
+const Users = require('../models/Users');
+const flash = require('express-flash');
 
 function hashPassword(password) {
     let saltRounds = 10;
@@ -48,6 +49,7 @@ const UserController = {
                                 res.redirect('/users/login')
                             } else {
                                 req.session.username = account.username
+                                req.session.position = account.position || ""
                                 req.session.token = token
                                 req.flash('success', 'Đăng nhập thành công')
                                 res.redirect('/home/')
@@ -118,6 +120,44 @@ const UserController = {
             req.flash('phone', phone);
             req.flash('password', password);
             res.redirect('/users/register')
+        }
+    },
+
+    getChangePassword: (req, res, next) => {
+        let error = req.flash('error') || "";
+        let oldPassword = req.flash('oldPassword') || "";
+        let newPassword = req.flash('newPassword') || "";
+        let success = req.flash('success') || ""
+        res.render('changePassword', { error, oldPassword, newPassword, success })
+    },
+
+    postChangePassword: (req, res, next) => {
+        let result = validationResult(req);
+        if (result.errors.length === 0) {
+            const username = req.session.username;
+            const newPassword = req.body.newPassword;
+
+            return Users.findOneAndUpdate({ username: username }, { password: hashPassword(newPassword) }, (err, data) => {
+                if (error) {
+                    req.flash('error', 'Đổi mật khẩu thất bại');
+                    res.redirect('/users/changePassword')
+                } else {
+                    req.flash('success', 'Đổi mật khẩu thành công');
+                    res.redirect('/users/changePassword')
+                }
+            })
+        } else {
+            let message;
+            result = result.mapped();
+            for (let f in result) {
+                message = result[f].msg;
+                break;
+            }
+            const { oldPassword, newPassword } = req.body
+            req.flash('error', message);
+            req.flash('oldPassword', oldPassword);
+            req.flash('newPassword', newPassword);
+            res.redirect('/users/changePassword');
         }
     },
 
