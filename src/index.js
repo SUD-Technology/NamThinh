@@ -71,7 +71,7 @@ app.get('/home', async (req, res, next) => {
             data.Dau.push(current_product);
         }
     })
-    return res.render('home', { data, admin: req.session.username })
+    return res.render('home', {homepage: true, data, admin: req.session.username })
 })
 
 app.get('/register', (req, res) => {
