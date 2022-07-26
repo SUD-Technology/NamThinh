@@ -126,7 +126,7 @@ $(document).ready(function () {
         }
       );
 
-
+    // Pagination Homepage
     function loadProducts(id) {
         $(`#${id}`).on('click', '.pagination a', function(e) {
             e.preventDefault();
@@ -138,15 +138,15 @@ $(document).ready(function () {
             let nextUrl = ''
     
             if(current.text() !== '1') {
-                $('.prevPage').css('visibility', 'visible');
+                $(current).siblings('.prevPage').css('visibility', 'visible');
             }else {
-                $('.prevPage').css('visibility', 'hidden');;
+                $(current).siblings('.prevPage').css('visibility', 'hidden');;
             }
     
-            if(current.text() == '4') {
-                $('.nextPage').css('visibility', 'hidden');;
+            if(current.next().hasClass('nextPage')) {
+                $(current).siblings('.nextPage').css('visibility', 'hidden');;
             }else {
-                $('.nextPage').css('visibility', 'visible');;
+                $(current).siblings('.nextPage').css('visibility', 'visible');;
             }
     
             if(current.hasClass('prevPage')) {
@@ -154,7 +154,7 @@ $(document).ready(function () {
                     last.removeClass('current');
                     last.prev().addClass('current');
                     if(last.prev().prev().hasClass('prevPage')) {
-                        $('.prevPage').css('visibility', 'hidden');; 
+                        $(current).css('visibility', 'hidden');
                     }
                 }
                 nextUrl = currentUrl.slice(0,-1) + (currentPage - 1);
@@ -165,7 +165,7 @@ $(document).ready(function () {
                     last.removeClass('current');
                     last.next().addClass('current');
                     if(last.next().next().hasClass('nextPage')) {
-                        $('.nextPage').css('visibility', 'hidden');; 
+                        $(current).css('visibility', 'hidden'); 
                     }
                 }
                 nextUrl = currentUrl.slice(0,-1) + (currentPage + 1);
@@ -190,20 +190,24 @@ $(document).ready(function () {
     loadProducts('truck-products')
     loadProducts('tool-products')
     loadProducts('oil-products')
-
+    // End Pagination Homepage
 
     
+    $('.items-product').hover(function() {
+        $(this).children('.img-box').children('.img-product').css('transform', 'scale(1.07)')
+    }, function() {
+        $(this).children('.img-box').children('.img-product').css('transform', 'scale(1)')
+    })
 
-
-    $(function () {
-        $('.carousel-item').each(function () {
-            var originalImagePath = $(this).find('img').data('original-image');
-            $(this).zoom({
-                url: originalImagePath,
-                magnify: 3
-            });
-        });
-    });
+    // $(function () {
+    //     $('.carousel-item').each(function () {
+    //         var originalImagePath = $(this).find('img').data('original-image');
+    //         $(this).zoom({
+    //             url: originalImagePath,
+    //             magnify: 3
+    //         });
+    //     });
+    // });
 
     // Custom File Upload: start
 

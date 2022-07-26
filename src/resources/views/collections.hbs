@@ -7,20 +7,61 @@
 
     {{!-- Lốp xe --}}
     <div class="classify-products">
-        <div class="row pagi">
-            <span class="sub-title">{{title}}</span>
-            <img class="bgc-title" src="/img/title.png" alt="">
+        <div style="height: 49px" class="row pagi">
+            <span style="line-height: 49px;" class="sub-title">{{title}}</span>
+            <img style="height: 49px;" class="bgc-title" src="/img/title.png" alt="">
+            <div class="ml-auto ">
+	
+            <div class="pagination">
+                <ul class="pagination-list mt-2 mb-0">
+                        
+                    <li class="prevPage" style="visibility: hidden;"><a title="Trang trước" href="" class="pagenav"><i class="fa fa-chevron-left"></i></a></li>
+                    
+                    <li class="page-1" class="hidden-phone current"><a title="1" href="/collections/{{slug}}?page=1" class="pagenav">1</a></li>
+                    
+                    
+                    
+                    <li class="page-2"  class="hidden-phone"><a title="2" href="/collections/{{slug}}?page=2" class="pagenav">2</a></li>
+                    
+                    
+                    
+                    <li class="page-3"  class="hidden-phone"><a title="3" href="/collections/{{slug}}?page=3" class="pagenav">3</a></li>
+                    
+                    
+                    
+                    <li class="page-4"  class="hidden-phone "><a title="4" href="/collections/{{slug}}?page=4" class="pagenav">4</a></li>
+                    <li class="page-5"  class="hidden-phone "><a title="5" href="/collections/{{slug}}?page=5" class="pagenav">5</a></li>
+
+                    <li class="page-6"  class="hidden-phone "><a title="6" href="/collections/{{slug}}?page=6" class="pagenav">6</a></li>
+                    
+                    <li class="nextPage"><a title="Trang sau" href="" class="pagenav"><i class="fa fa-chevron-right"></i></a></li>
+                    
+                </ul>
+                <input type="hidden" name="limitstart" value="0">
+            </div>
+            
+        </div>
         </div>
 
-        <div class="row product-list data-metatip=" true"">
+        <div class="row product-list data-metatip="true"">
             <div class="col-md-3">
 
                 <div class="product-sidebar mb-5">
+                    
                     <div class="product-sidebar-body">
                         <ul class="sidebar-list">
+                            <li class="sidebar-item smooth current">
+                                <a class="sidebar-item-link" href="{{level1.src}}">Tất cả</a>
+                                
+                            </li>
                             {{#each submenu}}
                             <li class="sidebar-item smooth">
-                                <a href="{{src}}">{{title}}</a>
+                                <a class="sidebar-item-link" href="{{src}}">{{title}}
+                                    {{#if role}}
+                                        <i class="d-flex float-right fa fa-chevron-right"></i>
+                                    {{/if}}
+                                </a>
+                                
                                 <ul class="sidebar-dropdown-menu">
                                     {{#each role}}
                                     <li class="sidebar-dropdown-item smooth"><a href="{{src}}">{{title}}</a></li>
@@ -38,13 +79,13 @@
                         <h1>Thương hiệu</h1>
                     </div>
                     <div class="brand-sidebar-body">
-                        <p>Chọn thương hiệu</p>
+                        {{!-- <p>Chọn thương hiệu</p> --}}
                         <form action="">
                             <div class="scroll">
                                 <ul>
                                     {{#each brand_list}}
                                     <li>
-                                        <span class="m-0">
+                                        <span class="single-brand m-0">
                                             <input onclick="filterProducts({{id}})" id="brand-{{id}}" type="checkbox">
                                             <label for="brand-{{id}}" class="h5 brand-{{id}}">{{name}}</label>
                                         </span>
@@ -72,13 +113,13 @@
                     class="-{{brand}} items-product smooth text-center">
                     <div class="img-box">
                         {{#if pimg}}
-                        <img class="smooth" width="100%"
+                        <img class="img-product smooth" width="100%"
                             src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{pimg}}" alt="">
                         {{/if}}
                     </div>
                     <div class="info-box">
                         <div class="items-title">
-                            <a href="">{{pname}}</a>
+                            <a href="/products/{{pslug}}">{{pname}}</a>
                             <p>{{pid}}</p>
                         </div>
                         <div class="items-price">
@@ -88,18 +129,115 @@
                 </li>
                 {{/each}}
 
-
+            
             </div>
         </div>
-        {{!-- <div class="d-flex float-right mb-3 p-2">
-            <a class="seeall" href="#"><span>Xem tất cả sản phẩm</span></a>
-        </div> --}}
+        <div class="text-center d-flex justify-content-center mt-4 ">
+	
+            <div class="pagination">
+                <ul class="pagination-list">
+                        
+                    <li class="prevPage" style="visibility: hidden;"><a title="Trang trước" href="" class="pagenav"><i class="fa fa-chevron-left"></i></a></li>
+                    
+                    <li class="page-1" class="hidden-phone current"><a title="1" href="/collections/{{slug}}?page=1" class="pagenav">1</a></li>
+                    
+                    
+                    
+                    <li class="page-2"  class="hidden-phone"><a title="2" href="/collections/{{slug}}?page=2" class="pagenav">2</a></li>
+                    
+                    
+                    
+                    <li class="page-3"  class="hidden-phone"><a title="3" href="/collections/{{slug}}?page=3" class="pagenav">3</a></li>        
+                    
+                    <li class="page-4"  class="hidden-phone "><a title="4" href="/collections/{{slug}}?page=4" class="pagenav">4</a></li>
+
+                    <li class="page-5"  class="hidden-phone "><a title="5" href="/collections/{{slug}}?page=5" class="pagenav">5</a></li>
+
+                    <li class="page-6"  class="hidden-phone "><a title="6" href="/collections/{{slug}}?page=6" class="pagenav">6</a></li>
+                    
+                    
+                    <li class="nextPage"><a title="Trang sau" href="" class="pagenav"><i class="fa fa-chevron-right"></i></a></li>
+                    
+                </ul>
+                <input type="hidden" name="limitstart" value="0">
+            </div>
+            
+        </div>
+    </div>
     </div>
 
 
 </div>
 
 <script>
+    $(document).ready(function() {
+        const pathname = window.location.pathname;
+        const nav = pathname.split('/')[1];
+        
+        $(`#${nav}`).siblings().removeClass('current');
+        $(`#${nav}`).addClass('current');
+
+        const menuName = $('.sub-title').text();
+        console.log(menuName);
+        const menu = $('.sidebar-item-link').filter(function() {
+            return $(this).text().trim() === menuName
+        }).parent()
+        menu.siblings().removeClass('current');
+        menu.addClass('current');
+
+        const page = getUrlVars()['page'] || '1';
+        if(page != '1') {
+            $('.prevPage').css('visibility', 'visible');
+        }
+        
+        let id = '.page-' + page;
+
+        $(id).siblings().removeClass('current');
+        $(id).addClass('current');
+
+        $('.nextPage').click(function(e) {
+            e.preventDefault();
+            nextPage(pathname)
+        })
+
+        $('.prevPage').click(function(e) {
+            e.preventDefault();
+            prevPage(pathname)
+        })
+    })
+
+    
+
+    function nextPage(slug) {
+        const current = getUrlVars()['page'] || '1';
+        const next = (parseInt(current) + 1);
+
+        if(!$('.pagination .current').next().hasClass('nextPage')) {
+            window.location.replace(`${slug}?page=${next}`);
+
+        }
+    }
+
+    function prevPage(slug) {
+        const current = getUrlVars()['page'] || '1';
+        if(current > '1') {
+            const prev = (parseInt(current) - 1);
+            window.location.replace(`${slug}?page=${prev}`);
+        }
+    }
+
+    function getUrlVars() {
+        var vars = [], hash;
+        var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for(var i = 0; i < hashes.length; i++)
+        {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+        }
+        return vars;
+    }
+
     function filterProducts(id) {
         const brand_name = $(`.brand-${id}`).text();
         $('.items-product').removeClass('d-none');

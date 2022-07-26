@@ -35,7 +35,7 @@ app.use(flash())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', (req, res) => {
-    res.render('index', { index: true })
+    res.render('index', { hide: true, index: true })
 })
 
 app.get('/home', async (req, res, next) => {

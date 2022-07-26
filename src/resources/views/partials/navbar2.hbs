@@ -1,8 +1,8 @@
 <nav class="navbar2 ">
     <div class="container">
         <ul class="navbar-list">
-            <li  onclick='window.location.href="/home"' class="navbar-item"><a href="/home"><i style="font-size: 20px;" class="fas fa-home"></i></a></li>
-            <li class="navbar-item">
+            <li id="home" onclick='window.location.href="/home"' class="navbar-item current smooth"><a href="/home">Trang chủ</a></li>
+            <li id="infomation" class="navbar-item">
 
                 <a href="">Về Nam Thịnh <i class="fas fa-angle-down"></i></a>
 
@@ -15,16 +15,16 @@
                     </li>
                 </ul>
             </li>
-            <li class="navbar-item">
+            <li id="collections" class="navbar-item">
                 <a href="">Sản phẩm <i class="fas fa-angle-down"></i></a>
                 <ul class="navbar-menu">
                     <li class="navbar-menu-item smooth">
                         <a href="/collections/Lop-Advance-Samson-1">Lốp Advance/Samson</a>
-                        <i class="fas fa-angle-double-right"></i>
+                        <i class="fa fa-chevron-right"></i>
                         <ul class="navbar-product-list">
                             <li class="navbar-product-item smooth">
                                 <a href="/collections/Lop-xe-tai-xe-khach-11">Lốp xe tải - xe khách</a>
-                                <i class="fas fa-angle-double-right"></i>
+                                <i class="fa fa-chevron-right"></i>
                                 <ul id="LMCT" class="navbar-product-list">
                                     <li class="navbar-product-item smooth">
                                         <a href="/collections/Lop-tai-nhe-111">Lốp tải nhẹ</a>
@@ -40,7 +40,7 @@
                             </li>
                             <li class="navbar-product-item smooth">
                                 <a href="/collections/Lop-may-cong-trinh-12">Lốp máy công trình</a>
-                                <i class="fas fa-angle-double-right"></i>
+                                <i class="fa fa-chevron-right"></i>
                                 <ul id="LMCT" class="navbar-product-list">
                                     <li class="navbar-product-item smooth">
                                         <a href="/collections/Lop-xe-tai-hang-nang-121">Lốp xe tải hạng nặng</a>
@@ -58,7 +58,7 @@
                             </li>
                             <li class="navbar-product-item smooth">
                                 <a href="/collections/Lop-xe-cong-nghiep-13">Lốp xe công nghiệp</a>
-                                <i class="fas fa-angle-double-right"></i>
+                                <i class="fa fa-chevron-right"></i>
                                 <ul id="LMCT" class="navbar-product-list">
                                     <li class="navbar-product-item smooth">
                                         <a href="/collections/Lop-dac-131">Lốp đặc</a>
@@ -70,7 +70,7 @@
                             </li>
                             <li class="navbar-product-item smooth">
                                 <a href="/collections/Lop-cong-nghiep-14">Lốp nông nghiệp</a>
-                                <i class="fas fa-angle-double-right"></i>
+                                <i class="fa fa-chevron-right"></i>
                                 <ul id="LMCT" class="navbar-product-list">
                                     <li class="navbar-product-item smooth">
                                         <a href="/collections/Lop-nong-nghiep-nho-141">Lốp nông nghiệp nhỏ</a>
@@ -84,7 +84,7 @@
                     </li>
                     <li class="navbar-menu-item smooth">
                         <a href="/collections/Xe-tai-dau-keo-xe-ben-2">Xe tải/ đầu kéo / xe ben</a>
-                        <i class="fas fa-angle-double-right"></i>
+                        <i class="fa fa-chevron-right"></i>
                         <ul class="navbar-product-list">
                             <li class="navbar-product-item smooth">
                                 <a href="/collections/Xe-tai-thung-21">Xe tải thùng</a>
@@ -102,7 +102,7 @@
                     </li>
                     <li class="navbar-menu-item smooth">
                         <a href="/collections/Phu-tung-o-to-3">Phụ tùng ô tô</a>
-                        <i class="fas fa-angle-double-right"></i>
+                        <i class="fa fa-chevron-right"></i>
                         <ul class="navbar-product-list">
                             <li class="navbar-product-item smooth">
                                 <a href="/collections/Phu-tung-xe-tai-thung-31">Xe tải thùng</a>
@@ -120,11 +120,11 @@
                     </li>
                     <li class="navbar-menu-item smooth">
                         <a href="/collections/Dau-nhot-4">Dầu nhớt</a>
-                        <i class="fas fa-angle-double-right"></i>
+                        <i class="fa fa-chevron-right"></i>
                         <ul class="navbar-product-list">
                             <li class="navbar-product-item smooth">
                                 <a href="/collections/Dau-nhot-o-to-xe-may-41">Dầu nhớt ô tô / xe máy</a>
-                                <i class="fas fa-angle-double-right"></i>
+                                <i class="fa fa-chevron-right"></i>
                                 <ul id="DN" class="navbar-product-list">
                                     <li class="navbar-product-item smooth">
                                         <a href="/collections/Dau-dong-co-411">Dầu động cơ</a>
@@ -139,7 +139,7 @@
                             </li>
                             <li class="navbar-product-item smooth">
                                 <a href="/collections/Dau-nhot-cong-nghiep-42">Dầu nhớt công nghiệp</a>
-                                <i class="fas fa-angle-double-right"></i>
+                                <i class="fa fa-chevron-right"></i>
                                 <ul id="DN" class="navbar-product-list">
                                     <li class="navbar-product-item smooth">
                                         <a href="/collections/Dau-da-nang-421">Dầu đa năng</a>
@@ -157,10 +157,10 @@
                     </li>
                 </ul>
             </li>
-            <li class="navbar-item">
+            <li id="discount" class="navbar-item">
                 <a href="">Khuyến mãi</a>
             </li>
-            <li class="navbar-item">
+            <li id="policy" class="navbar-item">
                 <a href="">Chính sách <i class="fas fa-angle-down"></i></a>
                 <ul class="navbar-menu" style="width: 280px">
                     <li class="navbar-menu-item smooth">
@@ -177,7 +177,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="navbar-item"><a href="">Showroom</a></li>
+            <li id="showroom" class="navbar-item"><a href="">Showroom</a></li>
+            <li id="showroom" class="navbar-item"><a href="">Hỗ trợ</a></li>
         </ul>
     </div>
 </nav>
