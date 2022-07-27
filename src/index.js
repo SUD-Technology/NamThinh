@@ -86,6 +86,9 @@ app.get('/contact', (req, res) => {
     res.render('contact')
 })
 
+app.get('/policy', (req, res) => {
+    res.render('policy');
+})
 
 app.use('/users', UserRouter);
 app.use('/collections', CollectionRouter);

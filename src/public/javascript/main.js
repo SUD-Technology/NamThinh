@@ -207,6 +207,9 @@ $(document).ready(function () {
         $(this).children('.hexImg').attr('src', old_img);
     })
 
+    $('.scroll-to-top').click(function() {
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
+    })
     // $(function () {
     //     $('.carousel-item').each(function () {
     //         var originalImagePath = $(this).find('img').data('original-image');
