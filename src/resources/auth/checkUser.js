@@ -5,7 +5,7 @@ const authPage = (permissions) => {
             next()
         } else {
             req.flash("error", 'Bạn không có quyền truy cập chức năng này')
-            return res.redirect('/users/login')
+            return res.redirect('/users/logout')
         }
     }
 }

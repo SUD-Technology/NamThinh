@@ -17,6 +17,7 @@
                                             class="fas fa-edit"></i>
                                         Chỉnh sửa trang</a></li>
                                 {{/if}}
+
                                 <li><a class="list-group-item smooth" href="/users/changePassword" title=""> <i
                                             class="fas fa-key"></i>
                                         Đổi mật khẩu</a></li>
@@ -109,12 +110,23 @@
                                 Chỉnh sửa trang
                             </a>
                             {{/if}}
-                            <a class="smooth mr-2 ml-2" href="/admin/changePassword"> <i class="fas fa-key"></i>
-                                Đổi mật khẩu
+                            <a class="smooth mr-2 ml-2 user-info" href=""> <i class="fas fa-user"></i>
+                                Admin
                             </a>
-                            <a class="smooth mr-2 ml-2" href="/users/logout"> <i class="fas fa-sign-out-alt"></i>
-                                Đăng xuất
-                            </a>
+                            <ul class="user-dropDown">
+                                <li>
+                                    <a class="smooth mr-2 ml-2" href="/admin/changePassword"> <i class="fas fa-key"></i>
+                                        Đổi mật khẩu
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="smooth mr-2 ml-2" href="/users/logout"> <i
+                                            class="fas fa-sign-out-alt"></i>
+                                        Đăng xuất
+                                    </a>
+                                </li>
+                            </ul>
+
                         </form>
 
                     </div>

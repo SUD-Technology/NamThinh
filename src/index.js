@@ -82,6 +82,10 @@ app.get('/cart', (req, res) => {
     res.render('product-cart')
 })
 
+app.get('/news', (req, res) => {
+    res.render('news')
+})
+
 app.get('/contact', (req, res) => {
     res.render('contact')
 })

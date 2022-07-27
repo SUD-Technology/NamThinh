@@ -2,7 +2,6 @@ const { validationResult } = require('express-validator')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const Users = require('../models/Users');
-const flash = require('express-flash');
 
 function hashPassword(password) {
     let saltRounds = 10;
@@ -165,6 +164,8 @@ const UserController = {
         req.session.destroy();
         res.redirect('/users/login');
     },
+
+    
 }
 
 module.exports = UserController;
