@@ -128,61 +128,61 @@ $(document).ready(function () {
 
     $(".hover-2").mouseleave(
         function () {
-          $(this).removeClass("hover");
+            $(this).removeClass("hover");
         }
-      );
+    );
 
     // Pagination Homepage
     function loadProducts(id) {
-        $(`#${id}`).on('click', '.pagination a', function(e) {
+        $(`#${id}`).on('click', '.pagination a', function (e) {
             e.preventDefault();
-            
+
             var current = $(this).parent();
             var last = current.siblings('.current');
             var currentUrl = last.children().attr('href');
-            let currentPage =  parseInt(last.children().attr('title'));
+            let currentPage = parseInt(last.children().attr('title'));
             let nextUrl = ''
-    
-            if(current.text() !== '1') {
+
+            if (current.text() !== '1') {
                 $(current).siblings('.prevPage').css('visibility', 'visible');
-            }else {
+            } else {
                 $(current).siblings('.prevPage').css('visibility', 'hidden');;
             }
-    
-            if(current.next().hasClass('nextPage')) {
+
+            if (current.next().hasClass('nextPage')) {
                 $(current).siblings('.nextPage').css('visibility', 'hidden');;
-            }else {
+            } else {
                 $(current).siblings('.nextPage').css('visibility', 'visible');;
             }
-    
-            if(current.hasClass('prevPage')) {
-                if(!last.prev().hasClass('prevPage')){
+
+            if (current.hasClass('prevPage')) {
+                if (!last.prev().hasClass('prevPage')) {
                     last.removeClass('current');
                     last.prev().addClass('current');
-                    if(last.prev().prev().hasClass('prevPage')) {
+                    if (last.prev().prev().hasClass('prevPage')) {
                         $(current).css('visibility', 'hidden');
                     }
                 }
-                nextUrl = currentUrl.slice(0,-1) + (currentPage - 1);
+                nextUrl = currentUrl.slice(0, -1) + (currentPage - 1);
             }
-            else if(current.hasClass('nextPage')) {
-                if(!last.next().hasClass('nextPage')){
-                    
+            else if (current.hasClass('nextPage')) {
+                if (!last.next().hasClass('nextPage')) {
+
                     last.removeClass('current');
                     last.next().addClass('current');
-                    if(last.next().next().hasClass('nextPage')) {
-                        $(current).css('visibility', 'hidden'); 
+                    if (last.next().next().hasClass('nextPage')) {
+                        $(current).css('visibility', 'hidden');
                     }
                 }
-                nextUrl = currentUrl.slice(0,-1) + (currentPage + 1);
-            }else {
+                nextUrl = currentUrl.slice(0, -1) + (currentPage + 1);
+            } else {
                 current.siblings().removeClass('current');
                 current.addClass('current');
             }
-            
+
             const url = nextUrl || $(this).attr('href') || '';
-            
-            if(url != '') {
+
+            if (url != '') {
                 $.ajax({
                     url: url,
                     success: (data) => {
@@ -198,18 +198,24 @@ $(document).ready(function () {
     loadProducts('oil-products')
     // End Pagination Homepage
 
-    
-    $('.items-product').hover(function() {
+
+    $('.items-product').hover(function () {
         $(this).children('.img-box').children('.img-product').css('transform', 'scale(1.07)')
-    }, function() {
+    }, function () {
         $(this).children('.img-box').children('.img-product').css('transform', 'scale(1)')
     })
 
+    // 
+    $('.user-info').hover(function () {
+        $('.user-dropDown').show()
+    }, function () {
+        $('.user-dropDown').hide()
+    })
     var old_img = '';
-    $('.hexIn').hover(function() {
+    $('.hexIn').hover(function () {
         old_img = $(this).children('.hexImg').attr('src');
         $(this).children('.hexImg').attr('src', 'https://media.istockphoto.com/photos/hand-using-laptop-and-press-screen-to-search-browsing-on-the-internet-picture-id1271072224?b=1&k=20&m=1271072224&s=170667a&w=0&h=4BaKdYk3VKJO-smyDBRkX1wNErrgZwCJTaj08a7rZHc=')
-    },function() {
+    }, function () {
         $(this).children('.hexImg').attr('src', old_img);
     })
 
@@ -230,87 +236,14 @@ $(document).ready(function () {
 
     // Custom File Upload: end
 
+    $('.user-dropDown').hover(function () {
+        $(this).show()
+    }, function () {
+        $(this).hide()
+    })
 
 });
 
-// City Select
-
-// function selectDistrict(calc_shipping_provinces, calc_shipping_district, billing_address_1, billing_address_2, district_local, address_1_saved, address_2_saved) {
-//     //<![CDATA[
-//     if (address_2 = localStorage.getItem(`${address_2_saved}`)) {
-//         $(`select[name="${calc_shipping_district}"] option`).each(function () {
-//             if ($(this).text() == address_2) {
-//                 $(this).attr('selected', '')
-//             }
-//         })
-//         $(`input.${billing_address_2}`).attr('value', address_2)
-//     }
-//     if (district = localStorage.getItem(`${district_local}`)) {
-//         $(`select[name="${calc_shipping_district}"`).html(district)
-//         $(`select[name="${calc_shipping_district}"`).on('change', function () {
-//             var target = $(this).children('option:selected')
-//             target.attr('selected', '')
-//             $(`select[name="${calc_shipping_district}"] option`).not(target).removeAttr('selected')
-//             address_2 = target.text()
-//             $(`input.${billing_address_2}`).attr('value', address_2)
-//             district = $(`select[name="${calc_shipping_district}"]`).html()
-//             localStorage.setItem(`${district_local}`, district)
-//             localStorage.setItem(`${address_2_saved}`, address_2)
-//         })
-//     }
-//     $(`select[name="${calc_shipping_provinces}"]`).each(function () {
-//         var $this = $(this),
-//             stc = ''
-//         c.forEach(function (i, e) {
-//             e += +1
-//             stc += '<option value=' + e + '>' + i + '</option>'
-//             $this.html('<option value="">Tỉnh/Thành</option>' + stc)
-//             if (address_1 = localStorage.getItem(`${address_1_saved}`)) {
-//                 $(`select[name="${calc_shipping_provinces}"] option`).each(function () {
-//                     if ($(this).text() == address_1) {
-//                         $(this).attr('selected', '')
-//                     }
-//                 })
-//                 $(`input.${billing_address_1}`).attr('value', address_1)
-//             }
-//             $this.on('change', function (i) {
-//                 i = $this.children('option:selected').index() - 1
-//                 var str = '',
-//                     r = $this.val()
-//                 if (r != '') {
-//                     arr[i].forEach(function (el) {
-//                         str += '<option value="' + el + '">' + el + '</option>'
-//                         $(`select[name="${calc_shipping_district}"]`).html('<option value="">Quận/Huyện</option>' + str)
-//                     })
-//                     var address_1 = $this.children('option:selected').text()
-//                     var district = $(`select[name="${calc_shipping_district}"]`).html()
-//                     localStorage.setItem(`${address_1_saved}`, address_1)
-//                     localStorage.setItem(`${district_local}`, district)
-//                     $(`select[name="${calc_shipping_district}"]`).on('change', function () {
-//                         var target = $(this).children('option:selected')
-//                         target.attr('selected', '')
-//                         $(`select[name="${calc_shipping_district}"] option`).not(target).removeAttr('selected')
-//                         var address_2 = target.text()
-//                         $(`input.${billing_address_2}`).attr('value', address_2)
-//                         district = $(`select[name="${calc_shipping_district}"]`).html()
-//                         localStorage.setItem(`${district_local}`, district)
-//                         localStorage.setItem(`${address_2_saved}`, address_2)
-//                     })
-//                 } else {
-//                     $(`select[name="${calc_shipping_district}"]`).html('<option value="">Quận / Huyện</option>')
-//                     district = $(`select[name="${calc_shipping_district}"]`).html()
-//                     localStorage.setItem(`${district_local}`, district)
-//                     localStorage.removeItem(`${address_1_saved}`, address_1)
-//                 }
-//             })
-//         })
-//     })
-//     //]]>
-//     localStorage.clear()
-// }
-
-// selectDistrict("calc_shipping_provinces", "calc_shipping_district", "billing_address_1", "billing_address_2", "district_local", "address_1_saved", "address_2_saved")
-// selectDistrict("calc_shipping_provinces_header", "calc_shipping_district_header", "billing_address_1_header", "billing_address_2_header", "district_local_header", "address_1_saved_header", "address_2_saved_header")
 
 
 
@@ -330,6 +263,8 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
+
+
 
 
 

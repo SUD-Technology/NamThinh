@@ -1,7 +1,7 @@
 const { validationResult } = require('express-validator')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-const Users = require('../models/Users')
+const Users = require('../models/Users');
 
 function hashPassword(password) {
     let saltRounds = 10;
@@ -48,6 +48,7 @@ const UserController = {
                                 res.redirect('/users/login')
                             } else {
                                 req.session.username = account.username
+                                req.session.position = account.position || ""
                                 req.session.token = token
                                 req.flash('success', 'Đăng nhập thành công')
                                 res.redirect('/home/')
@@ -71,21 +72,100 @@ const UserController = {
         }
     },
 
-    register: (req, res, next) => {
-        const user = {
-            username: 'admin',
-            password: hashPassword('123456')
+    getRegister: (req, res, next) => {
+        let error = req.flash('error') || "";
+        let username = req.flash('username') || "";
+        let password = req.flash('password') || "";
+        let email = req.flash('email') || "";
+        let phone = req.flash('phone') || "";
+        let success = req.flash('success') || "";
+        let fullname = req.flash('fullname')
+        res.render('register', { success, error, fullname, username, password, email, phone })
+    },
+
+    postRegister: (req, res, next) => {
+        let result = validationResult(req)
+        if (result.errors.length === 0) {
+            const user = {
+                username: req.body.username,
+                password: hashPassword(req.body.password),
+                fullname: req.body.fullname,
+                position: req.body.position,
+                email: req.body.email,
+                phone: req.body.phone
+            }
+            return new Users(user).save()
+                .then(() => {
+                    req.flash('success', 'Đăng ký thành công');
+                    res.redirect('/users/register');
+                })
+                .catch(() => {
+                    req.flash('error', 'Đăng ký thất bại');
+                    res.redirect('/users/register');
+                })
+
+        } else {
+            result = result.mapped();
+            let message;
+            for (let f in result) {
+                message = result[f].msg;
+                break;
+            }
+            const { username, fullname, email, phone, password } = req.body
+            req.flash('error', message);
+            req.flash('username', username);
+            req.flash('fullname', fullname);
+            req.flash('email', email);
+            req.flash('phone', phone);
+            req.flash('password', password);
+            res.redirect('/users/register')
         }
-        new Users(user).save()
-            .then((err) => {
-                res.json({ message: 'Đăng ký thành công' })
+    },
+
+    getChangePassword: (req, res, next) => {
+        let error = req.flash('error') || "";
+        let oldPassword = req.flash('oldPassword') || "";
+        let newPassword = req.flash('newPassword') || "";
+        let success = req.flash('success') || ""
+        res.render('changePassword', { error, oldPassword, newPassword, success })
+    },
+
+    postChangePassword: (req, res, next) => {
+        let result = validationResult(req);
+        if (result.errors.length === 0) {
+            const username = req.session.username;
+            const newPassword = req.body.newPassword;
+
+            return Users.findOneAndUpdate({ username: username }, { password: hashPassword(newPassword) }, (err, data) => {
+                if (error) {
+                    req.flash('error', 'Đổi mật khẩu thất bại');
+                    res.redirect('/users/changePassword')
+                } else {
+                    req.flash('success', 'Đổi mật khẩu thành công');
+                    res.redirect('/users/changePassword')
+                }
             })
+        } else {
+            let message;
+            result = result.mapped();
+            for (let f in result) {
+                message = result[f].msg;
+                break;
+            }
+            const { oldPassword, newPassword } = req.body
+            req.flash('error', message);
+            req.flash('oldPassword', oldPassword);
+            req.flash('newPassword', newPassword);
+            res.redirect('/users/changePassword');
+        }
     },
 
     getLogout: (req, res) => {
         req.session.destroy();
         res.redirect('/users/login');
     },
+
+    
 }
 
 module.exports = UserController;
