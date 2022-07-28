@@ -1,4 +1,10 @@
 $(document).ready(function () {
+    const pathname = window.location.pathname;
+    const nav = pathname.split('/')[1];
+    
+    $(`#${nav}`).siblings().removeClass('current');
+    $(`#${nav}`).addClass('current');
+
 
     $('#eye').click(function () {
         $(this).toggleClass('open');
