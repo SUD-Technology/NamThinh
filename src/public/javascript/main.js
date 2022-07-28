@@ -1,4 +1,10 @@
 $(document).ready(function () {
+    const pathname = window.location.pathname;
+    const nav = pathname.split('/')[1];
+    
+    $(`#${nav}`).siblings().removeClass('current');
+    $(`#${nav}`).addClass('current');
+
 
     $('#eye').click(function () {
         $(this).toggleClass('open');
@@ -213,6 +219,9 @@ $(document).ready(function () {
         $(this).children('.hexImg').attr('src', old_img);
     })
 
+    $('.scroll-to-top').click(function() {
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
+    })
     // $(function () {
     //     $('.carousel-item').each(function () {
     //         var originalImagePath = $(this).find('img').data('original-image');

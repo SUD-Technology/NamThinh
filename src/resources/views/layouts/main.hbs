@@ -100,8 +100,61 @@
 
     {{/if}}
 
+    {{#if service}}
+        <div class="service-banner text-center">
+            <div class="p-lg-5 mx-auto">
+                <div class="pt-5 mt-5" style="min-height: 272px">
+                    <h1 class="home-title d-none d-md-block pt-5 mt-5">SỬA CHỮA - BẢO DƯỠNG - LÀM LỐP LƯU ĐỘNG</h1>
+                    <div class="home-title d-md-none" style="font-size: 17px;">SỬA CHỮA - BẢO DƯỠNG<br>LÀM LỐP LƯU ĐỘNG</div>
+
+                    <div class="pt-4 d-lg-inline d-none"><button class="btn-action btn btn-light btn-lg" onclick="contact_service_modal();" style="margin-top: 20px;">LIÊN HỆ XƯỞNG DỊCH VỤ</button></div>
+
+                    <div class="pt-4 d-lg-none"><a href="javascript:;" class="btn-action btn btn-light btn-lg call-tracking">LIÊN HỆ XƯỞNG DỊCH VỤ</a></div>
+                </div>
+            </div>
+        
+            
+        </div>
+        <div id="type-list">
+    <div class="d-flex flex-column flex-lg-row flex-md-column">
+        <div class="container px-4">
+            <div class="type-list-item media my-2">
+                <i class="far fa-list-alt mr-3 my-2"></i>
+                <div class="media-body">
+                    <h3 class="type-list-title h4 text-white my-2">Đầy đủ dịch vụ</h3>
+                </div>
+            </div>
+        </div>
+        <div style="background-color: #1F4690;" class="container px-4">
+            <div class="type-list-item media my-2">
+                <i class="fa fa-user mr-3 my-2"></i>
+                <div class="media-body">
+                    <h3 class="type-list-title h4 text-white my-2">Kỹ thuật viên lành nghề</h3>
+                </div>
+            </div>
+        </div>
+        <div class="container px-4">
+            <div class="type-list-item media my-2">
+                <i class="fa fa-thumbs-up mr-3 my-2"></i>
+                <div class="media-body">
+                    <h3 class="type-list-title h4 text-white my-2">Trang thiết bị hiện đại</h3>
+                </div>
+            </div>
+        </div>
+        <div style="background-color: #1F4690;" class="container px-4">
+            <div class="type-list-item media my-2">
+                <i class="fa fa-wrench mr-3 my-2"></i>
+                <div class="media-body">
+                    <h3 class="type-list-title h4 text-white my-2">Phụ tùng chính hãng</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    {{/if}}
+
     {{#if homepage}}
-    <div class="header-banner-slide">
+    <div class="header-banner-slide mb-3">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -125,6 +178,10 @@
                 </div>
     </div>
     {{/if}}
+
+    <a class="scroll-to-top">
+        <div class="inner"></div>
+    </a>  
     <div class="container wrapper">
 
         <div id="fb-root"></div>

@@ -90,6 +90,13 @@ app.get('/contact', (req, res) => {
     res.render('contact')
 })
 
+app.get('/policy', (req, res) => {
+    res.render('policy');
+})
+
+app.get('/service', (req, res) => {
+    res.render('service', { service: true})
+})
 
 app.use('/users', UserRouter);
 app.use('/collections', CollectionRouter);

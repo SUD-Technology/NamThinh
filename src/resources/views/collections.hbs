@@ -172,13 +172,9 @@
 <script>
     $(document).ready(function() {
         const pathname = window.location.pathname;
-        const nav = pathname.split('/')[1];
-        
-        $(`#${nav}`).siblings().removeClass('current');
-        $(`#${nav}`).addClass('current');
 
         const menuName = $('.sub-title').text();
-        console.log(menuName);
+        
         const menu = $('.sidebar-item-link').filter(function() {
             return $(this).text().trim() === menuName
         }).parent()

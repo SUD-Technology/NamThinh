@@ -192,7 +192,7 @@ input[type="file"] {
   border-radius: 5px 5px 0 0;
   width: 300px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  z-index: 99;
+  z-index: 10000;
 }
 
 .leave-msg header {
@@ -2553,9 +2553,9 @@ span.ico-product.ico-new {
     /* Hexagons */
     #hexGrid {
       overflow: hidden;
-      width: 45%;
+      width: 52%;
       margin: 0 auto;
-      padding: 0.866% auto;
+      padding: 0.866% 100px;
       font-family: 'Raleway', sans-serif;
       font-size: 15px;
       /* background-color: rgba(0, 0, 0, .25); */
@@ -2608,6 +2608,7 @@ span.ico-product.ico-new {
       transform: skewY(-30deg) rotate(60deg);
       background-color: rgba(0, 0, 0, 0.7);
     box-shadow: rgba(149, 157, 165, 0.8) 0px 8px 24px;
+
     }
 
     .mainIn:hover img {
@@ -2771,3 +2772,106 @@ a.watch-detail {
   font-size: 15px;
   /* margin-right: 10px; */
 }
+
+.textTitle {
+  color: #ec162b;
+  font-weight: 700;
+  font-size: 32px;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+
+p.csbh-content {
+  font-family: Helvetica,sans-serif;
+  font-size: 14px;
+  text-align: justify;
+  line-height: 1.8;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.csbh-title {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.policy-page {
+  min-height: 800px;
+}
+
+.sticky {
+  position: sticky;
+  top: 100px;
+  position: -webkit-sticky;
+}
+
+.all-content {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding-bottom: 2px;
+}
+
+a.scroll-to-top {
+  position: fixed;
+  display: block;
+  width: 40px;
+  height: 40px;
+  background-color: #4d4d4d;
+  bottom: 70px;
+  right: 32px;
+  left: auto;
+  z-index: 10000;
+}
+
+a.scroll-to-top:hover {
+  background-color: var(--do);
+}
+
+a.scroll-to-top>div.inner:after {
+  position: absolute;
+  top: 16px;
+  left: 15px;
+  width: 10px;
+  height: 10px;
+  content: "";
+  display: block;
+  border-top: 2px solid #f3f3f3;
+  border-right: 2px solid #f3f3f3;
+  transform: rotate(-45deg);
+}
+
+a:not([href]):not([tabindex]) {
+  color: inherit;
+  text-decoration: none;
+}
+
+.service-banner {
+  width: 100%;
+  height: 500px;
+  background-image: url('https://anycar.vn/assets/img/AnyCar-LongBien.jpg?v=123');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+  box-shadow: inset 0 0 0 1000px rgb(0 0 0 / 30%);
+}
+
+.home-title {
+    padding-top: 20px;
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+}
+
+#type-list {
+  background-color: var(--xanh);
+  color: #fff;
+}
+
+#type-list .container {
+  margin-bottom: 0;
+}
+
+#type-list .type-list-item i {
+  color: #fff;
+  font-size: 20px;
+}
+
