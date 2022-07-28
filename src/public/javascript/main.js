@@ -206,10 +206,10 @@ $(document).ready(function () {
         $('.user-dropDown').hide()
     })
     var old_img = '';
-    $('.hexIn').hover(function() {
+    $('.hexIn').hover(function () {
         old_img = $(this).children('.hexImg').attr('src');
         $(this).children('.hexImg').attr('src', 'https://media.istockphoto.com/photos/hand-using-laptop-and-press-screen-to-search-browsing-on-the-internet-picture-id1271072224?b=1&k=20&m=1271072224&s=170667a&w=0&h=4BaKdYk3VKJO-smyDBRkX1wNErrgZwCJTaj08a7rZHc=')
-    },function() {
+    }, function () {
         $(this).children('.hexImg').attr('src', old_img);
     })
 
@@ -254,6 +254,8 @@ $('.owl-carousel').owlCarousel({
         }
     }
 })
+
+
 
 
 

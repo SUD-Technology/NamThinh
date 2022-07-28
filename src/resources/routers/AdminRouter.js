@@ -37,7 +37,7 @@ router.get('/customer-info', (req, res) => {
 router.get('/add-product', (req, res) => {
     res.render('addProduct', { admin: true })
 })
-router.post('/add-product', store.array('product-image', 12), uploadImage, AdminController.addProduct)
+router.post('/add-product', checkLogin,     store.array('product-image', 12), uploadImage, AdminController.addProduct)
 router.get('/delete/:id', AdminController.deleteProduct)
 
 
