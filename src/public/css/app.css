@@ -45,6 +45,24 @@ a:hover {
   color: #000;
 }
 
+.service-main-img {
+  height: 320px; padding: 0; width: 40%; display: inline-block;
+}
+
+.service-main-content {
+  background-color: #f4f4f0; padding: 0; width: 60%; display: inline-block; float: right;
+  height: 320px
+}
+
+.service-main-content a, .service-content a {
+  color: black
+}
+
+.service-main-img:hover , .service-img-box:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
 /* Admin product manager: start */
 .find-product-form .form-group {
   border-bottom: 0;
@@ -2773,6 +2791,10 @@ a.watch-detail {
   /* margin-right: 10px; */
 }
 
+a.watch-detail:hover {
+  opacity: 0.8;
+}
+
 .textTitle {
   color: #ec162b;
   font-weight: 700;
@@ -2875,3 +2897,41 @@ a:not([href]):not([tabindex]) {
   font-size: 20px;
 }
 
+.captions {
+  padding: 25px 30px;
+  background-color: #f4f4f0;
+}
+
+.des {
+  olor: #666666;
+  height: 66px;
+  overflow: hidden;
+}
+
+.service-content a{
+  display: block;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: bold;
+  height: 48px;
+  overflow: hidden;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+}
+
+.titleL {
+font-size: 30px;
+line-height: 40px;
+font-weight: bold;
+font-family: 'Roboto', sans-serif;
+}
+.titleL {
+font-size: 30px;
+line-height: 45px;
+text-align: center;
+text-transform: uppercase;
+position: relative;
+font-weight: bold;
+color: #333333;
+border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+}

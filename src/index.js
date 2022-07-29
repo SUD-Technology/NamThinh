@@ -98,6 +98,10 @@ app.get('/service', (req, res) => {
     res.render('service', { service: true})
 })
 
+app.get('/discount', (req, res) => {
+    res.render('discount')
+})
+
 app.use('/users', UserRouter);
 app.use('/collections', CollectionRouter);
 app.use('/products', ProductRouter);
