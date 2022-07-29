@@ -651,7 +651,8 @@ input[type="file"] {
   --cam: #ebb651 !important;
   --xanh: #3A5BA0 !important;
   --trang: white !important;
-  --do: #D61C4E !important;
+  --do: rgb(121, 70, 70) !important;
+  --donhat: #D61C4E !important;
   --vang: #ebf374 !important;
 }
 
@@ -2435,7 +2436,7 @@ span.ico-product.ico-new {
   top: -5px;
   left: -5px;
   padding: 5px 16px;
-  background: var(--do);
+  background: var(--donhat);
   color: #FFF;
   font-weight: bold;
   font-size: 12px;
