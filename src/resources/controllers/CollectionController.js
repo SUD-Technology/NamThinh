@@ -324,7 +324,7 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
         }),
         data,
         slug,
-        admin: req.session.username
+        position: req.session.position
     });
 }
 

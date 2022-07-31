@@ -1,0 +1,142 @@
+{{!-- Body: start --}}
+<div class="container">
+    <div class="addProduct-header">
+        <div class="row pagi">
+            <span class="sub-title">Tạo đơn hàng</span>
+            <img class="bgc-title" src="/img/title.png" alt="">
+        </div>
+    </div>
+    <div class="addProduct-body">
+        <form class="form-horizontal" method="post">
+            <fieldset>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="fullname">TÊN KHÁCH HÀNG</label>
+                    <div class="col-md-10">
+                        <input id="fullname" name="fullname" value="{{fullname}}" placeholder="Tên khách hàng"
+                            class="form-control input-md"  type="text">
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="email">EMAIL</label>
+                    <div class="col-md-10">
+                        <input id="email" name="email" value="{{email}}" placeholder="Email khách hàng"
+                            class="form-control input-md"  type="email">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="phone">SỐ ĐIỆN THOẠI</label>
+                    <div class="col-md-10">
+                        <input id="phone" value="{{phone}}" name="phone" placeholder="SĐT khách hàng"
+                            class="form-control input-md"  type="text">
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="address">ĐỊA CHỈ</label>
+                    <div class="col-md-10">
+                        <input id="address" value="{{address}}" name="address" placeholder="Địa chỉ khách hàng"
+                            class="form-control input-md"  type="text">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="sale">SALE</label>
+                    <div class="col-md-10">
+                        <input id="sale" value="{{sale}}" name="sale" placeholder="Tên sale"
+                            class="form-control input-md"  type="text">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="product-list">DANH SÁCH SẢN PHẨM</label>
+                    <div class="col-md-10">
+                        <div class="form-group-container">
+                            <input id="product-list" required="" name="product-list" class="form-control input-md"
+                                onchange="preview()" type="file" multiple>
+                            <label for="product-list">
+                                <i class="fas fa-upload"></i>
+                                Chọn file &nbsp;
+                            </label>
+                            <p id="num-of-file">Chưa có file nào được chọn</p>
+                            <div id="images-upload">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="total">TỔNG GIÁ</label>
+                    <div class="col-md-10">
+                        <input id="total" name="total" value="{{total}}" placeholder="Tổng tiền"
+                            class="form-control input-md"  type="number">
+                    </div>
+                </div>
+
+                {{#if error}}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {{/if}}
+
+                {{#if success}}
+                <div class="alert alert-success" role="alert">
+                    {{success}}
+                </div>
+                {{/if}}
+
+                <!-- Text input-->
+                <div class="form-footer">
+                    <button type="submit">Tạo đơn hàng</button>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+</div>
+
+{{!-- Body: end --}}
+
+
+<script src="https://cdn.tiny.cloud/1/j88ohxy0xzr1jtwyis9v2j14gxs7ym1374rj731gaz4wcqo0/tinymce/6/tinymce.min.js"
+    referrerpolicy="origin"></script>
+
+<!-- Footer -->
+<script>
+    let fileInput = document.getElementById("product-list")
+    let imageContainer = document.getElementById('images-upload')
+    let numOfFiles = document.getElementById('num-of-file')
+
+    function preview() {
+        imageContainer.innerHTML = ""
+        numOfFiles.textContent = `${fileInput.files.length} file đã được chọn`;
+
+        for (i of fileInput.files) {
+            let reader = new FileReader()
+            let figure = document.createElement("figure")
+            let figCap = document.createElement("figcaption")
+
+            figCap.innerText = i.name
+            figure.appendChild(figCap)
+            reader.onload = () => {
+                let img = document.createElement("img");
+                img.setAttribute("src", reader.result);
+                figure.insertBefore(img, figCap);
+            }
+            imageContainer.appendChild(figure);
+            reader.readAsDataURL(i)
+        }
+    }
+
+</script>

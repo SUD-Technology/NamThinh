@@ -15,8 +15,23 @@ const flash = require('express-flash')
 const bodyParser = require('body-parser')
 
 app.engine('hbs', handlebars.engine({
-    extname: 'hbs'
+    extname: 'hbs',
+    helpers: {
+        isAdmin: function (val, options) {
+            if (val == 'admin')
+                return options.fn(this)
+        },
+        isSale: function (val, options) {
+            if (val == 'sale')
+                return options.fn(this)
+        },
+        isAccountant: function (val, options) {
+            if (val == 'accountant')
+                return options.fn(this)
+        },
+    }
 }))
+
 app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'resources/views'))
 app.use(express.static(path.join(__dirname, 'public')))
@@ -71,12 +86,9 @@ app.get('/home', async (req, res, next) => {
             data.Dau.push(current_product);
         }
     })
-    return res.render('home', {homepage: true, data, admin: req.session.username })
+    return res.render('home', { homepage: true, data, position: req.session.position })
 })
 
-app.get('/register', (req, res) => {
-    res.render('register')
-})
 
 app.get('/cart', (req, res) => {
     res.render('product-cart')
@@ -95,7 +107,7 @@ app.get('/policy', (req, res) => {
 })
 
 app.get('/service', (req, res) => {
-    res.render('service', { service: true})
+    res.render('service', { service: true })
 })
 
 app.use('/users', UserRouter);

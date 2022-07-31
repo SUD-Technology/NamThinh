@@ -96,22 +96,45 @@
 
                     <div class="nav-bottom admin-nav">
                         <form class="form-inline my-2 my-lg-0 ">
+                            {{#isAdmin position}}
+                            <a class="smooth mr-2 ml-2" href="/admin/product-manager"> <i class="fas fa-tasks"></i>
+                                Quản lý nhân viên
+                            </a>
                             <a class="smooth mr-2 ml-2" href="/admin/product-manager"> <i class="fas fa-tasks"></i>
                                 Quản lý sản phẩm
-                            </a>
-                            <a class="smooth mr-2 ml-2" href="/admin/add-product"> <i class="fas fa-plus"></i>
-                                Thêm sản phẩm
                             </a>
                             <a class="smooth mr-2 ml-2" href="/admin/customer-info"> <i class="fas fa-users"></i>
                                 Thông tin khách hàng
                             </a>
+                            <a class="smooth mr-2 ml-2" href="/admin/create-order"> <i class="fas fa-plus"></i>
+                                Tạo đơn hàng
+                            </a>
+                            {{/isAdmin}}
+                            {{#isSale position}}
+                            <a class="smooth mr-2 ml-2" href="/admin/product-manager"> <i class="fas fa-tasks"></i>
+                                Quản lý sản phẩm
+                            </a>
+                            <a class="smooth mr-2 ml-2" href="/admin/customer-info"> <i class="fas fa-users"></i>
+                                Thông tin khách hàng
+                            </a>
+                            <a class="smooth mr-2 ml-2" href="/admin/create-order"> <i class="fas fa-plus"></i>
+                                Tạo đơn hàng
+                            </a>
+                            {{/isSale}}
+
+                            {{#isAccountant position}}
+                            <a class="smooth mr-2 ml-2" href="/admin/add-product"> <i class="fas fa-plus"></i>
+                                Thêm sản phẩm
+                            </a>
+                            {{/isAccountant}}
+
                             {{#if change}}
                             <a class="smooth mr-2 ml-2" href="/admin/edit/{{pageName}}"> <i class="fas fa-edit"></i>
                                 Chỉnh sửa trang
                             </a>
                             {{/if}}
                             <a class="smooth mr-2 ml-2 user-info" href=""> <i class="fas fa-user"></i>
-                                Admin
+                                {{position}}
                             </a>
                             <ul class="user-dropDown">
                                 <li>
@@ -137,187 +160,3 @@
         </div>
     </div>
 </header>
-<nav class="navbar2 ">
-    <div class="container">
-        <ul class="navbar-list">
-            <li onclick='window.location.href="/home"' class="navbar-item"><a href="/home"><i style="font-size: 20px;"
-                        class="fas fa-home"></i></a></li>
-            <li class="navbar-item">
-
-                <a href="">Về Nam Thịnh <i class="fas fa-angle-down"></i></a>
-
-                <ul class="navbar-menu">
-                    <li class="navbar-menu-item smooth">
-                        <a href="">Giới thiệu</a>
-                    </li>
-                    <li class="navbar-menu-item smooth">
-                        <a href="/contact">Liên hệ</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="navbar-item">
-                <a href="">Sản phẩm <i class="fas fa-angle-down"></i></a>
-                <ul class="navbar-menu">
-                    <li class="navbar-menu-item smooth">
-                        <a href="/collections/Lop-Advance-Samson-1">Lốp Advance/Samson</a>
-                        <i class="fas fa-angle-double-right"></i>
-                        <ul class="navbar-product-list">
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/Lop-xe-tai-xe-khach-11">Lốp xe tải - xe khách</a>
-                                <i class="fas fa-angle-double-right"></i>
-                                <ul id="LMCT" class="navbar-product-list">
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Lop-tai-nhe-111">Lốp tải nhẹ</a>
-                                    </li>
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Lop-tai-nặng-112">Lốp tải nặng</a>
-                                    </li>
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Lop-xe-khach-xe-bus-113">Lốp xe khách - xe bus</a>
-                                    </li>
-
-                                </ul>
-                            </li>
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/Lop-may-cong-trinh-12">Lốp máy công trình</a>
-                                <i class="fas fa-angle-double-right"></i>
-                                <ul id="LMCT" class="navbar-product-list">
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Lop-xe-tai-hang-nang-121">Lốp xe tải hạng nặng</a>
-                                    </li>
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Lop-may-xuc-122">Lốp máy xúc</a>
-                                    </li>
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Lop-xe-cau-123">Lốp xe cẩu</a>
-                                    </li>
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Lop-xe-lu-124">Lốp xe lu</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/Lop-xe-cong-nghiep-13">Lốp xe công nghiệp</a>
-                                <i class="fas fa-angle-double-right"></i>
-                                <ul id="LMCT" class="navbar-product-list">
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Lop-dac-131">Lốp đặc</a>
-                                    </li>
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Lop-cong-nghiep-khi-nen-132">Lốp công nghiệp khí nén</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/Lop-cong-nghiep-14">Lốp nông nghiệp</a>
-                                <i class="fas fa-angle-double-right"></i>
-                                <ul id="LMCT" class="navbar-product-list">
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Lop-nong-nghiep-nho-141">Lốp nông nghiệp nhỏ</a>
-                                    </li>
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Lop-nong-nghiep-lon-142">Lốp nông nghiệp lớn</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="navbar-menu-item smooth">
-                        <a href="/collections/Xe-tai-dau-keo-xe-ben-2">Xe tải/ đầu kéo / xe ben</a>
-                        <i class="fas fa-angle-double-right"></i>
-                        <ul class="navbar-product-list">
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/Xe-tai-thung-21">Xe tải thùng</a>
-                            </li>
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/Xe-dau-keo-22">Xe đầu kéo</a>
-                            </li>
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/Xe-ben-23">Xe ben</a>
-                            </li>
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/So-mi-ro-mooc-24">Sơ mi rơ móc</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="navbar-menu-item smooth">
-                        <a href="/collections/Phu-tung-o-to-3">Phụ tùng ô tô</a>
-                        <i class="fas fa-angle-double-right"></i>
-                        <ul class="navbar-product-list">
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/Phu-tung-xe-tai-thung-31">Xe tải thùng</a>
-                            </li>
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/Phu-tung-xe-dau-keo-32">Xe đầu kéo</a>
-                            </li>
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/Phu-tung-xe-ben-33">Xe ben</a>
-                            </li>
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/Phu-tung-so-mi-ro-mooc-34">Sơ mi rơ móc</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="navbar-menu-item smooth">
-                        <a href="/collections/Dau-nhot-4">Dầu nhớt</a>
-                        <i class="fas fa-angle-double-right"></i>
-                        <ul class="navbar-product-list">
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/Dau-nhot-o-to-xe-may-41">Dầu nhớt ô tô / xe máy</a>
-                                <i class="fas fa-angle-double-right"></i>
-                                <ul id="DN" class="navbar-product-list">
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Dau-dong-co-411">Dầu động cơ</a>
-                                    </li>
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Dau-hop-so-412">Dầu hợp số</a>
-                                    </li>
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Dau-lap-413">Dầu láp</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="navbar-product-item smooth">
-                                <a href="/collections/Dau-nhot-cong-nghiep-42">Dầu nhớt công nghiệp</a>
-                                <i class="fas fa-angle-double-right"></i>
-                                <ul id="DN" class="navbar-product-list">
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Dau-da-nang-421">Dầu đa năng</a>
-                                    </li>
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Dau-boi-tron-422">Dầu bôi trơn</a>
-                                    </li>
-                                    <li class="navbar-product-item smooth">
-                                        <a href="/collections/Dau-thuy-luc-423">Dầu thủy lực</a>
-                                    </li>
-                                </ul>
-                            </li>
-
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li class="navbar-item">
-                <a href="">Khuyến mãi</a>
-            </li>
-            <li class="navbar-item">
-                <a href="">Chính sách <i class="fas fa-angle-down"></i></a>
-                <ul class="navbar-menu" style="width: 280px">
-                    <li class="navbar-menu-item smooth">
-                        <a href="">Chính sách giao hàng</a>
-                    </li>
-                    <li class="navbar-menu-item smooth">
-                        <a href="">Chính sách đại lý</a>
-                    </li>
-                    <li class="navbar-menu-item smooth">
-                        <a href="">Chính sách cộng tác viên</a>
-                    </li>
-                    <li class="navbar-menu-item smooth">
-                        <a href="">Chính sách bảo hành</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="navbar-item"><a href="">Showroom</a></li>
-        </ul>
-    </div>
-</nav>

@@ -5,23 +5,23 @@ let serviceAccount = require("../../config/namthinh-69ec0-firebase-adminsdk-1de5
 const BUCKET_URL = "namthinh-69ec0.appspot.com"
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  storageBucket: BUCKET_URL,
+    credential: admin.credential.cert(serviceAccount),
+    storageBucket: BUCKET_URL,
 });
 
 const bucket = admin.storage().bucket();
 
 const uploadImage = (req, res, next) => {
-    if(!req.files) {
+    if (!req.files) {
         return next();
     }
 
     const images = req.files;
-    images.forEach( (image, index) => {
+    images.forEach((image, index) => {
         const filename = Date.now() + '.' + image.originalname.split('.').pop();
-        
+
         const file = bucket.file(filename);
-        
+
         const stream = file.createWriteStream({
             metadata: {
                 contentType: image.mimetype,
@@ -36,13 +36,21 @@ const uploadImage = (req, res, next) => {
 
         stream.on('finish', async () => {
             await file.makePublic();
-            
+
             next();
         })
 
         stream.end(image.buffer);
     })
-    
+
 };
 
-module.exports = uploadImage;
+const uploadFile = (req, res, next) => {
+    if (!req.file) {
+        return next();
+    } else {
+        const file = req.file
+        
+    }
+}
+module.exports = { uploadImage };

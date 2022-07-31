@@ -48,7 +48,7 @@ const UserController = {
                                 res.redirect('/users/login')
                             } else {
                                 req.session.username = account.username
-                                req.session.position = account.position || ""
+                                req.session.position = account.position
                                 req.session.token = token
                                 req.flash('success', 'Đăng nhập thành công')
                                 res.redirect('/home/')
@@ -165,7 +165,7 @@ const UserController = {
         res.redirect('/users/login');
     },
 
-    
+
 }
 
 module.exports = UserController;

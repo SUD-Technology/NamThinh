@@ -2,6 +2,9 @@ const fs = require('fs')
 const Products = require('../models/Products')
 const slugify = require('slugify');
 const path = require('path')
+const Orders = require('../models/Orders')
+const Customers = require('../models/Customers')
+
 function unique(arr) {
     return Array.from(new Set(arr)) //
 }
@@ -56,7 +59,6 @@ const AdminController = {
                 return res.json({ code: 0, message: "Thêm sản phẩm thất bại", err: err })
             })
     },
-
     deleteProduct: (req, res, next) => {
         const product_id = req.params.id;
         Products.findOne({ product_id })
@@ -102,7 +104,7 @@ const AdminController = {
 
                         brands = unique(brands)
                         origins = unique(origins)
-                        res.render('productManager', { admin: true, products: productList, brands, origins, listPages })
+                        res.render('productManager', { position: req.session.position, products: productList, brands, origins, listPages })
                     }
                 })
         }
@@ -138,6 +140,39 @@ const AdminController = {
                     }
                 })
         }
+    },
+    getCreateOrder: (req, res, next) => {
+        const sale = req.session.username || "";
+        const error = req.flash('error') || "";
+        const success = req.flash('success') || "";
+        res.render('createOrders', { position: req.session.position, sale, error, success })
+    },
+    postCreateOrder: (req, res, next) => {
+        const Customer = {
+            fullname: req.body.fullname,
+            phone: req.body.phone,
+            email: req.body.email,
+            address: req.body.address,
+        }
+        const order = {
+            Customer: Customer,
+            sale: req.body.sale,
+            total: req.body.total
+        }
+
+        return new Orders(order).save()
+            .then(() => {
+                return new Customers(Customer).save()
+            })
+            .then(() => {
+                req.flash('success', 'Tạo đơn hàng thành công')
+                return res.redirect('/admin/create-order')
+            })
+            .catch(err => {
+                req.flash('error', 'Tạo đơn hàng thất bại ' + err)
+                res.redirect('/admin/create-order')
+            })
+
     }
 }
 

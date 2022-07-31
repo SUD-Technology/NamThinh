@@ -25,5 +25,23 @@ const Customers = new Schema({
     }
 })
 
-module.exports = mongoose.model('Customers', Customers)
+const Orders = new Schema({
+    Customer: {
+        type: Customers,
+        required: true
+    },
+    sale: {
+        type: String,
+        required: true,
+    },
+    total: {
+        type: Number,
+        required: true
+    },
+    product_list: {
+        type: String
+    }
 
+})
+
+module.exports = mongoose.model('Orders', Orders)
