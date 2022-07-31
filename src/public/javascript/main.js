@@ -1,10 +1,23 @@
 $(document).ready(function () {
+    setTimeout(function() {
+        $('.loader-wrapper').fadeOut(500);
+    },2000)
     const pathname = window.location.pathname;
     const nav = pathname.split('/')[1];
     
-    $(`#${nav}`).siblings().removeClass('current');
-    $(`#${nav}`).addClass('current');
+    if(nav) {
+        $(`#${nav}`).siblings().removeClass('current');
+        $(`#${nav}`).addClass('current');
+    }
 
+
+    var old_img = '';
+    $('.hexIn').hover(function () {
+        old_img = $(this).children('.hexImg').attr('src');
+        $(this).children('.hexImg').attr('src', 'https://media.istockphoto.com/photos/hand-using-laptop-and-press-screen-to-search-browsing-on-the-internet-picture-id1271072224?b=1&k=20&m=1271072224&s=170667a&w=0&h=4BaKdYk3VKJO-smyDBRkX1wNErrgZwCJTaj08a7rZHc=')
+    }, function () {
+        $(this).children('.hexImg').attr('src', old_img);
+    })
 
     $('#eye').click(function () {
         $(this).toggleClass('open');
@@ -199,6 +212,9 @@ $(document).ready(function () {
     // End Pagination Homepage
 
 
+    
+
+
     $('.items-product').hover(function () {
         $(this).children('.img-box').children('.img-product').css('transform', 'scale(1.07)')
     }, function () {
@@ -211,13 +227,8 @@ $(document).ready(function () {
     }, function () {
         $('.user-dropDown').hide()
     })
-    var old_img = '';
-    $('.hexIn').hover(function () {
-        old_img = $(this).children('.hexImg').attr('src');
-        $(this).children('.hexImg').attr('src', 'https://media.istockphoto.com/photos/hand-using-laptop-and-press-screen-to-search-browsing-on-the-internet-picture-id1271072224?b=1&k=20&m=1271072224&s=170667a&w=0&h=4BaKdYk3VKJO-smyDBRkX1wNErrgZwCJTaj08a7rZHc=')
-    }, function () {
-        $(this).children('.hexImg').attr('src', old_img);
-    })
+
+    
 
     $('.scroll-to-top').click(function() {
         $('html, body').animate({ scrollTop: 0 }, 'fast');
