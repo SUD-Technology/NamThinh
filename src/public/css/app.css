@@ -662,7 +662,7 @@ input[type="file"] {
   --cam: #ebb651 !important;
   --xanh: #3A5BA0 !important;
   --trang: white !important;
-  --do: rgb(121, 70, 70) !important;
+  --do: #dd7907 !important;
   --donhat: #D61C4E !important;
   --vang: #ebf374 !important;
 }
@@ -2938,7 +2938,7 @@ a:not([href]):not([tabindex]) {
 }
 
 .des {
-  olor: #666666;
+  color: #666666;
   height: 66px;
   overflow: hidden;
 }
