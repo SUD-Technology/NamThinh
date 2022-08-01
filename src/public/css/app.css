@@ -2535,6 +2535,9 @@ span.ico-product.ico-new {
 
 }
 
+.product-header-slide img {
+  max-height: 360px;
+}
 
 .portfolio-menu {
   line-height: 40px;
@@ -2576,7 +2579,7 @@ span.ico-product.ico-new {
 }
 
 .header-banner-slide img {
-  max-height: 100vh;
+  max-height: 75vh;
 }
 
 .carousel-control-prev {
