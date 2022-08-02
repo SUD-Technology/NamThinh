@@ -14,6 +14,11 @@ function listPage(length) {
 }
 
 const AdminController = {
+    getAddProduct: (req, res, next) => {
+        const error = req.flash('error') || "";
+        const success = req.flash('success') || ""
+        res.render('addProduct', { position: req.session.position, error, success })
+    },
     addProduct: (req, res) => {
         const file = req.files
         console.log(file)
@@ -54,10 +59,12 @@ const AdminController = {
         }
         return new Products(product).save()
             .then(() => {
+                res.flash('success', 'Thêm sản phẩm thành công')
                 res.redirect('/admin/add-product')
             })
             .catch((err) => {
-                return res.json({ code: 0, message: "Thêm sản phẩm thất bại", err: err })
+                res.flash('error', 'Thêm sản phẩm thất bại')
+                res.redirect('/admin/add-product')
             })
     },
     deleteProduct: (req, res, next) => {
@@ -71,17 +78,17 @@ const AdminController = {
             })
     },
     getProductManager: (req, res, next) => {
-        let totalProduct = Products.find({}).count()
-        let listPages = totalProduct <= 10 ? ['1'] : listPage(Math.round(totalProduct / 10))
-        let page = req.query.page;
+        let page = req.params.page || 1
         if (page) {
             page = parseInt(page)
-            let pageSize = 10
+            let pageSize = 20
             let skip = (page - 1) * pageSize
             let nextPage = page + 1;
             let previousPage = page <= 1 ? 1 : page - 1;
-            Products.find({}).skip(skip).limit(pageSize)
-                .then(products => {
+            return Products.find({}).skip(skip).limit(pageSize).exec((err, products) => {
+                Products.countDocuments((err, count) => {
+                    if (err) return next(err);
+
                     if (products.length == 0) {
                         return res.json({ success: false, msg: 'Không có sản phẩm nào trong kho' });
                     } else {
@@ -97,6 +104,7 @@ const AdminController = {
                                 price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
                                 model: product.product_model,
                                 origin: product.product_origin,
+                                amount: product.amount
                             }
                             brands.push(product.brand_name)
                             origins.push(product.product_origin)
@@ -105,9 +113,11 @@ const AdminController = {
 
                         brands = unique(brands)
                         origins = unique(origins)
-                        res.render('productManager', { position: req.session.position, products: productList, brands, origins, listPages })
+                        return res.render('productManager', { position: req.session.position, products: productList, brands, origins, current: page, pages: Math.ceil(count / pageSize), previous: previousPage, next: nextPage })
                     }
                 })
+            })
+
         }
         else {
             Products.find({})
@@ -128,6 +138,8 @@ const AdminController = {
                                 price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
                                 model: product.product_model,
                                 origin: product.product_origin,
+                                amount: totalProduct
+
                             }
                             brands.push(product.brand_name)
                             origins.push(product.product_origin)

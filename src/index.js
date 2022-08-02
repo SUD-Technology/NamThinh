@@ -29,6 +29,32 @@ app.engine('hbs', handlebars.engine({
             if (val == 'accountant')
                 return options.fn(this)
         },
+        isFirstPage: function (page) {
+            return page == 1
+        },
+        isLastPage: function (current, pages) {
+            return current == pages
+        },
+        pagination: function (current, pages) {
+            let i = (Number(current) > 3 ? Number(current) - 2 : 1)
+            let html = ``
+            if (i !== 1)
+                html += `<li class="page-item disabled"><a class="page-link" href="#">...</a>
+                </li>`
+            for (; i <= (Number(current) + 2) && i <= pages; i++) {
+                if (i == current)
+                    html += `<li class="page-item active"><a class="page-link" href="/admin/product-manager/${i}">${i}</a>
+                    </li>`
+                else
+                    html += `<li class="page-item"><a class="page-link" href="/admin/product-manager/${i}">${i}</a>
+                    </li>`
+                if (i == Number(current) + 2 && i < pages) {
+                    html += `<li class="page-item disabled"><a class="page-link" href="#">...</a>
+                    </li>`
+                }
+            }
+            return html
+        }
     }
 }))
 
