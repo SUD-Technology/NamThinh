@@ -284,7 +284,7 @@ input[type="file"] {
 /* Welcome page: start */
 
 .welcome-page {
-  background: url("../img/background/background3.jpg") no-repeat center center fixed;
+  background: url("../img/background/background4.png") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -308,7 +308,7 @@ input[type="file"] {
 
 
 .w-body  {
-  background-color: rgba(0, 0, 0, 0.2);
+  /* background-color: rgba(0, 0, 0, 0.2); */
 
 }
 
