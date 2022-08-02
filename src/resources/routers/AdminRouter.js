@@ -18,7 +18,7 @@ router.get('/contact', (req, res) => {
 })
 
 
-router.get('/product-manager', checkLogin, AdminController.getProductManager)
+router.get('/product-manager/:page', checkLogin, AdminController.getProductManager)
 
 
 router.get('/edit', (req, res) => {
@@ -34,9 +34,7 @@ router.get('/customer-info', checkLogin, authPage(["admin", "sale"]), (req, res)
 })
 
 
-router.get('/add-product', checkLogin, authPage(["admin", "accountant"]), (req, res) => {
-    res.render('addProduct', { position: req.session.position })
-})
+router.get('/add-product', checkLogin, authPage(["admin", "accountant"]), AdminController.getAddProduct)
 router.post('/add-product', store.array('product-image', 12), uploadImage, AdminController.addProduct)
 router.get('/delete/:id', AdminController.deleteProduct)
 
