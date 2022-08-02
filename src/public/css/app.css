@@ -2863,8 +2863,10 @@ a.scroll-to-top {
   width: 40px;
   height: 40px;
   background-color: #4d4d4d;
-  bottom: 70px;
-  right: 32px;
+  bottom: 25px
+px
+;
+    right: 30px;
   left: auto;
   z-index: 10000;
 }
