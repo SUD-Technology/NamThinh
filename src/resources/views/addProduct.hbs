@@ -102,6 +102,14 @@
                             class="form-control input-md" required="" type="text">
                     </div>
                 </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="product_amount">Số lượng</label>
+                    <div class="col-md-10">
+                        <input id="product_amount" name="product_amount" placeholder="Số lượng"
+                            class="form-control input-md" required="" type="number">
+                    </div>
+                </div>
 
                 <!-- Text input-->
                 <div class="form-group">
@@ -126,30 +134,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="product_description">MÔ TẢ THÔNG TIN SẢN PHẨM</label>
                     <div class="col-md-10">
-                        <textarea class="form-control" id="product_description" name="product_description">
-                            <p><strong>Thông số kỹ thuật</strong></p>
-                            <p>- Tải trọng nâng: 4 Tấn</p>
-
-                            <p>- Chiều cao nâng: 2050 mm</p>
-
-                            <p>- Thời gian nâng/hạ: 35/28 giây</p>
-
-                            <p>- Chiều rộng thông xe: 2509 mm</p>
-
-                            <p>- Khoảng cách giữa 2 trụ: 2766 mm</p>
-
-                            <p>- Chiều cao tổng thể: 4040 mm</p>
-
-                            <p>- Vị trí thấp nhất của tay nâng: 95 - 140 mm</p>
-
-                            <p>- Tay nâng dài: 1130 - 1840 mm</p>
-
-                            <p>- Công suất Mô tơ: 3 Kw</p>
-
-                            <p>- Cấp nguồn: 3 pha 400V / 50Hz</p>
-
-                            <p>&nbsp;</p>
-                        </textarea>
+                        <textarea id="product_description" name="product_description"></textarea>
                     </div>
                 </div>
 
@@ -169,9 +154,7 @@
 
 {{!-- Body: end --}}
 
-
-<script src="https://cdn.tiny.cloud/1/j88ohxy0xzr1jtwyis9v2j14gxs7ym1374rj731gaz4wcqo0/tinymce/6/tinymce.min.js"
-    referrerpolicy="origin"></script>
+<script src="/ckeditor/ckeditor.js"></script>
 
 <!-- Footer -->
 <script>
@@ -200,12 +183,6 @@
         }
     }
 
-    tinymce.init({
-        selector: '#product_description',
-        plugins: 'a11ychecker advcode casechange export formatpainter image editimage linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tableofcontents tinycomments tinymcespellchecker',
-        toolbar: 'a11ycheck addcomment showcomments casechange checklist code export formatpainter image editimage pageembed permanentpen table tableofcontents',
-        toolbar_mode: 'floating',
-        tinycomments_mode: 'embedded',
-        tinycomments_author: 'Author name',
-    });
+    CKEDITOR.replace('product_description')
+
 </script>

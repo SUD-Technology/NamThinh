@@ -17,7 +17,7 @@ const AdminController = {
     addProduct: (req, res) => {
         const file = req.files
         console.log(file)
-        const { product_id, product_name, product_model, product_categories, product_branch, product_origin, product_description } = req.body
+        const { product_id, product_name, product_model, product_categories, product_branch, product_origin, product_description, product_amount } = req.body
         let listImages = []
         if (!file) {
             res.json({ code: 1, message: "error" })
@@ -48,6 +48,7 @@ const AdminController = {
             product_model: product_model,
             product_origin: product_origin,
             brand_name: product_branch,
+            amount: product_amount,
             classes: classes,
             slug: slug
         }
@@ -136,7 +137,7 @@ const AdminController = {
                         brands = unique(brands)
                         origins = unique(origins)
 
-                        res.render('productManager', { admin: true, products: productList, brands, origins })
+                        res.render('productManager', { position: req.session.position, products: productList, brands, origins })
                     }
                 })
         }
