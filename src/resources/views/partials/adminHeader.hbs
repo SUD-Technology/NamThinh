@@ -95,20 +95,36 @@
                     </div>
 
                     <div class="nav-bottom admin-nav">
-                        <form class="form-inline my-2 my-lg-0 ">
+                        <ul class="admin-nav-lists my-2 my-lg-0 ">
                             {{#isAdmin position}}
-                            <a class="smooth mr-2 ml-2" href="/admin/product-manager/1"> <i class="fas fa-tasks"></i>
-                                Quản lý nhân viên
-                            </a>
-                            <a class="smooth mr-2 ml-2" href="/admin/product-manager/1"> <i class="fas fa-tasks"></i>
-                                Quản lý sản phẩm
-                            </a>
-                            <a class="smooth mr-2 ml-2" href="/admin/customer-info"> <i class="fas fa-users"></i>
-                                Thông tin khách hàng
-                            </a>
-                            <a class="smooth mr-2 ml-2" href="/admin/create-order"> <i class="fas fa-plus"></i>
-                                Tạo đơn hàng
-                            </a>
+                            <li class="admin-nav-item">
+                                <i class="fas fa-calculator"></i>
+                                <a class="smooth mr-2 ml-2 accountant-item" href="#">
+                                    Kế toán
+                                </a>
+                                <ul class="accountant-list">
+                                    <li><a class="smooth mr-2 ml-2" href="/admin/add-product"> <i
+                                                class="fas fa-plus"></i>
+                                            Thêm sản phẩm
+                                        </a></li>
+                                    <li><a class="smooth mr-2 ml-2" href="/admin/add-product"> <i
+                                                class="fas fa-plus"></i>
+                                            Thêm sản phẩm
+                                        </a></li>
+                                    <li><a class="smooth mr-2 ml-2" href="/admin/add-product"> <i
+                                                class="fas fa-plus"></i>
+                                            Thêm sản phẩm
+                                        </a></li>
+                                </ul>
+                            </li>
+
+                            <li class="admin-nav-item">
+                                <i class="fas fa-calculator"></i>
+                                <a class="smooth mr-2 ml-2 accountant-item" href="#">
+                                    Sale
+                                </a>
+                            </li>
+
                             {{/isAdmin}}
                             {{#isSale position}}
                             <a class="smooth mr-2 ml-2" href="/admin/product-manager/1"> <i class="fas fa-tasks"></i>
@@ -133,9 +149,11 @@
                                 Chỉnh sửa trang
                             </a>
                             {{/if}}
-                            <a class="smooth mr-2 ml-2 user-info" href=""> <i class="fas fa-user"></i>
-                                {{position}}
-                            </a>
+                            <li class="">
+                                <a class="smooth mr-2 ml-2 user-info" href=""> <i class="fas fa-user"></i>
+                                    {{position}}
+                                </a>
+                            </li>
                             <ul class="user-dropDown">
                                 <li>
                                     <a class="smooth mr-2 ml-2" href="/admin/changePassword"> <i class="fas fa-key"></i>
@@ -150,7 +168,7 @@
                                 </li>
                             </ul>
 
-                        </form>
+                        </ul>
 
                     </div>
 

@@ -36,6 +36,10 @@ app.engine('hbs', handlebars.engine({
             return current == pages
         },
         pagination: function (current, pages) {
+            if (pages < 1) {
+                return `<li class="page-item disabled"><a class="page-link" href="#">1</a>
+                </li>`
+            }
             let i = (Number(current) > 3 ? Number(current) - 2 : 1)
             let html = ``
             if (i !== 1)
@@ -43,10 +47,10 @@ app.engine('hbs', handlebars.engine({
                 </li>`
             for (; i <= (Number(current) + 2) && i <= pages; i++) {
                 if (i == current)
-                    html += `<li class="page-item active"><a class="page-link" href="/admin/product-manager/${i}">${i}</a>
+                    html += `<li class="page-item active"><a class="page-link" href="/admin/product-manager/?page=${i}">${i}</a>
                     </li>`
                 else
-                    html += `<li class="page-item"><a class="page-link" href="/admin/product-manager/${i}">${i}</a>
+                    html += `<li class="page-item"><a class="page-link" href="/admin/product-manager/?page=${i}">${i}</a>
                     </li>`
                 if (i == Number(current) + 2 && i < pages) {
                     html += `<li class="page-item disabled"><a class="page-link" href="#">...</a>
@@ -54,6 +58,11 @@ app.engine('hbs', handlebars.engine({
                 }
             }
             return html
+        },
+        select: function (selected, options) {
+            return options.fn(this).replace(
+                new RegExp(' value=\"' + selected + '\"'),
+                '$& selected="selected"');
         }
     }
 }))

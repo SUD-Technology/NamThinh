@@ -9,10 +9,6 @@ function unique(arr) {
     return Array.from(new Set(arr)) //
 }
 
-function listPage(length) {
-    return Array.from({ length: length }, (_, i) => i + 1)
-}
-
 const AdminController = {
     getAddProduct: (req, res, next) => {
         const error = req.flash('error') || "";
@@ -78,13 +74,42 @@ const AdminController = {
             })
     },
     getProductManager: (req, res, next) => {
-        let page = req.params.page || 1
+        let page = req.query.page || 1
         page = parseInt(page)
         let pageSize = 20
         let skip = (page - 1) * pageSize
         let nextPage = page + 1;
         let previousPage = page <= 1 ? 1 : page - 1;
-        return Products.find({}).skip(skip).limit(pageSize).exec((err, products) => {
+
+        const query = {
+            product_origin: req.query.origin || "",
+            brand_name: req.query.brand || ""
+        }
+
+
+
+        for (let x in query) {
+            if (query[x] == "")
+                delete query[`${x}`]
+        }
+
+        let level
+
+        if (!req.query.lv1 && !req.query.lv2 && !req.query.lv3) {
+            level = {}
+        } else if (!req.query.lv2 && !req.query.lv3) {
+            query["classes.lv1"] = req.query.lv1
+        } else if (!req.query.lv3) {
+
+            query["classes.lv1"] = req.query.lv1
+            query["classes.lv2"] = req.query.lv2
+        } else {
+            query["classes.lv1"] = req.query.lv1
+            query["classes.lv2"] = req.query.lv2
+            query["classes.lv3"] = req.query.lv3
+        }
+
+        return Products.find(query).skip(skip).limit(pageSize).exec((err, products) => {
             Products.countDocuments((err, count) => {
                 if (err) return next(err);
 
@@ -112,13 +137,32 @@ const AdminController = {
 
                     brands = unique(brands)
                     origins = unique(origins)
-                    return res.render('productManager', { position: req.session.position, products: productList, brands, origins, current: page, pages: Math.ceil(count / pageSize), previous: previousPage, next: nextPage })
+                    // res.json({
+                    //     current: page,
+                    //     pages: Math.ceil(count / pageSize)
+                    // })
+                    return res.render('productManager', {
+                        position: req.session.position,
+                        products: productList,
+                        brands,
+                        origins,
+                        current: page,
+                        pages: Math.ceil(count / pageSize),
+                        previous: previousPage,
+                        next: nextPage,
+                        lv1: req.query.lv1,
+                        lv2: req.query.lv2,
+                        lv3: req.query.lv3,
+                        brand: req.query.brand,
+                        origin: req.query.origin,
+
+                    })
                 }
             })
         })
     },
     findProductManager: (req, res, next) => {
-        let page = req.params.page || 1
+        let page = req.query.page || 1
         page = parseInt(page)
         let pageSize = 20
         let skip = (page - 1) * pageSize
@@ -126,21 +170,21 @@ const AdminController = {
         let previousPage = page <= 1 ? 1 : page - 1;
 
         const query = {
-            product_origin: req.body.origin || "",
-            brand_name: req.body.brand || ""
+            product_origin: req.query.origin || "",
+            brand_name: req.query.brand || ""
         }
 
         const classes = {
-            lv1: req.body.lv1 || "0",
-            lv2: req.body.lv2 || "0",
-            lv3: req.body.lv3 || "0"
+            lv1: req.query.lv1 || "0",
+            lv2: req.query.lv2 || "0",
+            lv3: req.query.lv3 || "0"
         }
 
         for (let x in query) {
             if (query[x] == "")
                 delete query[`${x}`]
         }
-        if (!req.body.lv2 && !req.body.lv3)
+        if (!req.query.lv2 && !req.query.lv3)
             return Products.find(query).skip(skip).limit(pageSize)
                 .where('classes.lv1').equals(classes.lv1)
                 .exec((err, products) => {
@@ -171,11 +215,25 @@ const AdminController = {
 
                             brands = unique(brands)
                             origins = unique(origins)
-                            return res.render('productManager', { position: req.session.position, products: productList, brands, origins, current: page, pages: Math.ceil(count / pageSize), previous: previousPage, next: nextPage })
+                            return res.render('productManager', {
+                                position: req.session.position,
+                                products: productList,
+                                brands,
+                                origins,
+                                current: page,
+                                pages: Math.ceil(count / pageSize),
+                                previous: previousPage,
+                                next: nextPage,
+                                lv1: req.query.lv1,
+                                lv2: req.query.lv2,
+                                lv3: req.query.lv3,
+                                brand: req.query.brand,
+                                origin: req.query.origin
+                            })
                         }
                     })
                 })
-        else if (!req.body.lv3)
+        else if (!req.query.lv3)
             return Products.find(query).skip(skip).limit(pageSize)
                 .where('classes.lv1').equals(classes.lv1)
                 .where('classes.lv2').equals(classes.lv2)
@@ -207,7 +265,21 @@ const AdminController = {
 
                             brands = unique(brands)
                             origins = unique(origins)
-                            return res.render('productManager', { position: req.session.position, products: productList, brands, origins, current: page, pages: Math.ceil(count / pageSize), previous: previousPage, next: nextPage })
+                            return res.render('productManager', {
+                                position: req.session.position,
+                                products: productList,
+                                brands,
+                                origins,
+                                current: page,
+                                pages: Math.ceil(count / pageSize),
+                                previous: previousPage,
+                                next: nextPage,
+                                lv1: req.query.lv1,
+                                lv2: req.query.lv2,
+                                lv3: req.query.lv3,
+                                brand: req.query.brand,
+                                origin: req.query.origin
+                            })
                         }
                     })
                 })
@@ -244,7 +316,21 @@ const AdminController = {
 
                             brands = unique(brands)
                             origins = unique(origins)
-                            return res.render('productManager', { position: req.session.position, products: productList, brands, origins, current: page, pages: Math.ceil(count / pageSize), previous: previousPage, next: nextPage })
+                            return res.render('productManager', {
+                                position: req.session.position,
+                                products: productList,
+                                brands,
+                                origins,
+                                current: page,
+                                pages: Math.ceil(count / pageSize),
+                                previous: previousPage,
+                                next: nextPage,
+                                lv1: req.query.lv1,
+                                lv2: req.query.lv2,
+                                lv3: req.query.lv3,
+                                brand: req.query.brand,
+                                origin: req.query.origin
+                            })
                         }
                     })
                 })
@@ -258,7 +344,7 @@ const AdminController = {
     },
     postCreateOrder: (req, res, next) => {
         const Customer = {
-            fullname: req.body.fullname,
+            fullname: req.query.fullname,
             phone: req.body.phone,
             email: req.body.email,
             address: req.body.address,

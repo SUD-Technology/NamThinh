@@ -18,7 +18,8 @@ router.get('/contact', (req, res) => {
 })
 
 
-router.get('/product-manager/:page', checkLogin, AdminController.getProductManager)
+router.get('/product-manager', AdminController.getProductManager)
+// router.get('/product-manager', AdminController.findProductManager)
 router.post('/product-manager', AdminController.findProductManager)
 
 router.get('/edit', (req, res) => {
