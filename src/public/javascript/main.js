@@ -1,11 +1,11 @@
 $(document).ready(function () {
-    setTimeout(function() {
+    setTimeout(function () {
         $('.loader-wrapper').fadeOut(500);
-    },2000)
+    }, 2000)
     const pathname = window.location.pathname;
     const nav = pathname.split('/')[1];
-    
-    if(nav) {
+
+    if (nav) {
         $(`#${nav}`).siblings().removeClass('current');
         $(`#${nav}`).addClass('current');
     }
@@ -212,7 +212,18 @@ $(document).ready(function () {
     // End Pagination Homepage
 
 
-    
+    // scroll-down
+
+    setInterval(() => {
+        $('.scroll-down').animate({
+            bottom: "10px"
+        }, 1000)
+
+        $('.scroll-down').animate({
+            bottom: "40px"
+        }, 1000)
+    }, 3000)
+
 
 
     $('.items-product').hover(function () {
@@ -228,9 +239,9 @@ $(document).ready(function () {
         $('.user-dropDown').hide()
     })
 
-    
 
-    $('.scroll-to-top').click(function() {
+
+    $('.scroll-to-top').click(function () {
         $('html, body').animate({ scrollTop: 0 }, 'fast');
     })
     // $(function () {
