@@ -282,6 +282,11 @@ const AdminController = {
                 res.redirect('/admin/create-order')
             })
 
+    },
+    getAddNews: (req, res, next) => {
+        const error = req.flash('error') || ""
+        const success = req.flash('success') || ""
+        res.render('addNews', { position: req.session.position, error, success })
     }
 }
 
