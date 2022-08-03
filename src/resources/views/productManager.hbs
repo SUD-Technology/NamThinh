@@ -8,10 +8,10 @@
     </div>
     <div class="product-manager-body">
 
-        <form action="" class="find-product-form">
+        <form action="/admin/product-manager/" method="post" class="find-product-form">
             <div class="form-group">
                 <div class="col-md-2">
-                    <select class="form-control" id="product-lv1">
+                    <select name="lv1" class="form-control" id="product-lv1">
                         <option value="">-- Loại sản phẩm --</option>
                         <option value="1">LỐP ADVANCE/SAMSON</option>
                         <option value="2">XE TẢI/ ĐẦU KÉO / XE BEN</option>
@@ -20,16 +20,16 @@
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <select class="form-control" id="product-lv2">
+                    <select name="lv2" class="form-control" id="product-lv2">
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <select class="form-control" id="product-lv3">
+                    <select name="lv3" class="form-control" id="product-lv3">
 
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select name="origin" class="form-control" id="exampleFormControlSelect1">
                         <option value="">Xuất xứ</option>
                         {{#each origins}}
                         <option value="{{this}}">{{this}}</option>
@@ -37,7 +37,7 @@
                     </select>
                 </div>
                 <div class="col-md-2">
-                    <select class="form-control" id="exampleFormControlSelect1">
+                    <select name="brand" class="form-control" id="exampleFormControlSelect1">
                         <option value="">Thương hiệu</option>
                         {{#each brands}}
                         <option value="{{this}}">{{this}}</option>

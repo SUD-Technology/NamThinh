@@ -19,7 +19,7 @@ router.get('/contact', (req, res) => {
 
 
 router.get('/product-manager/:page', checkLogin, AdminController.getProductManager)
-
+router.post('/product-manager', AdminController.findProductManager)
 
 router.get('/edit', (req, res) => {
     res.render('editPage', { position: req.session.position })
