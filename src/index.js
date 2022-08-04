@@ -40,9 +40,10 @@ app.engine('hbs', handlebars.engine({
             let lv1 = obj.lv1 || ''
             let lv2 = obj.lv2 || ''
             let lv3 = obj.lv3 || ''
-            let brand = obj.brand || ''
-            let origin = obj.origin || ''
-            let product_name = obj.product_name || ''
+            let brand = encodeURI(obj.brand) || ''
+            let origin = encodeURI(obj.origin) || ''
+            let product_name = encodeURI(obj.product_name) || ''
+
             if (pages < 1) {
                 return `<li class="page-item disabled"><a class="page-link" href="#">1</a>
                 </li>`

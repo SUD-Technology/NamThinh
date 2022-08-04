@@ -75,11 +75,13 @@ const AdminController = {
     },
 
     getProductManager: (req, res, next) => {
-        // res.json({ lv3: parseInt(req.query.lv3) })
+        let p_name = ""
+        if (req.query.product_name)
+            p_name = { $regex: `${req.query.product_name}`, "$options": "i" }
         const query = {
             product_origin: req.query.origin || "",
             brand_name: req.query.brand || "",
-            product_name: req.query.product_name || ""
+            product_name: p_name
         }
 
         for (let x in query) {
@@ -109,6 +111,7 @@ const AdminController = {
         let nextPage = page + 1;
         let previousPage = page <= 1 ? 1 : page - 1;
 
+        // res.json({ query: query })
 
         return Products.find(query).skip(skip).limit(pageSize).exec((err, products) => {
             Products.countDocuments(query, (err, count) => {
@@ -124,6 +127,7 @@ const AdminController = {
                         lv3: req.query.lv3 || '',
                         brand: req.query.brand || '',
                         origin: req.query.origin || '',
+                        product_name: req.query.product_name || ''
                     })
                 } else {
                     let productList = []
@@ -161,7 +165,7 @@ const AdminController = {
                         lv3: req.query.lv3 || '',
                         brand: req.query.brand || '',
                         origin: req.query.origin || '',
-
+                        product_name: req.query.product_name || ''
                     })
                 }
             })
