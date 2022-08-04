@@ -17,10 +17,9 @@ router.get('/contact', (req, res) => {
     res.render('contact', { position: req.session.position, change: false })
 })
 
-
 router.get('/product-manager', AdminController.getProductManager)
 // router.get('/product-manager', AdminController.findProductManager)
-router.post('/product-manager', AdminController.findProductManager)
+// router.post('/product-manager', AdminController.findProductManager)
 
 router.get('/edit', (req, res) => {
     res.render('editPage', { position: req.session.position })

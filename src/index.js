@@ -35,7 +35,14 @@ app.engine('hbs', handlebars.engine({
         isLastPage: function (current, pages) {
             return current == pages
         },
-        pagination: function (current, pages) {
+        pagination: function (current, pages, options) {
+            let obj = options.hash
+            let lv1 = obj.lv1 || ''
+            let lv2 = obj.lv2 || ''
+            let lv3 = obj.lv3 || ''
+            let brand = obj.brand || ''
+            let origin = obj.origin || ''
+            let product_name = obj.product_name || ''
             if (pages < 1) {
                 return `<li class="page-item disabled"><a class="page-link" href="#">1</a>
                 </li>`
@@ -47,10 +54,10 @@ app.engine('hbs', handlebars.engine({
                 </li>`
             for (; i <= (Number(current) + 2) && i <= pages; i++) {
                 if (i == current)
-                    html += `<li class="page-item active"><a class="page-link" href="/admin/product-manager/?page=${i}">${i}</a>
+                    html += `<li class="page-item active"><a class="page-link" href="/admin/product-manager/?lv1=${lv1}&lv2=${lv2}&lv3=${lv3}&brand=${brand}&origin=${origin}&product_name=${product_name}&page=${i}">${i}</a>
                     </li>`
                 else
-                    html += `<li class="page-item"><a class="page-link" href="/admin/product-manager/?page=${i}">${i}</a>
+                    html += `<li class="page-item"><a class="page-link" href="/admin/product-manager/?lv1=${lv1}&lv2=${lv2}&lv3=${lv3}&brand=${brand}&origin=${origin}&product_name=${product_name}&page=${i}">${i}</a>
                     </li>`
                 if (i == Number(current) + 2 && i < pages) {
                     html += `<li class="page-item disabled"><a class="page-link" href="#">...</a>
