@@ -388,7 +388,7 @@ const AdminController = {
     getAddNews: (req, res, next) => {
         const error = req.flash('error') || ""
         const success = req.flash('success') || ""
-        res.render('addNews', { position: req.session.position, error, success })
+        res.render('addNews', { layout: 'admin', position: req.session.position, error, success })
     }
 }
 

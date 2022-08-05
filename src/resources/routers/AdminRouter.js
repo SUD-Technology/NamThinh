@@ -9,8 +9,8 @@ const store = require('../middlewares/multer');
 const checkLogin = require('../auth/checkLogin')
 const { authPage } = require('../auth/checkUser')
 
-router.get('/', (req, res) => {
-    res.render('home', { layout: 'admin' })
+router.get('/adminHome', (req, res) => {
+    res.render('admin', { layout: 'admin', position: req.session.position })
 })
 
 router.get('/contact', (req, res) => {

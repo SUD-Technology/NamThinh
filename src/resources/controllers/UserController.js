@@ -51,7 +51,12 @@ const UserController = {
                                 req.session.position = account.position
                                 req.session.token = token
                                 req.flash('success', 'Đăng nhập thành công')
-                                res.redirect('/admin/')
+                                if (account.position == 'admin')
+                                    return res.redirect('/admin/adminHome')
+                                else if (account.position == 'sale')
+                                    return res.redirect('/admin/saleHome')
+                                else
+                                    return res.redirect('/admin/accountantHome')
                             }
                         })
 
@@ -127,7 +132,7 @@ const UserController = {
         let oldPassword = req.flash('oldPassword') || "";
         let newPassword = req.flash('newPassword') || "";
         let success = req.flash('success') || ""
-        res.render('changePassword', { error, oldPassword, newPassword, success })
+        res.render('changePassword', { layout: 'admin', error, oldPassword, newPassword, success })
     },
 
     postChangePassword: (req, res, next) => {
