@@ -345,11 +345,10 @@
             <img width="100%" height="100%" src="/img/logo.png" alt="">
           </div>
         </div>
-        {{!-- <i class='bx bxl-c-plus-plus'></i> --}}
         <span class="logo_name">Nam Thịnh</span>
       </div>
       <ul class="nav-links">
-        <li>
+        {{!-- <li>
           <a href="#">
             <i class='bx bx-grid-alt'></i>
             <span class="link_name">Dashboard</span>
@@ -357,32 +356,54 @@
           <ul class="sub-menu blank">
             <li><a class="link_name" href="#">Dashboard</a></li>
           </ul>
-        </li>
+        </li> --}}
         <li>
           <div class="icon-link">
-            <a href="/home">
-              <i class='bx bx-collection'></i>
+            <a href="/admin/home">
+              <i class="fas fa-home"></i>
               <span class="link_name">Trang chủ</span>
             </a>
-
           </div>
-
         </li>
+        {{!-- Sale --}}
+
         <li>
           <div class="icon-link">
             <a href="#">
-              <i class='bx bx-cart'></i>
+              <i class="fas fa-shopping-cart"></i>
               <span class="link_name">Sản phẩm</span>
             </a>
             <i class='bx bxs-chevron-down arrow'></i>
           </div>
           <ul class="sub-menu">
             <li><a class="link_name" href="#">Sản phẩm</a></li>
+            {{#isSale position}}
+            <li {{#isAdmin position}} class="d-none" {{/isAdmin}}><a href="/admin/product-manager">Kiểm kho</a></li>
+            {{/isSale }}
+            {{#isAccountant position}}
             <li><a href="/admin/product-manager">Kiểm kho</a></li>
             <li><a href="/admin/add-product">Thêm sản phẩm</a></li>
             <li><a href="#">Xóa sản phẩm</a></li>
+            {{/isAccountant}}
           </ul>
         </li>
+        {{#isSale position}}
+        <li>
+          <div class="icon-link">
+            <a href="#">
+              <i class="fas fa-file-alt"></i>
+              <span class="link_name">Đơn hàng</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow'></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Đơn hàng</a></li>
+            <li><a href="/admin/create-order">Tạo đơn hàng</a></li>
+            <li><a href="/admin/getOrders">Danh sách đơn hàng</a></li>
+          </ul>
+        </li>
+        {{/isSale }}
+        {{!-- Admin --}}
         {{#isAdmin position}}
         <li>
           <div class="icon-link">
@@ -399,36 +420,47 @@
             <li><a href="#">Xóa bài viết</a></li>
           </ul>
         </li>
-        {{/isAdmin}}
         <li>
           <div class="icon-link">
             <a href="#">
-              <i class='bx bx-user'></i>
+              <i class="fas fa-users"></i>
               <span class="link_name">Nhân viên</span>
             </a>
             <i class='bx bxs-chevron-down arrow'></i>
           </div>
           <ul class="sub-menu">
             <li><a class="link_name" href="#">Nhân viên</a></li>
-            <li><a href="#">Admin</a></li>
-            <li><a href="#">Kế toán</a></li>
-            <li><a href="#">Sale</a></li>
+            <li><a href="/admin/getUsers">Danh sách nhân viên</a></li>
+            <li><a href="/users/register">Thêm nhân viên</a></li>
           </ul>
         </li>
+        {{/isAdmin}}
+        {{#isSale position}}
+        <li>
+          <div class="icon-link">
+            <a href="/admin/customer-info">
+              <i class="fas fa-users"></i>
+              <span class="link_name">Khách hàng</span>
+            </a>
 
+          </div>
+        </li>
+        {{/isSale}}
+        {{#isAdmin position}}
         <li>
           <a href="#">
-            <i class='bx bx-history'></i>
+            <i class="fas fa-history"></i>
             <span class="link_name">Lịch sử</span>
           </a>
           <ul class="sub-menu blank">
             <li><a class="link_name" href="#">Lịch sử</a></li>
           </ul>
         </li>
+        {{/isAdmin}}
         <li>
           <div class="icon-link">
             <a href="#">
-              <i class='bx bx-user'></i>
+              <i class="fas fa-user-cog"></i>
               <span class="link_name">Tài khoản</span>
             </a>
             <i class='bx bxs-chevron-down arrow'></i>
@@ -445,7 +477,7 @@
     <section class="home-section mr-2 ml-2">
       <div class="home-content">
         <i class='bx bx-menu'></i>
-        <span class="text">Home</span> <br />
+        <span class="text">{{pageName}}</span> <br />
       </div>
       {{{body}}}
     </section>

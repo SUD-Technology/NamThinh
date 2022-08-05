@@ -22,11 +22,11 @@ app.engine('hbs', handlebars.engine({
                 return options.fn(this)
         },
         isSale: function (val, options) {
-            if (val == 'sale')
+            if (val == 'sale' || val == 'admin')
                 return options.fn(this)
         },
         isAccountant: function (val, options) {
-            if (val == 'accountant')
+            if (val == 'accountant' || val == 'admin')
                 return options.fn(this)
         },
         isFirstPage: function (page) {
@@ -71,6 +71,9 @@ app.engine('hbs', handlebars.engine({
             return options.fn(this).replace(
                 new RegExp(' value=\"' + selected + '\"'),
                 '$& selected="selected"');
+        },
+        inc: function (value, options) {
+            return parseInt(value) + 1;
         }
     }
 }))
@@ -158,7 +161,7 @@ app.get('/discount', (req, res) => {
 })
 
 app.get('/admin', (req, res) => {
-    res.render('home', {layout: 'admin'})
+    res.render('home', { layout: 'admin' })
 })
 
 app.use('/users', UserRouter);

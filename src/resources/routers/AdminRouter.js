@@ -9,38 +9,37 @@ const store = require('../middlewares/multer');
 const checkLogin = require('../auth/checkLogin')
 const { authPage } = require('../auth/checkUser')
 
-router.get('/adminHome', (req, res) => {
-    res.render('admin', { layout: 'admin', position: req.session.position })
+// Home
+router.get('/home', checkLogin, (req, res) => {
+    res.render('admin', { layout: 'admin', position: req.session.position, pageName: "Trang chủ" })
 })
 
-router.get('/contact', (req, res) => {
-    res.render('contact', { position: req.session.position, change: false })
-})
+router.get('/product-manager', checkLogin, authPage(["admin", "accountant", "sale"]), AdminController.getProductManager)
 
-router.get('/product-manager', AdminController.getProductManager)
-
-
-router.get('/edit', (req, res) => {
-    res.render('editPage', { position: req.session.position })
-})
-
+// Change Password
 router.get('/changePassword', checkLogin, (req, res) => {
     res.render('changePassword', { position: req.session.position })
 })
 
-router.get('/customer-info', checkLogin, authPage(["admin", "sale"]), (req, res) => {
-    res.render('customerInfo', { position: req.session.position })
-})
+// Customer information
+router.get('/customer-info', checkLogin, authPage(["admin", "sale"]), AdminController.getCustomers)
 
-
+// Add Product
 router.get('/add-product', checkLogin, authPage(["admin", "accountant"]), AdminController.getAddProduct)
 router.post('/add-product', store.array('product-image', 12), uploadImage, AdminController.addProduct)
-router.get('/delete/:id', AdminController.deleteProduct)
+
+// Delete Product
+router.get('/delete/:id', checkLogin, authPage(["admin", "accountant"]), AdminController.deleteProduct)
 
 // News
-router.get('/add-news', AdminController.getAddNews)
+router.get('/add-news', checkLogin, authPage(["admin"]), AdminController.getAddNews)
 
-
+// Create order
 router.get('/create-order', checkLogin, authPage(['admin', "sale"]), AdminController.getCreateOrder)
 router.post('/create-order', AdminController.postCreateOrder)
+router.get('/getOrders', AdminController.getOrders)
+
+// Get sale
+router.get('/getUsers', checkLogin, authPage(['admin']), AdminController.getUsers)
+router.get('/deleteUser/:id', checkLogin, authPage(['admin']), AdminController.deleteUser)
 module.exports = router;

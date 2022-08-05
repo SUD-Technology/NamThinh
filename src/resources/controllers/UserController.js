@@ -51,12 +51,7 @@ const UserController = {
                                 req.session.position = account.position
                                 req.session.token = token
                                 req.flash('success', 'Đăng nhập thành công')
-                                if (account.position == 'admin')
-                                    return res.redirect('/admin/adminHome')
-                                else if (account.position == 'sale')
-                                    return res.redirect('/admin/saleHome')
-                                else
-                                    return res.redirect('/admin/accountantHome')
+                                return res.redirect('/admin/home')
                             }
                         })
 
@@ -85,7 +80,7 @@ const UserController = {
         let phone = req.flash('phone') || "";
         let success = req.flash('success') || "";
         let fullname = req.flash('fullname')
-        res.render('register', { success, error, fullname, username, password, email, phone })
+        res.render('register', { position: req.session.position, layout: 'admin', pageName: 'Tạo tài khoản', success, error, fullname, username, password, email, phone })
     },
 
     postRegister: (req, res, next) => {
@@ -132,7 +127,7 @@ const UserController = {
         let oldPassword = req.flash('oldPassword') || "";
         let newPassword = req.flash('newPassword') || "";
         let success = req.flash('success') || ""
-        res.render('changePassword', { layout: 'admin', error, oldPassword, newPassword, success })
+        res.render('changePassword', { pageName: "Đổi mật khẩu", position: req.session.position, layout: 'admin', error, oldPassword, newPassword, success })
     },
 
     postChangePassword: (req, res, next) => {
