@@ -51,7 +51,7 @@ const UserController = {
                                 req.session.position = account.position
                                 req.session.token = token
                                 req.flash('success', 'Đăng nhập thành công')
-                                res.redirect('/home/')
+                                res.redirect('/admin/')
                             }
                         })
 

@@ -13,7 +13,8 @@ const AdminController = {
     getAddProduct: (req, res, next) => {
         const error = req.flash('error') || "";
         const success = req.flash('success') || ""
-        res.render('addProduct', { position: req.session.position, error, success })
+        // res.render('addProduct', { position: req.session.position, error, success })
+        res.render('addProduct', { layout: 'admin', error, success })
     },
     addProduct: (req, res) => {
         const file = req.files
@@ -118,6 +119,7 @@ const AdminController = {
                 if (err) return next(err);
                 if (products.length == 0) {
                     return res.render('productManager', {
+                        layout: 'admin',
                         position: req.session.position,
                         products: [],
                         current: 1,
@@ -152,6 +154,7 @@ const AdminController = {
                     brands = unique(brands)
                     origins = unique(origins)
                     return res.render('productManager', {
+                        layout: 'admin',
                         position: req.session.position,
                         products: productList,
                         brands,
@@ -226,6 +229,7 @@ const AdminController = {
                             brands = unique(brands)
                             origins = unique(origins)
                             return res.render('productManager', {
+                                layout: 'admin',
                                 position: req.session.position,
                                 products: productList,
                                 brands,
@@ -276,6 +280,7 @@ const AdminController = {
                             brands = unique(brands)
                             origins = unique(origins)
                             return res.render('productManager', {
+                                layout: 'admin',
                                 position: req.session.position,
                                 products: productList,
                                 brands,
@@ -327,6 +332,7 @@ const AdminController = {
                             brands = unique(brands)
                             origins = unique(origins)
                             return res.render('productManager', {
+                                layout: 'admin',
                                 position: req.session.position,
                                 products: productList,
                                 brands,

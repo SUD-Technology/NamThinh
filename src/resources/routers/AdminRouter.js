@@ -10,7 +10,7 @@ const checkLogin = require('../auth/checkLogin')
 const { authPage } = require('../auth/checkUser')
 
 router.get('/', (req, res) => {
-    res.render('home', { position: req.session.position })
+    res.render('home', { layout: 'admin' })
 })
 
 router.get('/contact', (req, res) => {
@@ -18,8 +18,7 @@ router.get('/contact', (req, res) => {
 })
 
 router.get('/product-manager', AdminController.getProductManager)
-// router.get('/product-manager', AdminController.findProductManager)
-// router.post('/product-manager', AdminController.findProductManager)
+
 
 router.get('/edit', (req, res) => {
     res.render('editPage', { position: req.session.position })
