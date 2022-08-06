@@ -40,7 +40,7 @@
 
   <div style=""
     class="text-center logo-wrap">
-    <a href="/home"><img style="margin-top: 25vh;" width="25%" src="/img/logo.png" alt=""></a>
+    <a href="/home"><img style="margin-top: 25vh;" width="30%" src="/img/logo.png" alt=""></a>
   </div>
 
   <style>
@@ -50,7 +50,7 @@
         display: inline-block; 
         position: absolute;
         z-index: 1;
-        top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.25);
+        top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.5);
         {{!-- border-radius: 15%; --}}
     }
 
@@ -64,42 +64,55 @@
     }
 
     figure.snip1235:nth-child(1) {
-      transform: translate(160%, 50%)
+      transform: translate(160%, 50%);
+      clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+      ;
     }
     figure.snip1235:nth-child(2) {
-      right: 0; transform: translate(-160%, 50%)
+      right: 0; transform: translate(-160%, 50%);
+      clip-path: polygon(0 0, 75% 0, 100% 100%, 25% 100%);
     }
     figure.snip1235:nth-child(3) {
-      right: 0; bottom: 50%; transform: translate(-100%, 54%)
+      right: 0; bottom: 50%; transform: translate(-100%, 54%);
+      
+      clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 25% 50%, 0% 0%);
+      min-width: 200px;
     }
     figure.snip1235:nth-child(4) {
-      left: 0; bottom: 0; transform: translate(160%, -50%)
+      left: 0; bottom: 0; transform: translate(160%, -50%);
+      clip-path: polygon(0 0, 75% 0, 100% 100%, 25% 100%);
     }
     figure.snip1235:nth-child(5) {
-      left: 0; bottom: 50%; transform: translate(100%, 54%)
+      left: 0; bottom: 50%; transform: translate(100%, 54%);
+      clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%);
+      min-width: 200px;
     }
     figure.snip1235:nth-child(6) {
-      right: 0; bottom: 0; transform: translate(-160%, -50%)
+      right: 0; bottom: 0; transform: translate(-160%, -50%);
+      clip-path: polygon(25% 0, 100% 0, 75% 100%, 0 100%);
     }
 
     @media (max-height: 800px) {
       figure.snip1235:nth-child(1) {
-        transform: translate(130%, 50%)
+        transform: translate(100%, 50%)
       }
       figure.snip1235:nth-child(2) {
-        right: 0; transform: translate(-130%, 50%)
+        right: 0; transform: translate(-100%, 50%);
       }
       figure.snip1235:nth-child(3) {
-        right: 0; bottom: 50%; transform: translate(-80%, 56%)
+        right: 0; bottom: 50%; transform: translate(-80%, 56%);
+        
       }
       figure.snip1235:nth-child(4) {
-        left: 0; bottom: 0; transform: translate(130%, -50%)
+        left: 0; bottom: 0; transform: translate(100%, -50%);
+        
       }
       figure.snip1235:nth-child(5) {
         left: 0; bottom: 50%; transform: translate(80%, 56%)
       }
       figure.snip1235:nth-child(6) {
-        right: 0; bottom: 0; transform: translate(-130%, -50%)
+        right: 0; bottom: 0; transform: translate(-100%, -50%);
+        
       }
       
       figure.snip1235 img {
@@ -123,9 +136,9 @@
       }
 
       .logo-wrap img {
-        margin-top: 30vh !important;
-        border-radius: 7%;
-        margin-left: 3px;
+        margin-top: 26vh !important;
+        {{!-- border-radius: 7%; --}}
+        margin-left: 10px;
       }
 
       figure.snip1235:hover h3,

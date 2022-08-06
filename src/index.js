@@ -6,7 +6,8 @@ const path = require('path')
 const UserRouter = require('./resources/routers/UserRouter');
 const CollectionRouter = require('./resources/routers/CollectionRouter');
 const ProductRouter = require('./resources/routers/ProductRouter');
-const AdminRouter = require('./resources/routers/AdminRouter')
+const AdminRouter = require('./resources/routers/AdminRouter');
+const NewsRouter = require('./resources/routers/NewsRouter');
 const db = require('./config/db');
 const Products = require('./resources/models/Products');
 const session = require('express-session')
@@ -140,10 +141,6 @@ app.get('/cart', (req, res) => {
     res.render('product-cart')
 })
 
-app.get('/news', (req, res) => {
-    res.render('news')
-})
-
 app.get('/contact', (req, res) => {
     res.render('contact')
 })
@@ -167,5 +164,6 @@ app.get('/admin', (req, res) => {
 app.use('/users', UserRouter);
 app.use('/collections', CollectionRouter);
 app.use('/products', ProductRouter);
-app.use('/admin', AdminRouter)
+app.use('/admin', AdminRouter);
+app.use('/news', NewsRouter);
 app.listen(port, () => console.log('Server started'))
