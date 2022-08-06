@@ -4,6 +4,7 @@ const slugify = require('slugify');
 const path = require('path')
 const Orders = require('../models/Orders')
 const Customers = require('../models/Customers')
+const Users = require('../models/Users')
 
 function unique(arr) {
     return Array.from(new Set(arr)) //
@@ -13,7 +14,8 @@ const AdminController = {
     getAddProduct: (req, res, next) => {
         const error = req.flash('error') || "";
         const success = req.flash('success') || ""
-        res.render('addProduct', { position: req.session.position, error, success })
+        // res.render('addProduct', { position: req.session.position, error, success })
+        res.render('addProduct', { pageName: "Thêm sản phẩm", layout: 'admin', error, success, position: req.session.position })
     },
     addProduct: (req, res) => {
         const file = req.files
@@ -73,13 +75,14 @@ const AdminController = {
                 product.delete().then(res.redirect('/home'));
             })
     },
-
     getProductManager: (req, res, next) => {
-        // res.json({ lv3: parseInt(req.query.lv3) })
+        let p_name = ""
+        if (req.query.product_name)
+            p_name = { $regex: `${req.query.product_name}`, "$options": "i" }
         const query = {
             product_origin: req.query.origin || "",
             brand_name: req.query.brand || "",
-            product_name: req.query.product_name || ""
+            product_name: p_name
         }
 
         for (let x in query) {
@@ -109,12 +112,15 @@ const AdminController = {
         let nextPage = page + 1;
         let previousPage = page <= 1 ? 1 : page - 1;
 
+        // res.json({ query: query })
 
         return Products.find(query).skip(skip).limit(pageSize).exec((err, products) => {
             Products.countDocuments(query, (err, count) => {
                 if (err) return next(err);
                 if (products.length == 0) {
                     return res.render('productManager', {
+                        layout: "admin",
+                        pageName: "Danh sách sản phẩm",
                         position: req.session.position,
                         products: [],
                         current: 1,
@@ -124,6 +130,7 @@ const AdminController = {
                         lv3: req.query.lv3 || '',
                         brand: req.query.brand || '',
                         origin: req.query.origin || '',
+                        product_name: req.query.product_name || ''
                     })
                 } else {
                     let productList = []
@@ -148,6 +155,8 @@ const AdminController = {
                     brands = unique(brands)
                     origins = unique(origins)
                     return res.render('productManager', {
+                        layout: "admin",
+                        pageName: "Danh sách sản phẩm",
                         position: req.session.position,
                         products: productList,
                         brands,
@@ -161,7 +170,7 @@ const AdminController = {
                         lv3: req.query.lv3 || '',
                         brand: req.query.brand || '',
                         origin: req.query.origin || '',
-
+                        product_name: req.query.product_name || ''
                     })
                 }
             })
@@ -222,6 +231,7 @@ const AdminController = {
                             brands = unique(brands)
                             origins = unique(origins)
                             return res.render('productManager', {
+                                layout: 'admin',
                                 position: req.session.position,
                                 products: productList,
                                 brands,
@@ -272,6 +282,7 @@ const AdminController = {
                             brands = unique(brands)
                             origins = unique(origins)
                             return res.render('productManager', {
+                                layout: 'admin',
                                 position: req.session.position,
                                 products: productList,
                                 brands,
@@ -323,6 +334,7 @@ const AdminController = {
                             brands = unique(brands)
                             origins = unique(origins)
                             return res.render('productManager', {
+                                layout: 'admin',
                                 position: req.session.position,
                                 products: productList,
                                 brands,
@@ -346,15 +358,30 @@ const AdminController = {
         const sale = req.session.username || "";
         const error = req.flash('error') || "";
         const success = req.flash('success') || "";
-        res.render('createOrders', { position: req.session.position, sale, error, success })
+        res.render('createOrders', { layout: "admin", pageName: "Tạo đơn hàng", position: req.session.position, sale, error, success })
     },
     postCreateOrder: (req, res, next) => {
-        const Customer = {
-            fullname: req.query.fullname,
-            phone: req.body.phone,
-            email: req.body.email,
-            address: req.body.address,
-        }
+        let Customer
+        Customers.find({ phone: req.body.phone })
+            .then(result => {
+                if (result) {
+                    Customer = {
+                        fullname: result.fullname,
+                        phone: result.phone,
+                        email: result.email,
+                        address: result.address,
+                    }
+                }
+                else {
+                    Customer = {
+                        fullname: req.body.fullname,
+                        phone: req.body.phone,
+                        email: req.body.email,
+                        address: req.body.address,
+                    }
+                }
+            })
+
         const order = {
             Customer: Customer,
             sale: req.body.sale,
@@ -378,7 +405,125 @@ const AdminController = {
     getAddNews: (req, res, next) => {
         const error = req.flash('error') || ""
         const success = req.flash('success') || ""
-        res.render('addNews', { position: req.session.position, error, success })
+        res.render('addNews', { layout: 'admin', pageName: "Đăng tin", position: req.session.position, error, success })
+    },
+    getUsers: (req, res, next) => {
+        return Users.find({})
+            .then(users => {
+                let sales = []
+                let accountants = []
+                if (users.length > 0) {
+                    users.forEach(user => {
+                        const current_user = {
+                            id: user._id,
+                            name: user.fullname,
+                            position: user.position,
+                            email: user.email,
+                            phone: user.phone,
+                            username: user.username
+                        }
+                        if (user.position == 'sale')
+                            sales.push(current_user)
+                        else if (user.position == 'accountant')
+                            accountants.push(current_user)
+                    })
+                    res.render('listUsers', { position: req.session.position, layout: 'admin', sales, accountants, pageName: "Thông tin nhân viên" })
+                }
+            })
+    },
+    deleteUser: (req, res, next) => {
+        const id = req.params.id
+        return Users.findByIdAndDelete(id)
+            .then(() => {
+                res.redirect('/admin/getUsers')
+            })
+            .catch(() => {
+                res.json({ message: "Xóa tài khoản thất bại" })
+            })
+    },
+    getCustomers: (req, res, next) => {
+        return Customers.find({})
+            .then(users => {
+                let listCustomers = []
+                if (users.length > 0) {
+                    users.forEach(user => {
+                        const current_user = {
+                            id: user._id,
+                            name: user.fullname,
+                            address: user.address,
+                            email: user.email,
+                            phone: user.phone,
+                            status: user.status
+                        }
+                        listCustomers.push(current_user)
+                    })
+                    res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position })
+                }
+            })
+    },
+    getOrders: (req, res, next) => {
+        return Orders.find({})
+            .then(orders => {
+                let listOrders = []
+                if (orders.length > 0) {
+                    orders.forEach(order => {
+                        const customer = {
+                            phone: order.Customer.phone,
+                            name: order.Customer.fullname
+                        }
+
+                        const current_order = {
+                            id: order._id,
+                            customer: customer,
+                            sale: order.sale,
+                            total: order.total,
+                            product_list: order.product_list
+                        }
+                        listOrders.push(current_order)
+                    })
+                    res.render('listOrders', { listOrders, layout: "admin", pageName: "Danh sách đơn hàng", position: req.session.position })
+                }
+            })
+    },
+    getOrderByCustomer: (req, res, next) => {
+        const cid = req.params.cid
+        return Orders.findById(cid)
+            .then(order => {
+                if (order) {
+                    const customer = {
+                        phone: order.Customer.phone,
+                        name: order.Customer.fullname
+                    }
+                    const current_order = {
+                        id: order._id,
+                        customer: customer,
+                        sale: order.sale,
+                        total: order.total,
+                        product_list: order.product_list
+                    }
+                    return res.render('listOrders', { current_order, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
+                }
+                return res.render('listOrders', { current_order: {}, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
+
+            })
+    },
+    getCustomerByOrder: (req, res, next) => {
+        const phone = req.params.phone
+        return Customers.find({ phone: phone })
+            .then(customer => {
+                if (customer) {
+                    const current_customer = {
+                        id: customer._id,
+                        phone: customer.phone,
+                        address: customer.address,
+                        name: customer.name,
+                        status: customer.status
+                    }
+                    return res.render('listcustomers', { current_customer, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
+                }
+                return res.render('listcustomers', { current_customer: {}, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
+
+            })
     }
 }
 

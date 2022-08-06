@@ -9,276 +9,330 @@
   <!-- Boxiocns CDN Link -->
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  {{!-- Bootstrap --}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+    integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  {{!-- Font Awesome --}}
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+  <link rel="stylesheet" href="/css/app.css">
   <title>Nam Thịnh Admin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <style>
     /* Google Fonts Import Link */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-.wrapper{
-  display: flex;
-  min-height: 100%;
-}
-.sidebar{
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0;
-  min-height: 100vh;
-  width: 260px;
-  background: #11101d;
-  background-size: cover;
-  z-index: 100;
-  transition: all 0.5s ease;
-}
-.sidebar.close{
-  width: 78px;
-}
-.sidebar .logo-details{
-  height: 60px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-.sidebar .logo-details i{
-  font-size: 30px;
-  color: #fff;
-  height: 50px;
-  min-width: 78px;
-  text-align: center;
-  line-height: 50px;
-}
-.sidebar .logo-details .logo_name{
-  font-size: 22px;
-  color: #fff;
-  font-weight: 600;
-  transition: 0.3s ease;
-  transition-delay: 0.1s;
-}
-.sidebar.close .logo-details .logo_name{
-  transition-delay: 0s;
-  opacity: 0;
-  pointer-events: none;
-}
-.sidebar .nav-links{
-  height: 100%;
-  padding: 30px 0 100px 0;
-  overflow: auto;
-}
-.sidebar.close .nav-links{
-  overflow: visible;
-}
-.sidebar .nav-links::-webkit-scrollbar{
-  display: none;
-}
-.sidebar .nav-links li{
-  position: relative;
-  list-style: none;
-  transition: all 0.4s ease;
-}
-.sidebar .nav-links li:hover{
-  background: #1d1b31;
-}
-.sidebar .nav-links li .icon-link{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.sidebar.close .nav-links li .icon-link{
-  display: block
-}
-.sidebar .nav-links li i{
-  height: 50px;
-  min-width: 78px;
-  text-align: center;
-  line-height: 50px;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.sidebar .nav-links li.showMenu i.arrow{
-  transform: rotate(-180deg);
-}
-.sidebar.close .nav-links i.arrow{
-  display: none;
-}
-.sidebar .nav-links li a{
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-}
-.sidebar .nav-links li a .link_name{
-  font-size: 17px;
-  font-weight: 400;
-  color: #fff;
-  transition: all 0.4s ease;
-}
-.sidebar.close .nav-links li a .link_name{
-  opacity: 0;
-  pointer-events: none;
-}
-.sidebar .nav-links li .sub-menu{
-  padding: 6px 6px 10px 80px;
-  margin-top: -10px;
-  background: #1d1b31;
-  display: none;
-}
-.sidebar .nav-links li.showMenu .sub-menu{
-  display: block;
-}
-.sidebar .nav-links li .sub-menu a{
-  color: #fff;
-  font-size: 15px;
-  padding: 5px 0;
-  white-space: nowrap;
-  opacity: 0.6;
-  transition: all 0.3s ease;
-}
-.sidebar .nav-links li .sub-menu a:hover{
-  opacity: 1;
-}
-.sidebar.close .nav-links li .sub-menu{
-  position: absolute;
-  left: 100%;
-  top: -10px;
-  margin-top: 0;
-  padding: 10px 20px;
-  border-radius: 0 6px 6px 0;
-  opacity: 0;
-  display: block;
-  pointer-events: none;
-  transition: 0s;
-}
-.sidebar.close .nav-links li:hover .sub-menu{
-  top: 0;
-  opacity: 1;
-  pointer-events: auto;
-  transition: all 0.4s ease;
-}
-.sidebar .nav-links li .sub-menu .link_name{
-  display: none;
-}
-.sidebar.close .nav-links li .sub-menu .link_name{
-  font-size: 17px !important; 
-  opacity: 1;
-  display: block;
-}
-.sidebar .nav-links li .sub-menu.blank{
-  opacity: 1;
-  pointer-events: auto;
-  padding: 3px 20px 6px 16px;
-  opacity: 0;
-  pointer-events: none;
-}
-.sidebar .nav-links li:hover .sub-menu.blank{
-  top: 50%;
-  transform: translateY(-50%);
-}
-.sidebar .profile-details{
-  position: fixed;
-  bottom: 0;
-  width: 260px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #1d1b31;
-  padding: 12px 0;
-  transition: all 0.5s ease;
-}
-.sidebar.close .profile-details{
-  background: none;
-}
-.sidebar.close .profile-details{
-  width: 78px;
-}
-.sidebar .profile-details .profile-content{
-  display: flex;
-  align-items: center;
-}
-.sidebar .profile-details img{
-  height: 52px;
-  width: 52px;
-  object-fit: cover;
-  border-radius: 16px;
-  margin: 0 14px 0 12px;
-  background: #1d1b31;
-  transition: all 0.5s ease;
-}
-.sidebar.close .profile-details img{
-  padding: 10px;
-}
-.sidebar .profile-details .profile_name,
-.sidebar .profile-details .job{
-  color: #fff;
-  font-size: 16px;
-  font-weight: 500;
-  white-space: nowrap;
-}
-.sidebar.close .profile-details i,
-.sidebar.close .profile-details .profile_name,
-.sidebar.close .profile-details .job{
-  display: none;
-}
-.sidebar .profile-details .job{
-  font-size: 12px;
-}
-.home-section{
-  position: relative;
-  background: #E4E9F7;
-  min-height: 100%;
-  left: 0px;
-  width: calc(100% - 260px);
-  transition: all 0.5s ease;
-}
-.sidebar.close ~ .home-section{
-  left: 0px;
-  width: calc(100% - 78px);
-}
-.home-section .home-content{
-  height: 60px;
-  display: flex;
-  align-items: center;
-}
-.home-section .home-content .bx-menu,
-.home-section .home-content .text{
-  color: #11101d;
-  font-size: 35px;
-}
-.home-section .home-content .bx-menu{
-  margin: 0 15px;
-  cursor: pointer;
-}
-.home-section .home-content .text{
-  font-size: 26px;
-  font-weight: 600;
-}
-@media (max-width: 400px) {
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-  .sidebar.close.small-screen{
-    width: 0;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-  .sidebar.close.small-screen ~ .home-section{
-    width: 100%;
-    left: 0;
-    z-index: 100;
-  }
-}
+    .wrapper {
+      display: flex;
+      min-height: 100%;
+    }
 
-.logo-box {
-  width: 50px;
-  height: 50px;
-  margin-left: 20px;
-  margin-right: 10px;
-  
-}
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0;
+      min-height: 100vh;
+      width: 260px;
+      background: #11101d;
+      background-size: cover;
+      z-index: 100;
+      transition: all 0.5s ease;
+    }
 
+    .sidebar.close {
+      width: 78px;
+    }
+
+    .sidebar .logo-details {
+      height: 60px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar .logo-details i {
+      font-size: 30px;
+      color: #fff;
+      height: 50px;
+      min-width: 78px;
+      text-align: center;
+      line-height: 50px;
+    }
+
+    .sidebar .logo-details .logo_name {
+      font-size: 22px;
+      color: #fff;
+      font-weight: 600;
+      transition: 0.3s ease;
+      transition-delay: 0.1s;
+    }
+
+    .sidebar.close .logo-details .logo_name {
+      transition-delay: 0s;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .sidebar .nav-links {
+      height: 100%;
+      padding: 30px 0 100px 0;
+      overflow: auto;
+    }
+
+    .sidebar.close .nav-links {
+      overflow: visible;
+    }
+
+    .sidebar .nav-links::-webkit-scrollbar {
+      display: none;
+    }
+
+    .sidebar .nav-links li {
+      position: relative;
+      list-style: none;
+      transition: all 0.4s ease;
+    }
+
+    .sidebar .nav-links li:hover {
+      background: #1d1b31;
+    }
+
+    .sidebar .nav-links li .icon-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sidebar.close .nav-links li .icon-link {
+      display: block
+    }
+
+    .sidebar .nav-links li i {
+      height: 50px;
+      min-width: 78px;
+      text-align: center;
+      line-height: 50px;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar .nav-links li.showMenu i.arrow {
+      transform: rotate(-180deg);
+    }
+
+    .sidebar.close .nav-links i.arrow {
+      display: none;
+    }
+
+    .sidebar .nav-links li a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .sidebar .nav-links li a .link_name {
+      font-size: 17px;
+      font-weight: 400;
+      color: #fff;
+      transition: all 0.4s ease;
+    }
+
+    .sidebar.close .nav-links li a .link_name {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .sidebar .nav-links li .sub-menu {
+      padding: 6px 6px 10px 80px;
+      margin-top: -10px;
+      background: #1d1b31;
+      display: none;
+    }
+
+    .sidebar .nav-links li.showMenu .sub-menu {
+      display: block;
+    }
+
+    .sidebar .nav-links li .sub-menu a {
+      color: #fff;
+      font-size: 15px;
+      padding: 5px 0;
+      white-space: nowrap;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar .nav-links li .sub-menu a:hover {
+      opacity: 1;
+    }
+
+    .sidebar.close .nav-links li .sub-menu {
+      position: absolute;
+      left: 100%;
+      top: -10px;
+      margin-top: 0;
+      padding: 10px 20px;
+      border-radius: 0 6px 6px 0;
+      opacity: 0;
+      display: block;
+      pointer-events: none;
+      transition: 0s;
+    }
+
+    .sidebar.close .nav-links li:hover .sub-menu {
+      top: 0;
+      opacity: 1;
+      pointer-events: auto;
+      transition: all 0.4s ease;
+    }
+
+    .sidebar .nav-links li .sub-menu .link_name {
+      display: none;
+    }
+
+    .sidebar.close .nav-links li .sub-menu .link_name {
+      font-size: 17px !important;
+      opacity: 1;
+      display: block;
+    }
+
+    .sidebar .nav-links li .sub-menu.blank {
+      opacity: 1;
+      pointer-events: auto;
+      padding: 3px 20px 6px 16px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .sidebar .nav-links li:hover .sub-menu.blank {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .sidebar .profile-details {
+      position: fixed;
+      bottom: 0;
+      width: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #1d1b31;
+      padding: 12px 0;
+      transition: all 0.5s ease;
+    }
+
+    .sidebar.close .profile-details {
+      background: none;
+    }
+
+    .sidebar.close .profile-details {
+      width: 78px;
+    }
+
+    .sidebar .profile-details .profile-content {
+      display: flex;
+      align-items: center;
+    }
+
+    .sidebar .profile-details img {
+      height: 52px;
+      width: 52px;
+      object-fit: cover;
+      border-radius: 16px;
+      margin: 0 14px 0 12px;
+      background: #1d1b31;
+      transition: all 0.5s ease;
+    }
+
+    .sidebar.close .profile-details img {
+      padding: 10px;
+    }
+
+    .sidebar .profile-details .profile_name,
+    .sidebar .profile-details .job {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .sidebar.close .profile-details i,
+    .sidebar.close .profile-details .profile_name,
+    .sidebar.close .profile-details .job {
+      display: none;
+    }
+
+    .sidebar .profile-details .job {
+      font-size: 12px;
+    }
+
+    .home-section {
+      position: relative;
+      background: #E4E9F7;
+      min-height: 100%;
+      left: 0px;
+      width: calc(100% - 260px);
+      transition: all 0.5s ease;
+    }
+
+    .sidebar.close~.home-section {
+      left: 0px;
+      width: calc(100% - 78px);
+    }
+
+    .home-section .home-content {
+      height: 60px;
+      display: flex;
+      align-items: center;
+    }
+
+    .home-section .home-content .bx-menu,
+    .home-section .home-content .text {
+      color: #11101d;
+      font-size: 35px;
+    }
+
+    .home-section .home-content .bx-menu {
+      margin: 0 15px;
+      cursor: pointer;
+    }
+
+    .home-section .home-content .text {
+      font-size: 26px;
+      font-weight: 600;
+    }
+
+    @media (max-width: 400px) {
+      .sidebar.close.small-screen {
+        width: 0;
+      }
+
+      .sidebar.close.small-screen~.home-section {
+        width: 100%;
+        left: 0;
+        z-index: 100;
+      }
+    }
+
+    .logo-box {
+      width: 50px;
+      height: 50px;
+      margin-left: 20px;
+      margin-right: 10px;
+
+    }
   </style>
 </head>
 
@@ -291,11 +345,10 @@
             <img width="100%" height="100%" src="/img/logo.png" alt="">
           </div>
         </div>
-        {{!-- <i class='bx bxl-c-plus-plus'></i> --}}
         <span class="logo_name">Nam Thịnh</span>
       </div>
       <ul class="nav-links">
-        <li>
+        {{!-- <li>
           <a href="#">
             <i class='bx bx-grid-alt'></i>
             <span class="link_name">Dashboard</span>
@@ -303,32 +356,55 @@
           <ul class="sub-menu blank">
             <li><a class="link_name" href="#">Dashboard</a></li>
           </ul>
-        </li>
+        </li> --}}
         <li>
           <div class="icon-link">
-            <a href="/home">
-              <i class='bx bx-collection'></i>
+            <a href="/admin/home">
+              <i class="fas fa-home"></i>
               <span class="link_name">Trang chủ</span>
             </a>
-           
           </div>
-          
         </li>
+        {{!-- Sale --}}
+
         <li>
           <div class="icon-link">
             <a href="#">
-              <i class='bx bx-cart'></i>
+              <i class="fas fa-shopping-cart"></i>
               <span class="link_name">Sản phẩm</span>
             </a>
             <i class='bx bxs-chevron-down arrow'></i>
           </div>
           <ul class="sub-menu">
             <li><a class="link_name" href="#">Sản phẩm</a></li>
-            <li><a href="#">Kiểm kho</a></li>
-            <li><a href="#">Thêm sản phẩm</a></li>
+            {{#isSale position}}
+            <li {{#isAdmin position}} class="d-none" {{/isAdmin}}><a href="/admin/product-manager">Kiểm kho</a></li>
+            {{/isSale }}
+            {{#isAccountant position}}
+            <li><a href="/admin/product-manager">Kiểm kho</a></li>
+            <li><a href="/admin/add-product">Thêm sản phẩm</a></li>
             <li><a href="#">Xóa sản phẩm</a></li>
+            {{/isAccountant}}
           </ul>
         </li>
+        {{#isSale position}}
+        <li>
+          <div class="icon-link">
+            <a href="#">
+              <i class="fas fa-file-alt"></i>
+              <span class="link_name">Đơn hàng</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow'></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Đơn hàng</a></li>
+            <li><a href="/admin/create-order">Tạo đơn hàng</a></li>
+            <li><a href="/admin/getOrders">Danh sách đơn hàng</a></li>
+          </ul>
+        </li>
+        {{/isSale }}
+        {{!-- Admin --}}
+        {{#isAdmin position}}
         <li>
           <div class="icon-link">
             <a href="#">
@@ -340,68 +416,77 @@
           <ul class="sub-menu">
             <li><a class="link_name" href="#">Tin tức</a></li>
             <li><a href="#">Tất cả tin</a></li>
-            <li><a href="#">Thêm bài viết</a></li>
+            <li><a href="/admin/add-news">Thêm bài viết</a></li>
             <li><a href="#">Xóa bài viết</a></li>
           </ul>
         </li>
         <li>
           <div class="icon-link">
             <a href="#">
-              <i class='bx bx-user'></i>
+              <i class="fas fa-users"></i>
               <span class="link_name">Nhân viên</span>
             </a>
             <i class='bx bxs-chevron-down arrow'></i>
           </div>
           <ul class="sub-menu">
             <li><a class="link_name" href="#">Nhân viên</a></li>
-            <li><a href="#">Admin</a></li>
-            <li><a href="#">Kế toán</a></li>
-            <li><a href="#">Sale</a></li>
+            <li><a href="/admin/getUsers">Danh sách nhân viên</a></li>
+            <li><a href="/users/register">Thêm nhân viên</a></li>
           </ul>
         </li>
-        
+        {{/isAdmin}}
+        {{#isSale position}}
+        <li>
+          <div class="icon-link">
+            <a href="/admin/customer-info">
+              <i class="fas fa-users"></i>
+              <span class="link_name">Khách hàng</span>
+            </a>
+
+          </div>
+        </li>
+        {{/isSale}}
+        {{#isAdmin position}}
         <li>
           <a href="#">
-            <i class='bx bx-history'></i>
+            <i class="fas fa-history"></i>
             <span class="link_name">Lịch sử</span>
           </a>
           <ul class="sub-menu blank">
             <li><a class="link_name" href="#">Lịch sử</a></li>
           </ul>
         </li>
+        {{/isAdmin}}
         <li>
-          <a href="#">
-            <i class='bx bx-cog'></i>
-            <span class="link_name">Cài đặt</span>
-          </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">Cài đặt</a></li>
-          </ul>
-        </li>
-        <li>
-          <div class="profile-details">
-            <div class="profile-content">
-              
-            </div>
-            <div class="name-job">
-              <div class="profile_name">Logout</div>
-              <div class="job">Admin</div>
-            </div>
-            <i class='bx bx-log-out'></i>
+          <div class="icon-link">
+            <a href="#">
+              <i class="fas fa-user-cog"></i>
+              <span class="link_name">Tài khoản</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow'></i>
           </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Tài khoản</a></li>
+            <li><a href="/users/changePassword">Đổi mật khẩu</a></li>
+            <li><a href="/users/logout">Đăng xuất</a></li>
+          </ul>
         </li>
       </ul>
     </div>
-    <section class="home-section">
+
+    <section class="home-section mr-2 ml-2">
       <div class="home-content">
         <i class='bx bx-menu'></i>
-        <span class="text">Home</span> <br />
+        <span class="text">{{pageName}}</span> <br />
       </div>
-
-
+      {{{body}}}
     </section>
   </div>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+    integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+    crossorigin="anonymous"></script>
+  <script src="/javascript/cart.js"></script>
+  <script src="/javascript/main.js"></script>
   <script>
     let arrow = document.querySelectorAll(".arrow");
     for (var i = 0; i < arrow.length; i++) {
@@ -418,31 +503,31 @@
     }); */
     $(function () {
       /* console.log("width: "+ document.body.clientWidth); */
-      
+
       resizeScreen();
-      $(window).resize(function(){
+      $(window).resize(function () {
         resizeScreen();
       });
-      $('.bx-menu').click(function(){
-
+      $('.bx-menu').click(function () {
         // 點選選單按鈕時，大螢幕為新增或移除.close，小螢幕新增或移除.small-screen預設有.close，
-        if(document.body.clientWidth > 400){
+        if (document.body.clientWidth > 400) {
           $('.sidebar').toggleClass('close');
-        }else{
+        } else {
           $('.sidebar').toggleClass('small-screen');
         }
       });
-      
+
       function resizeScreen() {
         // 大螢幕.sidebar預設為沒有.close，小螢幕.sidebar預設為有.close
-        if(document.body.clientWidth < 400){
+        if (document.body.clientWidth < 400) {
           $('.sidebar').addClass('close');
-        }else{
+        } else {
           $('.sidebar').removeClass('close');
         }
       }
     });
   </script>
+
 </body>
 
 </html>
