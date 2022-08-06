@@ -385,7 +385,8 @@ const AdminController = {
         const order = {
             Customer: Customer,
             sale: req.body.sale,
-            total: req.body.total
+            total: req.body.total,
+            product_list: req.body.product_list
         }
 
         return new Orders(order).save()

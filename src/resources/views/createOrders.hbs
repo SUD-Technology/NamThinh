@@ -53,20 +53,10 @@
 
                 <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="product-list">DANH SÁCH SẢN PHẨM</label>
+                    <label class="col-md-2 control-label" for="product_list">DS SẢN PHẨM</label>
                     <div class="col-md-10">
-                        <div class="form-group-container">
-                            <input id="product-list" required="" name="product-list" class="form-control input-md"
-                                onchange="preview()" type="file" multiple>
-                            <label for="product-list">
-                                <i class="fas fa-upload"></i>
-                                Chọn file &nbsp;
-                            </label>
-                            <p id="num-of-file">Chưa có file nào được chọn</p>
-                            <div id="images-upload">
-                            </div>
-                        </div>
-
+                        <input id="product_list" name="product_list" value="{{product_list}}"
+                            placeholder="Danh sách sản phẩm" class="form-control input-md" type="text">
                     </div>
                 </div>
 
