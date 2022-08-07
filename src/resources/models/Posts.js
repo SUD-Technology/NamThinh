@@ -15,6 +15,9 @@ const Posts = new Schema({
         type: String,
         unique: true
     },
+    image: {
+        type: String
+    },
     content: {
         type: String,
         required: true

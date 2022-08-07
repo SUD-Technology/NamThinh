@@ -25,20 +25,45 @@
     </div>
 
     <div class="addProduct-body">
-        <form class="form-horizontal" enctype="multipart/form-data" method="post">
+        <form class="form-horizontal" method="post">
             <fieldset>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="news-title">Tiêu đề</label>
                     <div class="col-md-10">
-                        <input id="news-title" name="news-title" placeholder="Tiêu đề" class="form-control input-md"
+                        <input id="news-title" name="title" placeholder="Tiêu đề" class="form-control input-md"
                             required="" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="news-subtitle">Trích dẫn</label>
+                    <div class="col-md-10">
+                        <input id="news-subtitle" name="subtitle" placeholder="Trích dẫn" class="form-control input-md"
+                            required="" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="product-image">HÌNH ẢNH BÀI VIẾT</label>
+                    <div class="col-md-10">
+                        <div class="form-group-container">
+                            <input id="product-image" accept="image/*" required="" name="news-image"
+                                class="form-control input-md" onchange="preview()" type="file" multiple>
+                            <label for="product-image">
+                                <i class="fas fa-upload"></i>
+                                Chọn ảnh bài viết &nbsp;
+                            </label>
+                            <p id="num-of-file">Chưa có ảnh nào được chọn</p>
+                            <div id="images-upload">
+
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <!-- Textarea -->
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="news-content">Nội dung</label>
                     <div class="col-md-10">
-                        <textarea id="news-content" name="news-content"></textarea>
+                        <textarea id="news-content" name="content"></textarea>
                     </div>
                 </div>
 
@@ -58,5 +83,30 @@
 
 <!-- Footer -->
 <script>
-    CKEDITOR.replace('news-content')
+    let fileInput = document.getElementById("product-image")
+    let imageContainer = document.getElementById('images-upload')
+    let numOfFiles = document.getElementById('num-of-file')
+
+    function preview() {
+        imageContainer.innerHTML = ""
+        numOfFiles.textContent = `${fileInput.files.length} ảnh đã được chọn`;
+
+        for (i of fileInput.files) {
+            let reader = new FileReader()
+            let figure = document.createElement("figure")
+            let figCap = document.createElement("figcaption")
+
+            figCap.innerText = i.name
+            figure.appendChild(figCap)
+            reader.onload = () => {
+                let img = document.createElement("img");
+                img.setAttribute("src", reader.result);
+                figure.insertBefore(img, figCap);
+            }
+            imageContainer.appendChild(figure);
+            reader.readAsDataURL(i)
+        }
+    }
+
+    CKEDITOR.replace('content')
 </script>

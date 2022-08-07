@@ -33,6 +33,7 @@ router.get('/delete/:id', checkLogin, authPage(["admin", "accountant"]), AdminCo
 
 // News
 router.get('/add-news', checkLogin, authPage(["admin"]), AdminController.getAddNews)
+router.post('/add-news', checkLogin, authPage(["admin"]), store.single('news-image'), AdminController.postANews)
 
 // Create order
 router.get('/create-order', checkLogin, authPage(['admin', "sale"]), AdminController.getCreateOrder)
