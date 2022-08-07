@@ -5,6 +5,7 @@ const path = require('path')
 const Orders = require('../models/Orders')
 const Customers = require('../models/Customers')
 const Users = require('../models/Users')
+const Posts = require('../models/Posts')
 
 function unique(arr) {
     return Array.from(new Set(arr)) //
@@ -57,11 +58,11 @@ const AdminController = {
         }
         return new Products(product).save()
             .then(() => {
-                res.flash('success', 'Thêm sản phẩm thành công')
+                req.flash('success', 'Thêm sản phẩm thành công')
                 res.redirect('/admin/add-product')
             })
             .catch((err) => {
-                res.flash('error', 'Thêm sản phẩm thất bại')
+                req.flash('error', 'Thêm sản phẩm thất bại')
                 res.redirect('/admin/add-product')
             })
     },
@@ -524,6 +525,35 @@ const AdminController = {
                 }
                 return res.render('listcustomers', { current_customer: {}, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
 
+            })
+    },
+    postANews: (req, res, next) => {
+        const file = req.file;
+        const imagePath = "/uploads/" + file.filename
+        const { title, subtitle, content } = req.body
+        const slug = slugify(title, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+        const post = {
+            title: title,
+            subtitle: subtitle,
+            slug: slug,
+            image: imagePath,
+            content: content
+        }
+        return new Posts(post).save()
+            .then(() => {
+                req.flash('success', 'Đăng tin thành công')
+                res.redirect('/admin/add-news')
+            })
+            .catch(() => {
+                req.flash('error', 'Đăng tin thất bại')
+                res.redirect('/admin/add-news')
             })
     }
 }

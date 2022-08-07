@@ -32,8 +32,8 @@ router.post('/add-product', store.array('product-image', 12), uploadImage, Admin
 router.get('/delete/:id', checkLogin, authPage(["admin", "accountant"]), AdminController.deleteProduct)
 
 // News
-router.get('/add-news', checkLogin, authPage(["admin"]), AdminController.getAddNews)
-router.post('/add-news', checkLogin, authPage(["admin"]), store.single('news-image'), AdminController.postANews)
+router.get('/add-news', authPage(["admin"]), AdminController.getAddNews)
+router.post('/add-news', authPage(["admin"]), store.single('news-image'), AdminController.postANews)
 
 // Create order
 router.get('/create-order', checkLogin, authPage(['admin', "sale"]), AdminController.getCreateOrder)
