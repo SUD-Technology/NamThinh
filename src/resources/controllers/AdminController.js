@@ -5,16 +5,12 @@ const path = require('path')
 const Orders = require('../models/Orders')
 const Customers = require('../models/Customers')
 const Users = require('../models/Users')
-const Posts = require('../models/Posts');
 
 function unique(arr) {
     return Array.from(new Set(arr)) //
 }
 
 const AdminController = {
-
-    // Product Start
-
     getAddProduct: (req, res, next) => {
         const error = req.flash('error') || "";
         const success = req.flash('success') || ""
@@ -358,105 +354,6 @@ const AdminController = {
                 })
 
     },
-    
-    // Product End
-
-    // News Start
-
-    getAddNews: (req, res, next) => {
-        const error = req.flash('error') || ""
-        const success = req.flash('success') || ""
-        res.render('addNews', { layout: 'admin', pageName: "Đăng tin", position: req.session.position, error, success })
-    },
-    postANews: (req, res, next) => {
-        const file = req.file
-        console.log(file)
-        const { title, subtitle, content } = req.body;
-        
-        let message = ''
-        if(!title || !subtitle || !content) {
-            message = 'Chưa điền đầy đủ thông tin bài viết';
-            req.flash('error', message);
-            return res.redirect('/admin/add-news');
-        }
-
-        const slug = slugify(title, {
-            replacement: '-',
-            remove: false,
-            lower: false,
-            strict: false,
-            locale: 'vi',
-            trim: true
-        })
-
-        const newPost = {title, subtitle, content, slug};
-        message = 'Tạo bài viết thành công';
-        req.flash('success', message);
-        new Posts(newPost).save()
-            .then(res.redirect('/admin/add-news'));
-    },
-
-    // News End
-
-    // User Start
-    getUsers: (req, res, next) => {
-        return Users.find({})
-            .then(users => {
-                let sales = []
-                let accountants = []
-                if (users.length > 0) {
-                    users.forEach(user => {
-                        const current_user = {
-                            id: user._id,
-                            name: user.fullname,
-                            position: user.position,
-                            email: user.email,
-                            phone: user.phone,
-                            username: user.username
-                        }
-                        if (user.position == 'sale')
-                            sales.push(current_user)
-                        else if (user.position == 'accountant')
-                            accountants.push(current_user)
-                    })
-                    res.render('listUsers', { position: req.session.position, layout: 'admin', sales, accountants, pageName: "Thông tin nhân viên" })
-                }
-            })
-    },
-    deleteUser: (req, res, next) => {
-        const id = req.params.id
-        return Users.findByIdAndDelete(id)
-            .then(() => {
-                res.redirect('/admin/getUsers')
-            })
-            .catch(() => {
-                res.json({ message: "Xóa tài khoản thất bại" })
-            })
-    },
-
-    // User End
-
-    // Customer Start
-    getCustomers: (req, res, next) => {
-        return Customers.find({})
-            .then(users => {
-                let listCustomers = []
-                if (users.length > 0) {
-                    users.forEach(user => {
-                        const current_user = {
-                            id: user._id,
-                            name: user.fullname,
-                            address: user.address,
-                            email: user.email,
-                            phone: user.phone,
-                            status: user.status
-                        }
-                        listCustomers.push(current_user)
-                    })
-                    res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position })
-                }
-            })
-    },
     getCreateOrder: (req, res, next) => {
         const sale = req.session.username || "";
         const error = req.flash('error') || "";
@@ -505,6 +402,65 @@ const AdminController = {
                 res.redirect('/admin/create-order')
             })
 
+    },
+    getAddNews: (req, res, next) => {
+        const error = req.flash('error') || ""
+        const success = req.flash('success') || ""
+        res.render('addNews', { layout: 'admin', pageName: "Đăng tin", position: req.session.position, error, success })
+    },
+    getUsers: (req, res, next) => {
+        return Users.find({})
+            .then(users => {
+                let sales = []
+                let accountants = []
+                if (users.length > 0) {
+                    users.forEach(user => {
+                        const current_user = {
+                            id: user._id,
+                            name: user.fullname,
+                            position: user.position,
+                            email: user.email,
+                            phone: user.phone,
+                            username: user.username
+                        }
+                        if (user.position == 'sale')
+                            sales.push(current_user)
+                        else if (user.position == 'accountant')
+                            accountants.push(current_user)
+                    })
+                    res.render('listUsers', { position: req.session.position, layout: 'admin', sales, accountants, pageName: "Thông tin nhân viên" })
+                }
+            })
+    },
+    deleteUser: (req, res, next) => {
+        const id = req.params.id
+        return Users.findByIdAndDelete(id)
+            .then(() => {
+                res.redirect('/admin/getUsers')
+            })
+            .catch(() => {
+                res.json({ message: "Xóa tài khoản thất bại" })
+            })
+    },
+    getCustomers: (req, res, next) => {
+        return Customers.find({})
+            .then(users => {
+                let listCustomers = []
+                if (users.length > 0) {
+                    users.forEach(user => {
+                        const current_user = {
+                            id: user._id,
+                            name: user.fullname,
+                            address: user.address,
+                            email: user.email,
+                            phone: user.phone,
+                            status: user.status
+                        }
+                        listCustomers.push(current_user)
+                    })
+                    res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position })
+                }
+            })
     },
     getOrders: (req, res, next) => {
         return Orders.find({})
@@ -569,9 +525,7 @@ const AdminController = {
                 return res.render('listcustomers', { current_customer: {}, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
 
             })
-    },
-
-    // Customer End
+    }
 }
 
 module.exports = AdminController
