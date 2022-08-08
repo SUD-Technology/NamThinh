@@ -1,6 +1,19 @@
 {{!-- Body: start --}}
 <div class="container">
+    <form action="/admin/customer-info/" class="find-product-form">
+        <div class="form-group">
+            <div class="col-md-8 mb-2">
+                <input value="{{keyWord}}" type="text" placeholder="Tên & SĐT khách hàng" name="keyWord"
+                    class="form-control">
+            </div>
+            <div class="col-md-4 mb-2">
+                <button class="form-control">Tìm kiếm</button>
+            </div>
+        </div>
+
+    </form>
     <div class="addProduct-body">
+
         <div class="mb-5 mt-5">
             <table class="table table-hover">
                 <thead class="thead-dark">
@@ -10,11 +23,13 @@
                         <th scope="col">Email</th>
                         <th scope="col">Số điện thoại</th>
                         <th scope="col">Địa chỉ</th>
+                        <th scope="col">Người phụ trách</th>
                         <th class="text-center" scope="col">Đơn hàng</th>
                         <th scope="col">Trạng thái</th>
                     </tr>
                 </thead>
                 <tbody>
+                    {{#if listCustomers}}
                     {{#each listCustomers}}
                     <tr>
                         <td>{{inc @index}}</td>
@@ -22,12 +37,16 @@
                         <td>{{email}}</td>
                         <td>{{phone}}</td>
                         <td>{{address}}</td>
+                        <td>{{saler}}</td>
                         <td class="text-center"><a class="btn btn-success" href="/admin/order/{{id}}">
                                 <i class="fas fa-file-alt"></i>
                             </a></td>
                         <td>{{status}}</td>
                     </tr>
                     {{/each}}
+                    {{else}}
+                    <td colspan="8">Không tìm thấy khách hàng</td>
+                    {{/if}}
                 </tbody>
             </table>
         </div>
