@@ -1,57 +1,100 @@
 <div class="welcome-page">
   <div class="container" align="center">
-    <div style="height: 50px;">
+    <div class="mg" style="height: 150px;">
 
     </div>
   <div class="hex-layer-3">
-    <div class="hex hex-1">
+    <div class="hex">
+      <div class="hex-inner hex-1">
+
       <div class="layer-title"><span>Xe đầu kéo</span></div>
+      </div>
     </div>
     
   </div> 
   <div class="hex-layer-2">
-    <div class="hex mx-layer2 hex-5">
+    <div class="hex mx-layer2">
+      <div class="hex-inner hex-5">
+
       <div class="layer-title"><span>Xe ben</span></div>
+      </div>
     </div>
-    <div class="hex mx-layer2 hex-6">
+    <div class="hex mx-layer2">
+      <div class="hex-inner hex-6">
+
       <div class="layer-title"><span>Sơ mi rơ móoc</span></div>
+      </div>
     </div>
   </div>
   <div class="hex-layer-3">
-    <div class="hex hex-2">
+    <div class="hex">
+      <div class="hex-inner hex-2">
+
       <div class="layer-title"><span>Lốp xe</span></div>
+      </div>
     </div>
-    <div class="hex mx-layer3 main-hex">
+    <div style="background-color: #3A5BA0;" onclick='window.location.href="/home"' class="hex mx-layer3">
+      <div class="hex-inner main-hex">
+
+      </div>
       {{!-- <div class="layer-title"><span>Xe đầu kéo</span></div> --}}
     </div>
-    <div class="hex hex-3">
+    <div class="hex">
+      <div class="hex-inner hex-3">
+
       <div class="layer-title"><span>Dầu nhớt</span></div>
+      </div>
     </div>
   </div>
   <div class="hex-layer-2">
     <div class="hex mx-layer2">
-      
-      <div class="layer-title"><span>Xe đầu kéo</span></div>
+      <div class="hex-inner hex-7">
+
+      <div class="layer-title"><span>Dịch vụ</span></div>
+      </div>
     </div>
     <div class="hex mx-layer2">
-      <div class="layer-title"><span>Xe đầu kéo</span></div>
+      <div class="hex-inner hex-8">
+
+      <div class="layer-title"><span>Khuyến mãi</span></div>
+      </div>
     </div>
   </div>
   <div class="hex-layer-3">
-    <div class="hex hex-4">
+    <div class="hex">
+      <div class="hex-inner hex-4">
+
       <div class="layer-title"><span>Phụ tùng</span></div>
+      </div>
     </div>
     
   </div> 
   <div>
 </div>
 
+<svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <defs>
+        <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />    
+            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
+            <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+    </defs>
+</svg>
+
 <script>
-  $('.hex').hover(function() {
-    $(this).children('.layer-title').animate({height: '0%'})
+  $('.hex-inner').hover(function() {
+    $(this).children('.layer-title').animate({opacity: '0%'}, 'fast')
   },function() {
-    $(this).children('.layer-title').animate({height: '100%'})
+    $(this).children('.layer-title').animate({opacity: '100%'}, 'fast')
   })
 
   
 </script>
+
+<style>
+  @media (max-height: 800px) {
+    .mg {
+      height: 50px !important;
+    }
+  }
+</style>

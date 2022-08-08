@@ -2962,13 +2962,30 @@ a:not([href]):not([tabindex]) {
   height: 250px;
   width: 250px;
   align-self: center;
-  background: transparent;
+  background: var(--do);
  -webkit-clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
   /* transition:  0.4s; */
   position: relative;
 }
 
+
+
+.hex:not(.main-hex):hover{
+  background: var(--xanh);
+}
+
+.hex-inner {
+  height: 236px;
+  width: 236px;
+  margin-top: 7px;
+  align-self: center;
+  background: transparent;
+ -webkit-clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+  /* transition:  0.4s; */
+  position: relative;
+}
 
 
 
@@ -2987,8 +3004,9 @@ a:not([href]):not([tabindex]) {
   left: 50%;
   transform: translate(-50%,-50%);
   font-size: 20px;
-  color: var(--cam);
+  color: white;
   text-transform: uppercase;
+  text-shadow: -1px 0 var(--cam), 0 1px var(--cam),      1px 0 var(--cam), 0 -1px var(--cam)
 }
 
 .hex-1 {
@@ -3021,15 +3039,32 @@ a:not([href]):not([tabindex]) {
   background-size: cover;
 }
 
-.main-hex {
-  background: url(../img/logo.png);
+.hex-7 {
+  background: url(../img/service.jpg);
   background-size: cover;
-  background-position-x: 8px;
+}
+
+.hex-8 {
+  background: url(../img/discount.jpg);
+  background-size: cover;
+}
+
+.main-hex {
+  background: url(../img/logo-bg.png);
+  background-size: cover;
+  background-position-x: 5px;
+  background-position-y: 7px;
+}
+
+.hex-inner:hover {
+  cursor: pointer;
 }
 
 .main-hex:hover {
-  transition: 0.4s;
-  transform: scale(1.5);
+  /* transition: 0.4s; */
+  cursor: pointer;
+  opacity: 0.9;
+  /* transform: scale(1.07); */
   z-index: 1000;
 }
 
@@ -3038,23 +3073,20 @@ a:not([href]):not([tabindex]) {
 
 
 
-.hex:hover img {
- transform: scale(1.05);
- border: transparent;
-}
+
 
 .hex:hover .layer-title span{
   transition: 0.4s;
-  opacity: 0;
+  /* opacity: 0; */
   /* display: none; */
 }
 
 .mx-layer3{
-  margin: 0 140px;
+  margin: 3px 150px;
 }
 
 .mx-layer2 {
-  margin: -90px 70px;
+  margin: -90px 75px;
 }
 
 /* Post Start */
@@ -3077,3 +3109,35 @@ a:not([href]):not([tabindex]) {
 }
 
 /* Post End */
+
+@media (max-width: 500px) {
+  /* .container {
+    max-width: 200px;
+  }
+
+  .hex {
+    width: 150px;
+    height: 150px;
+  }
+
+  .hex-inner {
+    width: 136px;
+    height: 136px;
+  }
+
+  .layer-title {
+    opacity: 0;
+  }
+
+  .mx-layer3{
+    margin: 40px 50px;
+  }
+  
+  .mx-layer2 {
+    margin: 50px 25px;
+  }
+
+  .hex-layer-3:first-child[class='hex'], .hex-layer-3:last-child {
+    display: none;
+  } */
+}
