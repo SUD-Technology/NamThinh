@@ -1,6 +1,6 @@
 {{!-- Body: start --}}
 <div class="container">
-    
+
     <div class="product-manager-body">
 
         <form action="/admin/product-manager/" class="find-product-form">
@@ -48,6 +48,11 @@
                             {{/each}}
                         </select>
                         {{/select}}
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <a type="button"
+                            onclick='window.location.href="/admin/product-manager/?product_name=&lv1=&origin=&brand="'
+                            class="form-control text-center"><i class="fas fa-undo"></i>Tạo lại</a>
                     </div>
                     <div class="col-md-2 mb-2">
                         <button class="form-control">Tìm kiếm</button>
@@ -212,9 +217,10 @@
         } else if ($option.val() == 1) {
             $('#product-lv2').empty()
             $('#product-lv2').append($('<option></option>').text(`-- Chọn loại lốp --`).attr('value', ``))
-            $('#product-lv2').append($('<option></option>').text(`Lốp công trình`).attr('value', `1`))
-            $('#product-lv2').append($('<option></option>').text(`Lốp công nghiệp`).attr('value', `2`))
-            $('#product-lv2').append($('<option></option>').text(`Lốp nông nghiệp`).attr('value', `3`))
+            $('#product-lv2').append($('<option></option>').text(`Lốp xe tải - xe khách`).attr('value', `1`))
+            $('#product-lv2').append($('<option></option>').text(`Lốp công trình`).attr('value', `2`))
+            $('#product-lv2').append($('<option></option>').text(`Lốp công nghiệp`).attr('value', `3`))
+            $('#product-lv2').append($('<option></option>').text(`Lốp nông nghiệp`).attr('value', `4`))
         } else if ($option.val() == 2) {
             $('#product-lv2').empty()
             $('#product-lv2').append($('<option></option>').text(`-- Chọn loại xe --`).attr('value', ``))
@@ -247,9 +253,10 @@
         } else if (select_lv1.val() == 1) {
             $('#product-lv2').empty()
             $('#product-lv2').append($('<option></option>').text(`-- Chọn loại lốp --`).attr('value', ``))
-            $('#product-lv2').append($('<option></option>').text(`Lốp công trình`).attr('value', `1`))
-            $('#product-lv2').append($('<option></option>').text(`Lốp công nghiệp`).attr('value', `2`))
-            $('#product-lv2').append($('<option></option>').text(`Lốp nông nghiệp`).attr('value', `3`))
+            $('#product-lv2').append($('<option></option>').text(`Lốp xe tải - xe khách`).attr('value', `1`))
+            $('#product-lv2').append($('<option></option>').text(`Lốp công trình`).attr('value', `2`))
+            $('#product-lv2').append($('<option></option>').text(`Lốp công nghiệp`).attr('value', `3`))
+            $('#product-lv2').append($('<option></option>').text(`Lốp nông nghiệp`).attr('value', `4`))
         } else if (select_lv1.val() == 2) {
             $('#product-lv2').empty()
             $('#product-lv2').append($('<option></option>').text(`-- Chọn loại xe --`).attr('value', ``))
@@ -288,16 +295,23 @@
             if ($option.val() == 1) {
                 $('#product-lv3').empty()
                 $('#product-lv3').append($('<option></option>').text(`-- Chọn loại lốp --`).attr('value', ``))
+                $('#product-lv3').append($('<option></option>').text(`Lốp tải nhẹ`).attr('value', `1`))
+                $('#product-lv3').append($('<option></option>').text(`Lốp tải nặng`).attr('value', `2`))
+                $('#product-lv3').append($('<option></option>').text(`Lốp xe khách - xe bus`).attr('value', `3`))
+            } else if ($option.val() == 2) {
+                $('#product-lv3').empty()
+                $('#product-lv3').append($('<option></option>').text(`-- Chọn loại lốp --`).attr('value', ``))
                 $('#product-lv3').append($('<option></option>').text(`Lốp xe tải hạng nặng`).attr('value', `1`))
-                $('#product-lv3').append($('<option></option>').text(`Lốp xe máy xúc`).attr('value', `2`))
+                $('#product-lv3').append($('<option></option>').text(`Lốp máy xúc`).attr('value', `2`))
                 $('#product-lv3').append($('<option></option>').text(`Lốp xe cẩu`).attr('value', `3`))
                 $('#product-lv3').append($('<option></option>').text(`Lốp xe lu`).attr('value', `4`))
-            } else if ($option.val() == 2) {
+            }
+            else if ($option.val() == 3) {
                 $('#product-lv3').empty()
                 $('#product-lv3').append($('<option></option>').text(`-- Chọn loại lốp --`).attr('value', ``))
                 $('#product-lv3').append($('<option></option>').text(`Lốp đặc`).attr('value', `1`))
                 $('#product-lv3').append($('<option></option>').text(`Lốp công nghiệp khí nén`).attr('value', `2`))
-            } else if ($option.val() == 3) {
+            } else if ($option.val() == 4) {
                 $('#product-lv3').empty()
                 $('#product-lv3').append($('<option></option>').text(`-- Chọn loại lốp --`).attr('value', ``))
                 $('#product-lv3').append($('<option></option>').text(`Lốp nông nghiệp nhỏ`).attr('value', `1`))
