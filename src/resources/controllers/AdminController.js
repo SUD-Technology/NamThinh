@@ -27,7 +27,8 @@ const AdminController = {
             res.json({ code: 1, message: "error" })
         } else {
             file.map(f => {
-                let url = f.firebaseUrl.split('/').pop();
+                // let url = f.firebaseUrl.split('/').pop();
+                let url = "/uploads/" + f.filename
                 listImages.push(url)
             })
         }
