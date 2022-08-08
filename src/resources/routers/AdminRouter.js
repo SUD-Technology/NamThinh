@@ -14,7 +14,7 @@ router.get('/home', checkLogin, (req, res) => {
     res.render('admin', { layout: 'admin', position: req.session.position, pageName: "Trang chủ" })
 })
 
-router.get('/product-manager', AdminController.getProductManager)
+router.get('/product-manager', checkLogin, authPage(["admin", "accountant", "sale"]), AdminController.getProductManager)
 
 // Change Password
 router.get('/changePassword', checkLogin, (req, res) => {
