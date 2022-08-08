@@ -9,12 +9,12 @@
                         <th scope="col">Mã đơn hàng</th>
                         <th scope="col">Tên khách hàng</th>
                         <th scope="col">Sale</th>
-                        <th scope="col">Tổng giá</th>
                         {{!-- <th scope="col">Danh sách sản phẩm</th> --}}
-                        {{#isAdmin position}}
+                        
                         <th class="text-center" scope="col">Đơn hàng</th>
-                        {{/isAdmin}}
+                        
                         <th scope="col">Trạng thái</th>
+                        <th style="max-width: 150px;" scope="col"> </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -24,21 +24,24 @@
                         <td class="code">{{id}}</td>
                         <td><a href="/admin/customer-info/?keyWord={{customer.phone}}">{{customer.name}}</a></td>
                         <td>{{sale}}</td>
-                        <td>{{total}}</td>
                         {{!-- <td><a class="btn btn-success">
                                 ds.docx
                                 <i class="fas fa-file-alt"></i>
                             </a></td> --}}
-                            {{#isAdmin ../position}}
+                            
                         <td style="max-width: 250px;" class="text-center"><a class="btn btn-success" href="/admin/order/{{id}}">
                                 <i class="fas fa-file-alt"></i>
                             </a></td>
-                        {{/isAdmin}}
+                        
                         <td class="status" style="max-width: 250px;"><span>{{status}}</span> 
                             <button style="width: 50px; font-size: 10px" type="button" class="btn btn-primary status-edit" data-toggle="modal" data-target="#exampleModalCenter">
                                 edit
                             </button>
                         </td>
+                        <td style="max-width: 150px;">
+                            <button class="accept btn btn-success" data-toggle="modal" data-target="#modal-accept">Xong</button>
+                            <button class="cancel btn btn-danger" data-toggle="modal" data-target="#modal-cancel">Hủy</button>
+                            </td>
                     </tr>
                     {{/each}}
                 </tbody>
@@ -71,6 +74,70 @@
   </div>
 </div>
 
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button id="editBtn" type="submit" class="btn btn-success" data-dismiss="modal">Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade " id="modal-accept" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Xác nhận hoàn thành đơn hàng ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button id="acceptBtn" type="submit" class="btn btn-success" data-dismiss="modal">Hoàn thành</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade " id="modal-cancel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Xác nhận hủy đơn hàng ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button id="cancelBtn" type="submit" class="btn btn-danger" data-dismiss="modal">Hủy đơn hàng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <script>
     var index = '';
 
@@ -94,6 +161,54 @@
                 status, 
                 code
             },
+            success: (data) => {
+
+            }
+        })
+    })
+
+    $('.accept').click(function(e) {
+        e.preventDefault();
+        index = $(this).parent().siblings('.index').text();
+        
+    })
+    $('.cancel').click(function(e) {
+        e.preventDefault();
+        index = $(this).parent().siblings('.index').text();
+        
+    })
+
+    $('#cancelBtn').click(function(e) {
+        e.preventDefault();
+        const current = $(`.order-${index}`);
+        current.addClass('d-none');
+        const code = current.children('.code').text();
+        const ops = 'cancel';
+        $.ajax({
+            url: window.location.href + '/finish',
+            data: {
+                code, ops
+            },
+            method: 'POST',
+            success: (data) => {
+
+            }
+        })
+    })
+
+    $('#acceptBtn').click(function(e) {
+        e.preventDefault();
+        const current = $(`.order-${index}`);
+        current.addClass('d-none');
+
+        const code = current.children('.code').text();
+        const ops = 'accept';
+        $.ajax({
+            url: window.location.href + '/finish',
+            data: {
+                code, ops
+            },
+            method: 'POST',
             success: (data) => {
 
             }

@@ -1,0 +1,84 @@
+{{!-- Body: start --}}
+<div class="container">
+    <div class="addProduct-body">
+        <div class="mb-5 mt-5">
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Mã đơn hàng</th>
+                        <th scope="col">Tên khách hàng</th>
+                        <th scope="col">Sale</th>
+                        {{!-- <th scope="col">Danh sách sản phẩm</th> --}}
+
+                        <th class="text-center" scope="col">Đơn hàng</th>
+                        
+                        <th scope="col">Tổng tiền</th>
+                        <th scope="col">Kết quả</th>
+                        <th scope="col">Thời gian</th>
+                        {{!-- <th style="max-width: 100px;" scope="col"> </th> --}}
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each listOrders}}
+                    <tr class="order-{{inc @index}}">
+                        <td class="index">{{inc @index}}</td>
+                        <td class="code">{{id}}</td>
+                        <td><a href="/admin/customer-info/?keyWord={{customer.phone}}">{{customer.name}}</a></td>
+                        <td>{{sale}}</td>
+                        {{!-- <td><a class="btn btn-success">
+                                ds.docx
+                                <i class="fas fa-file-alt"></i>
+                            </a></td> --}}
+                            
+                        <td style="max-width: 250px;" class="text-center"><a class="btn btn-success" href="{{product_list}}">
+                                <i class="fas fa-file-alt"></i>
+                            </a></td>
+                        <td>{{total}}</td>
+                        <td>{{result}}</td>
+                        <td>{{date}}</td>
+{{!--                         
+                        <td class="status" style="max-width: 250px;"><span>{{status}}</span> 
+                            <button style="width: 50px; font-size: 10px" type="button" class="btn btn-primary status-edit" data-toggle="modal" data-target="#exampleModalCenter">
+                                edit
+                            </button>
+                        </td>
+                        <td style="max-width: 100px;">
+                            <button class=" btn btn-success">Xong</button>
+                            <button class=" btn btn-danger">Hủy</button>
+                            </td> --}}
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Trạng thái</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="" method="POST">
+
+      <div class="modal-body">
+        <textarea class="px-1 py-1" value="fneqneqfnqie" name="status" id="status-area" cols="64" rows="10"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button id="editBtn" type="submit" class="btn btn-success" data-dismiss="modal">Save</button>
+      </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+{{!-- Body: end --}}

@@ -23,7 +23,7 @@
                         <th scope="col">Email</th>
                         <th scope="col">Số điện thoại</th>
                         <th scope="col">Địa chỉ</th>
-                        <th scope="col">Người phụ trách</th>
+                        {{!-- <th scope="col">Người phụ trách</th> --}}
                         
                     </tr>
                 </thead>
@@ -32,11 +32,11 @@
                     {{#each listCustomers}}
                     <tr>
                         <td>{{inc @index}}</td>
-                        <td>{{name}}</td>
+                        <td>{{fullname}}</td>
                         <td>{{email}}</td>
                         <td class="">{{phone}}</td>
                         <td>{{address}}</td>
-                        <td>{{saler}}</td>
+                        {{!-- <td>{{saler}}</td> --}}
                         
                     </tr>
                     {{/each}}

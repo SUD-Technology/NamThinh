@@ -157,10 +157,6 @@ app.get('/discount', (req, res) => {
     res.render('discount')
 })
 
-app.get('/admin', (req, res) => {
-    res.render('home', { layout: 'admin' })
-})
-
 app.use('/users', UserRouter);
 app.use('/collections', CollectionRouter);
 app.use('/products', ProductRouter);
