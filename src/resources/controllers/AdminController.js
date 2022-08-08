@@ -6,6 +6,7 @@ const Orders = require('../models/Orders')
 const Customers = require('../models/Customers')
 const Users = require('../models/Users')
 const Posts = require('../models/Posts')
+const { normalizeDate } = require('../middlewares/functions');
 
 function unique(arr) {
     return Array.from(new Set(arr)) //
@@ -452,31 +453,25 @@ const AdminController = {
         }
         return Customers.find(query)
             .then(users => {
-                let listCustomers = []
+                var listCustomers = []
                 if (users.length > 0) {
-                    users.forEach(user => {
-                        return Orders.findOne({ "Customer.phone": `${user.phone}` })
-                            .then(order => {
-                                const current_user = {
-                                    id: user._id,
-                                    name: user.fullname,
-                                    address: user.address,
-                                    email: user.email,
-                                    phone: user.phone,
-                                    status: user.status,
-                                    saler: order.sale || ''
-                                }
-                                listCustomers.push(current_user)
-                                res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position, keyWord: req.query.keyWord })
-                            })
-                    })
+                    listCustomers = users.map(user => {
+                        return {
+                            fullname: user.fullname,
+                            phone: user.phone,
+                            email: user.email,
+                            address: user.address
+                        }
+                    })        
+                    return res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position, keyWord: req.query.keyWord })
                 } else {
-                    res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position, keyWord: req.query.keyWord })
+                    return res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position, keyWord: req.query.keyWord })
                 }
             })
     },
     getOrders: (req, res, next) => {
         return Orders.find({})
+            .where('complete.success').equals(null)
             .then(orders => {
                 let listOrders = []
                 if (orders.length > 0) {
@@ -490,7 +485,7 @@ const AdminController = {
                             id: order._id,
                             customer: customer,
                             sale: order.sale,
-                            total: order.total,
+                            total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
                             product_list: order.product_list,
                             status: order.status,
                         }
@@ -513,7 +508,7 @@ const AdminController = {
                         id: order._id,
                         customer: customer,
                         sale: order.sale,
-                        total: order.total,
+                        total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
                         product_list: order.product_list
                     }
                     return res.render('listOrders', { current_order, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
@@ -577,6 +572,53 @@ const AdminController = {
                 if(order) {
                     order.status = status;
                     order.save()
+                }
+            })
+    },
+    getHistory: (req, res, next) => {
+        return Orders.find({})
+            .where('complete.success').ne(null)
+            .then(orders => {
+                let listOrders = []
+                if (orders.length > 0) {
+                    orders.forEach(order => {
+                        const customer = {
+                            phone: order.Customer.phone,
+                            name: order.Customer.fullname
+                        }
+
+                        const current_order = {
+                            id: order._id,
+                            customer: customer,
+                            sale: order.sale,
+                            total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
+                            product_list: order.product_list,
+                            result: (order.complete.success) ? 'Hoàn thành' : 'Hủy bỏ',
+                            date: normalizeDate(order.complete.date),
+                        }
+                        listOrders.push(current_order)
+                    })
+                    res.render('history', { listOrders, layout: "admin", pageName: "Lịch sử giao dịch", position: req.session.position })
+                }
+            })
+    },
+    finishOrder: (req, res, next) => {
+        const { code, ops } = req.body;
+
+        Orders.findOne({_id: code})
+            .then(order => {
+                if(order) {
+                    if(ops == 'accept') {
+                        order.complete.success = true,
+                        order.complete.date = new Date()
+                        order.save();
+                    }
+                    else {
+                        order.complete.success = false,
+                        order.complete.date = new Date()
+                        order.save();
+                    }
+                    
                 }
             })
     }
