@@ -17,11 +17,6 @@ const Customers = new Schema({
     address: {
         type: String,
         required: true
-    },
-    status: {
-        type: String,
-        enum: ["Chờ xử lý", "Đã gọi điện thoại", "Đã gặp", "Đã gữi thông báo giá", "Đã chốt đơn"],
-        default: "Chờ xử lý"
     }
 })
 

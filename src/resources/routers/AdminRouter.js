@@ -39,6 +39,7 @@ router.post('/add-news', authPage(["admin"]), store.single('news-image'), AdminC
 router.get('/create-order', checkLogin, authPage(['admin', "sale"]), AdminController.getCreateOrder)
 router.post('/create-order', AdminController.postCreateOrder)
 router.get('/getOrders', AdminController.getOrders)
+router.post('/getOrders', AdminController.postEditStatus)
 
 // Get sale
 router.get('/getUsers', checkLogin, authPage(['admin']), AdminController.getUsers)

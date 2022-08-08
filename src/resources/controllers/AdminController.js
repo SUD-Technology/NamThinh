@@ -362,46 +362,37 @@ const AdminController = {
         res.render('createOrders', { layout: "admin", pageName: "Tạo đơn hàng", position: req.session.position, sale, error, success })
     },
     postCreateOrder: (req, res, next) => {
-        let Customer
-        Customers.find({ phone: req.body.phone })
-            .then(result => {
-                if (result) {
-                    Customer = {
-                        fullname: result.fullname,
-                        phone: result.phone,
-                        email: result.email,
-                        address: result.address,
-                    }
+        const { fullname , email, phone, address, sale, product_list, total } = req.body;
+        
+        Customers.findOne({fullname: fullname, phone: phone, email: email})
+            .then(customer => {
+                let info = {
+                    fullname: fullname,
+                    email, phone, address
                 }
-                else {
-                    Customer = {
-                        fullname: req.body.fullname,
-                        phone: req.body.phone,
-                        email: req.body.email,
-                        address: req.body.address,
-                    }
+
+                if(!customer) {      
+                    new Customers(info).save();
                 }
-            })
 
-        const order = {
-            Customer: Customer,
-            sale: req.body.sale,
-            total: req.body.total,
-            product_list: req.body.product_list
-        }
+                let order = {
+                    Customer: info,
+                    sale: sale,
+                    total: total,
+                    product_list: product_list,
+                }
 
-        return new Orders(order).save()
-            .then(() => {
-                return new Customers(Customer).save()
+                new Orders(order).save()
+                    .then(() => {
+                        req.flash('success', 'Tạo đơn hàng thành công')
+                        return res.redirect('/admin/create-order')
+                    })
+                    .catch(err => {
+                        req.flash('error', 'Tạo đơn hàng thất bại ' + err)
+                        res.redirect('/admin/create-order')
+                    })  
             })
-            .then(() => {
-                req.flash('success', 'Tạo đơn hàng thành công')
-                return res.redirect('/admin/create-order')
-            })
-            .catch(err => {
-                req.flash('error', 'Tạo đơn hàng thất bại ' + err)
-                res.redirect('/admin/create-order')
-            })
+            .catch(next);
 
     },
     getAddNews: (req, res, next) => {
@@ -499,7 +490,8 @@ const AdminController = {
                             customer: customer,
                             sale: order.sale,
                             total: order.total,
-                            product_list: order.product_list
+                            product_list: order.product_list,
+                            status: order.status,
                         }
                         listOrders.push(current_order)
                     })
@@ -574,6 +566,17 @@ const AdminController = {
             .catch(() => {
                 req.flash('error', 'Đăng tin thất bại')
                 res.redirect('/admin/add-news')
+            })
+    },
+    postEditStatus: (req, res, next) => {
+        const { status, code } = req.body;
+        
+        Orders.findOne({_id: code})
+            .then(order => {
+                if(order) {
+                    order.status = status;
+                    order.save()
+                }
             })
     }
 }

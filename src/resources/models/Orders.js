@@ -1,33 +1,14 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const Customers = new Schema({
-    fullname: {
-        type: String,
-        required: true
-    },
-    phone: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    address: {
-        type: String,
-        required: true
-    },
-    status: {
-        type: String,
-        enum: ["Chờ xử lý", "Đã gọi điện thoại", "Đã gặp", "Đã gữi thông báo giá", "Đã chốt đơn"],
-        default: "Chờ xử lý"
-    }
-})
-
 const Orders = new Schema({
     Customer: {
-        type: Customers,
+        type: {
+            fullname: String,
+            phone: String,
+            email: String,
+            address: String
+        },
         required: true
     },
     sale: {
@@ -40,8 +21,11 @@ const Orders = new Schema({
     },
     product_list: {
         type: String
+    },
+    status: {
+        type: String,
+        default: "Chờ xử lý"
     }
-
 })
 
 module.exports = mongoose.model('Orders', Orders)

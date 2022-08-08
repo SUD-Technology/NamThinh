@@ -165,7 +165,7 @@ const UserController = {
         res.redirect('/users/login');
     },
 
-
+    
 }
 
 module.exports = UserController;
