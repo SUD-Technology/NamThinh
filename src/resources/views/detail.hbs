@@ -1,3 +1,13 @@
+<style>
+    #gallery_01 img {
+        border: 2px solid white;
+    }
+
+    /*Change the colour*/
+    .active img {
+        border: 2px solid #333 !important;
+    }
+</style>
 <div class="product-page">
     <div class="mb-4"></div>
     <div class="row pagi">
@@ -22,9 +32,10 @@
                             {{#each data.pimg}}
                             <li id="zoom_{{@index}}"
                                 data-image="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}"
-                                data-zoom-image="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}"
                                 data-thumb="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}">
-                                <img src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}" />
+                                <img width="411"
+                                    data-zoom-image="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}"
+                                    src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}" />
                             </li>
                             {{/each}}
 
@@ -34,171 +45,179 @@
             </div>
         </div>
 
+    </div>
+</div>
 
 
-        <div class="col-md-4 px-1">
-            <div class="price-box text-center">
-                <span class="pt">
-                    Giá
-                </span>
 
-                <p>{{data.price}}</p>
-            </div>
+<div class="col-md-4 px-1">
+    <div class="price-box text-center">
+        <span class="pt">
+            Giá
+        </span>
 
-            <div class="detail">
-                <table height="80" style="width: 100%">
-                    <tbody>
-                        <tr>
-                            <td style="width: 100px;"><span>Model :</span></td>
-                            <td style="width: 330px;"><span>{{data.model}} </span></td>
-                        </tr>
-                        <tr>
-                            <td style="width: 52px;"><span>Mã hàng :</span></td>
-                            <td style="width: 330px;"><span>{{data.pid}}</span></td>
-                        </tr>
-                        <tr>
-                            <td style="width: 52px;"><span>Thương hiệu :</span></td>
-                            <td style="width: 330px;"><span>{{data.branch}}</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <hr>
-                {{!-- <p><span><a class="hoverred" href="/showroom/86">Xem thêm các sản phẩm khác cùng nhà cung cấp
-                            &gt;&gt;&gt;</a></span></p> --}}
-                <hr>
+        <p>{{data.price}}</p>
+    </div>
 
-                <table height="80" style="width: 100%;">
-                    <tbody>
-                        <tr>
-                            <td style="width: 214px;" colspan="2">
-                                <h5 class="title">Thông tin người đại diện</h5>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="width: 100px;"><span>Họ tên :</span></td>
-                            <td style="width: 330px;"><span>{{data.represent}}</span></td>
-                        </tr>
-                        <tr>
-                            <td style="width: 52px;"><span>Hotline :</span></td>
-                            <td style="width: 330px;"><span><a href="tel:{{data.phone}}"> {{data.phone}}</a></span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <div class="detail">
+        <table height="80" style="width: 100%">
+            <tbody>
+                <tr>
+                    <td style="width: 100px;"><span>Model :</span></td>
+                    <td style="width: 330px;"><span>{{data.model}} </span></td>
+                </tr>
+                <tr>
+                    <td style="width: 52px;"><span>Mã hàng :</span></td>
+                    <td style="width: 330px;"><span>{{data.pid}}</span></td>
+                </tr>
+                <tr>
+                    <td style="width: 52px;"><span>Thương hiệu :</span></td>
+                    <td style="width: 330px;"><span>{{data.branch}}</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        {{!-- <p><span><a class="hoverred" href="/showroom/86">Xem thêm các sản phẩm khác cùng nhà cung cấp
+                    &gt;&gt;&gt;</a></span></p> --}}
+        <hr>
+
+        <table height="80" style="width: 100%;">
+            <tbody>
+                <tr>
+                    <td style="width: 214px;" colspan="2">
+                        <h5 class="title">Thông tin người đại diện</h5>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 100px;"><span>Họ tên :</span></td>
+                    <td style="width: 330px;"><span>{{data.represent}}</span></td>
+                </tr>
+                <tr>
+                    <td style="width: 52px;"><span>Hotline :</span></td>
+                    <td style="width: 330px;"><span><a href="tel:{{data.phone}}"> {{data.phone}}</a></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 
+</div>
+
+<div class="col-md-3 px-2 sidelk">
+    <div class="sp-sidebar">
+        <div class="sidetitle">
+            <h3>Sản phẩm tương tự</h3>
         </div>
+    </div>
 
-        <div class="col-md-3 px-2 sidelk">
-            <div class="sp-sidebar">
-                <div class="sidetitle">
-                    <h3>Sản phẩm tương tự</h3>
+    <div class="lksp">
+        {{#each similar}}
+        <li class="flexbetwen">
+            <div class="lksp-img">
+
+                <a href="{{slug}}">
+                    {{#each product_img}}
+                    <img class="smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}">
+                    {{/each}}
+                </a>
+
+            </div>
+            <div style="font-size: 14px" class="lksp-ex">
+                <div class="ex-title">
+                    <a href="{{slug}}">{{product_name}}</a>
                 </div>
-            </div>
-
-            <div class="lksp">
-                {{#each similar}}
-                <li class="flexbetwen">
-                    <div class="lksp-img">
-
-                        <a href="{{slug}}">
-                            {{#each product_img}}
-                            <img class="smooth"
-                                src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}">
-                            {{/each}}
-                        </a>
-
-                    </div>
-                    <div style="font-size: 14px" class="lksp-ex">
-                        <div class="ex-title">
-                            <a href="{{slug}}">{{product_name}}</a>
-                        </div>
-                        <div class="ex-code">
-                            <p>{{product_id}}</p>
-                        </div>
-                        <!-- price -->
-                        <div class="ex-price text-center">
-                            <div><span>{{price}}</span></div>
-                        </div>
-                        <!--/. end price  -->
-                    </div>
-                </li>
-                {{/each}}
-
-            </div>
-        </div>
-    </div>
-
-    <div class="heading">
-        <h2 class="p-2">THÔNG TIN SẢN PHẨM</h2>
-    </div>
-
-    <div class="product-desc flexbetwen">
-        <div class="infoproduct">
-            {{{data.description}}}
-        </div>
-    </div>
-
-    <div class="heading heading-comment">
-        <h2 class="p-2">BÌNH LUẬN VỀ SẢN PHẨM</h2>
-    </div>
-    <div class="product-desc flexbetwen">
-
-        {{!-- Comment start --}}
-        <div class="row">
-            <div class="col-12">
-                <div class="">
-                    <div class="fb-comments" data-href="https://tanphat.com/products/{{data.pslug}}" data-width=""
-                        data-numposts="5"></div>
+                <div class="ex-code">
+                    <p>{{product_id}}</p>
                 </div>
+                <!-- price -->
+                <div class="ex-price text-center">
+                    <div><span>{{price}}</span></div>
+                </div>
+                <!--/. end price  -->
             </div>
-        </div>
+        </li>
+        {{/each}}
 
-        <div class="col-md-4 ml-auto">
-            <div class="ctrl-box md-content ">
-                <h5 class="title uppercase text-center">Liên hệ <span style="color: var(--cam);"> nhà cung
-                        cấp</span>
-                </h5>
-                <form method="POST" action="/form/contact" class="form-validate" data-callback="reload_page"
-                    novalidate="novalidate">
-                    <input type="hidden" name="showroom_email" value="sale@trungtamvoxe.com">
-                    <div class="form-group border-0 py-0">
-                        <input type="fullname" class="form-control" id="fullname" name="fullname"
-                            placeholder="Họ Tên (*)" required="" aria-required="true">
-                    </div>
-                    <div class="form-group border-0 py-0">
-                        <input type="email" class="form-control" id="email" name="email"
-                            placeholder="Email (Không bắt buộc)">
-                    </div>
-                    <div class="form-group border-0 py-0">
-                        <input type="phone" class="form-control" id="phone" name="phone" placeholder="Số Điện Thoại (*)"
-                            required="" aria-required="true">
-                    </div>
-                    <div class="form-group border-0 py-0">
-                        <textarea class="form-control small-size" rows="4" name="content"
-                            readonly="">Xin chào, tôi vừa xem BRIDGESTONE TURANZA GR100 225/45R18 MÃ 225/45R18 trên hanaco.vn , hãy liên hệ tôi để tư vấn thêm.  Xin cảm ơn!</textarea>
-                    </div>
+    </div>
+</div>
+</div>
 
-                    <div class="form-group text-center border-0">
-                        <button type="submit" class="mx-auto d-block btn btn-primary btn-inline-product">Gửi yêu
-                            cầu</button>
-                    </div>
-                </form>
+<div class="heading">
+    <h2 class="p-2">THÔNG TIN SẢN PHẨM</h2>
+</div>
+
+<div class="product-desc flexbetwen">
+    <div class="infoproduct">
+        {{{data.description}}}
+    </div>
+</div>
+
+<div class="heading heading-comment">
+    <h2 class="p-2">BÌNH LUẬN VỀ SẢN PHẨM</h2>
+</div>
+<div class="product-desc flexbetwen">
+
+    {{!-- Comment start --}}
+    <div class="row">
+        <div class="col-12">
+            <div class="">
+                <div class="fb-comments" data-href="https://tanphat.com/products/{{data.pslug}}" data-width=""
+                    data-numposts="5"></div>
             </div>
         </div>
     </div>
-    {{!-- Comment end --}}
+
+    <div class="col-md-4 ml-auto">
+        <div class="ctrl-box md-content ">
+            <h5 class="title uppercase text-center">Liên hệ <span style="color: var(--cam);"> nhà cung
+                    cấp</span>
+            </h5>
+            <form method="POST" action="/form/contact" class="form-validate" data-callback="reload_page"
+                novalidate="novalidate">
+                <input type="hidden" name="showroom_email" value="sale@trungtamvoxe.com">
+                <div class="form-group border-0 py-0">
+                    <input type="fullname" class="form-control" id="fullname" name="fullname" placeholder="Họ Tên (*)"
+                        required="" aria-required="true">
+                </div>
+                <div class="form-group border-0 py-0">
+                    <input type="email" class="form-control" id="email" name="email"
+                        placeholder="Email (Không bắt buộc)">
+                </div>
+                <div class="form-group border-0 py-0">
+                    <input type="phone" class="form-control" id="phone" name="phone" placeholder="Số Điện Thoại (*)"
+                        required="" aria-required="true">
+                </div>
+                <div class="form-group border-0 py-0">
+                    <textarea class="form-control small-size" rows="4" name="content"
+                        readonly="">Xin chào, tôi vừa xem BRIDGESTONE TURANZA GR100 225/45R18 MÃ 225/45R18 trên hanaco.vn , hãy liên hệ tôi để tư vấn thêm.  Xin cảm ơn!</textarea>
+                </div>
+
+                <div class="form-group text-center border-0">
+                    <button type="submit" class="mx-auto d-block btn btn-primary btn-inline-product">Gửi yêu
+                        cầu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{{!-- Comment end --}}
 
 </div>
 
 </div>
 <script>
-    $(`#zoom_0`).ezPlus({
-        zoomWindowFadeIn: 500,
-        zoomWindowFadeOut: 500,
-        lensFadeIn: 500,
-        lensFadeOut: 500
+    //initiate the plugin and pass the id of the div containing gallery images
+    $('#zoom_03').ezPlus({
+        gallery: 'gallery_01', cursor: 'pointer', galleryActiveClass: 'active',
+        imageCrossfade: true, loadingIcon: 'http://www.elevateweb.co.uk/spinner.gif'
+    });
+
+    //pass the images to Fancybox
+    $('#zoom_03').bind('click', function (e) {
+        var ez = $('#zoom_03').data('ezPlus');
+        $.fancyboxPlus(ez.getGalleryList());
+        return false;
     });
 </script>
