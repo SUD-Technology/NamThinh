@@ -444,22 +444,42 @@ const AdminController = {
             })
     },
     getCustomers: (req, res, next) => {
-        return Customers.find({})
+        let query
+        if (req.query.keyWord) {
+            if (!isNaN(parseInt(req.query.keyWord)))
+                query = {
+                    phone: { $regex: `${req.query.keyWord}`, "$options": "i" },
+                }
+            else {
+                query = {
+                    fullname: { $regex: `${req.query.keyWord}`, "$options": "i" },
+                }
+            }
+        } else {
+            query = {}
+        }
+        return Customers.find(query)
             .then(users => {
                 let listCustomers = []
                 if (users.length > 0) {
                     users.forEach(user => {
-                        const current_user = {
-                            id: user._id,
-                            name: user.fullname,
-                            address: user.address,
-                            email: user.email,
-                            phone: user.phone,
-                            status: user.status
-                        }
-                        listCustomers.push(current_user)
+                        return Orders.findOne({ "Customer.phone": `${user.phone}` })
+                            .then(order => {
+                                const current_user = {
+                                    id: user._id,
+                                    name: user.fullname,
+                                    address: user.address,
+                                    email: user.email,
+                                    phone: user.phone,
+                                    status: user.status,
+                                    saler: order.sale || ''
+                                }
+                                listCustomers.push(current_user)
+                                res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position, keyWord: req.query.keyWord })
+                            })
                     })
-                    res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position })
+                } else {
+                    res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position, keyWord: req.query.keyWord })
                 }
             })
     },

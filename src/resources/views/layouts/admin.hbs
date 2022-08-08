@@ -348,24 +348,17 @@
         <span class="logo_name">Nam Thịnh</span>
       </div>
       <ul class="nav-links">
-        {{!-- <li>
-          <a href="#">
-            <i class='bx bx-grid-alt'></i>
-            <span class="link_name">Dashboard</span>
-          </a>
-          <ul class="sub-menu blank">
-            <li><a class="link_name" href="#">Dashboard</a></li>
-          </ul>
-        </li> --}}
+
         <li>
           <div class="icon-link">
-            <a href="/home">
+            <a href="/admin/home">
               <i class="fas fa-home"></i>
               <span class="link_name">Trang chủ</span>
             </a>
           </div>
         </li>
         {{!-- Sale --}}
+        {{#isAccountant position}}
 
         <li>
           <div class="icon-link">
@@ -376,18 +369,20 @@
             <i class='bx bxs-chevron-down arrow'></i>
           </div>
           <ul class="sub-menu">
+
             <li><a class="link_name" href="#">Sản phẩm</a></li>
-            {{#isSale position}}
-            <li {{#isAdmin position}} class="d-none" {{/isAdmin}}><a href="/admin/product-manager">Kiểm kho</a></li>
-            {{/isSale }}
-            {{#isAccountant position}}
+            {{!-- {{#isSale position}} --}}
+            {{!-- <li {{#isAdmin position}} class="d-none" {{/isAdmin}}><a href="/admin/product-manager">Kiểm kho</a>
+            </li> --}}
+            {{!-- {{/isSale }} --}}
             <li><a href="/admin/product-manager">Kiểm kho</a></li>
             <li><a href="/admin/add-product">Thêm sản phẩm</a></li>
             <li><a href="#">Xóa sản phẩm</a></li>
-            {{/isAccountant}}
           </ul>
         </li>
-        {{#isSale position}}
+        {{/isAccountant}}
+
+        {{#isAdmin position}}
         <li>
           <div class="icon-link">
             <a href="#">
@@ -402,7 +397,7 @@
             <li><a href="/admin/getOrders">Danh sách đơn hàng</a></li>
           </ul>
         </li>
-        {{/isSale }}
+        {{/isAdmin }}
         {{!-- Admin --}}
         {{#isAdmin position}}
         <li>
