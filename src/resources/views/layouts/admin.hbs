@@ -377,12 +377,13 @@
             {{!-- {{/isSale }} --}}
             <li><a href="/admin/product-manager">Kiểm kho</a></li>
             <li><a href="/admin/add-product">Thêm sản phẩm</a></li>
-            <li><a href="#">Xóa sản phẩm</a></li>
+
           </ul>
         </li>
         {{/isAccountant}}
 
         {{!-- {{#isAdmin position}} --}}
+        {{#isSale}}
         <li>
           <div class="icon-link">
             <a href="#">
@@ -397,6 +398,7 @@
             <li><a href="/admin/getOrders">Danh sách đơn hàng</a></li>
           </ul>
         </li>
+        {{/isSale}}
         {{!-- {{/isAdmin }} --}}
         {{!-- Admin --}}
         {{#isAdmin position}}
@@ -410,9 +412,37 @@
           </div>
           <ul class="sub-menu">
             <li><a class="link_name" href="#">Tin tức</a></li>
-            <li><a href="#">Tất cả tin</a></li>
+            <li><a href="/admin/listNews">Tất cả tin</a></li>
             <li><a href="/admin/add-news">Thêm bài viết</a></li>
-            <li><a href="#">Xóa bài viết</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="icon-link">
+            <a href="#">
+              <i class="fas fa-percent"></i>
+              <span class="link_name">Khuyến mãi</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow'></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Khuyến mãi</a></li>
+            <li><a href="/admin/listDiscounts">Tất cả khuyến mãi</a></li>
+            <li><a href="/admin/add-discount">Thêm khuyến mãi</a></li>
+          </ul>
+        </li>
+        <li>
+          <div class="icon-link">
+            <a href="#">
+              <i class="fas fa-cogs"></i>
+              <span class="link_name">Dịch vụ</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow'></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Dịch vụ</a></li>
+            <li><a href="/admin/listServices">Tất cả dịch vụ</a></li>
+            <li><a href="/admin/add-services">Thêm dịch vụ</a></li>
+
           </ul>
         </li>
         <li>
@@ -447,7 +477,7 @@
             <i class="fas fa-history"></i>
             <span class="link_name">Lịch sử</span>
           </a>
-          
+
         </li>
         {{/isAdmin}}
         <li>

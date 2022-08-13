@@ -8,6 +8,8 @@ const CollectionRouter = require('./resources/routers/CollectionRouter');
 const ProductRouter = require('./resources/routers/ProductRouter');
 const AdminRouter = require('./resources/routers/AdminRouter');
 const NewsRouter = require('./resources/routers/NewsRouter');
+const DiscountRouter = require('./resources/routers/DiscountRouter');
+const ServicesRouter = require('./resources/routers/ServicesRouter');
 const db = require('./config/db');
 const Products = require('./resources/models/Products');
 const session = require('express-session')
@@ -83,7 +85,7 @@ app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'resources/views'))
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(express.json({limit: '50mb'}));
+app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(require("cookie-parser")("abc"));
 app.use(require("express-session")());
@@ -149,17 +151,13 @@ app.get('/policy', (req, res) => {
     res.render('policy');
 })
 
-app.get('/service', (req, res) => {
-    res.render('service', { service: true })
-})
 
-app.get('/discount', (req, res) => {
-    res.render('discount')
-})
 
 app.use('/users', UserRouter);
 app.use('/collections', CollectionRouter);
 app.use('/products', ProductRouter);
 app.use('/admin', AdminRouter);
 app.use('/news', NewsRouter);
+app.use('/discount', DiscountRouter);
+app.use('/service', ServicesRouter)
 app.listen(port, () => console.log('Server started'))

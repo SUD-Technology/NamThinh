@@ -4,6 +4,6 @@ const NewsController = require('../controllers/NewsController');
 
 router.get('/', NewsController.getPostList);
 
-router.get('/:slug', );
+router.get('/:slug', NewsController.getDetailPost);
 
 module.exports = router;

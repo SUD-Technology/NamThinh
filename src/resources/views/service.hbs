@@ -1,77 +1,56 @@
 <div class="service-page">
-    <div class="titleL mt-5"><h1></h1><h1>Dịch Vụ</h1></div>
-
-    
+    <div class="titleL mt-5">
+        <h1></h1>
+        <h1>Dịch Vụ</h1>
+    </div>
 
     <div class="row mt-5">
+        {{#each services}}
+        {{#if @first}}
         <div class="service-box col-12">
             <div class="service-main-img">
-                <img height="100%"  class="w-100" src="https://hondaotophattien.com.vn/vnt_upload/news/11_2020/Dich-vu-bao-duong-nhanh-Honda-Sai-Gon-Quan-2.png" alt="">
+                <img height="100%" class="w-100" src="{{image}}" alt="">
             </div>
 
             <div class="service-main-content">
                 <div class="service-content">
-                <div class="captions">
-                    <h3><a href="https://hondaotophattien.com.vn/vn/bao-duong-nhanh.html">DỊCH VỤ BẢO DƯỠNG NHANH</a></h3>
+                    <div class="captions">
+                        <h3><a href="/service/{{slug}}">{{title}}</a></h3>
 
-                    <div class="des">
-                        Bảo dưỡng nhanh là dịch vụ tân tiến về chế độ bảo hành, bảo dưỡng được rút ngắn trong thời gian sớm nhất, đảm bảo thời gian và chất lượng
+                        <div class="des">
+                            {{subtitle}}
+                        </div>
                     </div>
                 </div>
-            </div>
-            <a style="background-color: rgb(121, 70, 70); color: white" href="" class="watch-detail px-5 mx-5 py-2">Xem thêm</a>
+                <a style="background-color: rgb(121, 70, 70); color: white" href="/service/{{slug}}"
+                    class="watch-detail px-5 mx-5 py-2">Xem thêm</a>
             </div>
         </div>
-
+        {{else}}
         <div class="col-md-4 service-box mt-5">
             <div class="service-img-box">
-                <img class="w-100" src="https://hondaotophattien.com.vn/vnt_upload/news/11_2020/Dich-vu-bao-duong-nhanh-Honda-Sai-Gon-Quan-2.png" alt="">
+                <img class="w-100" src="{{image}}" alt="">
             </div>
 
             <div class="service-content">
                 <div class="captions">
-                    <h3><a href="https://hondaotophattien.com.vn/vn/bao-duong-nhanh.html">DỊCH VỤ BẢO DƯỠNG ĐỊNH KỲ</a></h3>
+                    <h3><a href="/service/{{slug}}">{{title}}</a>
+                    </h3>
 
                     <div class="des">
-                        Bảo dưỡng nhanh là dịch vụ tân tiến về chế độ bảo hành, bảo dưỡng được rút ngắn trong thời gian sớm nhất, đảm bảo thời gian và chất lượng
+                        {{subtitle}}
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 service-box mt-5">
-            <div class="service-img-box">
-                <img class="w-100" src="https://hondaotophattien.com.vn/vnt_upload/news/11_2020/Dich-vu-bao-duong-nhanh-Honda-Sai-Gon-Quan-2.png" alt="">
-            </div>
+        {{/if}}
+        {{/each}}
 
-            <div class="service-content">
-                <div class="captions">
-                    <h3><a href="https://hondaotophattien.com.vn/vn/bao-duong-nhanh.html">DỊCH VỤ SỬA CHỬA NHANH</a></h3>
 
-                    <div class="des">
-                        Bảo dưỡng nhanh là dịch vụ tân tiến về chế độ bảo hành, bảo dưỡng được rút ngắn trong thời gian sớm nhất, đảm bảo thời gian và chất lượng
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 service-box mt-5">
-            <div class="service-img-box">
-                <img class="w-100" src="https://hondaotophattien.com.vn/vnt_upload/news/11_2020/Dich-vu-bao-duong-nhanh-Honda-Sai-Gon-Quan-2.png" alt="">
-            </div>
-
-            <div class="service-content">
-                <div class="captions">
-                    <h3><a href="https://hondaotophattien.com.vn/vn/bao-duong-nhanh.html">DỊCH VỤ LÀM LỐP DI ĐỘNG NHANH</a></h3>
-
-                    <div class="des">
-                        Bảo dưỡng nhanh là dịch vụ tân tiến về chế độ bảo hành, bảo dưỡng được rút ngắn trong thời gian sớm nhất, đảm bảo thời gian và chất lượng
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 
 <style>
-    
-   
+
+
 </style>

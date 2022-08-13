@@ -244,15 +244,6 @@ $(document).ready(function () {
     $('.scroll-to-top').click(function () {
         $('html, body').animate({ scrollTop: 0 }, 'fast');
     })
-    // $(function () {
-    //     $('.carousel-item').each(function () {
-    //         var originalImagePath = $(this).find('img').data('original-image');
-    //         $(this).zoom({
-    //             url: originalImagePath,
-    //             magnify: 3
-    //         });
-    //     });
-    // });
 
     // Custom File Upload: start
 
@@ -263,6 +254,20 @@ $(document).ready(function () {
     }, function () {
         $(this).hide()
     })
+
+    // scroll top btn
+    let scrollBtn = document.querySelector(".scroll-to-top");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () { scrollFunction() };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollBtn.style.opacity = "1";
+        } else {
+            scrollBtn.style.opacity = "0";
+        }
+    }
 
 });
 

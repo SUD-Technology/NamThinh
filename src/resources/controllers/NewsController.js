@@ -1,6 +1,7 @@
 const slugify = require('slugify');
 const Posts = require('../models/Posts');
-const { normalizeDate_vi } = require('../middlewares/functions');
+
+const moment = require('moment');
 
 const NewsController = {
     getDetailPost: (req, res, next) => {
@@ -8,22 +9,21 @@ const NewsController = {
         const message = req.flash('message') || '';
         const slug = req.params.slug || '';
 
-        Posts.findOne({slug})
+        Posts.findOne({ slug })
             .then(post => {
                 const data = {
                     title: post.title,
+                    slug: slug,
                     subtitle: post.subtitle,
                     content: post.content,
-                    createdAt: post.createdAt
+                    createdAt: moment(post.createdAt).format('lll')
                 }
-
                 return res.render('newsdetail', {
                     data: data,
                     error: error,
                     message: message
                 })
             })
-            .catch(next);
     },
     getPostList: (req, res, next) => {
         Posts.find()
@@ -38,7 +38,7 @@ const NewsController = {
                         image: post.image,
                     }
                 })
-                
+
 
                 return res.render('news', {
                     posts: data,

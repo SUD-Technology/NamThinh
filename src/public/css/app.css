@@ -2717,6 +2717,7 @@ a.scroll-to-top {
   right: 30px;
   left: auto;
   z-index: 10000;
+  transition: all 0.5s ease 0s;
 }
 
 a.scroll-to-top:hover {
@@ -2975,6 +2976,7 @@ a:not([href]):not([tabindex]) {
   max-width: 1200px;
   margin: 0 auto;
 }
+
 .hex-layer-6 {
   display: grid;
   grid-template-columns: repeat(6, 0fr);
@@ -2982,6 +2984,7 @@ a:not([href]):not([tabindex]) {
   justify-content: center;
   align-content: center;
 }
+
 .hex-layer-5 {
   display: grid;
   justify-content: center;
@@ -2989,6 +2992,7 @@ a:not([href]):not([tabindex]) {
   align-content: center;
   grid-template-columns: repeat(5, 0fr);
 }
+
 .hex-layer-4 {
   display: grid;
   margin: -18px 0px;
@@ -2996,6 +3000,7 @@ a:not([href]):not([tabindex]) {
   align-content: center;
   grid-template-columns: repeat(4, 0fr);
 }
+
 .hex-layer-3 {
   display: grid;
   margin: -40px 0px;
@@ -3003,6 +3008,7 @@ a:not([href]):not([tabindex]) {
   align-content: center;
   grid-template-columns: repeat(3, 0fr);
 }
+
 .hex-layer-2 {
   display: grid;
   margin: -43px 0px;
@@ -3010,12 +3016,13 @@ a:not([href]):not([tabindex]) {
   align-content: center;
   grid-template-columns: repeat(2, 0fr);
 }
+
 .hex {
   height: 250px;
   width: 250px;
   align-self: center;
   background: var(--do);
- -webkit-clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+  -webkit-clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
   /* transition:  0.4s; */
   position: relative;
@@ -3041,7 +3048,7 @@ a:not([href]):not([tabindex]) {
 
 
 
-.hex:not(.main-hex):hover{
+.hex:not(.main-hex):hover {
   background: var(--xanh);
 }
 
@@ -3051,7 +3058,7 @@ a:not([href]):not([tabindex]) {
   margin-top: 7px;
   align-self: center;
   background: transparent;
- -webkit-clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+  -webkit-clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
   /* transition:  0.4s; */
   position: relative;
@@ -3072,11 +3079,11 @@ a:not([href]):not([tabindex]) {
   z-index: 101;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   font-size: 20px;
   color: white;
   text-transform: uppercase;
-  text-shadow: -1px 0 var(--cam), 0 1px var(--cam),      1px 0 var(--cam), 0 -1px var(--cam)
+  text-shadow: -1px 0 var(--cam), 0 1px var(--cam), 1px 0 var(--cam), 0 -1px var(--cam)
 }
 
 .hex-1 {
@@ -3145,13 +3152,13 @@ a:not([href]):not([tabindex]) {
 
 
 
-.hex:hover .layer-title span{
+.hex:hover .layer-title span {
   transition: 0.4s;
   /* opacity: 0; */
   /* display: none; */
 }
 
-.mx-layer3{
+.mx-layer3 {
   margin: 3px 150px;
 }
 

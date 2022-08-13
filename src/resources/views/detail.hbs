@@ -20,11 +20,12 @@
                     <div class="clearfix" style="max-width:474px;">
                         <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                             {{#each data.pimg}}
-                            <li id="zoom_{{@index}}"
+                            <li id="image{{@index}}"
                                 data-image="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}"
-                                data-zoom-image="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}"
                                 data-thumb="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}">
-                                <img src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}" />
+                                <img width="411"
+                                    data-zoom-image="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}"
+                                    src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}" />
                             </li>
                             {{/each}}
 
@@ -150,7 +151,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="">
-                    <div class="fb-comments" data-href="https://tanphat.com/products/{{data.pslug}}" data-width=""
+                    <div class="fb-comments" data-href="https://namthinh.com/products/{{data.pslug}}" data-width=""
                         data-numposts="5"></div>
                 </div>
             </div>
@@ -195,10 +196,11 @@
 
 </div>
 <script>
-    $(`#zoom_0`).ezPlus({
-        zoomWindowFadeIn: 500,
-        zoomWindowFadeOut: 500,
-        lensFadeIn: 500,
-        lensFadeOut: 500
-    });
+    $('#image1').addimagezoom({ // single image zoom
+        zoomrange: [3, 10],
+        magnifiersize: [300, 300],
+        magnifierpos: 'right',
+        cursorshade: true,
+        largeimage: 'https://storage.googleapis.com/namthinh-69ec0.appspot.com/1658216712544.jpg' //<-- No comma after last option!
+    })
 </script>
