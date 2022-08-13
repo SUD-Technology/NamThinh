@@ -9,6 +9,7 @@ const Posts = require('../models/Posts')
 const { normalizeDate } = require('../middlewares/functions');
 const Discounts = require('../models/Discounts')
 const Services = require('../models/Services')
+const moment = require('moment');
 
 function unique(arr) {
     return Array.from(new Set(arr)) //
@@ -692,6 +693,102 @@ const AdminController = {
             .catch(() => {
                 req.flash('error', 'Thêm dịch vụ thất bại')
                 res.redirect('/admin/add-services')
+            })
+    },
+    deleteDiscount: (req, res, next) => {
+        const id = req.params.id
+        return Discounts.findByIdAndDelete(id)
+            .then(() => {
+                req.flash('success', "Xóa chương trình khuyến mãi thành công")
+                res.redirect('/admin/listDiscounts')
+            })
+            .catch(() => {
+                req.flash('error', "Xóa chương trình khuyến mãi thất bại")
+                res.redirect('/admin/listDiscounts')
+            })
+    },
+    deleteService: (req, res, next) => {
+        const id = req.params.id
+        return Services.findByIdAndDelete(id)
+            .then(() => {
+                req.flash('success', "Xóa dịch vụ thành công")
+                res.redirect('/admin/listServices')
+            })
+            .catch(() => {
+                req.flash('error', "Xóa dịch vụ thất bại")
+                res.redirect('/admin/listServices')
+            })
+    },
+    deletePosts: (req, res, next) => {
+        const id = req.params.id
+        return Posts.findByIdAndDelete(id)
+            .then(() => {
+                req.flash('success', "Xóa bài viết thành công")
+                res.redirect('/admin/listNews')
+            })
+            .catch(() => {
+                req.flash('error', "Xóa bài viết thất bại")
+                res.redirect('/admin/listNews')
+            })
+    },
+    getDiscounts: (req, res, next) => {
+        Discounts.find()
+            .then(discounts => {
+                const data = discounts.map(item => {
+                    return {
+                        title: item.title,
+                        id: item._id,
+                        slug: item.slug,
+                        createdAt: moment(item.createdAt).format('lll'),
+                    }
+                })
+
+                return res.render('listDiscounts', {
+                    data: data,
+                    position: req.session.position,
+                    layout: 'admin',
+                    pageName: 'Danh sách khuyến mãi'
+                })
+            })
+    },
+    getServices: (req, res, next) => {
+        Services.find()
+            .then(services => {
+                const data = services.map(item => {
+                    return {
+                        title: item.title,
+                        id: item._id,
+                        slug: item.slug,
+                        createdAt: moment(item.createdAt).format('lll'),
+                    }
+                })
+
+                return res.render('listServices', {
+                    data: data,
+                    position: req.session.position,
+                    layout: 'admin',
+                    pageName: 'Danh sách dịch vụ'
+                })
+            })
+    },
+    getPosts: (req, res, next) => {
+        Posts.find()
+            .then(posts => {
+                const data = posts.map(item => {
+                    return {
+                        title: item.title,
+                        id: item._id,
+                        slug: item.slug,
+                        createdAt: moment(item.createdAt).format('lll'),
+                    }
+                })
+
+                return res.render('listPosts', {
+                    data: data,
+                    position: req.session.position,
+                    layout: 'admin',
+                    pageName: 'Danh sách tin tức'
+                })
             })
     },
 }

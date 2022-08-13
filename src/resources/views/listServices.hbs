@@ -1,0 +1,66 @@
+<div class="container">
+    <div class="row m-0">
+        <div class="col-md-12">
+            <table class="table table-hover mt-2">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Tiêu đề</th>
+                        <th scope="col">Ngày đăng</th>
+                        <th scope="col">Chi tiết</th>
+                        <th scope="col">Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#if data}}
+                    {{#each data}}
+                    <tr>
+                        <th scope="row">{{inc @index}}</th>
+                        <td>{{title}}</td>
+                        <td>{{createdAt}}</td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <a type="button" class="btn btn-success" href="/service/{{slug}}">
+                                <i class="fas fa-file-alt"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{id}}">
+                                <i class="fas fa-user-times"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{else}}
+                    <td colspan="5">Không có dịch vụ nào</td>
+                    {{/if}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    {{#each data}}
+    <div class="modal fade" id="myModal{{id}}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xóa tài khoản</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn có muốn xóa bài viết <strong>{{title}}</strong> ??
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <a type="button" href="/admin/deleteService/{{id}}" class="btn btn-danger">Xóa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

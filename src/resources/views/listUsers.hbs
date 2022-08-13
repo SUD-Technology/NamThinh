@@ -1,32 +1,67 @@
-<div class="row m-0">
-    <div class="col-md-12">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                    aria-selected="true">Danh sách Sale</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                    aria-controls="profile" aria-selected="false">Danh sách Kế Toán</a>
-            </li>
-        </ul>
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                <table class="table table-hover mt-2">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">STT</th>
-                            <th scope="col">Họ tên</th>
-                            <th scope="col">Tên đăng nhập</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Số điện thoại</th>
-                            <th scope="col">Lịch sử</th>
-                            <th scope="col">Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each sales}}
-                        <tr>
+<div class="container">
+    <div class="row m-0">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                        aria-controls="home" aria-selected="true">Danh sách Sale</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                        aria-controls="profile" aria-selected="false">Danh sách Kế Toán</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <table class="table table-hover mt-2">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Họ tên</th>
+                                <th scope="col">Tên đăng nhập</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Số điện thoại</th>
+                                <th scope="col">Lịch sử</th>
+                                <th scope="col">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each sales}}
+                            <tr>
+                                <th scope="row">{{inc @index}}</th>
+                                <td>{{name}}</td>
+                                <td>{{username}}</td>
+                                <td>{{email}}</td>
+                                <td>{{phone}}</td>
+                                <td>{{phone}}</td>
+                                <td>
+                                    <!-- Button trigger modal -->
+                                    <a type="button" class="btn btn-danger" data-toggle="modal"
+                                        data-target="#myModal{{id}}">
+                                        <i class="fas fa-user-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <table class="table table-hover mt-2">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Họ tên</th>
+                                <th scope="col">Tên đăng nhập</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Số điện thoại</th>
+                                <th scope="col">Lịch sử</th>
+                                <th scope="col">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each accountants}}
                             <th scope="row">{{inc @index}}</th>
                             <td>{{name}}</td>
                             <td>{{username}}</td>
@@ -40,92 +75,60 @@
                                     <i class="fas fa-user-times"></i>
                                 </a>
                             </td>
-                        </tr>
+                            {{/each}}
 
-                        {{/each}}
-                    </tbody>
-                </table>
-            </div>
-            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                <table class="table table-hover mt-2">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th scope="col">STT</th>
-                            <th scope="col">Họ tên</th>
-                            <th scope="col">Tên đăng nhập</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Số điện thoại</th>
-                            <th scope="col">Lịch sử</th>
-                            <th scope="col">Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {{#each accountants}}
-                        <th scope="row">{{inc @index}}</th>
-                        <td>{{name}}</td>
-                        <td>{{username}}</td>
-                        <td>{{email}}</td>
-                        <td>{{phone}}</td>
-                        <td>{{phone}}</td>
-                        <td>
-                            <!-- Button trigger modal -->
-                            <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{id}}">
-                                <i class="fas fa-user-times"></i>
-                            </a>
-                        </td>
-                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
 
-                    </tbody>
-                </table>
             </div>
 
         </div>
-
     </div>
-</div>
 
 
 
-{{#each sales}}
-<div class="modal fade" id="myModal{{id}}">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Xóa tài khoản</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Bạn có muốn xóa tài khoản <strong>{{name}}</strong> ??
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                <a type="button" href="/admin/deleteUser/{{id}}" class="btn btn-danger">Xóa</a>
+    {{#each sales}}
+    <div class="modal fade" id="myModal{{id}}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xóa tài khoản</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn có muốn xóa tài khoản <strong>{{name}}</strong> ??
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <a type="button" href="/admin/deleteUser/{{id}}" class="btn btn-danger">Xóa</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
-{{/each}}
+    {{/each}}
 
-{{#each accountants}}
-<div class="modal fade" id="myModal{{id}}">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Xóa tài khoản</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Bạn có muốn xóa tài khoản <strong>{{name}}</strong> ??
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                <a type="button" href="/admin/deleteUser/{{id}}" class="btn btn-danger">Xóa</a>
+    {{#each accountants}}
+    <div class="modal fade" id="myModal{{id}}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xóa tài khoản</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn có muốn xóa tài khoản <strong>{{name}}</strong> ??
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <a type="button" href="/admin/deleteUser/{{id}}" class="btn btn-danger">Xóa</a>
+                </div>
             </div>
         </div>
     </div>
+    {{/each}}
 </div>
-{{/each}}
