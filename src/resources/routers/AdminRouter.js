@@ -37,6 +37,14 @@ router.get('/delete/:id', checkLogin, authPage(["admin", "accountant"]), AdminCo
 router.get('/add-news', authPage(["admin"]), AdminController.getAddNews)
 router.post('/add-news', authPage(["admin"]), store.single('news-image'), AdminController.postANews)
 
+// Discount
+router.get('/add-discount', AdminController.getAddDiscount)
+router.post('/add-discount', store.single('discount-image'), AdminController.postAddDiscount)
+
+// Services
+router.get('/add-services', AdminController.getAddServices)
+router.post('/add-services', store.single('services-image'), AdminController.postAddServices)
+
 // Create order
 router.get('/create-order', checkLogin, authPage(['admin', "sale"]), AdminController.getCreateOrder)
 router.post('/create-order', AdminController.postCreateOrder)

@@ -1,0 +1,112 @@
+{{!-- Body: start --}}
+<div class="container">
+    <div class="addProduct-header">
+
+        <div class="row">
+            <div class="col-md-4 ml-auto">
+                {{#if success}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{success}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {{/if}}
+                {{#if error}}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{error}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+    <div class="addProduct-body">
+        <form class="form-horizontal" enctype="multipart/form-data" method="post">
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="discount-title">Tiêu đề</label>
+                    <div class="col-md-10">
+                        <input id="discount-title" name="title" placeholder="Tiêu đề" class="form-control input-md"
+                            required="" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="discount-subtitle">Trích dẫn</label>
+                    <div class="col-md-10">
+                        <input id="discount-subtitle" name="subtitle" placeholder="Trích dẫn"
+                            class="form-control input-md" required="" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="product-image">HÌNH ẢNH KHUYẾN MÃI</label>
+                    <div class="col-md-10">
+                        <div class="form-group-container">
+                            <input id="product-image" accept="image/*" required="" name="discount-image"
+                                class="form-control input-md" onchange="preview()" type="file" multiple>
+                            <label for="product-image">
+                                <i class="fas fa-upload"></i>
+                                Chọn ảnh khuyến mãi &nbsp;
+                            </label>
+                            <p id="num-of-file">Chưa có ảnh nào được chọn</p>
+                            <div id="images-upload">
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="discount-content">Nội dung</label>
+                    <div class="col-md-10">
+                        <textarea id="discount-content" name="content"></textarea>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-footer">
+                    <button type="submit">Thêm khuyến mãi</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+</div>
+
+{{!-- Body: end --}}
+
+<script src="/ckeditor/ckeditor.js"></script>
+
+<!-- Footer -->
+<script>
+    let fileInput = document.getElementById("product-image")
+    let imageContainer = document.getElementById('images-upload')
+    let numOfFiles = document.getElementById('num-of-file')
+
+    function preview() {
+        imageContainer.innerHTML = ""
+        numOfFiles.textContent = `${fileInput.files.length} ảnh đã được chọn`;
+
+        for (i of fileInput.files) {
+            let reader = new FileReader()
+            let figure = document.createElement("figure")
+            let figCap = document.createElement("figcaption")
+
+            figCap.innerText = i.name
+            figure.appendChild(figCap)
+            reader.onload = () => {
+                let img = document.createElement("img");
+                img.setAttribute("src", reader.result);
+                figure.insertBefore(img, figCap);
+            }
+            imageContainer.appendChild(figure);
+            reader.readAsDataURL(i)
+        }
+    }
+
+    CKEDITOR.replace('content')
+</script>

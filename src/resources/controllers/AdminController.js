@@ -7,6 +7,8 @@ const Customers = require('../models/Customers')
 const Users = require('../models/Users')
 const Posts = require('../models/Posts')
 const { normalizeDate } = require('../middlewares/functions');
+const Discounts = require('../models/Discounts')
+const Services = require('../models/Services')
 
 function unique(arr) {
     return Array.from(new Set(arr)) //
@@ -364,16 +366,16 @@ const AdminController = {
         res.render('createOrders', { layout: "admin", pageName: "Tạo đơn hàng", position: req.session.position, sale, error, success })
     },
     postCreateOrder: (req, res, next) => {
-        const { fullname , email, phone, address, sale, product_list, total } = req.body;
-        
-        Customers.findOne({fullname: fullname, phone: phone, email: email})
+        const { fullname, email, phone, address, sale, product_list, total } = req.body;
+
+        Customers.findOne({ fullname: fullname, phone: phone, email: email })
             .then(customer => {
                 let info = {
                     fullname: fullname,
                     email, phone, address
                 }
 
-                if(!customer) {      
+                if (!customer) {
                     new Customers(info).save();
                 }
 
@@ -392,7 +394,7 @@ const AdminController = {
                     .catch(err => {
                         req.flash('error', 'Tạo đơn hàng thất bại ' + err)
                         res.redirect('/admin/create-order')
-                    })  
+                    })
             })
             .catch(next);
 
@@ -462,7 +464,7 @@ const AdminController = {
                             email: user.email,
                             address: user.address
                         }
-                    })        
+                    })
                     return res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position, keyWord: req.query.keyWord })
                 } else {
                     return res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position, keyWord: req.query.keyWord })
@@ -566,10 +568,10 @@ const AdminController = {
     },
     postEditStatus: (req, res, next) => {
         const { status, code } = req.body;
-        
-        Orders.findOne({_id: code})
+
+        Orders.findOne({ _id: code })
             .then(order => {
-                if(order) {
+                if (order) {
                     order.status = status;
                     order.save()
                 }
@@ -605,23 +607,93 @@ const AdminController = {
     finishOrder: (req, res, next) => {
         const { code, ops } = req.body;
 
-        Orders.findOne({_id: code})
+        Orders.findOne({ _id: code })
             .then(order => {
-                if(order) {
-                    if(ops == 'accept') {
+                if (order) {
+                    if (ops == 'accept') {
                         order.complete.success = true,
-                        order.complete.date = new Date()
+                            order.complete.date = new Date()
                         order.save();
                     }
                     else {
                         order.complete.success = false,
-                        order.complete.date = new Date()
+                            order.complete.date = new Date()
                         order.save();
                     }
-                    
+
                 }
             })
-    }
+    },
+    getAddDiscount: (req, res, next) => {
+        const error = req.flash('error') || ""
+        const success = req.flash('success') || ""
+        res.render('addDiscount', { layout: 'admin', pageName: "Thêm Khuyến Mãi", position: req.session.position, error, success })
+    },
+    postAddDiscount: (req, res, next) => {
+        const file = req.file;
+        const imagePath = "/uploads/" + file.filename
+        const { title, subtitle, content } = req.body
+        const slug = slugify(title, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+        const discount = {
+            title: title,
+            subtitle: subtitle,
+            slug: slug,
+            image: imagePath,
+            content: content
+        }
+
+        return new Discounts(discount).save()
+            .then(() => {
+                req.flash('success', 'Thêm khuyến mãi thành công')
+                res.redirect('/admin/add-discount')
+            })
+            .catch(() => {
+                req.flash('error', 'Thêm khuyến mãi thất bại')
+                res.redirect('/admin/add-discount')
+            })
+    },
+    getAddServices: (req, res, next) => {
+        const error = req.flash('error') || ""
+        const success = req.flash('success') || ""
+        res.render('addServices', { layout: 'admin', pageName: "Thêm Dịch Vụ", position: req.session.position, error, success })
+    },
+    postAddServices: (req, res, next) => {
+        const file = req.file;
+        const imagePath = "/uploads/" + file.filename
+        const { title, subtitle, content } = req.body
+        const slug = slugify(title, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+        const service = {
+            title: title,
+            subtitle: subtitle,
+            slug: slug,
+            image: imagePath,
+            content: content
+        }
+
+        return new Services(service).save()
+            .then(() => {
+                req.flash('success', 'Thêm dịch vụ thành công')
+                res.redirect('/admin/add-services')
+            })
+            .catch(() => {
+                req.flash('error', 'Thêm dịch vụ thất bại')
+                res.redirect('/admin/add-services')
+            })
+    },
 }
 
 module.exports = AdminController
