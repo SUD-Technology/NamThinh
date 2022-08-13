@@ -2628,6 +2628,10 @@ span.ico-product.ico-new {
 /* End Hexagons */
 
 
+.pointer:hover {
+  cursor: pointer;
+}
+
 .news-box {
   height: 200px;
   position: relative;
@@ -2647,6 +2651,11 @@ span.ico-product.ico-new {
 
 .news-content-box h2 {
   font-size: 1.8rem !important;
+}
+
+.news-img-box img {
+  height: 113px;
+  border: 2px solid var(--xanh);
 }
 
 a.watch-detail {
@@ -2869,6 +2878,49 @@ a:not([href]):not([tabindex]) {
   }
 }
 
+@keyframes fadeInRight {
+  0% {
+     opacity: 0;
+     transform: translateX(-100%);
+  }
+  100% {
+     opacity: 1;
+     transform: translateX(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+     opacity: 0;
+     transform: translateX(100%);
+  }
+  100% {
+     opacity: 1;
+     transform: translateX(0);
+  }
+}
+@keyframes fadeInDown {
+  0% {
+     opacity: 0;
+     transform: translateY(-100%);
+  }
+  100% {
+     opacity: 1;
+     transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+     opacity: 0;
+     transform: translateY(100%);
+  }
+  100% {
+     opacity: 1;
+     transform: translateY(0);
+  }
+}
+
 @keyframes loader-inner {
   0% {
     height: 0%;
@@ -2967,7 +3019,25 @@ a:not([href]):not([tabindex]) {
   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
   /* transition:  0.4s; */
   position: relative;
+  
 }
+
+.fadeDown {
+  animation: fadeInDown 1s ease;
+}
+
+.fadeUp {
+  animation: fadeInUp 1s ease;
+}
+
+.fadeRight {
+  animation: fadeInRight 1s ease;
+}
+
+.fadeLeft {
+  animation: fadeInLeft 1s ease;
+}
+
 
 
 

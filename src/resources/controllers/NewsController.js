@@ -1,5 +1,6 @@
 const slugify = require('slugify');
 const Posts = require('../models/Posts');
+const { normalizeDate_vi } = require('../middlewares/functions');
 
 const NewsController = {
     getDetailPost: (req, res, next) => {
@@ -30,10 +31,11 @@ const NewsController = {
                 const data = posts.map(post => {
                     return {
                         title: post.title,
-                        subtitle: post.subtitle,
+                        subtitle: (post.subtitle.length < 100) ? post.subtitle : post.subtitle.slice(0,100) + '...',
                         slug: post.slug,
-                        createdAt: post.createdAt,
-                        content: post.content
+                        createdAt: normalizeDate_vi(post.createdAt),
+                        content: post.content,
+                        image: post.image,
                     }
                 })
                 
