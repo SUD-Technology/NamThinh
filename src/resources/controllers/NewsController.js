@@ -1,6 +1,6 @@
 const slugify = require('slugify');
 const Posts = require('../models/Posts');
-
+const { normalizeDate_vi } = require('../middlewares/functions');
 const moment = require('moment');
 
 const NewsController = {
@@ -33,7 +33,7 @@ const NewsController = {
                         title: post.title,
                         subtitle: (post.subtitle.length < 100) ? post.subtitle : post.subtitle.slice(0,100) + '...',
                         slug: post.slug,
-                        createdAt: normalizeDate_vi(post.createdAt),
+                        createdAt: moment(post.createdAt).format('lll'),
                         content: post.content,
                         image: post.image,
                     }
