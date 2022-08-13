@@ -63,9 +63,10 @@ router.post('/getOrders/finish', checkLogin, authPage(["admin"]), AdminControlle
 router.get('/getUsers', checkLogin, authPage(['admin']), AdminController.getUsers)
 router.get('/deleteUser/:id', checkLogin, authPage(['admin']), AdminController.deleteUser)
 
-router.get('/', (req, res) => {
+router.use('/', (req, res) => {
     res.redirect('/users/login');
 })
+
 
 module.exports = router;
 

@@ -6,10 +6,10 @@ const Orders = require('../models/Orders')
 const Customers = require('../models/Customers')
 const Users = require('../models/Users')
 const Posts = require('../models/Posts')
-const { normalizeDate } = require('../middlewares/functions');
 const Discounts = require('../models/Discounts')
 const Services = require('../models/Services')
 const moment = require('moment');
+
 
 function unique(arr) {
     return Array.from(new Set(arr)) //
@@ -596,8 +596,8 @@ const AdminController = {
                             sale: order.sale,
                             total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
                             product_list: order.product_list,
-                            result: (order.complete.success) ? 'Hoàn thành' : 'Hủy bỏ',
-                            date: normalizeDate(order.complete.date),
+                            result: (order.complete.success) ? `<p style='color:#28a745'>Hoàn thành</p>` : `<p style='color:#dc3545'>Hủy bỏ</p>`,
+                            date: normalizeDate_vi(order.complete.date),
                         }
                         listOrders.push(current_order)
                     })
