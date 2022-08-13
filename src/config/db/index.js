@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 async function connect() {
     try {
-        await mongoose.connect('mongodb+srv://sheldon124:Dung1247@cluster0.t7ddd.mongodb.net/NamThinh?retryWrites=true&w=majority', {
+        await mongoose.connect('mongodb+srv://sudgroup:9999@namthinh.onhddkl.mongodb.net/NamThinh?retryWrites=true&w=majority', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
@@ -12,4 +12,4 @@ async function connect() {
     }
 }
 
-module.exports  = { connect };
+module.exports = { connect };
