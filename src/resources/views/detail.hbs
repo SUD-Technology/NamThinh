@@ -21,11 +21,11 @@
                         <ul id="image-gallery" class="gallery list-unstyled cS-hidden">
                             {{#each data.pimg}}
                             <li id="image{{@index}}"
-                                data-image="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}"
-                                data-thumb="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}">
+                                data-image="{{this}}"
+                                data-thumb="{{this}}">
                                 <img width="411"
-                                    data-zoom-image="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}"
-                                    src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}" />
+                                    data-zoom-image="{{this}}"
+                                    src="{{this}}" />
                             </li>
                             {{/each}}
 
@@ -107,7 +107,7 @@
                         <a href="{{slug}}">
                             {{#each product_img}}
                             <img class="smooth"
-                                src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}">
+                                src="{{this}}">
                             {{/each}}
                         </a>
 
@@ -201,6 +201,6 @@
         magnifiersize: [300, 300],
         magnifierpos: 'right',
         cursorshade: true,
-        largeimage: 'https://storage.googleapis.com/namthinh-69ec0.appspot.com/1658216712544.jpg' //<-- No comma after last option!
+        largeimage: '1658216712544.jpg' //<-- No comma after last option!
     })
 </script>

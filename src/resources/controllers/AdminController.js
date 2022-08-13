@@ -698,9 +698,16 @@ const AdminController = {
     deleteDiscount: (req, res, next) => {
         const id = req.params.id
         return Discounts.findByIdAndDelete(id)
-            .then(() => {
-                req.flash('success', "Xóa chương trình khuyến mãi thành công")
-                res.redirect('/admin/listDiscounts')
+            .then((dis) => {
+                fs.unlink(`src/public/${dis.image}`, (err) => {
+                    if (!err) {
+                        req.flash('success', "Xóa chương trình khuyến mãi thành công")
+                        res.redirect('/admin/listDiscounts')
+                    } else {
+                        req.flash('error', "Xóa chương trình khuyến mãi thất bại")
+                        res.redirect('/admin/listDiscounts')
+                    }
+                })
             })
             .catch(() => {
                 req.flash('error', "Xóa chương trình khuyến mãi thất bại")
@@ -710,9 +717,16 @@ const AdminController = {
     deleteService: (req, res, next) => {
         const id = req.params.id
         return Services.findByIdAndDelete(id)
-            .then(() => {
-                req.flash('success', "Xóa dịch vụ thành công")
-                res.redirect('/admin/listServices')
+            .then((service) => {
+                fs.unlink(`src/public/${service.image}`, (err) => {
+                    if (!err) {
+                        req.flash('success', "Xóa dịch vụ thành công")
+                        res.redirect('/admin/listServices')
+                    } else {
+                        req.flash('error', "Xóa dịch vụ thất bại")
+                        res.redirect('/admin/listServices')
+                    }
+                })
             })
             .catch(() => {
                 req.flash('error', "Xóa dịch vụ thất bại")
@@ -722,9 +736,16 @@ const AdminController = {
     deletePosts: (req, res, next) => {
         const id = req.params.id
         return Posts.findByIdAndDelete(id)
-            .then(() => {
-                req.flash('success', "Xóa bài viết thành công")
-                res.redirect('/admin/listNews')
+            .then((post) => {
+                fs.unlink(`src/public/${post.image}`, (err) => {
+                    if (!err) {
+                        req.flash('success', "Xóa bài viết thành công")
+                        res.redirect('/admin/listNews')
+                    } else {
+                        req.flash('error', "Xóa bài viết thất bại")
+                        res.redirect('/admin/listNews')
+                    }
+                })
             })
             .catch(() => {
                 req.flash('error', "Xóa bài viết thất bại")

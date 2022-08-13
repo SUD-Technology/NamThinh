@@ -31,7 +31,7 @@ const NewsController = {
                 const data = posts.map(post => {
                     return {
                         title: post.title,
-                        subtitle: (post.subtitle.length < 100) ? post.subtitle : post.subtitle.slice(0,100) + '...',
+                        subtitle: (post.subtitle.length < 100) ? post.subtitle : post.subtitle.slice(0, 100) + '...',
                         slug: post.slug,
                         createdAt: moment(post.createdAt).format('lll'),
                         content: post.content,

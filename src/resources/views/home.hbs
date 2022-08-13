@@ -46,42 +46,44 @@
 
             </div>
 
+            {{#if topnews1}}
             <div class="row news-box">
                 <div class="news-img-box col-md-4">
-                    <a href="">
-                        <img width="100%" height="90%"
-                            src="http://tanphat.com/storage/upload/cache/articles/1656067173-284x185.jpg" alt="">
+                    <a href="/news/{{topnews1.slug}}">
+                        <img width="100%" style="height: auto;" src="{{topnews1.image}}" alt="">
                     </a>
                 </div>
 
                 <div class="news-content-box col-md-8">
-                    <a href="">
-                        <h3>Đào tạo Hội nhập tháng 6/2022 - Khơi nguồn sức mạnh tập thể</h3>
+                    <a href="/news/{{topnews1.slug}}">
+                        <h3>{{topnews1.title}}</h3>
                     </a>
-                    <p>Lấy tôn chỉ học thật làm thật, ngoài các buổi đào tạo lý thuyết thì tổ chức các chương trình thực
-                        hành là điều không thể bỏ lỡ. Nhằm nâng cao chuyên môn, ngày vừa qua chuyên gia hãng Spanesi đến
-                        công tác tại công ty Tân Phát, tranining các kỹ năng sản phẩm cho đội ngũ kinh doanh và kỹ thuật
-                        một cách tận tình.</p>
-                    <a href="" class="watch-detail">Xem thêm</a>
+                    <p>{{topnews1.subtitle}}</p>
+                    <a href="/news/{{topnews1.slug}}" class="watch-detail">Xem thêm</a>
                 </div>
             </div>
+            {{/if}}
+
+
+            {{#if topnews2}}
             <div class="row news-box">
                 <div class="news-img-box col-md-4">
-                    <a href="">
-                        <img width="100%" height="90%" src="http://tanphat.com/storage/upload/articles/1576574535.jpeg"
-                            alt="">
+                    <a href="/news/{{topnews2.slug}}">
+                        <img width="100%" style="height: auto;" src="{{topnews2.image}}" alt="">
                     </a>
                 </div>
 
                 <div class="news-content-box col-md-8">
-                    <a href="">
-                        <h3>Quan niệm “Mua xe thì dễ, nuôi xe mới khó” có còn đúng?</h3>
+                    <a href="/news/{{topnews2.slug}}">
+                        <h3>{{topnews2.title}}</h3>
                     </a>
-                    <p>Chi phí nuôi xe hàng tháng từng được xem là gánh nặng, cản trở nhiều người trước quyết định mua
-                        xe, nhưng liệu điều đó có còn đúng ở thời điểm này hay không?</p>
-                    <a href="" class="watch-detail">Xem thêm</a>
+                    <p>{{topnews2.subtitle}}</p>
+                    <a href="/news/{{topnews2.slug}}" class="watch-detail">Xem thêm</a>
                 </div>
             </div>
+            {{/if}}
+
+
         </div>
     </div>
 
@@ -112,8 +114,7 @@
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#each pimg}}
 
-                        <img class="img-product smooth"
-                            src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{this}}" alt="">
+                        <img class="img-product smooth" src="{{this}}" alt="">
 
                         {{/each}}
                     </div>
@@ -202,8 +203,7 @@
 
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#if pimg}}
-                        <img class="img-product smooth"
-                            src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{pimg}}" alt="">
+                        <img class="img-product smooth" src="{{pimg}}" alt="">
                         {{/if}}
                     </div>
 
@@ -286,8 +286,7 @@
                     <span class="ico-product ico-new"> Hot</span>
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#if pimg}}
-                        <img class="img-product smooth"
-                            src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{pimg}}" alt="">
+                        <img class="img-product smooth" src="{{pimg}}" alt="">
                         {{/if}}
                     </div>
 
@@ -369,8 +368,7 @@
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#if pimg}}
 
-                        <img class="img-product smooth"
-                            src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/{{pimg}}" alt="">
+                        <img class="img-product smooth" src="{{pimg}}" alt="">
 
                         {{/if}}
                     </div>

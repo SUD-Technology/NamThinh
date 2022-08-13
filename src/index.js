@@ -12,10 +12,12 @@ const DiscountRouter = require('./resources/routers/DiscountRouter');
 const ServicesRouter = require('./resources/routers/ServicesRouter');
 const db = require('./config/db');
 const Products = require('./resources/models/Products');
+const Posts = require('./resources/models/Posts')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const flash = require('express-flash')
 const bodyParser = require('body-parser')
+const moment = require('moment');
 
 app.engine('hbs', handlebars.engine({
     extname: 'hbs',
@@ -135,13 +137,36 @@ app.get('/home', async (req, res, next) => {
             data.Dau.push(current_product);
         }
     })
-    return res.render('home', { homepage: true, data, position: req.session.position })
+    return Posts.find().limit(3)
+        .then(posts => {
+            const dataPosts = posts.map(post => {
+                return {
+                    title: post.title,
+                    subtitle: (post.subtitle.length < 100) ? post.subtitle : post.subtitle.slice(0, 100) + '...',
+                    slug: post.slug,
+                    createdAt: moment(post.createdAt).format('lll'),
+                    content: post.content,
+                    image: post.image,
+                }
+            })
+
+            return res.render('home', {
+                homepage: true,
+                data,
+                position: req.session.position,
+                topnews1: dataPosts[0],
+                topnews2: dataPosts[1],
+                topnews3: dataPosts[2]
+            })
+
+        })
+        .catch(() => {
+            return res.render('home', { homepage: true, data, position: req.session.position })
+        })
+
 })
 
 
-app.get('/cart', (req, res) => {
-    res.render('product-cart')
-})
 
 app.get('/contact', (req, res) => {
     res.render('contact')
