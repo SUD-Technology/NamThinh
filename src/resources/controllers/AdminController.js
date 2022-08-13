@@ -582,6 +582,7 @@ const AdminController = {
         return Orders.find({})
             .where('complete.success').ne(null)
             .then(orders => {
+
                 let listOrders = []
                 if (orders.length > 0) {
                     orders.forEach(order => {
@@ -602,6 +603,8 @@ const AdminController = {
                         listOrders.push(current_order)
                     })
                     res.render('history', { listOrders, layout: "admin", pageName: "Lịch sử giao dịch", position: req.session.position })
+                } else {
+                    res.render('history', { layout: "admin", pageName: "Lịch sử giao dịch", position: req.session.position })
                 }
             })
     },
