@@ -2026,8 +2026,8 @@ img {
     display: block !important;
     color: #000;
     font-size: 22px;
-    margin-top: auto;
-    margin-bottom: auto;
+
+    margin: auto 10px
   }
 
   /* Navbar */
@@ -2122,6 +2122,47 @@ img {
     align-self: center;
     justify-self: center;
   }
+
+  /* Footer start */
+  #wrapper {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    min-height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .footer-item {
+    text-align: center;
+  }
+
+  footer p {
+    text-align: center;
+  }
+
+  footer img {
+    left: 0;
+  }
+
+  footer iframe {
+    width: 100% !important;
+  }
+
+  .brand-address {
+    text-align: center !important;
+    margin-bottom: 10px;
+  }
+
+  .footer-map {
+    padding-left: 0;
+  }
+
+
+
+  /* Footer end */
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
@@ -2884,44 +2925,49 @@ a:not([href]):not([tabindex]) {
 
 @keyframes fadeInRight {
   0% {
-     opacity: 0;
-     transform: translateX(-100%);
+    opacity: 0;
+    transform: translateX(-100%);
   }
+
   100% {
-     opacity: 1;
-     transform: translateX(0);
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
 @keyframes fadeInLeft {
   0% {
-     opacity: 0;
-     transform: translateX(100%);
+    opacity: 0;
+    transform: translateX(100%);
   }
+
   100% {
-     opacity: 1;
-     transform: translateX(0);
+    opacity: 1;
+    transform: translateX(0);
   }
 }
+
 @keyframes fadeInDown {
   0% {
-     opacity: 0;
-     transform: translateY(-100%);
+    opacity: 0;
+    transform: translateY(-100%);
   }
+
   100% {
-     opacity: 1;
-     transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
 @keyframes fadeInUp {
   0% {
-     opacity: 0;
-     transform: translateY(100%);
+    opacity: 0;
+    transform: translateY(100%);
   }
+
   100% {
-     opacity: 1;
-     transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -3037,7 +3083,7 @@ a:not([href]):not([tabindex]) {
   clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
   /* transition:  0.4s; */
   position: relative;
-  
+
 }
 
 .fadeDown {
