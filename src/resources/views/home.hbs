@@ -47,10 +47,10 @@
             </div>
 
             {{#if topnews1}}
-            <div class="row news-box">
+            <div class="row news-box mb-1">
                 <div class="news-img-box col-md-4">
                     <a href="/news/{{topnews1.slug}}">
-                        <img width="100%" style="height: auto;" src="{{topnews1.image}}" alt="">
+                        <img width="100%" style="height: 190px;" src="{{topnews1.image}}" alt="">
                     </a>
                 </div>
 
@@ -58,7 +58,10 @@
                     <a href="/news/{{topnews1.slug}}">
                         <h3>{{topnews1.title}}</h3>
                     </a>
-                    <p>{{topnews1.subtitle}}</p>
+                    <span ><strong>
+                        {{topnews1.createdAt}}
+                    </strong></span>
+                    <p class="mt-1">{{topnews1.subtitle}}</p>
                     <a href="/news/{{topnews1.slug}}" class="watch-detail">Xem thêm</a>
                 </div>
             </div>
@@ -69,7 +72,7 @@
             <div class="row news-box">
                 <div class="news-img-box col-md-4">
                     <a href="/news/{{topnews2.slug}}">
-                        <img width="100%" style="height: auto;" src="{{topnews2.image}}" alt="">
+                        <img width="100%" style="height: 190px;" src="{{topnews2.image}}" alt="">
                     </a>
                 </div>
 
@@ -77,7 +80,8 @@
                     <a href="/news/{{topnews2.slug}}">
                         <h3>{{topnews2.title}}</h3>
                     </a>
-                    <p>{{topnews2.subtitle}}</p>
+                    <span><strong>{{topnews2.createdAt}}</strong></span>
+                    <p class="mt-1">{{topnews2.subtitle}}</p>
                     <a href="/news/{{topnews2.slug}}" class="watch-detail">Xem thêm</a>
                 </div>
             </div>

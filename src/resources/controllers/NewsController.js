@@ -11,18 +11,20 @@ const NewsController = {
 
         Posts.findOne({ slug })
             .then(post => {
-                const data = {
-                    title: post.title,
-                    slug: slug,
-                    subtitle: post.subtitle,
-                    content: post.content,
-                    createdAt: moment(post.createdAt).format('lll')
+                if(post) {
+                    const data = {
+                        title: post.title,
+                        slug: slug,
+                        subtitle: post.subtitle,
+                        content: post.content,
+                        createdAt: moment(post.createdAt).format('lll')
+                    }
+                    return res.render('newsdetail', {
+                        data: data,
+                        error: error,
+                        message: message
+                    })
                 }
-                return res.render('newsdetail', {
-                    data: data,
-                    error: error,
-                    message: message
-                })
             })
     },
     getPostList: (req, res, next) => {
