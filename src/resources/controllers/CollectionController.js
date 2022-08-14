@@ -280,7 +280,11 @@ const CollectionController = {
     },
     postFindProducts: (req, res, next) => {
         var { keyword } = req.body;
-        return res.redirect(`/collections/search/${keyword}`);
+        if(keyword) {
+            return res.redirect(`/collections/search/${keyword}`);
+        }
+
+        return res.redirect('/home');
     }
     
 

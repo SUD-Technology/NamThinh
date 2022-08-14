@@ -110,10 +110,20 @@ About.find({})
         }
     })
 
+app.get('/aboutus', (req, res) => {
+    About.findOne({})
+        .then(about => {
+            let content = about.content;
+            return res.render('aboutus', {content});
+        })
+
+})
 
 app.get('/', (req, res) => {
     res.render('index', { hide: true, index: true })
 })
+
+
 
 app.get('/home', async (req, res, next) => {
     let data = {
@@ -183,13 +193,7 @@ app.get('/contact', (req, res) => {
     res.render('contact')
 })
 
-app.get('/about', (req, res) => {
-    About.findOne({})
-        .then(about => {
-            let content = about.content;
-            return res.render('aboutus', {content});
-        })
-})
+
 
 app.get('/policy', (req, res) => {
     res.render('policy');
