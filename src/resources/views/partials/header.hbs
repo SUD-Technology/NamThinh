@@ -91,19 +91,21 @@
                     </div>
 
                     <div class="nav-bottom ">
-                        <form class="form-inline my-2 my-lg-0 ">
+                        <form action="/collections/search" method="POST" class="form-inline my-2 my-lg-0 ">
                             <div id="rounder-search" class="rounded border border-dark">
-                                <input class="form-control search mw-50 ml-auto" type="search"
+                                <input name="keyword" class="form-control search mw-50 ml-auto" type="search"
                                     placeholder="Tìm kiếm xe, phụ tùng,.." aria-label="Search">
                                 <button id="btn-search" class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm
                                     kiếm</button>
                             </div>
-                            <a id="btn-cart" class="btn btn-outline-success my-2 ml-5" href="">
+                            <a style="display: none" id="btn-cart" class="btn btn-outline-success my-2 ml-5" href="">
                                 <i class="fas fa-shopping-cart"></i>
                                 Giỏ hàng
                                 <span class="badge badge-pill badge-primary">00</span>
                             </a>
-                            <a class="smooth mr-2 ml-2" href="/users/login" title=""> <i class="fas fa-user"></i>
+                            <a style="color:black" class="smooth mr-2 ml-3" href="tel:0903957857" title=""> <i class="fas fa-phone"></i>
+                                Hotline: 0903 957 857</a>
+                            <a style="color: black" class="smooth mr-2 ml-2" href="/users/login" title=""> <i class="fas fa-user"></i>
                                 Đăng nhập</a>
                         </form>
 

@@ -2487,19 +2487,19 @@ span.ico-product.ico-new {
 /* Zalo Contact */
 .contact-box-bottom {
   position: fixed;
-  bottom: 20px;
-  left: 10px;
+  bottom: 50%;
+  right: -5px;
   z-index: 10000;
 }
 
 .contact-box-wrapper {
   display: flex;
   align-items: center;
-  background: #fff;
+  background: transparent;
   margin-bottom: 10px;
   padding: 10px 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .2);
+  /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, .2); */
 }
 
 .contact-box-wrapper:last-child {
@@ -2513,7 +2513,7 @@ span.ico-product.ico-new {
   height: 40px;
   font-size: 16px;
   line-height: 38px;
-  border: 1px solid #e5e5e5;
+  /* border: 1px solid #e5e5e5; */
   border-radius: 999px;
 }
 
@@ -2649,8 +2649,8 @@ span.ico-product.ico-new {
   text-align: justify;
 }
 
-.news-content-box h2 {
-  font-size: 1.8rem !important;
+.news-content-box h3 {
+  text-transform: uppercase;
 }
 
 .news-img-box img {
@@ -2788,7 +2788,7 @@ a:not([href]):not([tabindex]) {
 
 .captions {
   padding: 25px 30px;
-  background-color: #f4f4f0;
+  background-color: #f4f4f0 !important;
 }
 
 .des {
@@ -2943,6 +2943,14 @@ a:not([href]):not([tabindex]) {
     height: 0%
   }
 
+}
+
+.card-img-left:hover {
+  cursor: pointer;
+}
+
+.card-img-left {
+  border: 2px solid var(--xanh);
 }
 
 /* header admin: start */

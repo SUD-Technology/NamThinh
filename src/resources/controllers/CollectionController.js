@@ -249,7 +249,40 @@ const CollectionController = {
         }
 
     },
-
+    getFindProducts: (req, res, next) => {
+        var keyword = req.params.keyword;
+        
+        Products.find({product_name: {$regex: keyword, $options: 'i'} })
+            .then(products => {
+                if(products.length == 0) {
+                    return res.render('search', {
+                        title: 'Tìm sản phẩm',
+                        msg: 'Không tìm thấy sản phẩm nào'
+                    })
+                }
+                
+                let data = products.map(product => {
+                    return {
+                        pname: product.product_name,
+                        pslug: product.slug,
+                        pimg: product.product_img,
+                        pid: product.product_id,
+                        brand: product.brand_name,
+                        price: product.price || 'Liên hệ'
+                    }
+                })
+                
+                return res.render('search', {
+                    title: 'Tìm sản phẩm',
+                    data: data
+                })
+            })
+    },
+    postFindProducts: (req, res, next) => {
+        var { keyword } = req.body;
+        return res.redirect(`/collections/search/${keyword}`);
+    }
+    
 
 }
 
