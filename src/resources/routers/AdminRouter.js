@@ -63,6 +63,10 @@ router.post('/getOrders/finish', checkLogin, authPage(["admin"]), AdminControlle
 router.get('/getUsers', checkLogin, authPage(['admin']), AdminController.getUsers)
 router.get('/deleteUser/:id', checkLogin, authPage(['admin']), AdminController.deleteUser)
 
+// About
+router.get('/add-about', checkLogin, authPage(["admin"]), AdminController.getAddAbout);
+router.post('/add-about', checkLogin, authPage(["admin"]), AdminController.postAddAbout);
+
 router.use('/', (req, res) => {
     res.redirect('/users/login');
 })

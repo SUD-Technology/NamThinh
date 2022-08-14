@@ -100,6 +100,17 @@ app.use(session({ cookie: { maxAge: 300000 } }))
 app.use(flash())
 app.use(bodyParser.urlencoded({ extended: false }))
 
+const About = require('./resources/models/About');
+About.find({})
+    .then(abouts => {
+        if(abouts.length == 0) {
+            let defaultAbout = {
+                content: ''            }
+            new About(defaultAbout).save()
+        }
+    })
+
+
 app.get('/', (req, res) => {
     res.render('index', { hide: true, index: true })
 })
@@ -170,6 +181,14 @@ app.get('/home', async (req, res, next) => {
 
 app.get('/contact', (req, res) => {
     res.render('contact')
+})
+
+app.get('/about', (req, res) => {
+    About.findOne({})
+        .then(about => {
+            let content = about.content;
+            return res.render('aboutus', {content});
+        })
 })
 
 app.get('/policy', (req, res) => {

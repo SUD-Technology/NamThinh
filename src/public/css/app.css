@@ -46,6 +46,9 @@ a:hover {
 }
 
 
+.service-page {
+  min-height: 100vh;
+}
 
 .service-main-img {
   height: 320px;

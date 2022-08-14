@@ -9,7 +9,7 @@ const Posts = require('../models/Posts')
 const Discounts = require('../models/Discounts')
 const Services = require('../models/Services')
 const moment = require('moment');
-
+const About = require('../models/About');
 
 function unique(arr) {
     return Array.from(new Set(arr)) //
@@ -598,7 +598,7 @@ const AdminController = {
                             total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
                             product_list: order.product_list,
                             result: (order.complete.success) ? `<p style='color:#28a745'>Hoàn thành</p>` : `<p style='color:#dc3545'>Hủy bỏ</p>`,
-                            date: normalizeDate_vi(order.complete.date),
+                            date: moment(order.complete.date).format('lll'),
                         }
                         listOrders.push(current_order)
                     })
@@ -815,6 +815,33 @@ const AdminController = {
                 })
             })
     },
+    getAddAbout: (req, res, next) => {
+        const error = req.flash('error') || '';
+        const success = req.flash('success') || '';
+
+        res.render('addAbout', {
+            layout: 'admin',
+            pageName: 'Sửa nội dung giới thiệu'
+            ,
+            success, error
+        });
+    },
+    postAddAbout: (req, res, next) => {
+        const { content } = req.body;
+        
+        if(content) {
+            About.findOne({})
+                .then(about => {
+                    about.content = content;
+                    about.save();
+                })
+            req.flash('success', 'Sửa nội dung thành công');
+            return res.redirect('/admin/add-about');
+        }
+
+        req.flash('error', 'Chưa nhập nội dung');
+        return res.redirect('/admin/add-about')
+    }
 }
 
 module.exports = AdminController

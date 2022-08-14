@@ -382,9 +382,32 @@
           </ul>
         </li>
         {{/isAccountant}}
+        {{#isAccountant position}}
+
+        <li>
+          <div class="icon-link">
+            <a href="#">
+              <i class="fas fa-sticky-note"></i>
+              <span class="link_name">Giới thiệu</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow'></i>
+          </div>
+          <ul class="sub-menu">
+
+            <li><a class="link_name" href="#">Giới thiệu</a></li>
+            {{!-- {{#isSale position}} --}}
+            {{!-- <li {{#isAdmin position}} class="d-none" {{/isAdmin}}><a href="/admin/product-manager">Kiểm kho</a>
+            </li> --}}
+            {{!-- {{/isSale }} --}}
+            <li><a href="/admin/add-about">Sửa nội dung</a></li>
+            {{!-- <li><a href="/admin/add-product">Thêm sản phẩm</a></li> --}}
+
+          </ul>
+        </li>
+        {{/isAccountant}}
 
         {{!-- {{#isAdmin position}} --}}
-        {{#isSale}}
+        {{#isAdmin position}}
         <li>
           <div class="icon-link">
             <a href="#">
@@ -399,7 +422,7 @@
             <li><a href="/admin/getOrders">Danh sách đơn hàng</a></li>
           </ul>
         </li>
-        {{/isSale}}
+        {{/isAdmin}}
         {{!-- {{/isAdmin }} --}}
         {{!-- Admin --}}
         {{#isAdmin position}}
