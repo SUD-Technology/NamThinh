@@ -1,6 +1,6 @@
 <header class="main-bar" style="background: #fff;">
-    <div class="header">
-        <div class="container">
+    <div class="container">
+        <div class="header">
             <div class="row row-ibl mid col-mar-0">
                 <div class="col-md-3 col-xs-12 sm-center">
                     <div style="display: none;" class="sidebar" id="left-sidebar">
@@ -8,7 +8,7 @@
                             <a id="left-times" type="button"><i class="fas fa-times"></i></a>
                         </div>
                         <div class="sidebar-body">
-                            
+
                             <ul class="list-group">
                                 <li><a class="list-group-item smooth" href="/users/login" title=""> <i
                                             class="fas fa-user"></i> Đăng nhập</a></li>
@@ -40,15 +40,88 @@
                                         <i class="fas fa-angle-down"></i>
                                     </a>
                                     <ul id="collapse3" class="list-group">
+                                        {{!-- Product 1 --}}
                                         <li class="list-group-item">
-                                            <a href="" class="">Lốp Advance/Samson</a>
+                                            <a href="#" class="">Lốp Advance/Samson </a>
+                                            <i id="pro-1" class="fas fa-angle-down"></i>
                                         </li>
-                                        <li class="list-group-item"><a href="">Xe tải/Đầu kéo/Xe ben</a></li>
-                                        <li class="list-group-item"><a href="">Phụ tùng ô tô</a></li>
-                                        <li class="list-group-item"><a href="" class="">Dầu nhớt</a></li>
+                                        <ul id="pro-1-list">
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Lốp xe tải - xe
+                                                    khách</a>
+                                                <i id="pro-11" class="fas fa-angle-down"></i>
+                                            </li>
+                                            <ul id="pro-11-list">
+                                                <li class="list-group-item"><a class="pl-4" href="#"> + Lốp tải nhẹ</a>
+                                                </li>
+                                                <li class="list-group-item"><a class="pl-4" href="#"> + Lốp tải nặng</a>
+                                                </li>
+                                                <li class="list-group-item"><a class="pl-4" href="#"> + Lốp xe khách -
+                                                        xe bus</a>
+                                                </li>
+                                            </ul>
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Lốp máy công
+                                                    trình</a>
+                                                <i class="fas fa-angle-down"></i>
+                                            </li>
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Lốp xe công
+                                                    nghiệp</a>
+                                                <i class="fas fa-angle-down"></i>
+                                            </li>
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Lốp nông nghiệp</a>
+                                                <i class="fas fa-angle-down"></i>
+                                            </li>
+                                        </ul>
+
+                                        {{!-- Product 2 --}}
+                                        <li class="list-group-item"><a href="">Xe tải/Đầu kéo/Xe ben </a>
+                                            <i id="pro-2" class="fas fa-angle-down"></i>
+                                        </li>
+                                        <ul id="pro-2-list">
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Xe tải thùng</a>
+                                            </li>
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Xe đầu kéo</a>
+                                            </li>
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Xe ben</a>
+                                            </li>
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Sơ mi rơ móc</a>
+                                            </li>
+                                        </ul>
+
+                                        {{!-- Product 3 --}}
+                                        <li class="list-group-item"><a href="">Phụ tùng ô tô</a>
+                                            <i id="pro-3" class="fas fa-angle-down"></i>
+                                        </li>
+                                        <ul id="pro-3-list">
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Xe tải thùng</a>
+                                            </li>
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Xe đầu kéo</a>
+                                            </li>
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Xe ben</a>
+                                            </li>
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Sơ mi rơ móc</a>
+                                            </li>
+                                        </ul>
+
+                                        {{!-- Product 4 --}}
+                                        <li class="list-group-item"><a href="" class="">Dầu nhớt </a>
+                                            <i id="pro-4" class="fas fa-angle-down"></i>
+                                        </li>
+                                        <ul id="pro-4-list">
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Dầu nhớt ô tô - xe
+                                                    máy</a>
+                                                <i class="fas fa-angle-down"></i>
+                                            </li>
+                                            <li class="list-group-item"><a class="pl-2" href="#">- Dầu nhớt công
+                                                    nghiệp</a>
+                                                <i class="fas fa-angle-down"></i>
+                                            </li>
+
+                                        </ul>
+
                                     </ul>
                                 </li>
-                                <li><a class="list-group-item">KHUYẾN MÃI</a></li>
+                                <li><a class="list-group-item">DỊCH VỤ</a></li>
+                                <li><a class="list-group-item">TIN TỨC</a></li>
                                 <li>
                                     <a id="collapse-btn2" class="list-group-item">CHÍNH SÁCH
                                         <i class="fas fa-angle-down"></i>
@@ -60,7 +133,7 @@
                                         <li class="list-group-item"><a href="">Chính sách bảo hành</a></li>
                                     </ul>
                                 </li>
-                                <li><a class="list-group-item">SHOWROOM</a></li>
+                                <li><a class="list-group-item">KHUYẾN MÃI</a></li>
                             </ul>
                         </div>
 
@@ -99,9 +172,11 @@
                                 Giỏ hàng
                                 <span class="badge badge-pill badge-primary">00</span>
                             </a>
-                            <a style="color:black" class="smooth mr-2 ml-3" href="tel:0903957857" title=""> <i class="fas fa-phone"></i>
+                            <a style="color:black" class="smooth mr-2 ml-3" href="tel:0903957857" title=""> <i
+                                    class="fas fa-phone"></i>
                                 Hotline: 0903 957 857</a>
-                            <a style="color: black" class="smooth mr-2 ml-2" href="/users/login" title=""> <i class="fas fa-user"></i>
+                            <a style="color: black" class="smooth mr-2 ml-2" href="/users/login" title=""> <i
+                                    class="fas fa-user"></i>
                                 Đăng nhập</a>
                         </form>
 
@@ -112,4 +187,5 @@
             </div>
         </div>
     </div>
+
 </header>
