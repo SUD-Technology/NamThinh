@@ -894,7 +894,7 @@ img.bgc-title {
   z-index: 1;
   height: 46px;
   width: 10px;
-  left: 35%;
+  left: 50%;
 }
 
 .sub-title {
@@ -903,11 +903,11 @@ img.bgc-title {
   font-family: 'Open Sans' !important;
   padding: 0 40px;
   line-height: 45px;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   text-transform: uppercase;
   /* font-style: italic; */
-  width: 35%;
+  width: 50%;
   text-align: center;
   /* border-radius: 0 0.7rem 0.7rem 0; */
 
@@ -3260,6 +3260,14 @@ a:not([href]):not([tabindex]) {
 /* Post End */
 
 @media (max-width: 500px) {
+  .sub-title {
+    font-size: 10px;
+    width: 50%;
+  }
+
+  .pagi img {
+    display: none;
+  }
   /* .container {
     max-width: 200px;
   }
