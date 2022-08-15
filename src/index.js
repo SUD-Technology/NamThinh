@@ -87,8 +87,8 @@ app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'resources/views'))   
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ limit: '100mb', extended: true }));
 app.use(require("cookie-parser")("abc"));
 app.use(require("express-session")());
 db.connect();

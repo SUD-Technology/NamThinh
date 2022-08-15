@@ -34,6 +34,7 @@ const DiscountController = {
                     slug: slug,
                     subtitle: discount.subtitle,
                     content: discount.content,
+                    image: discount.image,
                     createdAt: moment(discount.createdAt).format('lll')
                 }
                 return res.render('discountDetail', {

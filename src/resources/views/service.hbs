@@ -1,10 +1,15 @@
 <div class="service-page">
-    <div class="titleL mt-5">
-        <h1></h1>
-        <h1>Dịch Vụ</h1>
+    <div style="width: 50%;" class="container titleL mt-5">
+        
+        <h1 style="font-weight: 700;" >Dịch Vụ</h1>
     </div>
 
     <div class="row mt-5">
+        {{#if services}}
+        {{else}}
+        <div class="container text-center h2">Chưa cập nhật</div>
+        {{/if}}
+
         {{#each services}}
         {{#if @first}}
         <div class="service-box col-12">
