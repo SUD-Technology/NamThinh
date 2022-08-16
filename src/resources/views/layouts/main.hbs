@@ -128,7 +128,7 @@
 
     {{#if homepage}}
     <div class="header-banner-slide mb-3">
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        {{!-- <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img class="d-block w-100" src="/img/banner/banner1.png" alt="First slide">
@@ -148,7 +148,10 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-        </div>
+        </div> --}}
+        <video width="100%" autoplay muted loop id="myVideo">
+            <source src="img/namthinh.mp4" type="video/mp4">
+        </video>
     </div>
     <div onclick='window.location.href="#news"' class="scroll-down" id="js-scroll-down">
         <img src="https://www.thacogroup.vn/themes/main/images/home/icon-scroll.png" alt="icon">
@@ -183,6 +186,47 @@
     </div>
     {{/if}}
 
+    {{!-- Pop up tư vấn --}}
+    <div class="modal fade" id="TuVanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <div class="logo-s">
+                
+            </div>
+            <h5 class="modal-title text-center" id="exampleModalLabel"><img style="margin-left: 17px;" width="25%" src="/img/logo.png" alt=""><br>&nbsp; ĐĂNG KÝ TƯ VẤN</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form>
+            <div class="form-group">
+                {{!-- <label for="recipient-name" class="col-form-label">Recipient:</label> --}}
+                <input placeholder="Họ tên" type="text" class="form-control py-4" id="recipient-name">
+            </div>
+            <div class="form-group">
+                {{!-- <label for="recipient-name" class="col-form-label">Recipient:</label> --}}
+                <input placeholder="Email" type="text" class="form-control py-4" id="recipient-name">
+            </div>
+            <div class="form-group">
+                {{!-- <label for="recipient-name" class="col-form-label">Recipient:</label> --}}
+                <input placeholder="Số điện thoại" type="text" class="form-control py-4" id="recipient-name">
+            </div>
+                <label for="message-text" class="col-form-label">Nội dung:</label><br>
+            <div class="my-0 form-group">
+                <textarea class="form-control" id="message-text"></textarea>
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            
+            <button type="button" style="background-color: #3A5BA0;" class="w-100 py-2 btn btn-success">Đăng ký</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
         crossorigin="anonymous"></script>
@@ -201,5 +245,15 @@
 
 
 </body>
+<script>
+   
 
+    $(document).ready(function() {
+        $(window).on('load', function() {
+            setTimeout(function() {
+                $('#TuVanModal').modal('show');
+            }, 180000)
+        });
+    })
+</script>
 </html>
