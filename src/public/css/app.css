@@ -17,6 +17,7 @@
 
 body {
   /* background-color: #FFF8F3; */
+  overflow-y: scroll !important;
 }
 
 p,
@@ -894,7 +895,7 @@ img.bgc-title {
   z-index: 1;
   height: 46px;
   width: 10px;
-  left: 35%;
+  left: 50%;
 }
 
 .sub-title {
@@ -903,11 +904,11 @@ img.bgc-title {
   font-family: 'Open Sans' !important;
   padding: 0 40px;
   line-height: 45px;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   text-transform: uppercase;
   /* font-style: italic; */
-  width: 35%;
+  width: 50%;
   text-align: center;
   /* border-radius: 0 0.7rem 0.7rem 0; */
 
@@ -1275,6 +1276,10 @@ img.bgc-title {
   text-transform: uppercase;
 }
 
+.fadeUpFast {
+  animation: fadeInUp 0.5s ease;
+}
+
 .navbar-list>.navbar-item>a:hover {
   /* color: yellow; */
 }
@@ -1343,7 +1348,7 @@ img.bgc-title {
 .navbar-product-item:hover,
 .navbar-menu-item:hover {
   border-left: 5px solid var(--xanh);
-  background-color: #fff;
+  background-color: var(--cam);
 }
 
 .navbar-product-list {
@@ -3259,7 +3264,47 @@ a:not([href]):not([tabindex]) {
 
 /* Post End */
 
+
+#TuVanModal {
+  margin-top: 15vh;
+  
+}
+
+#TuVanModal .form-group{
+  border-bottom: 0 !important;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#TuVanModal .modal-content {
+  border-radius: 1rem ;
+}
+
+
+.logo-s {
+  height: 50px;
+}
+
+
 @media (max-width: 500px) {
+  .sub-title {
+    font-size: 10px;
+    width: 50%;
+  }
+
+  .pagi img {
+    display: none;
+  }
+
+  #TuVanModal .modal-content {
+    z-index: 100000;
+    background-color: #0d71f2;
+    
+  }
+
+  #TuVanModal {
+    margin-top: 1vh !important;
+  }
   /* .container {
     max-width: 200px;
   }
@@ -3290,3 +3335,5 @@ a:not([href]):not([tabindex]) {
     display: none;
   } */
 }
+
+

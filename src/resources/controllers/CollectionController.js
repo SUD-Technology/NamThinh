@@ -323,7 +323,7 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
                 <li class="items-product smooth text-center">
                     <span class="ico-product ico-new"> Hot</span>
                     <div onclick='window.location.href="/products/${d.pslug}"' class="img-box">
-                        <img class="img-product smooth" src="https://storage.googleapis.com/namthinh-69ec0.appspot.com/${d.pimg}"
+                        <img class="img-product smooth" src="${d.pimg}"
                             alt="">
                     </div>
 

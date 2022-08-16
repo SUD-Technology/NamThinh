@@ -78,7 +78,7 @@ const AdminController = {
                 if (!product) {
                     return res.json({ success: false, msg: 'Sản phẩm không tồn tại', product_id });
                 }
-                product.delete().then(res.redirect('/home'));
+                product.delete().then(res.redirect('/admin/product-manager'));
             })
     },
     getProductManager: (req, res, next) => {
@@ -491,10 +491,16 @@ const AdminController = {
                             total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
                             product_list: order.product_list,
                             status: order.status,
+                            edit: req.session.username == order.sale
                         }
                         listOrders.push(current_order)
                     })
-                    res.render('listOrders', { listOrders, layout: "admin", pageName: "Danh sách đơn hàng", position: req.session.position })
+                    res.render('listOrders', { 
+                        listOrders, 
+                        layout: "admin", 
+                        pageName: "Danh sách đơn hàng", 
+                        position: req.session.position,
+                    })
                 }
             })
     },

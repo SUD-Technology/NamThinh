@@ -120,6 +120,7 @@
                     <th scope="col">Mã</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Tồn</th>
+                    <th scope="col">Xóa</th>
                 </tr>
             </thead>`
             <tbody>
@@ -137,6 +138,7 @@
                     <td>{{pid}}</td>
                     <td>{{price}}</td>
                     <td>{{amount}}</td>
+                    <td><a href="/admin/delete/{{pid}}" style="color: white" class="w-100 btn btn-danger">Xóa</a></td>
                 </tr>
                 {{/each}}
                 {{else}}
