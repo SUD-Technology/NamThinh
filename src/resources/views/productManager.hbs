@@ -120,6 +120,7 @@
                     <th scope="col">Mã</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Tồn</th>
+                    <th scope="col">Sửa</th>
                     <th scope="col">Xóa</th>
                 </tr>
             </thead>`
@@ -138,6 +139,12 @@
                     <td>{{pid}}</td>
                     <td>{{price}}</td>
                     <td>{{amount}}</td>
+                    <td>
+                        <!-- Button trigger modal -->
+                        <a type="button" class="btn btn-warning w-100" href="/admin/updateProduct/{{id}}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
                     <td><a href="/admin/delete/{{pid}}" style="color: white" class="w-100 btn btn-danger">Xóa</a></td>
                 </tr>
                 {{/each}}

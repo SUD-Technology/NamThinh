@@ -84,7 +84,7 @@ app.engine('hbs', handlebars.engine({
 }))
 
 app.set('view engine', 'hbs')
-app.set('views', path.join(__dirname, 'resources/views'))   
+app.set('views', path.join(__dirname, 'resources/views'))
 app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(express.json({ limit: '100mb' }));
@@ -104,9 +104,10 @@ const About = require('./resources/models/About');
 const Discounts = require('./resources/models/Discounts')
 About.find({})
     .then(abouts => {
-        if(abouts.length == 0) {
+        if (abouts.length == 0) {
             let defaultAbout = {
-                content: ''            }
+                content: ''
+            }
             new About(defaultAbout).save()
         }
     })
@@ -115,7 +116,7 @@ app.get('/aboutus', (req, res) => {
     About.findOne({})
         .then(about => {
             let content = about.content;
-            return res.render('aboutus', {content});
+            return res.render('aboutus', { content });
         })
 
 })
@@ -130,8 +131,9 @@ function loadProducts(array) {
             pname: product.product_name,
             pimg: [product.product_img[0]] || [''],
             pid: product.product_id,
+            size: product.size,
             pslug: product.slug,
-            price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+            price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
         }
     })
 }
@@ -160,7 +162,7 @@ app.get('/home', async (req, res, next) => {
     return Discounts.find({}).limit(4)
         .then(discounts => {
             let _discounts = [];
-            if(discounts) {
+            if (discounts) {
                 _discounts = discounts.map(dc => {
                     return {
                         image: dc.image,
@@ -168,16 +170,14 @@ app.get('/home', async (req, res, next) => {
                     }
                 })
             }
-
-
             return res.render('home', {
                 homepage: true,
-                data,_discounts,
+                data, _discounts,
                 position: req.session.position,
             })
         })
         .catch(next)
-    
+
     const products = await Products.find({}).select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, description: 1, classes: 1 });
     products.forEach(product => {
         const type = product.classes.lv1;

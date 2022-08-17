@@ -15,6 +15,8 @@ const Products = new Schema({
         lv3: Number
     },
     price: { type: Number },
+    showPice: { type: Boolean },
+    size: { type: String },
     amount: { type: Number },
     represent: { type: String },
     address: { type: String },

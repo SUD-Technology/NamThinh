@@ -25,7 +25,7 @@ const AdminController = {
     addProduct: (req, res) => {
         const file = req.files
         console.log(file)
-        const { product_id, product_name, product_model, product_categories, product_branch, product_origin, product_description, product_amount } = req.body
+        const { product_id, product_name, size, product_model, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
         let listImages = []
         if (!file) {
             res.json({ code: 1, message: "error" })
@@ -57,6 +57,9 @@ const AdminController = {
             product_origin: product_origin,
             brand_name: product_branch,
             amount: product_amount,
+            price: price,
+            size: size,
+            showPrice: showPrice,
             classes: classes,
             slug: slug
         }
@@ -147,10 +150,11 @@ const AdminController = {
                             pimg: product.product_img[0],
                             pid: product.product_id,
                             pslug: product.slug,
-                            price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+                            price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
                             model: product.product_model,
                             origin: product.product_origin,
-                            amount: product.amount
+                            amount: product.amount,
+                            size: product.size
                         }
                         brands.push(product.brand_name)
                         origins.push(product.product_origin)

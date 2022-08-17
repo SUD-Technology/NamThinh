@@ -15,7 +15,9 @@ const ProductController = {
                     description: product.description || '',
                     model: product.product_model || '',
                     branch: product.brand_name || '',
-                    price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+                    size: product.size || '',
+                    price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+
                 }
 
                 Products.find({ classes: product.classes })
@@ -28,7 +30,8 @@ const ProductController = {
                                 product_name: prod.product_name,
                                 product_id: prod.product_id,
                                 product_img: [prod.product_img[0]],
-                                price: prod.price ? prod.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+                                size: prod.size,
+                                price: prod.showPrice ? prod.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
                                 slug: prod.slug
                             }
                         });
