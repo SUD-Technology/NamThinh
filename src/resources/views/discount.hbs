@@ -8,22 +8,27 @@
 
     <div class="row mt-5">
         {{#if discounts}}
-        <div class="container text-center h2">Đang cập nhật</div>
-        {{else}}
-        {{/if}}
-        {{!-- {{#each discounts}}
+        {{#each discounts}}
         
-        <div onclick="window.location.href='/discount/{{slug}}'" class="service-box col-12">
+        <div onclick="window.location.href='/discount/{{slug}}'" class="service-box col-md-6 mb-5">
             <div style="width: 100%;" class="service-main-img">
                 <img height="100%" class="w-100 smooth" src="{{image}}" alt="">
             </div>
-
+            <div class="service-main-content">
+                <span class="py-3 px-3 h5 d-block">{{title}} <br>
+                <p class="py-2">Diễn ra đến hết ngày: 31/09/2022</p></span>
+                
+            </div>
             
         </div>
+
         
         
+        {{/each}}
+        {{else}}
+        <div class="container text-center h2">Đang cập nhật</div>
+        {{/if}}
         
-        {{/each}} --}}
         {{!-- <div class="col-md-4 service-box mt-5">
             <div class="service-img-box">
                 <img class="w-100" src="/img/discount/discount3.png" alt="">

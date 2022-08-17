@@ -2,6 +2,7 @@ $(document).ready(function () {
     setTimeout(function () {
         $('.loader-wrapper').fadeOut(500);
     }, 2000)
+
     const pathname = window.location.pathname;
     const nav = pathname.split('/')[1];
 
@@ -233,14 +234,20 @@ $(document).ready(function () {
             }
 
             const url = nextUrl || $(this).attr('href') || '';
-
+            const loader = `<div style="background-color: white;" class="loader-wrapper">
+            <div style="border-color: #242f3f" class="loader"><div class="loader-inner d-flex justified-content-between align-items-center"><img width="100%" src="/img/logo2.png" alt=""></div></div>
+          </div>`
             if (url != '') {
-                $.ajax({
-                    url: url,
-                    success: (data) => {
-                        $(`#${id} .product-main`).html(data);
-                    }
-                })
+                $(`#${id}`).children().children('.product-main').html(loader)
+                setTimeout(() => { 
+                    $.ajax({
+                        url: url,
+                        success: (data) => {
+                            $(`#${id} .product-main`).html(data);
+                        }
+                    })
+                }, 1500)
+                
             }
         })
     }
