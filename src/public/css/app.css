@@ -1118,6 +1118,27 @@ img.bgc-title {
   border-bottom: 2px solid #ececec;
 }
 
+.note-box {
+  border: 3px solid var(--do);
+  border-radius: 5px;
+}
+
+.note-box .ico-new {
+  background-color: white;
+  color: var(--xanh);
+  left: 15px;
+  top: -23px;
+  font-size: 19px;
+}
+
+.note-box ul {
+  padding: 20px 10px 5px 10px
+}
+
+.note-box ul li {
+  font-family: 'Poppins', 'Roboto';
+}
+
 .sidetitle {
   padding-left: 10px;
   height: 30px;
@@ -2542,7 +2563,7 @@ img {
   background: #75cfad;
 }
 
-span.ico-product.ico-new {
+span.ico-product.ico-new, .ico-new {
   position: absolute;
   top: -5px;
   left: -5px;
@@ -2553,6 +2574,8 @@ span.ico-product.ico-new {
   font-size: 12px;
   z-index: 4;
 }
+
+
 
 /* Zalo Contact */
 .list-social-sidebar {
