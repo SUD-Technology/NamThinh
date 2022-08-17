@@ -38,12 +38,14 @@ router.get('/add-news', checkLogin, authPage(["admin"]), AdminController.getAddN
 router.post('/add-news', checkLogin, authPage(["admin"]), store.single('news-image'), AdminController.postANews)
 router.get('/listNews', checkLogin, authPage(["admin"]), AdminController.getPosts)
 router.get('/deleteNews/:id', checkLogin, authPage(["admin"]), AdminController.deletePosts)
+router.get('/updateNews/:id', AdminController.getUpdatePost)
 // Discount
 router.get('/add-discount', checkLogin, authPage(["admin"]), AdminController.getAddDiscount)
 router.post('/add-discount', store.single('discount-image'), AdminController.postAddDiscount)
 router.get('/listDiscounts', checkLogin, authPage(["admin"]), AdminController.getDiscounts)
 router.get('/deleteDiscount/:id', checkLogin, authPage(["admin"]), AdminController.deleteDiscount)
-
+router.get('/updateDiscount/:id', AdminController.getUpdateDiscount)
+router.post('/updateDiscountById', store.single('discount-image'), AdminController.postUpdateDiscount)
 // Services
 router.get('/add-services', checkLogin, authPage(["admin"]), AdminController.getAddServices)
 router.post('/add-services', store.single('services-image'), AdminController.postAddServices)

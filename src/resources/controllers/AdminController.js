@@ -31,7 +31,6 @@ const AdminController = {
             res.json({ code: 1, message: "error" })
         } else {
             file.map(f => {
-                // let url = f.firebaseUrl.split('/').pop();
                 let url = "/uploads/" + f.filename
                 listImages.push(url)
             })
@@ -495,10 +494,10 @@ const AdminController = {
                         }
                         listOrders.push(current_order)
                     })
-                    res.render('listOrders', { 
-                        listOrders, 
-                        layout: "admin", 
-                        pageName: "Danh sách đơn hàng", 
+                    res.render('listOrders', {
+                        listOrders,
+                        layout: "admin",
+                        pageName: "Danh sách đơn hàng",
                         position: req.session.position,
                     })
                 }
@@ -834,8 +833,8 @@ const AdminController = {
     },
     postAddAbout: (req, res, next) => {
         const { content } = req.body;
-        
-        if(content) {
+
+        if (content) {
             About.findOne({})
                 .then(about => {
                     about.content = content;
@@ -847,6 +846,83 @@ const AdminController = {
 
         req.flash('error', 'Chưa nhập nội dung');
         return res.redirect('/admin/add-about')
+    },
+    getUpdateProduct: (req, res, next) => {
+
+    },
+    getUpdateDiscount: (req, res, next) => {
+        const error = req.flash('error')
+        const success = req.flash('success')
+        const id = req.params.id
+        return Discounts.findById(id)
+            .then(discount => {
+                const data = {
+                    title: discount.title,
+                    id: id,
+                    content: discount.content,
+                    subtitle: discount.subtitle,
+                    image: discount.image
+                }
+                return res.render('updateDiscount', {
+                    data: data,
+                    position: req.session.position,
+                    layout: 'admin',
+                    pageName: 'Chỉnh sửa thông tin khuyến mãi',
+                    error,
+                    success
+                })
+            })
+            .catch(err => {
+                res.json({ err: err })
+            })
+    },
+    getUpdatePost: (req, res, next) => {
+
+    },
+    postUpdateProduct: (req, res, next) => {
+        const id = req.params.id;
+        const { product_id, product_name, product_model, product_categories, product_branch, product_origin, product_description, product_amount } = req.body
+    },
+    postUpdateDiscount: (req, res, next) => {
+        const { title, subtitle, content, old_image, id } = req.body
+        let imagePath = old_image;
+        if (req.file) {
+            const file = req.file;
+            imagePath = "/uploads/" + file.filename;
+            fs.unlink(`src/public/${old_image}`, err => {
+                if (err) {
+                    req.flash('error', "Cập nhật khuyến mãi thất bại")
+                    res.redirect('/admin/listDiscounts')
+                }
+            })
+        }
+        const slug = slugify(title, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+        const discount = {
+            title: title,
+            subtitle: subtitle,
+            slug: slug,
+            image: imagePath,
+            content: content
+        }
+        Discounts.findByIdAndUpdate(id, discount, (err, doc) => {
+            if (!err) {
+                req.flash('success', "Cập nhật khuyến mãi thành công")
+                res.redirect(`/admin/updateDiscount/${id}`)
+            } else {
+                req.flash('error', "Cập nhật khuyến mãi thất bại")
+                res.redirect(`/admin/updateDiscount/${id}`)
+            }
+        })
+    },
+    updatePost: (req, res, next) => {
+
     }
 }
 

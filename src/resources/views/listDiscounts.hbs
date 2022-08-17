@@ -8,6 +8,7 @@
                         <th scope="col">Tiêu đề</th>
                         <th scope="col">Ngày đăng</th>
                         <th scope="col">Chi tiết</th>
+                        <th scope="col">Sửa</th>
                         <th scope="col">Xóa</th>
                     </tr>
                 </thead>
@@ -20,14 +21,20 @@
                         <td>{{createdAt}}</td>
                         <td>
                             <!-- Button trigger modal -->
-                            <a type="button" class="btn btn-success" href="/discount/{{slug}}">
+                            <a type="button" class="btn btn-success w-100" href="/discount/{{slug}}">
                                 <i class="fas fa-file-alt"></i>
                             </a>
                         </td>
                         <td>
                             <!-- Button trigger modal -->
+                            <a type="button" class="btn btn-warning w-100" href="/admin/updateDiscount/{{id}}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <!-- Button trigger modal -->
                             <a type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{id}}">
-                                <i class="fas fa-user-times"></i>
+                                <i class="fas fa-times-circle"></i>
                             </a>
                         </td>
                     </tr>
