@@ -101,6 +101,7 @@ app.use(flash())
 app.use(bodyParser.urlencoded({ extended: false }))
 
 const About = require('./resources/models/About');
+const Discounts = require('./resources/models/Discounts')
 About.find({})
     .then(abouts => {
         if(abouts.length == 0) {
@@ -123,16 +124,60 @@ app.get('/', (req, res) => {
     res.render('index', { hide: true, index: true })
 })
 
-
+function loadProducts(array) {
+    return array.map(product => {
+        return {
+            pname: product.product_name,
+            pimg: [product.product_img[0]] || [''],
+            pid: product.product_id,
+            pslug: product.slug,
+            price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+        }
+    })
+}
 
 app.get('/home', async (req, res, next) => {
+    const l1 = await Products.find({})
+        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1 })
+        .where('classes.lv1').equals(1).limit(10)
+    const l2 = await Products.find({})
+        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1 })
+        .where('classes.lv1').equals(2).limit(10)
+    const l3 = await Products.find({})
+        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1 })
+        .where('classes.lv1').equals(3).limit(10)
+    const l4 = await Products.find({})
+        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1 })
+        .where('classes.lv1').equals(4).limit(10)
+
     let data = {
-        Lop: [],
-        Xe: [],
-        PhuTung: [],
-        Dau: []
+        Lop: loadProducts(l1),
+        Xe: loadProducts(l2),
+        PhuTung: loadProducts(l3),
+        DauNhot: loadProducts(l4)
     }
 
+    return Discounts.find({}).limit(4)
+        .then(discounts => {
+            let _discounts = [];
+            if(discounts) {
+                _discounts = discounts.map(dc => {
+                    return {
+                        image: dc.image,
+                        slug: dc.slug
+                    }
+                })
+            }
+
+
+            return res.render('home', {
+                homepage: true,
+                data,_discounts,
+                position: req.session.position,
+            })
+        })
+        .catch(next)
+    
     const products = await Products.find({}).select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, description: 1, classes: 1 });
     products.forEach(product => {
         const type = product.classes.lv1;

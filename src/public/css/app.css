@@ -24,7 +24,7 @@ p,
 a,
 span,
 label {
-  font-family: 'Roboto' !important;
+  font-family: 'Poppins', 'Roboto' !important;
 
 }
 
@@ -54,10 +54,12 @@ a:hover {
 .service-main-img {
   height: 320px;
   padding: 0;
-  width: 40%;
+  width: 50%;
   display: inline-block;
   overflow: hidden;
-  z-index: 10;
+  z-index: 15;
+  float: left;
+  padding: 10px;
 }
 
 .service-img-box {
@@ -717,7 +719,7 @@ input[type="file"] {
   margin-top: 20px;
   margin-bottom: 30px !important;
   /* border: 1px solid rgba(0, 0, 0, .25); */
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  /* box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px; */
   border-top: none;
 }
 
@@ -937,7 +939,7 @@ img.bgc-title {
 
   grid-template-columns: 230px 230px 230px 230px 230px;
   grid-template-rows: 340px 340px;
-  padding: 0px 20px;
+  padding: 0px 5px;
 }
 
 .list-product-main {
@@ -947,7 +949,7 @@ img.bgc-title {
   gap: 10px;
   grid-template-columns: 213px 213px 213px 213px;
   grid-template-rows: 300px 300px 300px 300px 300px;
-  padding: 0px 10px;
+  padding: 0px 0px;
 }
 
 .list-product-main a {
@@ -1033,7 +1035,7 @@ img.bgc-title {
 
 
 .seeall span {
-  font-size: 16px !important;
+  font-size: 14px !important;
 }
 
 .seeall {
@@ -1114,6 +1116,27 @@ img.bgc-title {
 .detail {
   padding: 10px;
   border-bottom: 2px solid #ececec;
+}
+
+.note-box {
+  border: 3px solid var(--do);
+  border-radius: 5px;
+}
+
+.note-box .ico-new {
+  background-color: white;
+  color: var(--xanh);
+  left: 15px;
+  top: -23px;
+  font-size: 19px;
+}
+
+.note-box ul {
+  padding: 20px 10px 5px 10px
+}
+
+.note-box ul li {
+  font-family: 'Poppins', 'Roboto';
 }
 
 .sidetitle {
@@ -1270,7 +1293,7 @@ img.bgc-title {
   line-height: 50px;
   display: block;
   width: 100%;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   color: #fff;
   text-transform: uppercase;
@@ -2540,7 +2563,7 @@ img {
   background: #75cfad;
 }
 
-span.ico-product.ico-new {
+span.ico-product.ico-new, .ico-new {
   position: absolute;
   top: -5px;
   left: -5px;
@@ -2552,52 +2575,39 @@ span.ico-product.ico-new {
   z-index: 4;
 }
 
+
+
 /* Zalo Contact */
-.contact-box-bottom {
+.list-social-sidebar {
   position: fixed;
-  bottom: 50%;
-  right: -5px;
-  z-index: 10000;
-}
-
-.contact-box-wrapper {
+  right: 30px;
+  top: 40%;
+  z-index: 10;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  background: transparent;
-  margin-bottom: 10px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  /* box-shadow: 0 0 10px 0 rgba(0, 0, 0, .2); */
+}
+.list-social-sidebar .social-item {
+  margin-bottom: 20px;
+  width: 45px;
+  height: 45px;
 }
 
-.contact-box-wrapper:last-child {
-  margin-bottom: 0;
+.list-social-sidebar .social-item img {
+  width: 100%;
+  object-fit: cover;
 }
 
-.contact-icon-box {
-  display: block;
-  text-align: center;
-  width: 40px;
-  height: 40px;
-  font-size: 16px;
-  line-height: 38px;
-  /* border: 1px solid #e5e5e5; */
-  border-radius: 999px;
+.list-social-sidebar .social-item:hover img {
+  transform: scale(1.1);
 }
 
-.contact-info {
-  padding-left: 10px;
+.drop-shadow {
+  -webkit-filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.25));
+  border-radius: 50%;
 }
 
-.contact-info b,
-.contact-info span {
-  display: block;
-}
-
-.contact-info span {
-  color: #868686;
-  font-size: 12px;
-}
 
 /* End Zalo contact */
 
@@ -2717,6 +2727,10 @@ span.ico-product.ico-new {
   text-align: justify;
 }
 
+.news-content-box h5, .card-title {
+  font-size: 1.1rem;
+}
+
 .news-content-box h3 {
   text-transform: uppercase;
 }
@@ -2732,11 +2746,16 @@ a.watch-detail {
   right: 15px;
   font-size: 15px;
   /* margin-right: 10px; */
+  color: var(--donhat)
 }
+
+
 
 a.watch-detail:hover {
   opacity: 0.8;
 }
+
+
 
 .textTitle {
   color: #ec162b;

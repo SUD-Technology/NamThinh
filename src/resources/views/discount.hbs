@@ -7,47 +7,23 @@
 
 
     <div class="row mt-5">
-        {{#each discounts}}
-        {{#if @first}}
+        {{#if discounts}}
+        <div class="container text-center h2">Đang cập nhật</div>
+        {{else}}
+        {{/if}}
+        {{!-- {{#each discounts}}
+        
         <div onclick="window.location.href='/discount/{{slug}}'" class="service-box col-12">
-            <div class="service-main-img">
+            <div style="width: 100%;" class="service-main-img">
                 <img height="100%" class="w-100 smooth" src="{{image}}" alt="">
             </div>
 
-            <div class="service-main-content">
-                <div class="service-content">
-                    <div class="captions">
-                        <h3><a href="/discount/{{slug}}">{{title}}</a>
-                        </h3>
-
-                        <div class="des">
-                            {{subtitle}}
-                        </div>
-                    </div>
-                </div>
-                <a style="background-color: rgb(121, 70, 70); color: white" href="/discount/{{slug}}"
-                    class="watch-detail px-5 mx-5 py-2">Xem thêm</a>
-            </div>
+            
         </div>
-        {{else}}
-        <div onclick="window.location.href='/discount/{{slug}}'" class="col-md-4 service-box mt-5 mb-5">
-            <div class="service-img-box">
-                <img height="300px" class="w-100" src="{{image}}" alt="">
-            </div>
-
-            <div class="service-content">
-                <div class="captions">
-                    <h3><a href="/discount/{{slug}}">{{title}}</a>
-                    </h3>
-
-                    <div class="des">
-                        {{subtitle}}
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{/if}}
-        {{/each}}
+        
+        
+        
+        {{/each}} --}}
         {{!-- <div class="col-md-4 service-box mt-5">
             <div class="service-img-box">
                 <img class="w-100" src="/img/discount/discount3.png" alt="">
