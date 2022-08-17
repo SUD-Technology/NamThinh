@@ -1,7 +1,6 @@
 {{!-- Body: start --}}
 <div class="container">
     <div class="addProduct-header">
-
         <div class="row">
             <div class="col-md-4 ml-auto">
                 {{#if success}}
@@ -25,7 +24,7 @@
     </div>
 
     <div class="addProduct-body">
-        <form action="/admin/updateDiscountById" class="form-horizontal" enctype="multipart/form-data" method="post">
+        <form action="{{action}}" class="form-horizontal" enctype="multipart/form-data" method="post">
             <fieldset>
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="discount-title">Tiêu đề</label>
@@ -47,8 +46,8 @@
                         <div class="form-group-container">
                             <input class="d-none" value="{{data.id}}" type="text" name="id">
                             <input class="d-none" value="{{data.image}}" type="text" name="old_image">
-                            <input id="product-image" accept="image/*" name="discount-image"
-                                class="form-control input-md" onchange="preview()" type="file" multiple>
+                            <input id="product-image" accept="image/*" name="image" class="form-control input-md"
+                                onchange="preview()" type="file" multiple>
                             <label for="product-image">
                                 <i class="fas fa-upload"></i>
                                 Chọn ảnh khuyến mãi &nbsp;

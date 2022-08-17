@@ -500,6 +500,12 @@ const AdminController = {
                         pageName: "Danh sách đơn hàng",
                         position: req.session.position,
                     })
+                } else {
+                    res.render('listOrders', {
+                        layout: "admin",
+                        pageName: "Danh sách đơn hàng",
+                        position: req.session.position,
+                    })
                 }
             })
     },
@@ -863,21 +869,73 @@ const AdminController = {
                     subtitle: discount.subtitle,
                     image: discount.image
                 }
-                return res.render('updateDiscount', {
+                return res.render('update', {
                     data: data,
                     position: req.session.position,
                     layout: 'admin',
                     pageName: 'Chỉnh sửa thông tin khuyến mãi',
                     error,
-                    success
+                    success,
+                    action: "/admin/updateDiscountById"
                 })
             })
             .catch(err => {
                 res.json({ err: err })
             })
     },
-    getUpdatePost: (req, res, next) => {
-
+    getUpdateNews: (req, res, next) => {
+        const error = req.flash('error')
+        const success = req.flash('success')
+        const id = req.params.id
+        return Posts.findById(id)
+            .then(post => {
+                const data = {
+                    title: post.title,
+                    id: id,
+                    content: post.content,
+                    subtitle: post.subtitle,
+                    image: post.image
+                }
+                return res.render('update', {
+                    data: data,
+                    position: req.session.position,
+                    layout: 'admin',
+                    pageName: 'Chỉnh sửa thông tin bải viết',
+                    error,
+                    success,
+                    action: "/admin/updateNewsById"
+                })
+            })
+            .catch(err => {
+                res.json({ err: err })
+            })
+    },
+    getUpdateService: (req, res, next) => {
+        const error = req.flash('error')
+        const success = req.flash('success')
+        const id = req.params.id
+        return Services.findById(id)
+            .then(service => {
+                const data = {
+                    title: service.title,
+                    id: id,
+                    content: service.content,
+                    subtitle: service.subtitle,
+                    image: service.image
+                }
+                return res.render('update', {
+                    data: data,
+                    position: req.session.position,
+                    layout: 'admin',
+                    pageName: 'Chỉnh sửa thông tin dịch vụ',
+                    error,
+                    success,
+                    action: "/admin/updateServiceById"
+                })
+            })
+            .catch(err => {
+                res.json({ err: err })
+            })
     },
     postUpdateProduct: (req, res, next) => {
         const id = req.params.id;
@@ -892,7 +950,7 @@ const AdminController = {
             fs.unlink(`src/public/${old_image}`, err => {
                 if (err) {
                     req.flash('error', "Cập nhật khuyến mãi thất bại")
-                    res.redirect('/admin/listDiscounts')
+                    res.redirect(`/admin/updateDiscount/${id}`)
                 }
             })
         }
@@ -921,8 +979,82 @@ const AdminController = {
             }
         })
     },
-    updatePost: (req, res, next) => {
+    postUpdateNews: (req, res, next) => {
+        const { title, subtitle, content, old_image, id } = req.body
+        let imagePath = old_image;
+        if (req.file) {
+            const file = req.file;
+            imagePath = "/uploads/" + file.filename;
+            fs.unlink(`src/public/${old_image}`, err => {
+                if (err) {
+                    req.flash('error', "Cập nhật bài viết thất bại")
+                    res.redirect(`/admin/updateNews/${id}`)
+                }
+            })
+        }
+        const slug = slugify(title, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+        const post = {
+            title: title,
+            subtitle: subtitle,
+            slug: slug,
+            image: imagePath,
+            content: content
+        }
+        Posts.findByIdAndUpdate(id, post, (err, doc) => {
+            if (!err) {
+                req.flash('success', "Cập nhật bài viết thành công")
+                res.redirect(`/admin/updateNews/${id}`)
+            } else {
+                req.flash('error', "Cập nhật bài viết thất bại")
+                res.redirect(`/admin/updateNews/${id}`)
+            }
+        })
+    },
+    postUpdateService: (req, res, next) => {
+        const { title, subtitle, content, old_image, id } = req.body
+        let imagePath = old_image;
+        if (req.file) {
+            const file = req.file;
+            imagePath = "/uploads/" + file.filename;
+            fs.unlink(`src/public/${old_image}`, err => {
+                if (err) {
+                    req.flash('error', "Cập nhật dịch vụ thất bại")
+                    res.redirect(`/admin/updateService/${id}`)
 
+                }
+            })
+        }
+        const slug = slugify(title, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+        const services = {
+            title: title,
+            subtitle: subtitle,
+            slug: slug,
+            image: imagePath,
+            content: content
+        }
+        Services.findByIdAndUpdate(id, services, (err, doc) => {
+            if (!err) {
+                req.flash('success', "Cập nhật dịch vụ thành công")
+                res.redirect(`/admin/updateService/${id}`)
+            } else {
+                req.flash('error', "Cập nhật dịch vụ thất bại")
+                res.redirect(`/admin/updateService/${id}`)
+            }
+        })
     }
 }
 
