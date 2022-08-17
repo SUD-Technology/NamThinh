@@ -2320,17 +2320,16 @@ img {
 }
 
 .sidelk .sidetitle {
-  padding-left: 10px;
-  height: 30px;
-  background-color: #e6e7e8;
-  padding-top: 3px;
+  padding-left: 60px;
+  height: 45px;
+  background-color: var(--xanh);
+  padding-top: 12px;
 }
 
-.sidelk .sidetitle h2 {
-  color: #0d71f2;
+.sidelk .sidetitle h3 {
+  color: white;
   font-size: 17px;
   font-weight: 500;
-  font-family: UTMBOLD;
 }
 
 .sidelk .lksp li:hover .ex-title a {
