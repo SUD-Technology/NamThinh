@@ -57,6 +57,7 @@ const AdminController = {
             product_origin: product_origin,
             brand_name: product_branch,
             amount: product_amount,
+            inventory: product_amount,
             price: price,
             size: size,
             showPrice: showPrice,
@@ -150,10 +151,11 @@ const AdminController = {
                             pimg: product.product_img[0],
                             pid: product.product_id,
                             pslug: product.slug,
-                            price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+                            price: product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
                             model: product.product_model,
                             origin: product.product_origin,
                             amount: product.amount,
+                            inventory: product.inventory,
                             size: product.size
                         }
                         brands.push(product.brand_name)

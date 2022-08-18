@@ -18,6 +18,7 @@ const Products = new Schema({
     showPice: { type: Boolean },
     size: { type: String },
     amount: { type: Number },
+    inventory: { type: Number },
     represent: { type: String },
     address: { type: String },
     phone: { type: String },
