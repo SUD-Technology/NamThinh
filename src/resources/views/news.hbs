@@ -68,14 +68,14 @@
         <div class="row news-box">
             {{#if topnews1}}
             <div class="news-img-box col-md-4 px-3">
-                <a href="">
+                <a href="/news/{{topnews1.slug}}">
                     <img width="100%" src="{{topnews1.image}}" alt="">
                 </a>
             </div>
             <div class="news-content-box col-md-8 px-0">
                 {{!-- <span style="bottom: 0; left: 0; top: 75%" class="ico-product ico-new"> Mới</span> --}}
 
-                <a data-target="#carouselExampleIndicators" data-slide-to="0" class="active" href="">
+                <a data-target="#carouselExampleIndicators" data-slide-to="0" class="active" href="/news/{{topnews1.slug}}">
                     <h5 class="py-2">{{topnews1.title}}</h5>
                 </a>
                 <span><strong>{{topnews1.createdAt}}</strong></span>
@@ -84,13 +84,13 @@
             {{/if}}
             {{#if topnews2}}
             <div class="news-img-box col-md-4 px-3 mt-2">
-                <a href="">
+                <a href="/news/{{topnews2.slug}}">
                     <img width="100%" src="{{topnews2.image}}" alt="">
                 </a>
             </div>
             <div class="news-content-box col-md-8 px-0">
                 {{!-- <span style="bottom: 0; left: 0; top: 75%" class="ico-product ico-new"> Mới</span> --}}
-                <a data-target="#carouselExampleIndicators" data-slide-to="1" href="">
+                <a data-target="#carouselExampleIndicators" data-slide-to="1" href="/news/{{topnews2.slug}}">
 
                     <h5 class="py-2">{{topnews2.title}}</h5>
                 </a>
@@ -100,14 +100,14 @@
             {{/if}}
             {{#if topnews3}}
             <div class="news-img-box col-md-4 px-3 mt-2">
-                <a href="">
+                <a href="/news/{{topnews3.slug}}">
 
                     <img width="100%" src="{{topnews3.image}}" alt="">
                 </a>
             </div>
             <div class="news-content-box col-md-8 px-0">
                 {{!-- <span style="bottom: 0; left: 0; top: 75%" class="ico-product ico-new"> Mới</span> --}}
-                <a data-target="#carouselExampleIndicators" data-slide-to="2" class="active" href="">
+                <a data-target="#carouselExampleIndicators" data-slide-to="2" class="active" href="/news/{{topnews3.slug}}">
                     <h5 class="py-2">{{topnews3.title}}</h5>
                 </a>
                 <span><strong>{{topnews3.createdAt}}</strong></span>
