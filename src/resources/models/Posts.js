@@ -11,6 +11,10 @@ const Posts = new Schema({
         type: String,
         required: true
     },
+    group: {
+        type: String,
+        required: true
+    },
     slug: {
         type: String,
         unique: true

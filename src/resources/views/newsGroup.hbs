@@ -1,0 +1,25 @@
+<div style="min-height: 50vh;" class="classify-products fadeUp">
+    
+    <div class="row product-list data-metatip=" true"">
+        <div class="row pagi">
+            <span style="line-height: 46px;" class="sub-title">{{title}}</span>
+            <img class="bgc-title" src="/img/title.png" alt="">
+
+
+        </div>
+        {{#each data}}
+        <div class="col-md-6 px-0 mb-2">
+            <div onclick='window.location.href="/news/{{slug}}"' class="card flex-row"><img
+                    class="card-img-left example-card-img-responsive" style="width: 50%; height:185px"
+                    src="{{image}}" />
+                <div style="background-color: white;" class="captions">
+                    <a href="/news/{{slug}}">
+                        <h5 class="card-title h5 h5-sm">{{title}}</h5>
+                    </a>
+                    <p class="card-text">{{subtitle}}</p>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

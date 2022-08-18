@@ -234,8 +234,8 @@ $(document).ready(function () {
             }
 
             const url = nextUrl || $(this).attr('href') || '';
-            const loader = `<div style="background-color: white;" class="loader-wrapper">
-            <div style="border-color: #242f3f" class="loader"><div class="loader-inner d-flex justified-content-between align-items-center"><img width="100%" src="/img/logo2.png" alt=""></div></div>
+            const loader = `<div style="background-color: transparent;" class="loader-wrapper">
+            <div style="border-color: #242f3f; width: 60px;height:60px" class="loader"><div class="loader-inner d-flex justified-content-between align-items-center"><img width="100%" src="/img/logo2.png" alt=""></div></div>
           </div>`
             if (url != '') {
                 $(`#${id}`).children().children('.product-main').html(loader)
@@ -243,7 +243,7 @@ $(document).ready(function () {
                     $.ajax({
                         url: url,
                         success: (data) => {
-                            $(`#${id} .product-main`).html(data);
+                            $(`#${id} .product-main`).html(data).hide().fadeIn();
                         }
                     })
                 }, 1500)

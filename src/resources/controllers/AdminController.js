@@ -558,7 +558,7 @@ const AdminController = {
     postANews: (req, res, next) => {
         const file = req.file;
         const imagePath = "/uploads/" + file.filename
-        const { title, subtitle, content } = req.body
+        const { title, subtitle, news_categories, content } = req.body
         const slug = slugify(title, {
             replacement: '-',
             remove: false,
@@ -571,6 +571,7 @@ const AdminController = {
             title: title,
             subtitle: subtitle,
             slug: slug,
+            group: news_categories || '',
             image: imagePath,
             content: content
         }
