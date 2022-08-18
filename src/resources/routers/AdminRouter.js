@@ -38,19 +38,23 @@ router.get('/add-news', checkLogin, authPage(["admin"]), AdminController.getAddN
 router.post('/add-news', checkLogin, authPage(["admin"]), store.single('news-image'), AdminController.postANews)
 router.get('/listNews', checkLogin, authPage(["admin"]), AdminController.getPosts)
 router.get('/deleteNews/:id', checkLogin, authPage(["admin"]), AdminController.deletePosts)
+router.get('/updateNews/:id', AdminController.getUpdateNews)
+router.post('/updateNewsById', store.single('image'), AdminController.postUpdateNews)
 // Discount
 router.get('/add-discount', checkLogin, authPage(["admin"]), AdminController.getAddDiscount)
 router.post('/add-discount', store.single('discount-image'), AdminController.postAddDiscount)
 router.get('/listDiscounts', checkLogin, authPage(["admin"]), AdminController.getDiscounts)
 router.get('/deleteDiscount/:id', checkLogin, authPage(["admin"]), AdminController.deleteDiscount)
-
+router.get('/updateDiscount/:id', AdminController.getUpdateDiscount)
+router.post('/updateDiscountById', store.single('image'), AdminController.postUpdateDiscount)
 // Services
 router.get('/add-services', checkLogin, authPage(["admin"]), AdminController.getAddServices)
 router.post('/add-services', store.single('services-image'), AdminController.postAddServices)
 router.get('/listServices', checkLogin, authPage(["admin"]), AdminController.getServices)
 router.get('/deleteService/:id', checkLogin, authPage(["admin"]), AdminController.deleteService)
-
-// Create order
+router.get('/updateService/:id', AdminController.getUpdateService)
+router.post('/updateServiceById', store.single('image'), AdminController.postUpdateService)
+// Create order 
 router.get('/create-order', checkLogin, authPage(['admin', "sale"]), AdminController.getCreateOrder)
 router.post('/create-order', checkLogin, authPage(['admin', "sale"]), AdminController.postCreateOrder)
 router.get('/getOrders', checkLogin, authPage(['admin', "sale"]), AdminController.getOrders)

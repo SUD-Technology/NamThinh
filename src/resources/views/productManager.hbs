@@ -2,7 +2,6 @@
 <div class="container">
 
     <div class="product-manager-body">
-
         <form action="/admin/product-manager/" class="find-product-form">
             <div class="form-group">
                 <div class="row m-0">
@@ -120,6 +119,7 @@
                     <th scope="col">Mã</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Tồn</th>
+                    <th scope="col">Sửa</th>
                     <th scope="col">Xóa</th>
                 </tr>
             </thead>`
@@ -137,7 +137,13 @@
                     <td>{{model}}</td>
                     <td>{{pid}}</td>
                     <td>{{price}}</td>
-                    <td>{{amount}}</td>
+                    <td>{{inventory}}</td>
+                    <td>
+                        <!-- Button trigger modal -->
+                        <a type="button" class="btn btn-warning w-100" href="/admin/updateProduct/{{id}}">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
                     <td><a href="/admin/delete/{{pid}}" style="color: white" class="w-100 btn btn-danger">Xóa</a></td>
                 </tr>
                 {{/each}}

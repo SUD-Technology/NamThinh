@@ -1,58 +1,60 @@
 {{!-- Body: start --}}
 <div class="container">
-    <div class="addProduct-body">
-        <div class="mb-5 mt-5">
-            <table class="table table-hover">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">STT</th>
-                        <th scope="col">Mã đơn hàng</th>
-                        <th scope="col">Tên khách hàng</th>
-                        <th scope="col">Sale</th>
-                        {{!-- <th scope="col">Danh sách sản phẩm</th> --}}
-                        
-                        <th class="text-center" scope="col">Đơn hàng</th>
-                        
-                        <th scope="col">Trạng thái</th>
-                        <th style="max-width: 150px;" scope="col">Kết quả</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each listOrders}}
-                    <tr class="order-{{inc @index}}">
-                        <td class="index">{{inc @index}}</td>
-                        <td class="code">{{id}}</td>
-                        <td><a href="/admin/customer-info/?keyWord={{customer.phone}}">{{customer.name}}</a></td>
-                        <td>{{sale}}</td>
-                        {{!-- <td><a class="btn btn-success">
-                                ds.docx
-                                <i class="fas fa-file-alt"></i>
-                            </a></td> --}}
-                            
-                        <td style="max-width: 250px;" class="text-center"><a class="btn btn-success" href="{{product_list}}" target="_blank">
-                                <i class="fas fa-file-alt"></i>
-                            </a></td>
-                        
-                        <td class="status" style="max-width: 250px;"><span>{{status}}</span> 
-                          {{#if edit}}
-                            <button style="width: 50px; font-size: 10px" type="button" class="btn btn-primary status-edit" data-toggle="modal" data-target="#exampleModalCenter">
-                                edit
-                            </button>
-                          {{/if}}
-                        </td>
-                        <td style="max-width: 150px;">
-                            <button class="accept btn btn-success" data-toggle="modal" data-target="#modal-accept">Xong</button>
-                            <button class="cancel btn btn-danger" data-toggle="modal" data-target="#modal-cancel">Hủy</button>
-                            </td>
-                    </tr>
-                    {{/each}}
-                </tbody>
-            </table>
-        </div>
+  <div class="addProduct-body">
+    <div class="mb-5 mt-5">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Mã đơn hàng</th>
+            <th scope="col">Tên khách hàng</th>
+            <th scope="col">Sale</th>
+            {{!-- <th scope="col">Danh sách sản phẩm</th> --}}
+
+            <th class="text-center" scope="col">Đơn hàng</th>
+
+            <th scope="col">Trạng thái</th>
+            <th style="max-width: 150px;" scope="col">Kết quả</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#if listOrders}}
+          {{#each listOrders}}
+          <tr class="order-{{inc @index}}">
+            <td class="index">{{inc @index}}</td>
+            <td class="code">{{id}}</td>
+            <td><a href="/admin/customer-info/?keyWord={{customer.phone}}">{{customer.name}}</a></td>
+            <td>{{sale}}</td>
+            <td style="max-width: 250px;" class="text-center"><a class="btn btn-success" href="{{product_list}}"
+                target="_blank">
+                <i class="fas fa-file-alt"></i>
+              </a></td>
+
+            <td class="status" style="max-width: 250px;"><span>{{status}}</span>
+              {{#if edit}}
+              <button style="width: 50px; font-size: 10px" type="button" class="btn btn-primary status-edit"
+                data-toggle="modal" data-target="#exampleModalCenter">
+                edit
+              </button>
+              {{/if}}
+            </td>
+            <td style="max-width: 150px;">
+              <button class="accept btn btn-success" data-toggle="modal" data-target="#modal-accept">Xong</button>
+              <button class="cancel btn btn-danger" data-toggle="modal" data-target="#modal-cancel">Hủy</button>
+            </td>
+          </tr>
+          {{/each}}
+          {{else}}
+          <td colspan="5">Không có đơn hàng nào</td>
+          {{/if}}
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>
 
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -63,13 +65,14 @@
       </div>
       <form action="" method="POST">
 
-      <div class="modal-body">
-        <textarea class="px-1 py-1" value="fneqneqfnqie" name="status" id="status-area" cols="64" rows="10"></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-        <button id="editBtn" type="submit" class="btn btn-success" data-dismiss="modal">Save</button>
-      </div>
+        <div class="modal-body">
+          <textarea class="px-1 py-1" value="fneqneqfnqie" name="status" id="status-area" cols="64"
+            rows="10"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          <button id="editBtn" type="submit" class="btn btn-success" data-dismiss="modal">Save</button>
+        </div>
 
       </form>
     </div>
@@ -99,7 +102,8 @@
 
 
 <!-- Modal -->
-<div class="modal fade " id="modal-accept" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade " id="modal-accept" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -119,7 +123,8 @@
   </div>
 </div>
 
-<div class="modal fade " id="modal-cancel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade " id="modal-cancel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -141,81 +146,81 @@
 
 
 <script>
-    var index = '';
+  var index = '';
 
-    $('.status-edit').click(function() {
-        let status = $(this).siblings('span').text();
-        document.getElementById('status-area').value = status;
-        index = $(this).parent().siblings('.index').text();
+  $('.status-edit').click(function () {
+    let status = $(this).siblings('span').text();
+    document.getElementById('status-area').value = status;
+    index = $(this).parent().siblings('.index').text();
+  })
+
+  $('#editBtn').click(function (e) {
+    e.preventDefault();
+    var current = $(`.order-${index}`);
+    let code = current.children('.code').text();
+    let status = $('#status-area').val();
+    current.children('.status').children('span').html(status);
+
+    $.ajax({
+      url: window.location.href,
+      method: 'POST',
+      data: {
+        status,
+        code
+      },
+      success: (data) => {
+
+      }
     })
+  })
 
-    $('#editBtn').click(function(e) {
-        e.preventDefault();
-        var current = $(`.order-${index}`);
-        let code = current.children('.code').text();
-        let status = $('#status-area').val();
-        current.children('.status').children('span').html(status);
-               
-        $.ajax({
-            url: window.location.href,
-            method: 'POST',
-            data: {
-                status, 
-                code
-            },
-            success: (data) => {
+  $('.accept').click(function (e) {
+    e.preventDefault();
+    index = $(this).parent().siblings('.index').text();
 
-            }
-        })
+  })
+  $('.cancel').click(function (e) {
+    e.preventDefault();
+    index = $(this).parent().siblings('.index').text();
+
+  })
+
+  $('#cancelBtn').click(function (e) {
+    e.preventDefault();
+    const current = $(`.order-${index}`);
+    current.addClass('d-none');
+    const code = current.children('.code').text();
+    const ops = 'cancel';
+    $.ajax({
+      url: window.location.href + '/finish',
+      data: {
+        code, ops
+      },
+      method: 'POST',
+      success: (data) => {
+
+      }
     })
+  })
 
-    $('.accept').click(function(e) {
-        e.preventDefault();
-        index = $(this).parent().siblings('.index').text();
-        
+  $('#acceptBtn').click(function (e) {
+    e.preventDefault();
+    const current = $(`.order-${index}`);
+    current.addClass('d-none');
+
+    const code = current.children('.code').text();
+    const ops = 'accept';
+    $.ajax({
+      url: window.location.href + '/finish',
+      data: {
+        code, ops
+      },
+      method: 'POST',
+      success: (data) => {
+
+      }
     })
-    $('.cancel').click(function(e) {
-        e.preventDefault();
-        index = $(this).parent().siblings('.index').text();
-        
-    })
-
-    $('#cancelBtn').click(function(e) {
-        e.preventDefault();
-        const current = $(`.order-${index}`);
-        current.addClass('d-none');
-        const code = current.children('.code').text();
-        const ops = 'cancel';
-        $.ajax({
-            url: window.location.href + '/finish',
-            data: {
-                code, ops
-            },
-            method: 'POST',
-            success: (data) => {
-
-            }
-        })
-    })
-
-    $('#acceptBtn').click(function(e) {
-        e.preventDefault();
-        const current = $(`.order-${index}`);
-        current.addClass('d-none');
-
-        const code = current.children('.code').text();
-        const ops = 'accept';
-        $.ajax({
-            url: window.location.href + '/finish',
-            data: {
-                code, ops
-            },
-            method: 'POST',
-            success: (data) => {
-
-            }
-        })
-    })
+  })
 </script>
 
 {{!-- Body: end --}}
