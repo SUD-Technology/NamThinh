@@ -72,20 +72,15 @@
   <div>
 </div>
 
-<svg style="visibility: hidden; position: absolute;" width="0" height="0" xmlns="http://www.w3.org/2000/svg" version="1.1">
-  <defs>
-        <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />    
-            <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="goo" />
-            <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-        </filter>
-    </defs>
-</svg>
+<div class="loader-wrapper">
+  <div class="loader"><div class="loader-inner d-flex justified-content-between align-items-center"><img width="100%" src="/img/logo2.png" alt=""></div></div>
+</div>
 
 <script>
   $('.hex-inner').hover(function() {
-    $(this).children('.layer-title').animate({opacity: '50%'}, 'fast')
+    $(this).children('.layer-title').animate({height: '0', opacity: '0'}, 'fast')
   },function() {
-    $(this).children('.layer-title').animate({opacity: '100%'}, 'fast')
+    $(this).children('.layer-title').animate({height: '100%', opacity: '100%'}, 'fast')
   })
   
 </script>

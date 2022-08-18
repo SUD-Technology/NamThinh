@@ -3,6 +3,16 @@
   src: url(../fonts/VL_Mark\ Simonson\ -\ Proxima\ Nova\ Bold.otf);
 }
 
+@font-face {
+  font-family: Poppins-Regular;
+  src: url(../fonts/Poppins-Regular.ttf);
+}
+
+@font-face {
+  font-family: Poppins-Medium;
+  src: url(../fonts/Poppins-Medium.ttf);
+}
+
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 @import url('http://fonts.googleapis.com/css?family=Roboto');
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700;);
@@ -24,7 +34,7 @@ p,
 a,
 span,
 label {
-  font-family: 'Poppins', 'Roboto' !important;
+  font-family: Poppins-Regular, 'Poppins', 'Roboto' !important;
 
 }
 
@@ -52,14 +62,13 @@ a:hover {
 }
 
 .service-main-img {
-  height: 320px;
   padding: 0;
   width: 50%;
   display: inline-block;
   overflow: hidden;
   z-index: 15;
   float: left;
-  padding: 10px;
+  border-radius: 10px 10px 0 0;
 }
 
 .service-img-box {
@@ -68,6 +77,14 @@ a:hover {
 }
 
 .service-main-content {
+  background-color: #f4f4f0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  height: 70px
+}
+
+.service-content {
   background-color: #f4f4f0;
   padding: 0;
   width: 60%;
@@ -88,6 +105,12 @@ a:hover {
 
   cursor: pointer;
 }
+
+video::-webkit-media-controls {
+  display: none;
+}
+
+
 
 /* Admin product manager: start */
 .find-product-form .form-group {
@@ -301,7 +324,7 @@ input[type="file"] {
 .welcome-page {
   width: 100%;
   height: 100vh;
-  background: url("../img/background/background5.png") no-repeat center center fixed;
+  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fbackground.jpg?alt=media&token=ed6390b7-6725-4f52-9a02-391138cbdc0b) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -2297,17 +2320,16 @@ img {
 }
 
 .sidelk .sidetitle {
-  padding-left: 10px;
-  height: 30px;
-  background-color: #e6e7e8;
-  padding-top: 3px;
+  padding-left: 60px;
+  height: 45px;
+  background-color: var(--xanh);
+  padding-top: 12px;
 }
 
-.sidelk .sidetitle h2 {
-  color: #0d71f2;
+.sidelk .sidetitle h3 {
+  color: white;
   font-size: 17px;
   font-weight: 500;
-  font-family: UTMBOLD;
 }
 
 .sidelk .lksp li:hover .ex-title a {
@@ -2663,8 +2685,9 @@ span.ico-product.ico-new, .ico-new {
 }
 
 .portfolio-menu .menu-link:hover {
-  background-color: var(--do);
-  color: white;
+  /* background-color: var(--do); */
+  color: var(--donhat);
+  border-left: 7px solid var(--xanh);
 }
 
 .portfolio-title {
@@ -2915,20 +2938,22 @@ a:not([href]):not([tabindex]) {
 
 .loader {
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   position: relative;
-  border: 5px solid #fff;
-  animation: loader 2s infinite ease;
-  border-radius: 4px;
+  border-top: 5px solid #fff;
+  /* border-bottom: 0; */
+  animation: loader 1s infinite linear;
+  border-radius: 50%;
 }
 
 .loader-inner {
   vertical-align: top;
   display: inline-block;
   width: 100%;
-  background-color: #fff;
-  animation: loader-inner 2s infinite ease-in;
+  height: 100%;
+  /* background-color: #fff; */
+  /* animation: loader-inner 2s infinite ease-in; */
 }
 
 .loader-wrapper {
@@ -2949,17 +2974,6 @@ a:not([href]):not([tabindex]) {
     transform: rotate(0deg)
   }
 
-  25% {
-    transform: rotate(180deg)
-  }
-
-  50% {
-    transform: rotate(180deg)
-  }
-
-  75% {
-    transform: rotate(360deg)
-  }
 
   100% {
     transform: rotate(360deg)
@@ -3183,42 +3197,42 @@ a:not([href]):not([tabindex]) {
 }
 
 .hex-1 {
-  background: url(../img/xedaukeo.png);
+  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fxedaukeo.png?alt=media&token=fd226485-09b7-4bdc-8b00-d7d3b89b13b4);
   background-size: cover;
 }
 
 .hex-2 {
-  background: url(../img/lopxe.jpg);
+  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Flopxe.jpg?alt=media&token=f7c324b3-ed40-4977-9c94-e3f8f4b2ea56);
   background-size: cover;
 }
 
 .hex-3 {
-  background: url(../img/daunhot.png);
+  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fdaunhot.png?alt=media&token=9f1042ae-c80c-42f9-a670-06309805bd83);
   background-size: cover;
 }
 
 .hex-4 {
-  background: url(../img/phutung.png);
+  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fphutung.png?alt=media&token=29c844ab-b937-40e6-baf7-cfa4525d0b42);
   background-size: cover;
 }
 
 .hex-5 {
-  background: url(https://otophuman.vn/upload/product/phuman_625439949076.jpg);
+  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fxeben.jpg?alt=media&token=fd9f9ab4-e586-4a62-a4bd-477750269a5e);
   background-size: cover;
 }
 
 .hex-6 {
-  background: url(../img/somi.png);
+  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fsomi.png?alt=media&token=4580c65b-c19c-4dc7-bd44-51cf99eb88d8);
   background-size: cover;
 }
 
 .hex-7 {
-  background: url(../img/service.jpg);
+  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fservice.jpg?alt=media&token=703ba1c2-3e8e-42a2-8a73-8c6fbb71ad83);
   background-size: cover;
 }
 
 .hex-8 {
-  background: url(../img/discount.jpg);
+  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fdiscount.jpg?alt=media&token=9d2b6850-f21d-460b-86b6-dd7796df3cf4);
   background-size: cover;
 }
 
@@ -3354,5 +3368,7 @@ a:not([href]):not([tabindex]) {
     display: none;
   } */
 }
+
+
 
 

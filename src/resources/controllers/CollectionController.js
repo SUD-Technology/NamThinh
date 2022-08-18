@@ -250,9 +250,13 @@ const CollectionController = {
 
     },
     getFindProducts: (req, res, next) => {
-        var keyword = req.params.keyword;
+        var keyword = req.query.key;
+        
+        const page = parseInt(req.query.page) || 1;
+        let skip = 20 * (page - 1);
         
         Products.find({product_name: {$regex: keyword, $options: 'i'} })
+            .skip(skip).limit(20)
             .then(products => {
                 if(products.length == 0) {
                     return res.render('search', {
@@ -274,6 +278,7 @@ const CollectionController = {
                 
                 return res.render('search', {
                     title: 'Tìm sản phẩm',
+                    keyword,
                     data: data
                 })
             })
@@ -281,7 +286,7 @@ const CollectionController = {
     postFindProducts: (req, res, next) => {
         var { keyword } = req.body;
         if(keyword) {
-            return res.redirect(`/collections/search/${keyword}`);
+            return res.redirect(`/collections/search/?key=${keyword}`);
         }
 
         return res.redirect('/home');

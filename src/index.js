@@ -18,6 +18,8 @@ const cookieParser = require('cookie-parser')
 const flash = require('express-flash')
 const bodyParser = require('body-parser')
 const moment = require('moment');
+const firebase = require('./config/namthinh-69ec0-firebase-adminsdk-1de5t-82a7c4cd8a.json')
+
 
 app.engine('hbs', handlebars.engine({
     extname: 'hbs',
