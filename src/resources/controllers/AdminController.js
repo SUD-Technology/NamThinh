@@ -70,7 +70,7 @@ const AdminController = {
                 res.redirect('/admin/add-product')
             })
             .catch((err) => {
-                req.flash('error', 'Thêm sản phẩm thất bại')
+                req.flash('error', 'Thêm sản phẩm thất bại ' + err)
                 res.redirect('/admin/add-product')
             })
     },

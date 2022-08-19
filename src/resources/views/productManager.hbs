@@ -1,6 +1,222 @@
+<style>
+    .quantity {
+        position: relative;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    .quantity input {
+        width: 45px;
+        height: 42px;
+        line-height: 1.65;
+        float: left;
+        display: block;
+        padding: 0;
+        margin: 0;
+        padding-left: 20px;
+        border: none;
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
+        font-size: 1rem;
+        border-radius: 4px;
+    }
+
+    .quantity input:focus {
+        outline: 0;
+    }
+
+    .quantity-nav {
+        float: left;
+        position: relative;
+        height: 42px;
+    }
+
+    .quantity-button {
+        position: relative;
+        cursor: pointer;
+        border: none;
+        border-left: 1px solid rgba(0, 0, 0, 0.08);
+        width: 21px;
+        text-align: center;
+        color: #333;
+        font-size: 13px;
+        font-family: "FontAwesome" !important;
+        line-height: 1.5;
+        padding: 0;
+        background: #FAFAFA;
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+        user-select: none;
+    }
+
+    .quantity-button:active {
+        background: #EAEAEA;
+    }
+
+    .quantity-button.quantity-up {
+        position: absolute;
+        height: 50%;
+        top: 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        font-family: "FontAwesome";
+        border-radius: 0 4px 0 0;
+        line-height: 1.6
+    }
+
+    .quantity-button.quantity-down {
+        position: absolute;
+        bottom: 0;
+        height: 50%;
+        font-family: "FontAwesome";
+        border-radius: 0 0 4px 0;
+    }
+
+    .shopping-cart {
+        padding-bottom: 50px;
+    }
+
+    .shopping-cart.dark {
+        background-color: #f6f6f6;
+    }
+
+    .shopping-cart .content {
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.075);
+        background-color: white;
+    }
+
+    .shopping-cart .block-heading {
+        padding-top: 50px;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .shopping-cart .block-heading p {
+        text-align: center;
+        max-width: 420px;
+        margin: auto;
+        opacity: 0.7;
+    }
+
+    .shopping-cart .dark .block-heading p {
+        opacity: 0.8;
+    }
+
+    .shopping-cart .block-heading h1,
+    .shopping-cart .block-heading h2,
+    .shopping-cart .block-heading h3 {
+        margin-bottom: 1.2rem;
+        color: #3b99e0;
+    }
+
+    .shopping-cart .items {
+        margin: auto;
+    }
+
+    .shopping-cart .items .product {
+        margin-bottom: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .shopping-cart .items .product .info {
+        padding-top: 0px;
+        text-align: center;
+    }
+
+    .shopping-cart .items .product .info .product-name {
+        font-weight: 600;
+    }
+
+    .shopping-cart .items .product .info .product-name .product-info {
+        font-size: 14px;
+        margin-top: 15px;
+    }
+
+    .shopping-cart .items .product .info .product-name .product-info .value {
+        font-weight: 400;
+    }
+
+    .shopping-cart .items .product .info .quantity .quantity-input {
+        margin: auto;
+        width: 80px;
+    }
+
+    .shopping-cart .items .product .info .price {
+        margin-top: 15px;
+        font-weight: bold;
+        font-size: 22px;
+    }
+
+    .shopping-cart .summary {
+        border-top: 2px solid #5ea4f3;
+        background-color: #f7fbff;
+        height: 100%;
+        padding: 30px;
+    }
+
+    .shopping-cart .summary h3 {
+        text-align: center;
+        font-size: 1.3em;
+        font-weight: 600;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .shopping-cart .summary .summary-item:not(:last-of-type) {
+        padding-bottom: 10px;
+        padding-top: 10px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .shopping-cart .summary .text {
+        font-size: 1em;
+        font-weight: 600;
+    }
+
+    .shopping-cart .summary .price {
+        font-size: 1em;
+        float: right;
+    }
+
+    .shopping-cart .summary button {
+        margin-top: 20px;
+    }
+
+    @media (min-width: 768px) {
+        .shopping-cart .items .product .info {
+            padding-top: 25px;
+            text-align: left;
+        }
+
+        .shopping-cart .items .product .info .price {
+            font-weight: bold;
+            font-size: 22px;
+            top: 17px;
+        }
+
+        .shopping-cart .items .product .info .quantity {
+            text-align: center;
+        }
+
+        .shopping-cart .items .product .info .quantity .quantity-input {
+            padding: 4px 10px;
+            text-align: center;
+        }
+    }
+</style>
 {{!-- Body: start --}}
 <div class="container">
-
     <div class="product-manager-body">
         <form action="/admin/product-manager/" class="find-product-form">
             <div class="form-group">
@@ -54,11 +270,56 @@
                             class="form-control text-center"><i class="fas fa-undo"></i>Tạo lại</a>
                     </div>
                     <div class="col-md-2 mb-2">
-                        <button class="form-control">Tìm kiếm</button>
+                        <button class="form-control btn btn-success">Tìm kiếm</button>
+                    </div>
+                    <div class="col-md-2 mb-2">
+                        <button type="button" data-toggle="modal" data-target=".cart-modal" id="admin-cart"
+                            class="form-control btn btn-info">Giỏ hàng <span id="admin-np"
+                                class="badge badge-light"></span></button>
                     </div>
                 </div>
             </div>
         </form>
+        {{!-- Modal: start --}}
+        <div class="modal fade cart-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <section class="shopping-cart dark">
+                        <div class="container">
+                            <div class="block-heading">
+                                <h2>Giỏ Hàng</h2>
+                            </div>
+                            <div class="content">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-8">
+                                        <div id="cart-products" class="items">
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 col-lg-4">
+                                        <div class="summary">
+                                            <h3>Tổng giá</h3>
+                                            <div class="summary-item"><span class="text">Subtotal</span><span
+                                                    class="price">$360</span></div>
+                                            <div class="summary-item"><span class="text">Discount</span><span
+                                                    class="price">$0</span></div>
+                                            <div class="summary-item"><span class="text">Shipping</span><span
+                                                    class="price">$0</span></div>
+                                            <div class="summary-item"><span class="text">Total</span><span
+                                                    class="price">$360</span></div>
+                                            <button type="button" class="btn btn-success">Tạo đơn
+                                                hàng</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        {{!-- Modal: end --}}
 
         <div class="row m-0">
             <div class="col-md-4">
@@ -107,6 +368,9 @@
                     </ul>
                 </nav>
             </div>
+            <div id="alertAddToCart" class="col-md-8">
+
+            </div>
         </div>
 
         <table class="table table-hover table-bordered table-product">
@@ -119,6 +383,7 @@
                     <th scope="col">Mã</th>
                     <th scope="col">Giá</th>
                     <th scope="col">Tồn</th>
+                    <th scope="col"></th>
                     <th scope="col">Sửa</th>
                     <th scope="col">Xóa</th>
                 </tr>
@@ -140,7 +405,15 @@
                     <td>{{inventory}}</td>
                     <td>
                         <!-- Button trigger modal -->
-                        <a type="button" class="btn btn-warning w-100" href="/admin/updateProduct/{{id}}">
+                        Thêm vào giỏ
+                        <button type="button" class="btn btn-info"
+                            onclick="addToCart(`{{pid}}`, `{{pname}}`, `{{price}}`, `{{pimg}}`, `{{inventory}}`)">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <!-- Button trigger modal -->
+                        <a type="button" class="btn btn-warning w-100" href="/admin/updateProduct/{{pid}}">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>
@@ -203,10 +476,10 @@
 
     </div>
 
+
 </div>
 {{!-- Body: end --}}
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>99
 <script>
     const stt = document.querySelectorAll('.table-product tbody th')
     stt.forEach((item, index) => {
@@ -406,6 +679,147 @@
         }
         $(`select[name=lv3] option[value=${lv3}]`).attr('selected', 'selected')
     }
+
+
+    // Add product to cart: admin -- start
+    let cart = []
+    function addToCart(id, name, price, img, inventory) {
+        if (cart.some(item => item.id === id)) {
+            changeNumberOfUnit('plus', id)
+            alertAddProduct(name)
+        } else {
+            const product = {
+                id: id,
+                name: name,
+                price: price,
+                img: img,
+                inventory: inventory
+            }
+            cart.push({
+                ...product,
+                numberOfUnit: 1
+            })
+            alertAddProduct(name)
+        }
+        updateCart()
+    }
+
+    // alert message add product
+    function alertAddProduct(name) {
+        document.getElementById('alertAddToCart').innerHTML =
+            `<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Đã thêm <strong>${name}</strong> vào giỏ hàng
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>`
+    }
+
+    function updateCart() {
+        renderCartItem()
+        //renderSubtotal()
+    }
+
+
+    // render cart items
+    const cartItemsEl = document.getElementById('cart-products')
+    function renderCartItem() {
+        cartItemsEl.innerHTML = ``;
+        cart.forEach(item => {
+            cartItemsEl.innerHTML += `<div class="product">
+                                                <div class="row">
+                                                    <div class="col-md-3 mt-auto mb-auto">
+                                                        <img class="img-fluid mx-auto d-block image"
+                                                            src="${item.img}">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="info">
+                                                            <div class="row">
+                                                                <div class="col-md-5 product-name">
+                                                                    <div class="product-name">
+                                                                        <a href="#">${item.name}</a>
+                                                                        <div class="product-info">
+                                                                            <div>Display: <span class="value">5
+                                                                                    inch</span></div>
+                                                                            <div>RAM: <span class="value">4GB</span>
+                                                                            </div>
+                                                                            <div>Memory: <span class="value">32GB</span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4 quantity">
+                                                                    <label for="${item.id}">Số lượng:</label>
+                                                                    <input  id="${item.id}" type="number" value="${item.numberOfUnit}"
+                                                                        class="form-control quantity-input">
+                                                                </div>
+                                                                <div class="col-md-3 price">
+                                                                    <span>${item.price}</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>`
+        })
+    }
+
+    // Change input
+    $(document).ready(function () {
+        jQuery('<div class="quantity-nav"><button class="quantity-button quantity-up">&#xf106;</button><button class="quantity-button quantity-down">&#xf107</button></div>').insertAfter('.quantity input');
+        jQuery('.quantity').each(function () {
+            var spinner = jQuery(this),
+                input = spinner.find('input[type="number"]'),
+                btnUp = spinner.find('.quantity-up'),
+                btnDown = spinner.find('.quantity-down'),
+                min = input.attr('min'),
+                max = input.attr('max');
+
+            btnUp.click(function () {
+                var oldValue = parseFloat(input.val());
+                if (oldValue >= max) {
+                    var newVal = oldValue;
+                } else {
+                    var newVal = oldValue + 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
+            });
+
+            btnDown.click(function () {
+                var oldValue = parseFloat(input.val());
+                if (oldValue <= min) {
+                    var newVal = oldValue;
+                } else {
+                    var newVal = oldValue - 1;
+                }
+                spinner.find("input").val(newVal);
+                spinner.find("input").trigger("change");
+            });
+
+        });
+    });
+
+
+    // Change number of unit
+    function changeNumberOfUnit(action, id) {
+        cart = cart.map(item => {
+            let numberOfUnit = item.numberOfUnit
+            if (item.id === id) {
+                if (action == 'minus' && numberOfUnit > 1) {
+                    numberOfUnit--
+                } else if (action == 'plus' && numberOfUnit < item.inventory) {
+                    numberOfUnit++
+                }
+            }
+            return {
+                ...item,
+                numberOfUnit: numberOfUnit
+            }
+        })
+        updateCart()
+    }
+    // Add product to cart: admin -- end
 
 
 
