@@ -70,7 +70,7 @@ const AdminController = {
                 res.redirect('/admin/add-product')
             })
             .catch((err) => {
-                req.flash('error', 'Thêm sản phẩm thất bại')
+                req.flash('error', 'Thêm sản phẩm thất bại ' + err)
                 res.redirect('/admin/add-product')
             })
     },
@@ -147,6 +147,7 @@ const AdminController = {
                     let origins = []
                     products.forEach(product => {
                         const current_product = {
+                            id: product._id,
                             pname: product.product_name,
                             pimg: product.product_img[0],
                             pid: product.product_id,
@@ -720,7 +721,7 @@ const AdminController = {
         const id = req.params.id
         return Discounts.findByIdAndDelete(id)
             .then((dis) => {
-                fs.unlink(`src/public/${dis.image}`, (err) => {
+                fs.unlink(`source/src/public/${dis.image}`, (err) => {
                     if (!err) {
                         req.flash('success', "Xóa chương trình khuyến mãi thành công")
                         res.redirect('/admin/listDiscounts')
@@ -739,7 +740,7 @@ const AdminController = {
         const id = req.params.id
         return Services.findByIdAndDelete(id)
             .then((service) => {
-                fs.unlink(`src/public/${service.image}`, (err) => {
+                fs.unlink(`source/src/public/${service.image}`, (err) => {
                     if (!err) {
                         req.flash('success', "Xóa dịch vụ thành công")
                         res.redirect('/admin/listServices')
@@ -758,7 +759,7 @@ const AdminController = {
         const id = req.params.id
         return Posts.findByIdAndDelete(id)
             .then((post) => {
-                fs.unlink(`src/public/${post.image}`, (err) => {
+                fs.unlink(`source/src/public/${post.image}`, (err) => {
                     if (!err) {
                         req.flash('success', "Xóa bài viết thành công")
                         res.redirect('/admin/listNews')
@@ -861,7 +862,41 @@ const AdminController = {
         return res.redirect('/admin/add-about')
     },
     getUpdateProduct: (req, res, next) => {
-
+        const error = req.flash('error')
+        const success = req.flash('success')
+        const id = req.params.id
+        return Products.findById(id)
+            .then(product => {
+                const classes = `${product.classes.lv1}${product.classes.lv2}${product.classes.lv3}`;
+                const data = {
+                    name: product.product_name,
+                    pid: product.product_id,
+                    id: id,
+                    desc: product.description,
+                    brand: product.brand_name,
+                    image: product.product_img,
+                    model: product.product_model,
+                    origin: product.product_origin,
+                    price: product.price,
+                    showPrice: product.showPrice || '',
+                    amount: product.amount,
+                    inventory: product.inventory,
+                    size: product.size,
+                    classes: classes
+                }
+                return res.render('updateProduct', {
+                    data: data,
+                    position: req.session.position,
+                    layout: 'admin',
+                    pageName: 'Chỉnh sửa thông tin sản phẩm',
+                    error,
+                    success,
+                    action: "/admin/updateProductById"
+                })
+            })
+            .catch(err => {
+                res.json({ err: err })
+            })
     },
     getUpdateDiscount: (req, res, next) => {
         const error = req.flash('error')
@@ -883,6 +918,7 @@ const AdminController = {
                     pageName: 'Chỉnh sửa thông tin khuyến mãi',
                     error,
                     success,
+                    prev: '/admin/listDiscounts',
                     action: "/admin/updateDiscountById"
                 })
             })
@@ -910,6 +946,7 @@ const AdminController = {
                     pageName: 'Chỉnh sửa thông tin bải viết',
                     error,
                     success,
+                    prev: '/admin/listNews',
                     action: "/admin/updateNewsById"
                 })
             })
@@ -937,6 +974,7 @@ const AdminController = {
                     pageName: 'Chỉnh sửa thông tin dịch vụ',
                     error,
                     success,
+                    prev: '/admin/listServices',
                     action: "/admin/updateServiceById"
                 })
             })
@@ -945,8 +983,65 @@ const AdminController = {
             })
     },
     postUpdateProduct: (req, res, next) => {
-        const id = req.params.id;
-        const { product_id, product_name, product_model, product_categories, product_branch, product_origin, product_description, product_amount } = req.body
+        const { id, product_id, product_name, image, size, product_model, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
+        const listOldImages = image.split(',')
+        let listImages = listOldImages
+        if (req.files.length != 0) {
+            listImages = []
+            const file = req.files
+            listOldImages.forEach(item => {
+                fs.unlink(`source/src/public/${item}`, err => {
+                    if (err) {
+                        req.flash('error', 'Cập nhận thông tin sản phẩm thất bại')
+                        return res.redirect(`/admin/updateProduct/${id}`)
+                    }
+                })
+            })
+            file.map(f => {
+                let url = "/uploads/" + f.filename
+                listImages.push(url)
+            })
+        }
+        const classes = {
+            lv1: Number(product_categories[0]),
+            lv2: Number(product_categories[1]),
+            lv3: Number(product_categories[2])
+        }
+        const slug = slugify(product_name + ' ' + product_id, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+        const product = {
+            product_id: product_id,
+            product_name: product_name,
+            product_img: listImages,
+            description: product_description,
+            product_model: product_model,
+            product_origin: product_origin,
+            brand_name: product_branch,
+            amount: product_amount,
+            inventory: product_amount,
+            price: price,
+            size: size,
+            showPrice: showPrice || '',
+            classes: classes,
+            slug: slug
+        }
+        // res.json({ data: product })
+        Products.findByIdAndUpdate(id, product, (err, doc) => {
+            if (!err) {
+                req.flash('success', 'Cập nhận thông tin sản phẩm thành công')
+                res.redirect(`/admin/updateProduct/${id}`)
+            } else {
+                req.flash('error', 'Cập nhận thông tin sản phẩm thất bại ' + err)
+                res.redirect(`/admin/updateProduct/${id}`)
+            }
+        })
+
     },
     postUpdateDiscount: (req, res, next) => {
         const { title, subtitle, content, old_image, id } = req.body
@@ -954,9 +1049,9 @@ const AdminController = {
         if (req.file) {
             const file = req.file;
             imagePath = "/uploads/" + file.filename;
-            fs.unlink(`src/public/${old_image}`, err => {
+            fs.unlink(`source/src/public/${old_image}`, err => {
                 if (err) {
-                    req.flash('error', "Cập nhật khuyến mãi thất bại")
+                    req.flash('error', "Cập nhật khuyến mãi thất bại " + err)
                     res.redirect(`/admin/updateDiscount/${id}`)
                 }
             })
@@ -992,7 +1087,7 @@ const AdminController = {
         if (req.file) {
             const file = req.file;
             imagePath = "/uploads/" + file.filename;
-            fs.unlink(`src/public/${old_image}`, err => {
+            fs.unlink(`source/src/public/${old_image}`, err => {
                 if (err) {
                     req.flash('error', "Cập nhật bài viết thất bại")
                     res.redirect(`/admin/updateNews/${id}`)
@@ -1030,7 +1125,7 @@ const AdminController = {
         if (req.file) {
             const file = req.file;
             imagePath = "/uploads/" + file.filename;
-            fs.unlink(`src/public/${old_image}`, err => {
+            fs.unlink(`source/src/public/${old_image}`, err => {
                 if (err) {
                     req.flash('error', "Cập nhật dịch vụ thất bại")
                     res.redirect(`/admin/updateService/${id}`)

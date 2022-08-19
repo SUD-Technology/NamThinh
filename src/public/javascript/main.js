@@ -239,7 +239,7 @@ $(document).ready(function () {
           </div>`
             if (url != '') {
                 $(`#${id}`).children().children('.product-main').html(loader)
-                setTimeout(() => { 
+                setTimeout(() => {
                     $.ajax({
                         url: url,
                         success: (data) => {
@@ -247,7 +247,7 @@ $(document).ready(function () {
                         }
                     })
                 }, 1500)
-                
+
             }
         })
     }
@@ -287,6 +287,9 @@ $(document).ready(function () {
 
 
 
+
+
+
     $('.scroll-to-top').click(function () {
         $('html, body').animate({ scrollTop: 0 }, 'fast');
     })
@@ -314,6 +317,8 @@ $(document).ready(function () {
             scrollBtn.style.opacity = "0";
         }
     }
+
+
 
 });
 
