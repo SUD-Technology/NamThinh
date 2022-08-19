@@ -29,7 +29,8 @@ router.get('/customer-info', checkLogin, authPage(["admin", "sale"]), AdminContr
 // Add Product
 router.get('/add-product', checkLogin, authPage(["admin", "accountant"]), AdminController.getAddProduct)
 router.post('/add-product', store.array('product-image', 12), AdminController.addProduct)
-
+router.get('/updateProduct/:id', AdminController.getUpdateProduct)
+router.post('/updateProductById', store.array('update-image', 12), AdminController.postUpdateProduct)
 // Delete Product
 router.get('/delete/:id', checkLogin, authPage(["admin", "accountant"]), AdminController.deleteProduct)
 

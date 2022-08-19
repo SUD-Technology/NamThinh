@@ -4,6 +4,10 @@
     <div class="addProduct-header">
 
         <div class="row">
+            <div class="col-md-4">
+                <button onclick="location.href='/admin/product-manager'" class="btn btn-success"><i
+                        class="fas fa-long-arrow-alt-left"></i> Trở về kho</button>
+            </div>
             <div class="col-md-4 ml-auto">
                 {{#if success}}
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -22,17 +26,18 @@
                 </div>
                 {{/if}}
             </div>
+
         </div>
     </div>
     <div class="addProduct-body">
 
-        <form class="form-horizontal" enctype="multipart/form-data" method="post">
+        <form action="{{action}}" class="form-horizontal" enctype="multipart/form-data" method="post">
             <fieldset>
                 <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="product_id">MÃ SẢN PHẨM</label>
                     <div class="col-md-10">
-                        <input value="{{pid}}" id="product_id" name="product_id" placeholder="Mã sản phẩm"
+                        <input value="{{data.pid}}" id="product_id" name="product_id" placeholder="Mã sản phẩm"
                             class="form-control input-md" required="" type="text">
                     </div>
                 </div>
@@ -41,7 +46,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="product_name">TÊN SẢN PHẨM</label>
                     <div class="col-md-10">
-                        <input value="{{pname}}" id="product_name" name="product_name" placeholder="Tên sản phẩm"
+                        <input value="{{data.name}}" id="product_name" name="product_name" placeholder="Tên sản phẩm"
                             class="form-control input-md" required="" type="text">
 
                     </div>
@@ -51,7 +56,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="product_model">MODEL</label>
                     <div class="col-md-10">
-                        <input value="{{pid}}" id="product_model" name="product_model" placeholder="Model"
+                        <input value="{{data.model}}" id="product_model" name="product_model" placeholder="Model"
                             class="form-control input-md" required="" type="text">
 
                     </div>
@@ -107,8 +112,8 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="product_branch">THƯƠNG HIỆU</label>
                     <div class="col-md-10">
-                        <input value="{{pid}}" id="product_branch" name="product_branch" placeholder="Thương hiệu"
-                            class="form-control input-md" required="" type="text">
+                        <input value="{{data.brand}}" id="product_branch" name="product_branch"
+                            placeholder="Thương hiệu" class="form-control input-md" required="" type="text">
                     </div>
                 </div>
 
@@ -116,7 +121,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="product_origin">Xuất sứ</label>
                     <div class="col-md-10">
-                        <input value="{{pid}}" id="product_origin" name="product_origin" placeholder="Xuất sứ"
+                        <input value="{{data.origin}}" id="product_origin" name="product_origin" placeholder="Xuất sứ"
                             class="form-control input-md" required="" type="text">
                     </div>
                 </div>
@@ -125,11 +130,11 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="price">Giá</label>
                     <div class="col-md-10">
-                        <input value="{{pid}}" id="price" required="" name="price" placeholder="Giá"
+                        <input value="{{data.price}}" id="price" required="" name="price" placeholder="Giá"
                             class="form-control input-md" type="number">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" name="showPrice" value="1" class="custom-control-input"
-                                id="showPrice">
+                            <input {{#if data.showPrice}} checked {{/if}} type="checkbox" name="showPrice" value="1"
+                                class="custom-control-input" id="showPrice">
                             <label class="custom-control-label" for="showPrice">Hiển thị giá bán</label>
                         </div>
                     </div>
@@ -140,8 +145,8 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="product_amount">Số lượng</label>
                     <div class="col-md-10">
-                        <input value="{{pid}}" id="product_amount" name="product_amount" placeholder="Số lượng"
-                            class="form-control input-md" required="" type="number">
+                        <input value="{{data.inventory}}" id="product_amount" name="product_amount"
+                            placeholder="Số lượng" class="form-control input-md" required="" type="number">
                     </div>
                 </div>
 
@@ -149,7 +154,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="size">Kích thước</label>
                     <div class="col-md-10">
-                        <input value="{{pid}}" id="size" name="size" placeholder="Kích thước"
+                        <input value="{{data.size}}" id="size" name="size" placeholder="Kích thước"
                             class="form-control input-md" type="text">
                     </div>
                 </div>
@@ -159,15 +164,21 @@
                     <label class="col-md-2 control-label" for="product-image">HÌNH ẢNH SẢN PHẨM</label>
                     <div class="col-md-10">
                         <div class="form-group-container">
-                            <input id="product-image" accept="image/*" required="" name="product-image"
-                                class="form-control input-md" onchange="preview()" type="file" multiple>
+                            <input class="d-none" type="text" value="{{data.id}}" name="id">
+                            <input class="d-none" type="text" value="{{data.image}}" name="image">
+                            <input id="product-image" accept="image/*" name="update-image" class="form-control input-md"
+                                onchange="preview()" type="file" multiple>
                             <label for="product-image">
                                 <i class="fas fa-upload"></i>
                                 Chọn ảnh sản phẩm &nbsp;
                             </label>
-                            <p id="num-of-file">Chưa có ảnh nào được chọn</p>
+                            <p id="num-of-file">Chưa có ảnh mới nào được chọn</p>
                             <div id="images-upload">
-
+                                {{#each data.image}}
+                                <figure>
+                                    <img src="{{this}}" alt="">
+                                </figure>
+                                {{/each}}
                             </div>
                         </div>
 
@@ -177,7 +188,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="product_description">MÔ TẢ THÔNG TIN SẢN PHẨM</label>
                     <div class="col-md-10">
-                        <textarea id="product_description" name="product_description"></textarea>
+                        <textarea id="product_description" name="product_description">{{data.desc}}</textarea>
                     </div>
                 </div>
 
@@ -204,7 +215,14 @@
     let fileInput = document.getElementById("product-image")
     let imageContainer = document.getElementById('images-upload')
     let numOfFiles = document.getElementById('num-of-file')
+    let product_level = {{ data.classes }}
+    const listProductCategories = document.querySelectorAll('#product_categories option')
+    listProductCategories.forEach(item => {
+        if (item.value == product_level)
+            item.setAttribute('selected', 'selected')
+    })
 
+    // preview upload image
     function preview() {
         imageContainer.innerHTML = ""
         numOfFiles.textContent = `${fileInput.files.length} ảnh đã được chọn`;
