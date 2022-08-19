@@ -200,10 +200,12 @@ const CollectionController = {
                 src: menuItems[keys[0]].src
             }
             submenu = submenu[keys[1]].role;
-            Products.find({}).skip(skip * (page - 1)).limit(skip)
+            Products.find({})
+                .select({product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1})    
                 .where('classes.lv1').equals(keys[0] + 1)
                 .where('classes.lv2').equals(keys[1] + 1)
                 .where('classes.lv3').equals(keys[2] + 1)
+                .skip(skip * (page - 1)).limit(skip)
                 .then(products => {
                     return handleProducts(req, res, view, level1, submenu, title, products, slug);
                 })
@@ -220,9 +222,11 @@ const CollectionController = {
                 title: menuItems[keys[0]].title,
                 src: menuItems[keys[0]].src
             }
-            Products.find({}).skip(skip * (page - 1)).limit(skip)
+            Products.find({})
+                .select({product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1})
                 .where('classes.lv1').equals(keys[0] + 1)
                 .where('classes.lv2').equals(keys[1] + 1)
+                .skip(skip * (page - 1)).limit(skip)
                 .then(products => {
                     return handleProducts(req, res, view, level1, submenu, title, products, slug);
                 })
@@ -240,8 +244,11 @@ const CollectionController = {
                 title: menuItems[keys[0]].title,
                 src: menuItems[keys[0]].src
             }           
-            Products.find({}).skip(skip * (page - 1)).limit(skip)
+            Products.find({})
+                .select({product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1})
                 .where('classes.lv1').equals(keys[0] + 1)
+                .skip(skip * (page - 1))
+                .limit(skip)
                 .then(products => {
                     return handleProducts(req, res, view, level1, submenu, title, products, slug);
                 })
@@ -256,6 +263,7 @@ const CollectionController = {
         let skip = 20 * (page - 1);
         
         Products.find({product_name: {$regex: keyword, $options: 'i'} })
+            .select({product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1})
             .skip(skip).limit(20)
             .then(products => {
                 if(products.length == 0) {
@@ -315,7 +323,6 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
             pid: product.product_id,
             brand: product.brand_name,
             pslug: product.slug,
-            description: product.description,
             price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
         }
     })

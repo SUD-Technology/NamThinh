@@ -26,7 +26,7 @@
             <div class="carousel-inner">
                 {{#if topnews1}}
                 <div class="carousel-item active">
-                    <img style="max-height: 350px;" class="d-block w-100" src="{{topnews1.image}}" alt="First slide">
+                    <img style="height: 350px;" class="d-block w-100" src="{{topnews1.image}}" alt="First slide">
                     <div style="background-color: rgba(0, 0, 0, 0.45)" class="carousel-caption d-none d-md-block">
                         <h5>{{topnews1.title}}</h5>
                         <span>{{topnews1.createdAt}}</span>
@@ -35,7 +35,7 @@
                 {{/if}}
                 {{#if topnews2}}
                 <div class="carousel-item">
-                    <img style="max-height: 350px;" class="d-block w-100" src="{{topnews2.image}}" alt="Second slide">
+                    <img style="height: 350px;" class="d-block w-100" src="{{topnews2.image}}" alt="Second slide">
                     <div style="background-color: rgba(0, 0, 0, 0.45)" class="carousel-caption d-none d-md-block">
                         <h5>{{topnews2.title}}</h5>
                         <span>{{topnews2.createdAt}}</span>
@@ -44,7 +44,7 @@
                 {{/if}}
                 {{#if topnews3}}
                 <div class="carousel-item">
-                    <img style="max-height: 350px;" class="d-block w-100" src="{{topnews3.image}}" alt="Second slide">
+                    <img style="height: 350px;" class="d-block w-100" src="{{topnews3.image}}" alt="Second slide">
                     <div style="background-color: rgba(0, 0, 0, 0.45)" class="carousel-caption d-none d-md-block">
                         <h5>{{topnews3.title}}</h5>
                         <span>{{topnews3.createdAt}}</span>
@@ -68,14 +68,14 @@
         <div class="row news-box">
             {{#if topnews1}}
             <div class="news-img-box col-md-4 px-3">
-                <a href="">
+                <a href="/news/{{topnews1.slug}}">
                     <img width="100%" src="{{topnews1.image}}" alt="">
                 </a>
             </div>
             <div class="news-content-box col-md-8 px-0">
                 {{!-- <span style="bottom: 0; left: 0; top: 75%" class="ico-product ico-new"> Mới</span> --}}
 
-                <a data-target="#carouselExampleIndicators" data-slide-to="0" class="active" href="">
+                <a data-target="#carouselExampleIndicators" data-slide-to="0" class="active" href="/news/{{topnews1.slug}}">
                     <h5 class="py-2">{{topnews1.title}}</h5>
                 </a>
                 <span><strong>{{topnews1.createdAt}}</strong></span>
@@ -84,13 +84,13 @@
             {{/if}}
             {{#if topnews2}}
             <div class="news-img-box col-md-4 px-3 mt-2">
-                <a href="">
+                <a href="/news/{{topnews2.slug}}">
                     <img width="100%" src="{{topnews2.image}}" alt="">
                 </a>
             </div>
             <div class="news-content-box col-md-8 px-0">
                 {{!-- <span style="bottom: 0; left: 0; top: 75%" class="ico-product ico-new"> Mới</span> --}}
-                <a data-target="#carouselExampleIndicators" data-slide-to="1" href="">
+                <a data-target="#carouselExampleIndicators" data-slide-to="1" href="/news/{{topnews2.slug}}">
 
                     <h5 class="py-2">{{topnews2.title}}</h5>
                 </a>
@@ -100,14 +100,14 @@
             {{/if}}
             {{#if topnews3}}
             <div class="news-img-box col-md-4 px-3 mt-2">
-                <a href="">
+                <a href="/news/{{topnews3.slug}}">
 
                     <img width="100%" src="{{topnews3.image}}" alt="">
                 </a>
             </div>
             <div class="news-content-box col-md-8 px-0">
                 {{!-- <span style="bottom: 0; left: 0; top: 75%" class="ico-product ico-new"> Mới</span> --}}
-                <a data-target="#carouselExampleIndicators" data-slide-to="2" class="active" href="">
+                <a data-target="#carouselExampleIndicators" data-slide-to="2" class="active" href="/news/{{topnews3.slug}}">
                     <h5 class="py-2">{{topnews3.title}}</h5>
                 </a>
                 <span><strong>{{topnews3.createdAt}}</strong></span>
@@ -120,20 +120,46 @@
 </div>
 
 
-<div id="tire-products" class="classify-products fadeUp">
+<div class="classify-products fadeUp">
 
     <div class="row product-list data-metatip=" true"">
         <div class="row pagi">
-            <span class="sub-title">Tin tức Nam
+            <span style="line-height: 46px;" class="sub-title">Tin tức Nam
                 Thịnh</span>
             <img class="bgc-title" src="/img/title.png" alt="">
 
 
         </div>
-        {{#each posts}}
+        {{#each NT}}
         <div class="col-md-6 px-0 mb-2">
             <div onclick='window.location.href="/news/{{slug}}"' class="card flex-row"><img
-                    class="card-img-left example-card-img-responsive" style="min-width:284px; height:185px"
+                    class="card-img-left example-card-img-responsive" style="width: 50%; height:185px"
+                    src="{{image}}" />
+                <div style="background-color: white;" class="captions">
+                    <a href="/news/{{slug}}">
+                        <h5 class="card-title h5 h5-sm">{{title}}</h5>
+                    </a>
+                    <p class="card-text">{{subtitle}}</p>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+
+<div class="classify-products fadeUp">
+
+    <div class="row product-list data-metatip=" true"">
+        <div class="row pagi">
+            <span style="line-height: 46px;" class="sub-title">Tin tức thị trường</span>
+            <img class="bgc-title" src="/img/title.png" alt="">
+
+
+        </div>
+        {{#each TT}}
+        <div class="col-md-6 px-0 mb-2">
+            <div onclick='window.location.href="/news/{{slug}}"' class="card flex-row"><img
+                    class="card-img-left example-card-img-responsive" style="width:50%; height:185px"
                     src="{{image}}" />
                 <div style="background-color: white;" class="captions">
                     <a href="/news/{{slug}}">
