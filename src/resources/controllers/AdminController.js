@@ -721,7 +721,7 @@ const AdminController = {
         const id = req.params.id
         return Discounts.findByIdAndDelete(id)
             .then((dis) => {
-                fs.unlink(`src/public/${dis.image}`, (err) => {
+                fs.unlink(`source/src/public/${dis.image}`, (err) => {
                     if (!err) {
                         req.flash('success', "Xóa chương trình khuyến mãi thành công")
                         res.redirect('/admin/listDiscounts')
@@ -740,7 +740,7 @@ const AdminController = {
         const id = req.params.id
         return Services.findByIdAndDelete(id)
             .then((service) => {
-                fs.unlink(`src/public/${service.image}`, (err) => {
+                fs.unlink(`source/src/public/${service.image}`, (err) => {
                     if (!err) {
                         req.flash('success', "Xóa dịch vụ thành công")
                         res.redirect('/admin/listServices')
@@ -759,7 +759,7 @@ const AdminController = {
         const id = req.params.id
         return Posts.findByIdAndDelete(id)
             .then((post) => {
-                fs.unlink(`src/public/${post.image}`, (err) => {
+                fs.unlink(`source/src/public/${post.image}`, (err) => {
                     if (!err) {
                         req.flash('success', "Xóa bài viết thành công")
                         res.redirect('/admin/listNews')
@@ -990,7 +990,7 @@ const AdminController = {
             listImages = []
             const file = req.files
             listOldImages.forEach(item => {
-                fs.unlink(`src/public/${item}`, err => {
+                fs.unlink(`source/src/public/${item}`, err => {
                     if (err) {
                         req.flash('error', 'Cập nhận thông tin sản phẩm thất bại')
                         return res.redirect(`/admin/updateProduct/${id}`)
@@ -1049,7 +1049,7 @@ const AdminController = {
         if (req.file) {
             const file = req.file;
             imagePath = "/uploads/" + file.filename;
-            fs.unlink(`src/public/${old_image}`, err => {
+            fs.unlink(`source/src/public/${old_image}`, err => {
                 if (err) {
                     req.flash('error', "Cập nhật khuyến mãi thất bại " + err)
                     res.redirect(`/admin/updateDiscount/${id}`)
@@ -1087,7 +1087,7 @@ const AdminController = {
         if (req.file) {
             const file = req.file;
             imagePath = "/uploads/" + file.filename;
-            fs.unlink(`src/public/${old_image}`, err => {
+            fs.unlink(`source/src/public/${old_image}`, err => {
                 if (err) {
                     req.flash('error', "Cập nhật bài viết thất bại")
                     res.redirect(`/admin/updateNews/${id}`)
@@ -1125,7 +1125,7 @@ const AdminController = {
         if (req.file) {
             const file = req.file;
             imagePath = "/uploads/" + file.filename;
-            fs.unlink(`src/public/${old_image}`, err => {
+            fs.unlink(`source/src/public/${old_image}`, err => {
                 if (err) {
                     req.flash('error', "Cập nhật dịch vụ thất bại")
                     res.redirect(`/admin/updateService/${id}`)
