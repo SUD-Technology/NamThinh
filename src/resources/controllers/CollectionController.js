@@ -262,7 +262,8 @@ const CollectionController = {
         const page = parseInt(req.query.page) || 1;
         let skip = 20 * (page - 1);
         
-        Products.find({product_name: {$regex: keyword, $options: 'i'} })
+        Products
+            .find({'$or': [{product_name: {$regex: keyword, $options: 'i'}},{product_model: {$regex: keyword, $options: 'i'} }]})
             .select({product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1})
             .skip(skip).limit(20)
             .then(products => {
