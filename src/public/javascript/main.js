@@ -11,7 +11,8 @@ $(document).ready(function () {
         $(`#${nav}`).addClass('current');
     }
 
-    
+    $('.owl-nav').hide()
+    $('.owl-dots').hide()
 
 
     var old_img = '';
@@ -323,6 +324,12 @@ $(document).ready(function () {
 
 
 });
+
+// $('.items-price').hover(function() {
+//     $(this).text('Thêm vào giỏ')
+// }, function() {
+//     $(this).text('Liên hệ')
+// })
 
 
 
