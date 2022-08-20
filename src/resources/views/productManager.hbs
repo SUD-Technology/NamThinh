@@ -1,86 +1,42 @@
 <style>
-    .quantity {
-        position: relative;
+    /* unit price */
+    .cart-item .unit-price {
+        flex: 1;
+        font-size: 1.2rem;
     }
 
-    input[type=number]::-webkit-inner-spin-button,
-    input[type=number]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
+    /* units */
+    .cart-item .units {
+        flex: 1;
     }
 
-    input[type=number] {
-        -moz-appearance: textfield;
+    .cart-item .units .number {
+        margin: 0 10px;
+
+        font-size: 1.2rem;
     }
 
-    .quantity input {
-        width: 45px;
-        height: 42px;
-        line-height: 1.65;
-        float: left;
-        display: block;
-        padding: 0;
-        margin: 0;
-        padding-left: 20px;
-        border: none;
-        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08);
-        font-size: 1rem;
-        border-radius: 4px;
-    }
+    .cart-item .units .btn {
+        width: 20px;
+        height: 20px;
 
-    .quantity input:focus {
-        outline: 0;
-    }
+        background-color: rgb(242, 255, 58);
 
-    .quantity-nav {
-        float: left;
-        position: relative;
-        height: 42px;
-    }
+        border-radius: 50%;
 
-    .quantity-button {
-        position: relative;
+        font-weight: bold;
+
         cursor: pointer;
-        border: none;
-        border-left: 1px solid rgba(0, 0, 0, 0.08);
-        width: 21px;
-        text-align: center;
-        color: #333;
-        font-size: 13px;
-        font-family: "FontAwesome" !important;
-        line-height: 1.5;
-        padding: 0;
-        background: #FAFAFA;
-        -webkit-transform: translateX(-100%);
-        transform: translateX(-100%);
+
         -webkit-user-select: none;
+        /* Chrome all / Safari all */
         -moz-user-select: none;
+        /* Firefox all */
         -ms-user-select: none;
-        -o-user-select: none;
-        user-select: none;
+        /* IE 10+ */
     }
 
-    .quantity-button:active {
-        background: #EAEAEA;
-    }
-
-    .quantity-button.quantity-up {
-        position: absolute;
-        height: 50%;
-        top: 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-        font-family: "FontAwesome";
-        border-radius: 0 4px 0 0;
-        line-height: 1.6
-    }
-
-    .quantity-button.quantity-down {
-        position: absolute;
-        bottom: 0;
-        height: 50%;
-        font-family: "FontAwesome";
-        border-radius: 0 0 4px 0;
-    }
+    /* cart */
 
     .shopping-cart {
         padding-bottom: 50px;
@@ -300,15 +256,12 @@
                                     <div class="col-md-12 col-lg-4">
                                         <div class="summary">
                                             <h3>Tổng giá</h3>
-                                            <div class="summary-item"><span class="text">Subtotal</span><span
-                                                    class="price">$360</span></div>
-                                            <div class="summary-item"><span class="text">Discount</span><span
-                                                    class="price">$0</span></div>
-                                            <div class="summary-item"><span class="text">Shipping</span><span
-                                                    class="price">$0</span></div>
-                                            <div class="summary-item"><span class="text">Total</span><span
-                                                    class="price">$360</span></div>
-                                            <button type="button" class="btn btn-success">Tạo đơn
+                                            <div id="subtotal" class="summary-item"></div>
+                                            <div class="summary-item"><span class="text">Khuyến
+                                                    mãi</span><span id="discount-price" class="price"></span></div>
+                                            <div id="total-price" class="summary-item"></div>
+                                            <button type="button" onclick="createOrder()" id="create-order"
+                                                class="btn btn-success">Tạo đơn
                                                 hàng</button>
                                         </div>
                                     </div>
@@ -407,7 +360,7 @@
                         <!-- Button trigger modal -->
                         Thêm vào giỏ
                         <button type="button" class="btn btn-info"
-                            onclick="addToCart(`{{pid}}`, `{{pname}}`, `{{price}}`, `{{pimg}}`, `{{inventory}}`)">
+                            onclick="addToCart(`{{pid}}`, `{{pname}}`, `{{numPrice}}`, `{{pimg}}`, `{{inventory}}`, `{{model}}`)">
                             <i class="fas fa-plus"></i>
                         </button>
                     </td>
@@ -477,9 +430,10 @@
     </div>
 
 
+
 </div>
 {{!-- Body: end --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>99
+
 <script>
     const stt = document.querySelectorAll('.table-product tbody th')
     stt.forEach((item, index) => {
@@ -682,8 +636,9 @@
 
 
     // Add product to cart: admin -- start
+
     let cart = []
-    function addToCart(id, name, price, img, inventory) {
+    function addToCart(id, name, price, img, inventory, model) {
         if (cart.some(item => item.id === id)) {
             changeNumberOfUnit('plus', id)
             alertAddProduct(name)
@@ -692,8 +647,10 @@
                 id: id,
                 name: name,
                 price: price,
+                stringPrice: Number(price).toLocaleString('vi', { style: 'currency', currency: 'VND' }),
                 img: img,
-                inventory: inventory
+                inventory: inventory,
+                model: model
             }
             cart.push({
                 ...product,
@@ -717,12 +674,13 @@
 
     function updateCart() {
         renderCartItem()
-        //renderSubtotal()
+        renderSubtotal()
     }
 
 
     // render cart items
     const cartItemsEl = document.getElementById('cart-products')
+    const totalPrice = document.getElementById('total-price')
     function renderCartItem() {
         cartItemsEl.innerHTML = ``;
         cart.forEach(item => {
@@ -739,66 +697,74 @@
                                                                     <div class="product-name">
                                                                         <a href="#">${item.name}</a>
                                                                         <div class="product-info">
-                                                                            <div>Display: <span class="value">5
-                                                                                    inch</span></div>
-                                                                            <div>RAM: <span class="value">4GB</span>
-                                                                            </div>
-                                                                            <div>Memory: <span class="value">32GB</span>
-                                                                            </div>
+                                                                            <div>Model: <span class="value">${item.model}</span></div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-4 quantity">
                                                                     <label for="${item.id}">Số lượng:</label>
-                                                                    <input  id="${item.id}" type="number" value="${item.numberOfUnit}"
-                                                                        class="form-control quantity-input">
+                                                                    <input class="form-control quantity-input d-none">
+                                                                    <div class="units">
+                                                                        <div class="btn minus" onclick="changeNumberOfUnit('minus', '${item.id}')">-</div>
+                                                                        <div class="number">${item.numberOfUnit}</div>
+                                                                        <div class="btn plus" onclick="changeNumberOfUnit('plus', '${item.id}')">+</div>           
+                                                                    </div>
+                                                                    
                                                                 </div>
                                                                 <div class="col-md-3 price">
-                                                                    <span>${item.price}</span>
+                                                                    <span>${item.stringPrice}</span>
                                                                 </div>
+                                                                
                                                             </div>
                                                         </div>
+                                                    </div>
+                                                    <div class="col-md-1 mt-auto mb-auto">
+                                                        <button style="border: 0; color: red;" class="" onclick="deleteItem('${item.id}')"><i class="fas fa-trash"></i></button>
                                                     </div>
                                                 </div>
                                             </div>`
         })
     }
-
+    function renderSubtotal() {
+        let total = 0, totalItems = 0;
+        cart.forEach(item => {
+            total += item.price * item.numberOfUnit;
+            totalItems += item.numberOfUnit;
+        })
+        total = total.toLocaleString('vi', { style: 'currency', currency: 'VND' });
+        totalPrice.innerHTML = `<span class="text">Tổng</span><span class="price">${total}</span>`
+        document.getElementById('subtotal').innerHTML = `<span class="text">Tạm tính</span><span  class="price">${total}</span>`
+    }
     // Change input
-    $(document).ready(function () {
-        jQuery('<div class="quantity-nav"><button class="quantity-button quantity-up">&#xf106;</button><button class="quantity-button quantity-down">&#xf107</button></div>').insertAfter('.quantity input');
-        jQuery('.quantity').each(function () {
-            var spinner = jQuery(this),
-                input = spinner.find('input[type="number"]'),
-                btnUp = spinner.find('.quantity-up'),
-                btnDown = spinner.find('.quantity-down'),
-                min = input.attr('min'),
-                max = input.attr('max');
 
-            btnUp.click(function () {
-                var oldValue = parseFloat(input.val());
-                if (oldValue >= max) {
-                    var newVal = oldValue;
-                } else {
-                    var newVal = oldValue + 1;
+    function increaseCount(a, b) {
+        let input = b.previousElementSibling;
+        let value = parseInt(input.value, 10);
+        value = isNaN(value) ? 0 : value;
+        let pid = input.id
+        let product = cart.find(({ id }) => id === pid)
+        if (value < product.inventory) {
+            value++;
+            cart = cart.map(item => {
+                let numberOfUnit = item.numberOfUnit
+                if (item.id = product.id) {
+                    return {
+                        ...item,
+                        numberOfUnit: value
+                    }
                 }
-                spinner.find("input").val(newVal);
-                spinner.find("input").trigger("change");
-            });
+            })
+        }
+        input.value = value;
+        updateCart()
 
-            btnDown.click(function () {
-                var oldValue = parseFloat(input.val());
-                if (oldValue <= min) {
-                    var newVal = oldValue;
-                } else {
-                    var newVal = oldValue - 1;
-                }
-                spinner.find("input").val(newVal);
-                spinner.find("input").trigger("change");
-            });
+    }
 
-        });
-    });
+    // delete item
+    function deleteItem(id) {
+        cart = cart.filter(item => item.id != id)
+        updateCart()
+    }
 
 
     // Change number of unit
@@ -821,6 +787,11 @@
     }
     // Add product to cart: admin -- end
 
-
+    // Create order
+    function createOrder() {
+        localStorage.removeItem('admin-cart')
+        localStorage.setItem('admin-cart', cart)
+        location.href = "/admin/create-order"
+    }
 
 </script>
