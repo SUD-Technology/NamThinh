@@ -1248,7 +1248,7 @@ const AdminController = {
     },
     getPartners: (req, res, next) => {
         const error = req.flash('error') || '';
-        const success = req.flast('success') || '';
+        const success = req.flash('success') || '';
 
         Partners.find({})
             .then(partners => {
