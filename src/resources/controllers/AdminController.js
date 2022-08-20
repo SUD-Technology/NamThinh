@@ -15,7 +15,9 @@ function unique(arr) {
     return Array.from(new Set(arr)) //
 }
 
-const AdminController = {
+const AdminController = { 
+    // -------------------------------------------------------Products Section-----------------------------------------------------------//
+
     getAddProduct: (req, res, next) => {
         const error = req.flash('error') || "";
         const success = req.flash('success') || ""
@@ -123,7 +125,9 @@ const AdminController = {
 
         // res.json({ query: query })
 
-        return Products.find(query).skip(skip).limit(pageSize).exec((err, products) => {
+        return Products.find(query)
+            .select({description: 0})
+            .skip(skip).limit(pageSize).exec((err, products) => {
             Products.countDocuments(query, (err, count) => {
                 if (err) return next(err);
                 if (products.length == 0) {
@@ -366,501 +370,6 @@ const AdminController = {
                 })
 
     },
-    getCreateOrder: (req, res, next) => {
-        const sale = req.session.username || "";
-        const error = req.flash('error') || "";
-        const success = req.flash('success') || "";
-        res.render('createOrders', { layout: "admin", pageName: "Tạo đơn hàng", position: req.session.position, sale, error, success })
-    },
-    postCreateOrder: (req, res, next) => {
-        const { fullname, email, phone, address, sale, product_list, total } = req.body;
-
-        Customers.findOne({ fullname: fullname, phone: phone, email: email })
-            .then(customer => {
-                let info = {
-                    fullname: fullname,
-                    email, phone, address
-                }
-
-                if (!customer) {
-                    new Customers(info).save();
-                }
-
-                let order = {
-                    Customer: info,
-                    sale: sale,
-                    total: total,
-                    product_list: product_list,
-                }
-
-                new Orders(order).save()
-                    .then(() => {
-                        req.flash('success', 'Tạo đơn hàng thành công')
-                        return res.redirect('/admin/create-order')
-                    })
-                    .catch(err => {
-                        req.flash('error', 'Tạo đơn hàng thất bại ' + err)
-                        res.redirect('/admin/create-order')
-                    })
-            })
-            .catch(next);
-
-    },
-    getAddNews: (req, res, next) => {
-        const error = req.flash('error') || ""
-        const success = req.flash('success') || ""
-        res.render('addNews', { layout: 'admin', pageName: "Đăng tin", position: req.session.position, error, success })
-    },
-    getUsers: (req, res, next) => {
-        return Users.find({})
-            .then(users => {
-                let sales = []
-                let accountants = []
-                if (users.length > 0) {
-                    users.forEach(user => {
-                        const current_user = {
-                            id: user._id,
-                            name: user.fullname,
-                            position: user.position,
-                            email: user.email,
-                            phone: user.phone,
-                            username: user.username
-                        }
-                        if (user.position == 'sale')
-                            sales.push(current_user)
-                        else if (user.position == 'accountant')
-                            accountants.push(current_user)
-                    })
-                    res.render('listUsers', { position: req.session.position, layout: 'admin', sales, accountants, pageName: "Thông tin nhân viên" })
-                }
-            })
-    },
-    deleteUser: (req, res, next) => {
-        const id = req.params.id
-        return Users.findByIdAndDelete(id)
-            .then(() => {
-                res.redirect('/admin/getUsers')
-            })
-            .catch(() => {
-                res.json({ message: "Xóa tài khoản thất bại" })
-            })
-    },
-    getCustomers: (req, res, next) => {
-        let query
-        if (req.query.keyWord) {
-            if (!isNaN(parseInt(req.query.keyWord)))
-                query = {
-                    phone: { $regex: `${req.query.keyWord}`, "$options": "i" },
-                }
-            else {
-                query = {
-                    fullname: { $regex: `${req.query.keyWord}`, "$options": "i" },
-                }
-            }
-        } else {
-            query = {}
-        }
-        return Customers.find(query)
-            .then(users => {
-                var listCustomers = []
-                if (users.length > 0) {
-                    listCustomers = users.map(user => {
-                        return {
-                            fullname: user.fullname,
-                            phone: user.phone,
-                            email: user.email,
-                            address: user.address
-                        }
-                    })
-                    return res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position, keyWord: req.query.keyWord })
-                } else {
-                    return res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position, keyWord: req.query.keyWord })
-                }
-            })
-    },
-    getOrders: (req, res, next) => {
-        return Orders.find({})
-            .where('complete.success').equals(null)
-            .then(orders => {
-                let listOrders = []
-                if (orders.length > 0) {
-                    orders.forEach(order => {
-                        const customer = {
-                            phone: order.Customer.phone,
-                            name: order.Customer.fullname
-                        }
-
-                        const current_order = {
-                            id: order._id,
-                            customer: customer,
-                            sale: order.sale,
-                            total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
-                            product_list: order.product_list,
-                            status: order.status,
-                            edit: req.session.username == order.sale
-                        }
-                        listOrders.push(current_order)
-                    })
-                    res.render('listOrders', {
-                        listOrders,
-                        layout: "admin",
-                        pageName: "Danh sách đơn hàng",
-                        position: req.session.position,
-                    })
-                } else {
-                    res.render('listOrders', {
-                        layout: "admin",
-                        pageName: "Danh sách đơn hàng",
-                        position: req.session.position,
-                    })
-                }
-            })
-    },
-    getOrderByCustomer: (req, res, next) => {
-        const cid = req.params.cid
-        return Orders.findById(cid)
-            .then(order => {
-                if (order) {
-                    const customer = {
-                        phone: order.Customer.phone,
-                        name: order.Customer.fullname
-                    }
-                    const current_order = {
-                        id: order._id,
-                        customer: customer,
-                        sale: order.sale,
-                        total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
-                        product_list: order.product_list
-                    }
-                    return res.render('listOrders', { current_order, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
-                }
-                return res.render('listOrders', { current_order: {}, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
-
-            })
-    },
-    getCustomerByOrder: (req, res, next) => {
-        const phone = req.params.phone
-        return Customers.find({ phone: phone })
-            .then(customer => {
-                if (customer) {
-                    const current_customer = {
-                        id: customer._id,
-                        phone: customer.phone,
-                        address: customer.address,
-                        name: customer.name,
-                        status: customer.status
-                    }
-                    return res.render('listcustomers', { current_customer, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
-                }
-                return res.render('listcustomers', { current_customer: {}, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
-
-            })
-    },
-    postANews: (req, res, next) => {
-        const file = req.file;
-        const imagePath = "/uploads/" + file.filename
-        const { title, subtitle, news_categories, content } = req.body
-        const slug = slugify(title, {
-            replacement: '-',
-            remove: false,
-            lower: false,
-            strict: false,
-            locale: 'vi',
-            trim: true
-        })
-        const post = {
-            title: title,
-            subtitle: subtitle,
-            slug: slug,
-            group: news_categories || '',
-            image: imagePath,
-            content: content
-        }
-        return new Posts(post).save()
-            .then(() => {
-                req.flash('success', 'Đăng tin thành công')
-                res.redirect('/admin/add-news')
-            })
-            .catch(() => {
-                req.flash('error', 'Đăng tin thất bại')
-                res.redirect('/admin/add-news')
-            })
-    },
-    postEditStatus: (req, res, next) => {
-        const { status, code } = req.body;
-
-        Orders.findOne({ _id: code })
-            .then(order => {
-                if (order) {
-                    order.status = status;
-                    order.save()
-                }
-            })
-    },
-    getHistory: (req, res, next) => {
-        return Orders.find({})
-            .where('complete.success').ne(null)
-            .then(orders => {
-
-                let listOrders = []
-                if (orders.length > 0) {
-                    orders.forEach(order => {
-                        const customer = {
-                            phone: order.Customer.phone,
-                            name: order.Customer.fullname
-                        }
-
-                        const current_order = {
-                            id: order._id,
-                            customer: customer,
-                            sale: order.sale,
-                            total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
-                            product_list: order.product_list,
-                            result: (order.complete.success) ? `<p style='color:#28a745'>Hoàn thành</p>` : `<p style='color:#dc3545'>Hủy bỏ</p>`,
-                            date: moment(order.complete.date).format('lll'),
-                        }
-                        listOrders.push(current_order)
-                    })
-                    res.render('history', { listOrders, layout: "admin", pageName: "Lịch sử giao dịch", position: req.session.position })
-                } else {
-                    res.render('history', { layout: "admin", pageName: "Lịch sử giao dịch", position: req.session.position })
-                }
-            })
-    },
-    finishOrder: (req, res, next) => {
-        const { code, ops } = req.body;
-
-        Orders.findOne({ _id: code })
-            .then(order => {
-                if (order) {
-                    if (ops == 'accept') {
-                        order.complete.success = true,
-                            order.complete.date = new Date()
-                        order.save();
-                    }
-                    else {
-                        order.complete.success = false,
-                            order.complete.date = new Date()
-                        order.save();
-                    }
-
-                }
-            })
-    },
-    getAddDiscount: (req, res, next) => {
-        const error = req.flash('error') || ""
-        const success = req.flash('success') || ""
-        res.render('addDiscount', { layout: 'admin', pageName: "Thêm Khuyến Mãi", position: req.session.position, error, success })
-    },
-    postAddDiscount: (req, res, next) => {
-        const file = req.file;
-        const imagePath = "/uploads/" + file.filename
-        const { title, subtitle, content } = req.body
-        const slug = slugify(title, {
-            replacement: '-',
-            remove: false,
-            lower: false,
-            strict: false,
-            locale: 'vi',
-            trim: true
-        })
-        const discount = {
-            title: title,
-            subtitle: subtitle,
-            slug: slug,
-            image: imagePath,
-            content: content
-        }
-
-        return new Discounts(discount).save()
-            .then(() => {
-                req.flash('success', 'Thêm khuyến mãi thành công')
-                res.redirect('/admin/add-discount')
-            })
-            .catch(() => {
-                req.flash('error', 'Thêm khuyến mãi thất bại')
-                res.redirect('/admin/add-discount')
-            })
-    },
-    getAddServices: (req, res, next) => {
-        const error = req.flash('error') || ""
-        const success = req.flash('success') || ""
-        res.render('addServices', { layout: 'admin', pageName: "Thêm Dịch Vụ", position: req.session.position, error, success })
-    },
-    postAddServices: (req, res, next) => {
-        const file = req.file;
-        const imagePath = "/uploads/" + file.filename
-        const { title, subtitle, content } = req.body
-        const slug = slugify(title, {
-            replacement: '-',
-            remove: false,
-            lower: false,
-            strict: false,
-            locale: 'vi',
-            trim: true
-        })
-        const service = {
-            title: title,
-            subtitle: subtitle,
-            slug: slug,
-            image: imagePath,
-            content: content
-        }
-
-        return new Services(service).save()
-            .then(() => {
-                req.flash('success', 'Thêm dịch vụ thành công')
-                res.redirect('/admin/add-services')
-            })
-            .catch(() => {
-                req.flash('error', 'Thêm dịch vụ thất bại')
-                res.redirect('/admin/add-services')
-            })
-    },
-    deleteDiscount: (req, res, next) => {
-        const id = req.params.id
-        return Discounts.findByIdAndDelete(id)
-            .then((dis) => {
-                fs.unlink(`source/src/public/${dis.image}`, (err) => {
-                    if (!err) {
-                        req.flash('success', "Xóa chương trình khuyến mãi thành công")
-                        res.redirect('/admin/listDiscounts')
-                    } else {
-                        req.flash('error', "Xóa chương trình khuyến mãi thất bại")
-                        res.redirect('/admin/listDiscounts')
-                    }
-                })
-            })
-            .catch(() => {
-                req.flash('error', "Xóa chương trình khuyến mãi thất bại")
-                res.redirect('/admin/listDiscounts')
-            })
-    },
-    deleteService: (req, res, next) => {
-        const id = req.params.id
-        return Services.findByIdAndDelete(id)
-            .then((service) => {
-                fs.unlink(`source/src/public/${service.image}`, (err) => {
-                    if (!err) {
-                        req.flash('success', "Xóa dịch vụ thành công")
-                        res.redirect('/admin/listServices')
-                    } else {
-                        req.flash('error', "Xóa dịch vụ thất bại")
-                        res.redirect('/admin/listServices')
-                    }
-                })
-            })
-            .catch(() => {
-                req.flash('error', "Xóa dịch vụ thất bại")
-                res.redirect('/admin/listServices')
-            })
-    },
-    deletePosts: (req, res, next) => {
-        const id = req.params.id
-        return Posts.findByIdAndDelete(id)
-            .then((post) => {
-                fs.unlink(`source/src/public/${post.image}`, (err) => {
-                    if (!err) {
-                        req.flash('success', "Xóa bài viết thành công")
-                        res.redirect('/admin/listNews')
-                    } else {
-                        req.flash('error', "Xóa bài viết thất bại")
-                        res.redirect('/admin/listNews')
-                    }
-                })
-            })
-            .catch(() => {
-                req.flash('error', "Xóa bài viết thất bại")
-                res.redirect('/admin/listNews')
-            })
-    },
-    getDiscounts: (req, res, next) => {
-        Discounts.find()
-            .then(discounts => {
-                const data = discounts.map(item => {
-                    return {
-                        title: item.title,
-                        id: item._id,
-                        slug: item.slug,
-                        createdAt: moment(item.createdAt).format('lll'),
-                    }
-                })
-
-                return res.render('listDiscounts', {
-                    data: data,
-                    position: req.session.position,
-                    layout: 'admin',
-                    pageName: 'Danh sách khuyến mãi'
-                })
-            })
-    },
-    getServices: (req, res, next) => {
-        Services.find()
-            .then(services => {
-                const data = services.map(item => {
-                    return {
-                        title: item.title,
-                        id: item._id,
-                        slug: item.slug,
-                        createdAt: moment(item.createdAt).format('lll'),
-                    }
-                })
-
-                return res.render('listServices', {
-                    data: data,
-                    position: req.session.position,
-                    layout: 'admin',
-                    pageName: 'Danh sách dịch vụ'
-                })
-            })
-    },
-    getPosts: (req, res, next) => {
-        Posts.find()
-            .then(posts => {
-                const data = posts.map(item => {
-                    return {
-                        title: item.title,
-                        id: item._id,
-                        slug: item.slug,
-                        createdAt: moment(item.createdAt).format('lll'),
-                    }
-                })
-
-                return res.render('listPosts', {
-                    data: data,
-                    position: req.session.position,
-                    layout: 'admin',
-                    pageName: 'Danh sách tin tức'
-                })
-            })
-    },
-    getAddAbout: (req, res, next) => {
-        const error = req.flash('error') || '';
-        const success = req.flash('success') || '';
-
-        res.render('addAbout', {
-            layout: 'admin',
-            pageName: 'Sửa nội dung giới thiệu'
-            ,
-            success, error
-        });
-    },
-    postAddAbout: (req, res, next) => {
-        const { content } = req.body;
-
-        if (content) {
-            About.findOne({})
-                .then(about => {
-                    about.content = content;
-                    about.save();
-                })
-            req.flash('success', 'Sửa nội dung thành công');
-            return res.redirect('/admin/add-about');
-        }
-
-        req.flash('error', 'Chưa nhập nội dung');
-        return res.redirect('/admin/add-about')
-    },
     getUpdateProduct: (req, res, next) => {
         const error = req.flash('error')
         const success = req.flash('success')
@@ -892,90 +401,6 @@ const AdminController = {
                     error,
                     success,
                     action: "/admin/updateProductById"
-                })
-            })
-            .catch(err => {
-                res.json({ err: err })
-            })
-    },
-    getUpdateDiscount: (req, res, next) => {
-        const error = req.flash('error')
-        const success = req.flash('success')
-        const id = req.params.id
-        return Discounts.findById(id)
-            .then(discount => {
-                const data = {
-                    title: discount.title,
-                    id: id,
-                    content: discount.content,
-                    subtitle: discount.subtitle,
-                    image: discount.image
-                }
-                return res.render('update', {
-                    data: data,
-                    position: req.session.position,
-                    layout: 'admin',
-                    pageName: 'Chỉnh sửa thông tin khuyến mãi',
-                    error,
-                    success,
-                    prev: '/admin/listDiscounts',
-                    action: "/admin/updateDiscountById"
-                })
-            })
-            .catch(err => {
-                res.json({ err: err })
-            })
-    },
-    getUpdateNews: (req, res, next) => {
-        const error = req.flash('error')
-        const success = req.flash('success')
-        const id = req.params.id
-        return Posts.findById(id)
-            .then(post => {
-                const data = {
-                    title: post.title,
-                    id: id,
-                    content: post.content,
-                    subtitle: post.subtitle,
-                    image: post.image
-                }
-                return res.render('update', {
-                    data: data,
-                    position: req.session.position,
-                    layout: 'admin',
-                    pageName: 'Chỉnh sửa thông tin bải viết',
-                    error,
-                    success,
-                    prev: '/admin/listNews',
-                    action: "/admin/updateNewsById"
-                })
-            })
-            .catch(err => {
-                res.json({ err: err })
-            })
-    },
-    getUpdateService: (req, res, next) => {
-        const error = req.flash('error')
-        const success = req.flash('success')
-        const id = req.params.id
-        return Services.findById(id)
-            .then(service => {
-                const data = {
-                    title: service.title,
-                    id: id,
-                    content: service.content,
-                    subtitle: service.subtitle,
-                    image: service.image
-                }
-                return res.render('update', {
-                    data: data,
-                    position: req.session.position,
-                    layout: 'admin',
-                    pageName: 'Chỉnh sửa thông tin dịch vụ',
-                    error,
-                    success,
-                    prev: '/admin/listServices',
-                    action: "/admin/updateServiceById"
                 })
             })
             .catch(err => {
@@ -1043,19 +468,189 @@ const AdminController = {
         })
 
     },
-    postUpdateDiscount: (req, res, next) => {
-        const { title, subtitle, content, old_image, id } = req.body
-        let imagePath = old_image;
-        if (req.file) {
-            const file = req.file;
-            imagePath = "/uploads/" + file.filename;
-            fs.unlink(`source/src/public/${old_image}`, err => {
-                if (err) {
-                    req.flash('error', "Cập nhật khuyến mãi thất bại " + err)
-                    res.redirect(`/admin/updateDiscount/${id}`)
+
+    // --------------------------------------------------------------END-----------------------------------------------------------------//
+    
+
+    
+    // -------------------------------------------------------Orders Section-----------------------------------------------------------//
+    
+    getCreateOrder: (req, res, next) => {
+        const sale = req.session.username || "";
+        const error = req.flash('error') || "";
+        const success = req.flash('success') || "";
+        res.render('createOrders', { layout: "admin", pageName: "Tạo đơn hàng", position: req.session.position, sale, error, success })
+    },
+    postCreateOrder: (req, res, next) => {
+        const { fullname, email, phone, address, sale, product_list, total } = req.body;
+
+        Customers.findOne({ fullname: fullname, phone: phone, email: email })
+            .then(customer => {
+                let info = {
+                    fullname: fullname,
+                    email, phone, address
+                }
+
+                if (!customer) {
+                    new Customers(info).save();
+                }
+
+                let order = {
+                    Customer: info,
+                    sale: sale,
+                    total: total,
+                    product_list: product_list,
+                }
+
+                new Orders(order).save()
+                    .then(() => {
+                        req.flash('success', 'Tạo đơn hàng thành công')
+                        return res.redirect('/admin/create-order')
+                    })
+                    .catch(err => {
+                        req.flash('error', 'Tạo đơn hàng thất bại ' + err)
+                        res.redirect('/admin/create-order')
+                    })
+            })
+            .catch(next);
+
+    },
+    getOrders: (req, res, next) => {
+        return Orders.find({})
+            .where('complete.success').equals(null)
+            .then(orders => {
+                let listOrders = []
+                if (orders.length > 0) {
+                    orders.forEach(order => {
+                        const customer = {
+                            phone: order.Customer.phone,
+                            name: order.Customer.fullname
+                        }
+
+                        const current_order = {
+                            id: order._id,
+                            customer: customer,
+                            sale: order.sale,
+                            total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
+                            product_list: order.product_list,
+                            status: order.status,
+                            edit: req.session.username == order.sale
+                        }
+                        listOrders.push(current_order)
+                    })
+                    res.render('listOrders', {
+                        listOrders,
+                        layout: "admin",
+                        pageName: "Danh sách đơn hàng",
+                        position: req.session.position,
+                    })
+                } else {
+                    res.render('listOrders', {
+                        layout: "admin",
+                        pageName: "Danh sách đơn hàng",
+                        position: req.session.position,
+                    })
                 }
             })
-        }
+    },
+    getOrderByCustomer: (req, res, next) => {
+        const cid = req.params.cid
+        return Orders.findById(cid)
+            .then(order => {
+                if (order) {
+                    const customer = {
+                        phone: order.Customer.phone,
+                        name: order.Customer.fullname
+                    }
+                    const current_order = {
+                        id: order._id,
+                        customer: customer,
+                        sale: order.sale,
+                        total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
+                        product_list: order.product_list
+                    }
+                    return res.render('listOrders', { current_order, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
+                }
+                return res.render('listOrders', { current_order: {}, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
+
+            })
+    },
+    postEditStatus: (req, res, next) => {
+        const { status, code } = req.body;
+
+        Orders.findOne({ _id: code })
+            .then(order => {
+                if (order) {
+                    order.status = status;
+                    order.save()
+                }
+            })
+    },
+    getHistory: (req, res, next) => {
+        return Orders.find({})
+            .where('complete.success').ne(null)
+            .then(orders => {
+
+                let listOrders = []
+                if (orders.length > 0) {
+                    orders.forEach(order => {
+                        const customer = {
+                            phone: order.Customer.phone,
+                            name: order.Customer.fullname
+                        }
+
+                        const current_order = {
+                            id: order._id,
+                            customer: customer,
+                            sale: order.sale,
+                            total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
+                            product_list: order.product_list,
+                            result: (order.complete.success) ? `<p style='color:#28a745'>Hoàn thành</p>` : `<p style='color:#dc3545'>Hủy bỏ</p>`,
+                            date: moment(order.complete.date).format('lll'),
+                        }
+                        listOrders.push(current_order)
+                    })
+                    res.render('history', { listOrders, layout: "admin", pageName: "Lịch sử giao dịch", position: req.session.position })
+                } else {
+                    res.render('history', { layout: "admin", pageName: "Lịch sử giao dịch", position: req.session.position })
+                }
+            })
+    },
+    finishOrder: (req, res, next) => {
+        const { code, ops } = req.body;
+
+        Orders.findOne({ _id: code })
+            .then(order => {
+                if (order) {
+                    if (ops == 'accept') {
+                        order.complete.success = true,
+                            order.complete.date = new Date()
+                        order.save();
+                    }
+                    else {
+                        order.complete.success = false,
+                            order.complete.date = new Date()
+                        order.save();
+                    }
+
+                }
+            })
+    },
+
+    // -------------------------------------------------------------END------------------------------------------------------------------//
+    
+
+    
+    // ---------------------------------------------------------News Section-------------------------------------------------------------//
+    getAddNews: (req, res, next) => {
+        const error = req.flash('error') || ""
+        const success = req.flash('success') || ""
+        res.render('addNews', { layout: 'admin', pageName: "Đăng tin", position: req.session.position, error, success })
+    },
+    postANews: (req, res, next) => {
+        const file = req.file;
+        const imagePath = "/uploads/" + file.filename
+        const { title, subtitle, news_categories, content } = req.body
         const slug = slugify(title, {
             replacement: '-',
             remove: false,
@@ -1064,22 +659,90 @@ const AdminController = {
             locale: 'vi',
             trim: true
         })
-        const discount = {
+        const post = {
             title: title,
             subtitle: subtitle,
             slug: slug,
+            group: news_categories || '',
             image: imagePath,
             content: content
         }
-        Discounts.findByIdAndUpdate(id, discount, (err, doc) => {
-            if (!err) {
-                req.flash('success', "Cập nhật khuyến mãi thành công")
-                res.redirect(`/admin/updateDiscount/${id}`)
-            } else {
-                req.flash('error', "Cập nhật khuyến mãi thất bại")
-                res.redirect(`/admin/updateDiscount/${id}`)
-            }
-        })
+        return new Posts(post).save()
+            .then(() => {
+                req.flash('success', 'Đăng tin thành công')
+                res.redirect('/admin/add-news')
+            })
+            .catch(() => {
+                req.flash('error', 'Đăng tin thất bại')
+                res.redirect('/admin/add-news')
+            })
+    },
+    deletePosts: (req, res, next) => {
+        const id = req.params.id
+        return Posts.findByIdAndDelete(id)
+            .then((post) => {
+                fs.unlink(`source/src/public/${post.image}`, (err) => {
+                    if (!err) {
+                        req.flash('success', "Xóa bài viết thành công")
+                        res.redirect('/admin/listNews')
+                    } else {
+                        req.flash('error', "Xóa bài viết thất bại")
+                        res.redirect('/admin/listNews')
+                    }
+                })
+            })
+            .catch(() => {
+                req.flash('error', "Xóa bài viết thất bại")
+                res.redirect('/admin/listNews')
+            })
+    },
+    getPosts: (req, res, next) => {
+        Posts.find()
+            .then(posts => {
+                const data = posts.map(item => {
+                    return {
+                        title: item.title,
+                        id: item._id,
+                        slug: item.slug,
+                        createdAt: moment(item.createdAt).format('lll'),
+                    }
+                })
+
+                return res.render('listPosts', {
+                    data: data,
+                    position: req.session.position,
+                    layout: 'admin',
+                    pageName: 'Danh sách tin tức'
+                })
+            })
+    },
+    getUpdateNews: (req, res, next) => {
+        const error = req.flash('error')
+        const success = req.flash('success')
+        const id = req.params.id
+        return Posts.findById(id)
+            .then(post => {
+                const data = {
+                    title: post.title,
+                    id: id,
+                    content: post.content,
+                    subtitle: post.subtitle,
+                    image: post.image
+                }
+                return res.render('update', {
+                    data: data,
+                    position: req.session.position,
+                    layout: 'admin',
+                    pageName: 'Chỉnh sửa thông tin bải viết',
+                    error,
+                    success,
+                    prev: '/admin/listNews',
+                    action: "/admin/updateNewsById"
+                })
+            })
+            .catch(err => {
+                res.json({ err: err })
+            })
     },
     postUpdateNews: (req, res, next) => {
         const { title, subtitle, content, old_image, id } = req.body
@@ -1119,6 +782,395 @@ const AdminController = {
             }
         })
     },
+
+    // --------------------------------------------------------------END-----------------------------------------------------------------//
+    
+
+
+   
+    // -------------------------------------------------------Users Section-----------------------------------------------------------//
+ 
+    getUsers: (req, res, next) => {
+        return Users.find({})
+            .then(users => {
+                let sales = []
+                let accountants = []
+                if (users.length > 0) {
+                    users.forEach(user => {
+                        const current_user = {
+                            id: user._id,
+                            name: user.fullname,
+                            position: user.position,
+                            email: user.email,
+                            phone: user.phone,
+                            username: user.username
+                        }
+                        if (user.position == 'sale')
+                            sales.push(current_user)
+                        else if (user.position == 'accountant')
+                            accountants.push(current_user)
+                    })
+                    res.render('listUsers', { position: req.session.position, layout: 'admin', sales, accountants, pageName: "Thông tin nhân viên" })
+                }
+            })
+    },
+    deleteUser: (req, res, next) => {
+        const id = req.params.id
+        return Users.findByIdAndDelete(id)
+            .then(() => {
+                res.redirect('/admin/getUsers')
+            })
+            .catch(() => {
+                res.json({ message: "Xóa tài khoản thất bại" })
+            })
+    },
+
+    // -----------------------------------------------------------END--------------------------------------------------------------------//
+    
+
+
+    // -------------------------------------------------------Customers Section-----------------------------------------------------------//
+    
+    getCustomers: (req, res, next) => {
+        let query
+        if (req.query.keyWord) {
+            if (!isNaN(parseInt(req.query.keyWord)))
+                query = {
+                    phone: { $regex: `${req.query.keyWord}`, "$options": "i" },
+                }
+            else {
+                query = {
+                    fullname: { $regex: `${req.query.keyWord}`, "$options": "i" },
+                }
+            }
+        } else {
+            query = {}
+        }
+        return Customers.find(query)
+            .then(users => {
+                var listCustomers = []
+                if (users.length > 0) {
+                    listCustomers = users.map(user => {
+                        return {
+                            fullname: user.fullname,
+                            phone: user.phone,
+                            email: user.email,
+                            address: user.address
+                        }
+                    })
+                    return res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position, keyWord: req.query.keyWord })
+                } else {
+                    return res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position, keyWord: req.query.keyWord })
+                }
+            })
+    },  
+    getCustomerByOrder: (req, res, next) => {
+        const phone = req.params.phone
+        return Customers.find({ phone: phone })
+            .then(customer => {
+                if (customer) {
+                    const current_customer = {
+                        id: customer._id,
+                        phone: customer.phone,
+                        address: customer.address,
+                        name: customer.name,
+                        status: customer.status
+                    }
+                    return res.render('listcustomers', { current_customer, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
+                }
+                return res.render('listcustomers', { current_customer: {}, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
+
+            })
+    },
+
+    // -----------------------------------------------------------END--------------------------------------------------------------------//
+    
+
+
+
+    // -------------------------------------------------------About Section-----------------------------------------------------------//
+       
+    getAddAbout: (req, res, next) => {
+        const error = req.flash('error') || '';
+        const success = req.flash('success') || '';
+
+        res.render('addAbout', {
+            layout: 'admin',
+            pageName: 'Sửa nội dung giới thiệu'
+            ,
+            success, error
+        });
+    },
+    postAddAbout: (req, res, next) => {
+        const { content } = req.body;
+
+        if (content) {
+            About.findOne({})
+                .then(about => {
+                    about.content = content;
+                    about.save();
+                })
+            req.flash('success', 'Sửa nội dung thành công');
+            return res.redirect('/admin/add-about');
+        }
+
+        req.flash('error', 'Chưa nhập nội dung');
+        return res.redirect('/admin/add-about')
+    },
+
+    // -----------------------------------------------------------END--------------------------------------------------------------------//
+    
+
+    // -------------------------------------------------------Discounts Section-----------------------------------------------------------//
+    
+    getAddDiscount: (req, res, next) => {
+        const error = req.flash('error') || ""
+        const success = req.flash('success') || ""
+        res.render('addDiscount', { layout: 'admin', pageName: "Thêm Khuyến Mãi", position: req.session.position, error, success })
+    },
+    postAddDiscount: (req, res, next) => {
+        const file = req.file;
+        const imagePath = "/uploads/" + file.filename
+        const { title, subtitle, content } = req.body
+        const slug = slugify(title, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+        const discount = {
+            title: title,
+            subtitle: subtitle,
+            slug: slug,
+            image: imagePath,
+            content: content
+        }
+
+        return new Discounts(discount).save()
+            .then(() => {
+                req.flash('success', 'Thêm khuyến mãi thành công')
+                res.redirect('/admin/add-discount')
+            })
+            .catch(() => {
+                req.flash('error', 'Thêm khuyến mãi thất bại')
+                res.redirect('/admin/add-discount')
+            })
+    },   
+    deleteDiscount: (req, res, next) => {
+        const id = req.params.id
+        return Discounts.findByIdAndDelete(id)
+            .then((dis) => {
+                fs.unlink(`source/src/public/${dis.image}`, (err) => {
+                    if (!err) {
+                        req.flash('success', "Xóa chương trình khuyến mãi thành công")
+                        res.redirect('/admin/listDiscounts')
+                    } else {
+                        req.flash('error', "Xóa chương trình khuyến mãi thất bại")
+                        res.redirect('/admin/listDiscounts')
+                    }
+                })
+            })
+            .catch(() => {
+                req.flash('error', "Xóa chương trình khuyến mãi thất bại")
+                res.redirect('/admin/listDiscounts')
+            })
+    },   
+    getDiscounts: (req, res, next) => {
+        Discounts.find()
+            .then(discounts => {
+                const data = discounts.map(item => {
+                    return {
+                        title: item.title,
+                        id: item._id,
+                        slug: item.slug,
+                        createdAt: moment(item.createdAt).format('lll'),
+                    }
+                })
+
+                return res.render('listDiscounts', {
+                    data: data,
+                    position: req.session.position,
+                    layout: 'admin',
+                    pageName: 'Danh sách khuyến mãi'
+                })
+            })
+    }, 
+    getUpdateDiscount: (req, res, next) => {
+        const error = req.flash('error')
+        const success = req.flash('success')
+        const id = req.params.id
+        return Discounts.findById(id)
+            .then(discount => {
+                const data = {
+                    title: discount.title,
+                    id: id,
+                    content: discount.content,
+                    subtitle: discount.subtitle,
+                    image: discount.image
+                }
+                return res.render('update', {
+                    data: data,
+                    position: req.session.position,
+                    layout: 'admin',
+                    pageName: 'Chỉnh sửa thông tin khuyến mãi',
+                    error,
+                    success,
+                    prev: '/admin/listDiscounts',
+                    action: "/admin/updateDiscountById"
+                })
+            })
+            .catch(err => {
+                res.json({ err: err })
+            })
+    },
+    postUpdateDiscount: (req, res, next) => {
+        const { title, subtitle, content, old_image, id } = req.body
+        let imagePath = old_image;
+        if (req.file) {
+            const file = req.file;
+            imagePath = "/uploads/" + file.filename;
+            fs.unlink(`source/src/public/${old_image}`, err => {
+                if (err) {
+                    req.flash('error', "Cập nhật khuyến mãi thất bại " + err)
+                    res.redirect(`/admin/updateDiscount/${id}`)
+                }
+            })
+        }
+        const slug = slugify(title, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+        const discount = {
+            title: title,
+            subtitle: subtitle,
+            slug: slug,
+            image: imagePath,
+            content: content
+        }
+        Discounts.findByIdAndUpdate(id, discount, (err, doc) => {
+            if (!err) {
+                req.flash('success', "Cập nhật khuyến mãi thành công")
+                res.redirect(`/admin/updateDiscount/${id}`)
+            } else {
+                req.flash('error', "Cập nhật khuyến mãi thất bại")
+                res.redirect(`/admin/updateDiscount/${id}`)
+            }
+        })
+    },
+    
+    // -----------------------------------------------------------------END--------------------------------------------------------------//
+    
+
+    // -------------------------------------------------------Services Section-----------------------------------------------------------//
+    
+    getAddServices: (req, res, next) => {
+        const error = req.flash('error') || ""
+        const success = req.flash('success') || ""
+        res.render('addServices', { layout: 'admin', pageName: "Thêm Dịch Vụ", position: req.session.position, error, success })
+    },
+    postAddServices: (req, res, next) => {
+        const file = req.file;
+        const imagePath = "/uploads/" + file.filename
+        const { title, subtitle, content } = req.body
+        const slug = slugify(title, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+        const service = {
+            title: title,
+            subtitle: subtitle,
+            slug: slug,
+            image: imagePath,
+            content: content
+        }
+
+        return new Services(service).save()
+            .then(() => {
+                req.flash('success', 'Thêm dịch vụ thành công')
+                res.redirect('/admin/add-services')
+            })
+            .catch(() => {
+                req.flash('error', 'Thêm dịch vụ thất bại')
+                res.redirect('/admin/add-services')
+            })
+    },
+    deleteService: (req, res, next) => {
+        const id = req.params.id
+        return Services.findByIdAndDelete(id)
+            .then((service) => {
+                fs.unlink(`source/src/public/${service.image}`, (err) => {
+                    if (!err) {
+                        req.flash('success', "Xóa dịch vụ thành công")
+                        res.redirect('/admin/listServices')
+                    } else {
+                        req.flash('error', "Xóa dịch vụ thất bại")
+                        res.redirect('/admin/listServices')
+                    }
+                })
+            })
+            .catch(() => {
+                req.flash('error', "Xóa dịch vụ thất bại")
+                res.redirect('/admin/listServices')
+            })
+    },
+    getServices: (req, res, next) => {
+        Services.find()
+            .then(services => {
+                const data = services.map(item => {
+                    return {
+                        title: item.title,
+                        id: item._id,
+                        slug: item.slug,
+                        createdAt: moment(item.createdAt).format('lll'),
+                    }
+                })
+
+                return res.render('listServices', {
+                    data: data,
+                    position: req.session.position,
+                    layout: 'admin',
+                    pageName: 'Danh sách dịch vụ'
+                })
+            })
+    },
+    getUpdateService: (req, res, next) => {
+        const error = req.flash('error')
+        const success = req.flash('success')
+        const id = req.params.id
+        return Services.findById(id)
+            .then(service => {
+                const data = {
+                    title: service.title,
+                    id: id,
+                    content: service.content,
+                    subtitle: service.subtitle,
+                    image: service.image
+                }
+                return res.render('update', {
+                    data: data,
+                    position: req.session.position,
+                    layout: 'admin',
+                    pageName: 'Chỉnh sửa thông tin dịch vụ',
+                    error,
+                    success,
+                    prev: '/admin/listServices',
+                    action: "/admin/updateServiceById"
+                })
+            })
+            .catch(err => {
+                res.json({ err: err })
+            })
+    }, 
     postUpdateService: (req, res, next) => {
         const { title, subtitle, content, old_image, id } = req.body
         let imagePath = old_image;
@@ -1158,6 +1210,8 @@ const AdminController = {
             }
         })
     }
+
+    // -----------------------------------------------------------------END--------------------------------------------------------------//
 }
 
 module.exports = AdminController
