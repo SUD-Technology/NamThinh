@@ -1247,6 +1247,9 @@ const AdminController = {
         return res.redirect('/admin/addPartner');
     },
     getPartners: (req, res, next) => {
+        const error = req.flash('error') || '';
+        const success = req.flast('success') || '';
+
         Partners.find({})
             .then(partners => {
                 const data = partners.map(partner => {
@@ -1261,7 +1264,7 @@ const AdminController = {
                     layout: 'admin',
                     pageName: 'Danh sách đối tác',
                     position: req.session.position,
-                    data
+                    data, error, success
                 })
             })
     },
