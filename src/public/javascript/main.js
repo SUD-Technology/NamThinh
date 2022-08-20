@@ -11,7 +11,8 @@ $(document).ready(function () {
         $(`#${nav}`).addClass('current');
     }
 
-    
+    $('.owl-nav').hide()
+    $('.owl-dots').hide()
 
 
     var old_img = '';

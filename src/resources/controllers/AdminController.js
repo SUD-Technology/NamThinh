@@ -418,7 +418,7 @@ const AdminController = {
             listOldImages.forEach(item => {
                 fs.unlink(`source/src/public/${item}`, err => {
                     if (err) {
-                        req.flash('error', 'Cập nhận thông tin sản phẩm thất bại')
+                        req.flash('error', 'Cập nhật thông tin sản phẩm thất bại')
                         return res.redirect(`/admin/updateProduct/${id}`)
                     }
                 })
@@ -1233,7 +1233,7 @@ const AdminController = {
         const { partner_name } = req.body;
 
         if(!partner_name || !file) {
-            req.flash('error', 'Nhập đầy đủ thông tin');
+            req.flash('error', 'Nhập đầy đủ thông tin trước thi thêm');
             return res.redirect('/admin/addPartner');
         }
 
@@ -1243,7 +1243,7 @@ const AdminController = {
         }
 
         new Partners(partner).save()
-        req.flash('Thêm đối tác thành công');
+        req.flash('success','Thêm đối tác thành công');
         return res.redirect('/admin/addPartner');
     },
     getPartners: (req, res, next) => {
@@ -1257,7 +1257,7 @@ const AdminController = {
                     }
                 })
 
-                return res.render('partnerList', {
+                return res.render('listPartners', {
                     layout: 'admin',
                     pageName: 'Danh sách đối tác',
                     position: req.session.position,

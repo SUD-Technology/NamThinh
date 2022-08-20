@@ -72,6 +72,11 @@ router.get('/deleteUser/:id', checkLogin, authPage(['admin']), AdminController.d
 router.get('/add-about', checkLogin, authPage(["admin"]), AdminController.getAddAbout);
 router.post('/add-about', checkLogin, authPage(["admin"]), AdminController.postAddAbout);
 
+// Partner 
+router.get('/addPartner', checkLogin, authPage(['admin']), AdminController.getAddPartner);
+router.post('/addPartner', checkLogin, authPage(['admin']), store.single('partner-image'), AdminController.postAddPartner);
+router.get('/listPartners', checkLogin, authPage(['admin']), AdminController.getPartners);
+router.get('/deletePartner', checkLogin, authPage(['admin']), AdminController.getDeletePartner);
 router.use('/', (req, res) => {
     res.redirect('/users/login');
 })

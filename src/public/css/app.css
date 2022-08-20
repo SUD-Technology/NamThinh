@@ -1037,7 +1037,7 @@ img.bgc-title {
 
 .items-price , .price-layer{
   border: 2px solid var(--xanh);
-  font-weight: 700;
+  font-weight: 500;
   padding: 6px 10px 6px;
   text-align: center;
   /* line-height: 25px; */
@@ -1666,6 +1666,7 @@ footer .form-group input {
   height: 100%;
   border: 2px solid var(--xanh);
   border-radius: .3rem;
+  
 }
 
 .image-container {
