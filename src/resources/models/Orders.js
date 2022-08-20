@@ -20,6 +20,9 @@ const Orders = new Schema({
         required: true
     },
     product_list: {
+        type: [String]
+    },
+    product_link: {
         type: String
     },
     status: {
@@ -27,12 +30,12 @@ const Orders = new Schema({
         default: "Chờ xử lý"
     },
     complete: {
-        success: {type: Boolean, default: null},
+        success: { type: Boolean, default: null },
         date: Date
     }
 },
-{
-    timestamps: true
-})
+    {
+        timestamps: true
+    })
 
 module.exports = mongoose.model('Orders', Orders)

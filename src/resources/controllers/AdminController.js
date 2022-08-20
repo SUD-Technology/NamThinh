@@ -16,7 +16,7 @@ function unique(arr) {
     return Array.from(new Set(arr)) //
 }
 
-const AdminController = { 
+const AdminController = {
     // -------------------------------------------------------Products Section-----------------------------------------------------------//
 
     getAddProduct: (req, res, next) => {
@@ -127,71 +127,72 @@ const AdminController = {
         // res.json({ query: query })
 
         return Products.find(query)
-            .select({description: 0})
+            .select({ description: 0 })
             .skip(skip).limit(pageSize).exec((err, products) => {
-            Products.countDocuments(query, (err, count) => {
-                if (err) return next(err);
-                if (products.length == 0) {
-                    return res.render('productManager', {
-                        layout: "admin",
-                        pageName: "Danh sách sản phẩm",
-                        position: req.session.position,
-                        products: [],
-                        current: 1,
-                        pages: 1,
-                        lv1: req.query.lv1 || '',
-                        lv2: req.query.lv2 || '',
-                        lv3: req.query.lv3 || '',
-                        brand: req.query.brand || '',
-                        origin: req.query.origin || '',
-                        product_name: req.query.product_name || ''
-                    })
-                } else {
-                    let productList = []
-                    let brands = []
-                    let origins = []
-                    products.forEach(product => {
-                        const current_product = {
-                            id: product._id,
-                            pname: product.product_name,
-                            pimg: product.product_img[0],
-                            pid: product.product_id,
-                            pslug: product.slug,
-                            price: product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
-                            model: product.product_model,
-                            origin: product.product_origin,
-                            amount: product.amount,
-                            inventory: product.inventory,
-                            size: product.size
-                        }
-                        brands.push(product.brand_name)
-                        origins.push(product.product_origin)
-                        productList.push(current_product)
-                    })
+                Products.countDocuments(query, (err, count) => {
+                    if (err) return next(err);
+                    if (products.length == 0) {
+                        return res.render('productManager', {
+                            layout: "admin",
+                            pageName: "Danh sách sản phẩm",
+                            position: req.session.position,
+                            products: [],
+                            current: 1,
+                            pages: 1,
+                            lv1: req.query.lv1 || '',
+                            lv2: req.query.lv2 || '',
+                            lv3: req.query.lv3 || '',
+                            brand: req.query.brand || '',
+                            origin: req.query.origin || '',
+                            product_name: req.query.product_name || ''
+                        })
+                    } else {
+                        let productList = []
+                        let brands = []
+                        let origins = []
+                        products.forEach(product => {
+                            const current_product = {
+                                id: product._id,
+                                pname: product.product_name,
+                                pimg: product.product_img[0],
+                                pid: product.product_id,
+                                pslug: product.slug,
+                                price: product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
+                                numPrice: product.price,
+                                model: product.product_model,
+                                origin: product.product_origin,
+                                amount: product.amount,
+                                inventory: product.inventory,
+                                size: product.size
+                            }
+                            brands.push(product.brand_name)
+                            origins.push(product.product_origin)
+                            productList.push(current_product)
+                        })
 
-                    brands = unique(brands)
-                    origins = unique(origins)
-                    return res.render('productManager', {
-                        layout: "admin",
-                        pageName: "Danh sách sản phẩm",
-                        position: req.session.position,
-                        products: productList,
-                        brands,
-                        origins,
-                        current: page,
-                        pages: Math.ceil(count / pageSize),
-                        previous: previousPage,
-                        next: nextPage,
-                        lv1: req.query.lv1 || '',
-                        lv2: req.query.lv2 || '',
-                        lv3: req.query.lv3 || '',
-                        brand: req.query.brand || '',
-                        origin: req.query.origin || '',
-                        product_name: req.query.product_name || ''
-                    })
-                }
+                        brands = unique(brands)
+                        origins = unique(origins)
+                        return res.render('productManager', {
+                            layout: "admin",
+                            pageName: "Danh sách sản phẩm",
+                            position: req.session.position,
+                            products: productList,
+                            brands,
+                            origins,
+                            current: page,
+                            pages: Math.ceil(count / pageSize),
+                            previous: previousPage,
+                            next: nextPage,
+                            lv1: req.query.lv1 || '',
+                            lv2: req.query.lv2 || '',
+                            lv3: req.query.lv3 || '',
+                            brand: req.query.brand || '',
+                            origin: req.query.origin || '',
+                            product_name: req.query.product_name || ''
+                        })
+                    }
+                })
             })
-        })
     },
     findProductManager: (req, res, next) => {
         let page = req.query.page || 1
@@ -471,11 +472,11 @@ const AdminController = {
     },
 
     // --------------------------------------------------------------END-----------------------------------------------------------------//
-    
 
-    
+
+
     // -------------------------------------------------------Orders Section-----------------------------------------------------------//
-    
+
     getCreateOrder: (req, res, next) => {
         const sale = req.session.username || "";
         const error = req.flash('error') || "";
@@ -483,7 +484,7 @@ const AdminController = {
         res.render('createOrders', { layout: "admin", pageName: "Tạo đơn hàng", position: req.session.position, sale, error, success })
     },
     postCreateOrder: (req, res, next) => {
-        const { fullname, email, phone, address, sale, product_list, total } = req.body;
+        const { fullname, email, phone, address, sale, product_link, total } = req.body;
 
         Customers.findOne({ fullname: fullname, phone: phone, email: email })
             .then(customer => {
@@ -500,7 +501,7 @@ const AdminController = {
                     Customer: info,
                     sale: sale,
                     total: total,
-                    product_list: product_list,
+                    product_link: product_link,
                 }
 
                 new Orders(order).save()
@@ -533,7 +534,7 @@ const AdminController = {
                             customer: customer,
                             sale: order.sale,
                             total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
-                            product_list: order.product_list,
+                            product_link: order.product_link,
                             status: order.status,
                             edit: req.session.username == order.sale
                         }
@@ -568,7 +569,7 @@ const AdminController = {
                         customer: customer,
                         sale: order.sale,
                         total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
-                        product_list: order.product_list
+                        product_link: order.product_link
                     }
                     return res.render('listOrders', { current_order, layout: "admin", pageName: "Thông tin đơn hàng", position: req.session.position })
                 }
@@ -639,7 +640,6 @@ const AdminController = {
     },
 
     // -------------------------------------------------------------END------------------------------------------------------------------//
-    
 
 
     // ---------------------------------------------------------News Section-------------------------------------------------------------//
@@ -785,12 +785,12 @@ const AdminController = {
     },
 
     // --------------------------------------------------------------END-----------------------------------------------------------------//
-    
 
 
-   
+
+
     // -------------------------------------------------------Users Section-----------------------------------------------------------//
- 
+
     getUsers: (req, res, next) => {
         return Users.find({})
             .then(users => {
@@ -827,11 +827,11 @@ const AdminController = {
     },
 
     // -----------------------------------------------------------END--------------------------------------------------------------------//
-    
+
 
 
     // -------------------------------------------------------Customers Section-----------------------------------------------------------//
-    
+
     getCustomers: (req, res, next) => {
         let query
         if (req.query.keyWord) {
@@ -864,7 +864,7 @@ const AdminController = {
                     return res.render('customerInfo', { position: req.session.position, listCustomers, layout: "admin", pageName: "Danh sách khách hàng", position: req.session.position, keyWord: req.query.keyWord })
                 }
             })
-    },  
+    },
     getCustomerByOrder: (req, res, next) => {
         const phone = req.params.phone
         return Customers.find({ phone: phone })
@@ -885,12 +885,12 @@ const AdminController = {
     },
 
     // -----------------------------------------------------------END--------------------------------------------------------------------//
-    
+
 
 
 
     // -------------------------------------------------------About Section-----------------------------------------------------------//
-       
+
     getAddAbout: (req, res, next) => {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
@@ -920,10 +920,10 @@ const AdminController = {
     },
 
     // -----------------------------------------------------------END--------------------------------------------------------------------//
-    
+
 
     // -------------------------------------------------------Discounts Section-----------------------------------------------------------//
-    
+
     getAddDiscount: (req, res, next) => {
         const error = req.flash('error') || ""
         const success = req.flash('success') || ""
@@ -958,7 +958,7 @@ const AdminController = {
                 req.flash('error', 'Thêm khuyến mãi thất bại')
                 res.redirect('/admin/add-discount')
             })
-    },   
+    },
     deleteDiscount: (req, res, next) => {
         const id = req.params.id
         return Discounts.findByIdAndDelete(id)
@@ -977,7 +977,7 @@ const AdminController = {
                 req.flash('error', "Xóa chương trình khuyến mãi thất bại")
                 res.redirect('/admin/listDiscounts')
             })
-    },   
+    },
     getDiscounts: (req, res, next) => {
         Discounts.find()
             .then(discounts => {
@@ -997,7 +997,7 @@ const AdminController = {
                     pageName: 'Danh sách khuyến mãi'
                 })
             })
-    }, 
+    },
     getUpdateDiscount: (req, res, next) => {
         const error = req.flash('error')
         const success = req.flash('success')
@@ -1064,12 +1064,12 @@ const AdminController = {
             }
         })
     },
-    
+
     // -----------------------------------------------------------------END--------------------------------------------------------------//
-    
+
 
     // -------------------------------------------------------Services Section-----------------------------------------------------------//
-    
+
     getAddServices: (req, res, next) => {
         const error = req.flash('error') || ""
         const success = req.flash('success') || ""
@@ -1171,7 +1171,7 @@ const AdminController = {
             .catch(err => {
                 res.json({ err: err })
             })
-    }, 
+    },
     postUpdateService: (req, res, next) => {
         const { title, subtitle, content, old_image, id } = req.body
         let imagePath = old_image;
@@ -1219,12 +1219,12 @@ const AdminController = {
     getAddPartner: (req, res, next) => {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
-        
+
         return res.render('addPartner', {
             layout: 'admin',
             position: req.session.position,
             pageName: 'Thêm đối tác',
-            error, success,         
+            error, success,
         })
     },
     postAddPartner: (req, res, next) => {
@@ -1232,7 +1232,7 @@ const AdminController = {
         const imagePath = "/uploads/" + file.filename
         const { partner_name } = req.body;
 
-        if(!partner_name || !file) {
+        if (!partner_name || !file) {
             req.flash('error', 'Nhập đầy đủ thông tin trước thi thêm');
             return res.redirect('/admin/addPartner');
         }
@@ -1243,7 +1243,7 @@ const AdminController = {
         }
 
         new Partners(partner).save()
-        req.flash('success','Thêm đối tác thành công');
+        req.flash('success', 'Thêm đối tác thành công');
         return res.redirect('/admin/addPartner');
     },
     getPartners: (req, res, next) => {
