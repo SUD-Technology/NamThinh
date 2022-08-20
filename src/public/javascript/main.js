@@ -324,6 +324,12 @@ $(document).ready(function () {
 
 });
 
+// $('.items-price').hover(function() {
+//     $(this).text('Thêm vào giỏ')
+// }, function() {
+//     $(this).text('Liên hệ')
+// })
+
 
 
 

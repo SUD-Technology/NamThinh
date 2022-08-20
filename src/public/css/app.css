@@ -1035,7 +1035,7 @@ img.bgc-title {
   color: red !important;
 }
 
-.items-price {
+.items-price , .price-layer{
   border: 2px solid var(--xanh);
   font-weight: 700;
   padding: 6px 10px 6px;
@@ -1049,11 +1049,20 @@ img.bgc-title {
   font-family: 'Open Sans';
   font-size: 15px;
   border-radius: 0.25rem;
+  transition: 0.3s;
 }
+
+.price-layer {
+  z-index: -1;
+  background-color: var(--do);
+  border-color: var(--do);
+}
+
 
 
 .items-price:hover {
   cursor: pointer;
+  opacity: 0;
   background-color: var(--do);
   border: 2px solid var(--do);
 }
@@ -1655,8 +1664,8 @@ footer .form-group input {
 .owl-carousel .item img {
   width: 100%;
   height: 100%;
-  border: 2px solid black;
-  border-radius: 50%;
+  border: 2px solid var(--xanh);
+  border-radius: .3rem;
 }
 
 .image-container {

@@ -8,6 +8,7 @@ const Users = require('../models/Users')
 const Posts = require('../models/Posts')
 const Discounts = require('../models/Discounts')
 const Services = require('../models/Services')
+const Partners = require('../models/Partners')
 const moment = require('moment');
 const About = require('../models/About');
 
@@ -640,7 +641,7 @@ const AdminController = {
     // -------------------------------------------------------------END------------------------------------------------------------------//
     
 
-    
+
     // ---------------------------------------------------------News Section-------------------------------------------------------------//
     getAddNews: (req, res, next) => {
         const error = req.flash('error') || ""
@@ -1144,8 +1145,8 @@ const AdminController = {
             })
     },
     getUpdateService: (req, res, next) => {
-        const error = req.flash('error')
-        const success = req.flash('success')
+        const error = req.flash('error') || '';
+        const success = req.flash('success') || '';
         const id = req.params.id
         return Services.findById(id)
             .then(service => {
@@ -1209,6 +1210,79 @@ const AdminController = {
                 res.redirect(`/admin/updateService/${id}`)
             }
         })
+    },
+
+    // -----------------------------------------------------------------END--------------------------------------------------------------//
+
+    // -----------------------------------------------------------Partners Section--------------------------------------------------------------------//
+
+    getAddPartner: (req, res, next) => {
+        const error = req.flash('error') || '';
+        const success = req.flash('success') || '';
+        
+        return res.render('addPartner', {
+            layout: 'admin',
+            position: req.session.position,
+            pageName: 'Thêm đối tác',
+            error, success,         
+        })
+    },
+    postAddPartner: (req, res, next) => {
+        const file = req.file;
+        const imagePath = "/uploads/" + file.filename
+        const { partner_name } = req.body;
+
+        if(!partner_name || !file) {
+            req.flash('error', 'Nhập đầy đủ thông tin');
+            return res.redirect('/admin/addPartner');
+        }
+
+        const partner = {
+            partner_name: partner_name,
+            image: imagePath
+        }
+
+        new Partners(partner).save()
+        req.flash('Thêm đối tác thành công');
+        return res.redirect('/admin/addPartner');
+    },
+    getPartners: (req, res, next) => {
+        Partners.find({})
+            .then(partners => {
+                const data = partners.map(partner => {
+                    return {
+                        id: partner._id,
+                        name: partner.partner_name,
+                        image: partner.image
+                    }
+                })
+
+                return res.render('partnerList', {
+                    layout: 'admin',
+                    pageName: 'Danh sách đối tác',
+                    position: req.session.position,
+                    data
+                })
+            })
+    },
+    getDeletePartner: (req, res, next) => {
+        const id = req.params.id
+        return Partners.findByIdAndDelete(id)
+            .then((partner) => {
+                fs.unlink(`source/src/public/${partner.image}`, (err) => {
+                    if (!err) {
+                        req.flash('success', "Xóa đối tác thành công")
+                        res.redirect('/admin/listPartners')
+                    } else {
+                        req.flash('error', "Xóa đối tác thất bại")
+                        res.redirect('/admin/listPartners')
+                    }
+                })
+            })
+            .catch(() => {
+                req.flash('error', "Xóa đối tác thất bại")
+                res.redirect('/admin/listPartners')
+            })
     }
 
     // -----------------------------------------------------------------END--------------------------------------------------------------//
