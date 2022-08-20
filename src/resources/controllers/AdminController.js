@@ -642,10 +642,6 @@ const AdminController = {
     // -------------------------------------------------------------END------------------------------------------------------------------//
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 14bde1d3081d2908da48659b42b52609c86420e8
     // ---------------------------------------------------------News Section-------------------------------------------------------------//
     getAddNews: (req, res, next) => {
         const error = req.flash('error') || ""
@@ -1223,12 +1219,12 @@ const AdminController = {
     getAddPartner: (req, res, next) => {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
-        
+
         return res.render('addPartner', {
             layout: 'admin',
             position: req.session.position,
             pageName: 'Thêm đối tác',
-            error, success,         
+            error, success,
         })
     },
     postAddPartner: (req, res, next) => {
@@ -1236,7 +1232,7 @@ const AdminController = {
         const imagePath = "/uploads/" + file.filename
         const { partner_name } = req.body;
 
-        if(!partner_name || !file) {
+        if (!partner_name || !file) {
             req.flash('error', 'Nhập đầy đủ thông tin trước thi thêm');
             return res.redirect('/admin/addPartner');
         }
@@ -1247,7 +1243,7 @@ const AdminController = {
         }
 
         new Partners(partner).save()
-        req.flash('success','Thêm đối tác thành công');
+        req.flash('success', 'Thêm đối tác thành công');
         return res.redirect('/admin/addPartner');
     },
     getPartners: (req, res, next) => {
