@@ -329,6 +329,7 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
     })
 
     var html = '';
+    let cart = 'Thêm vào giỏ';
     if(data.length > 0) {
         data.forEach((d, index) => {
             if(index == 10) return;
@@ -345,10 +346,13 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
                             <a href="/products/${d.pslug}">${d.pname}</a>
                             <p>${d.pid}</p>
                         </div>
-                        <div class="items-price">
-                            ${d.price}
-                        </div>
+                        
                     </div>
+
+                    <div class="items-price">
+                        ${d.price}
+                    </div>
+                    <div class="price-layer">${cart}</div>
 
                 </li>
             `

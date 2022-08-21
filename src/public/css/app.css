@@ -990,7 +990,7 @@ img.bgc-title {
 }
 
 .items-product {
-  padding: 5px 5px;
+  padding: 5px 0px;
   position: relative;
   border-color: white;
   border-style: solid;
@@ -998,8 +998,10 @@ img.bgc-title {
   display: list-item;
   font-size: 13px;
   text-align: center;
+  z-index: 10;
+  overflow: hidden;
   /* border-radius: 0.5rem 0.5rem; */
-  box-shadow: rgba(59, 206, 198, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  box-shadow: rgba(34, 124, 226, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
 
@@ -1022,13 +1024,14 @@ img.bgc-title {
   position: relative;
 }
 
-.items-product img:hover {
+.items-product:hover img {
   cursor: pointer;
   transform: scale(1.07);
 
   overflow: hidden;
   /* border: 2px solid var(--xanh); */
 }
+
 
 .items-product p {
   margin-bottom: 0;
@@ -1054,6 +1057,8 @@ img.bgc-title {
 
 .price-layer {
   z-index: -1;
+  opacity: 0;
+  color: white;
   background-color: var(--do);
   border-color: var(--do);
 }
@@ -1065,6 +1070,10 @@ img.bgc-title {
   opacity: 0;
   background-color: var(--do);
   border: 2px solid var(--do);
+}
+
+.items-price:hover + .price-layer {
+  opacity: 1;
 }
 
 
