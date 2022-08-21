@@ -491,7 +491,9 @@ const AdminController = {
             .then(customer => {
                 let info = {
                     fullname: fullname,
-                    email, phone, address
+                    email: email,
+                    phone: phone,
+                    address: address
                 }
 
                 if (!customer) {
@@ -525,7 +527,7 @@ const AdminController = {
             query = { sale: `${username}` }
         else
             query = {}
-        return Orders.find(query)
+        return Orders.find({})
             .where('complete.success').equals(null)
             .then(orders => {
                 let listOrders = []

@@ -15,6 +15,6 @@ router.post('/register', registerValidator, UserController.postRegister)
 
 router.get('/changePassword', UserController.getChangePassword)
 router.post('/changePassword', UserController.postChangePassword)
-
+router.post('/reOrder', UserController.postReorder)
 router.get('/logout', UserController.getLogout)
 module.exports = router;

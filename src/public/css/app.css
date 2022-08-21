@@ -611,10 +611,13 @@ input[type="file"] {
   color: #fff;
 }
 
+#cart-container table #thead-cart {
+  border-radius: 4px;
+}
 
 
 #cart-container table tbody img {
-  width: 200px;
+  width: 110px;
   object-fit: cover;
 }
 
@@ -1038,7 +1041,8 @@ img.bgc-title {
   color: red !important;
 }
 
-.items-price , .price-layer{
+.items-price,
+.price-layer {
   border: 2px solid var(--xanh);
   font-weight: 500;
   padding: 6px 10px 6px;
@@ -1072,7 +1076,7 @@ img.bgc-title {
   border: 2px solid var(--do);
 }
 
-.items-price:hover + .price-layer {
+.items-price:hover+.price-layer {
   opacity: 1;
 }
 
@@ -1675,7 +1679,7 @@ footer .form-group input {
   height: 100%;
   border: 2px solid var(--xanh);
   border-radius: .3rem;
-  
+
 }
 
 .image-container {
@@ -2613,7 +2617,8 @@ img {
   background: #75cfad;
 }
 
-span.ico-product.ico-new, .ico-new {
+span.ico-product.ico-new,
+.ico-new {
   position: absolute;
   top: -5px;
   left: -5px;
@@ -2637,11 +2642,12 @@ span.ico-product.ico-new, .ico-new {
   justify-content: space-between;
   align-items: center;
 }
+
 .list-social-sidebar .social-item {
   margin-bottom: 20px;
   width: 45px;
   height: 45px;
-  
+
 }
 
 .list-social-sidebar .social-item img {
@@ -2780,7 +2786,8 @@ span.ico-product.ico-new, .ico-new {
   text-align: justify;
 }
 
-.news-content-box h5, .card-title {
+.news-content-box h5,
+.card-title {
   font-size: 1.1rem;
 }
 
@@ -3000,27 +3007,89 @@ a:not([href]):not([tabindex]) {
 }
 
 @keyframes ring {
-  0% { transform: rotate(0); }
-  5% { transform: rotate(30deg); }
-  10% { transform: rotate(-28deg); }
-  15% { transform: rotate(34deg); }
-  20% { transform: rotate(-32deg); }
-  25% { transform: rotate(30deg); }
-  30% { transform: rotate(-28deg); }
-  35% { transform: rotate(26deg); }
-  40% { transform: rotate(-24deg); }
-  45% { transform: rotate(22deg); }
-  50% { transform: rotate(-20deg); }
-  55% { transform: rotate(18deg); }
-  60% { transform: rotate(-16deg); }
-  65% { transform: rotate(14deg); }
-  70% { transform: rotate(-12deg); }
-  75% { transform: rotate(10deg); }
-  80% { transform: rotate(-8deg); }
-  85% { transform: rotate(6deg); }
-  90% { transform: rotate(-4deg); }
-  95% { transform: rotate(2deg); }
-  100% { transform: rotate(-1deg); }
+  0% {
+    transform: rotate(0);
+  }
+
+  5% {
+    transform: rotate(30deg);
+  }
+
+  10% {
+    transform: rotate(-28deg);
+  }
+
+  15% {
+    transform: rotate(34deg);
+  }
+
+  20% {
+    transform: rotate(-32deg);
+  }
+
+  25% {
+    transform: rotate(30deg);
+  }
+
+  30% {
+    transform: rotate(-28deg);
+  }
+
+  35% {
+    transform: rotate(26deg);
+  }
+
+  40% {
+    transform: rotate(-24deg);
+  }
+
+  45% {
+    transform: rotate(22deg);
+  }
+
+  50% {
+    transform: rotate(-20deg);
+  }
+
+  55% {
+    transform: rotate(18deg);
+  }
+
+  60% {
+    transform: rotate(-16deg);
+  }
+
+  65% {
+    transform: rotate(14deg);
+  }
+
+  70% {
+    transform: rotate(-12deg);
+  }
+
+  75% {
+    transform: rotate(10deg);
+  }
+
+  80% {
+    transform: rotate(-8deg);
+  }
+
+  85% {
+    transform: rotate(6deg);
+  }
+
+  90% {
+    transform: rotate(-4deg);
+  }
+
+  95% {
+    transform: rotate(2deg);
+  }
+
+  100% {
+    transform: rotate(-1deg);
+  }
 }
 
 @keyframes loader {
@@ -3354,17 +3423,17 @@ a:not([href]):not([tabindex]) {
 
 #TuVanModal {
   margin-top: 15vh;
-  
+
 }
 
-#TuVanModal .form-group{
+#TuVanModal .form-group {
   border-bottom: 0 !important;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 #TuVanModal .modal-content {
-  border-radius: 1rem ;
+  border-radius: 1rem;
 }
 
 
@@ -3386,12 +3455,13 @@ a:not([href]):not([tabindex]) {
   #TuVanModal .modal-content {
     z-index: 100000;
     background-color: #0d71f2;
-    
+
   }
 
   #TuVanModal {
     margin-top: 1vh !important;
   }
+
   /* .container {
     max-width: 200px;
   }
@@ -3422,7 +3492,3 @@ a:not([href]):not([tabindex]) {
     display: none;
   } */
 }
-
-
-
-

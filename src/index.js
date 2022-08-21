@@ -133,6 +133,7 @@ function loadProducts(array) {
             pid: product.product_id,
             size: product.size,
             pslug: product.slug,
+            numPrice: product.price,
             price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
         }
     })
@@ -245,7 +246,7 @@ app.get('/policy', (req, res) => {
 })
 
 app.get('/shopping-cart', (req, res) => {
-    res.render('product-cart')
+    res.render('product-cart', { success: req.flash('success') })
 })
 
 app.use('/users', UserRouter);

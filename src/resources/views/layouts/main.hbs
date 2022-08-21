@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{!-- Bootstrap --}}
-    
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
@@ -15,16 +15,22 @@
     {{!-- Font Awesome --}}
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     {{!-- Zoom-image --}}
-    <link rel="stylesheet" href="/zoom/multizoom.css">
-    <script src="/zoom/multizoom.js"></script>
-    
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
-    {{!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
+    {{!--
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    --}}
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/lightslider.css">
 
@@ -131,8 +137,8 @@
 
     {{#if homepage}}
     <div class="header-banner-slide mb-3">
-        
-        <video  width="100%" autoplay muted loop id="myVideo" controls="hidden">
+
+        <video width="100%" autoplay muted loop id="myVideo" controls="hidden">
             <source src="img/namthinh.mp4" type="video/mp4">
         </video>
     </div>
@@ -144,6 +150,9 @@
     <a class="scroll-to-top">
         <div class="inner"></div>
     </a>
+    <div id="alert-product">
+        
+    </div>
     <div class="container wrapper">
 
         <div id="fb-root"></div>
@@ -162,83 +171,92 @@
     {{#if hide}}
     {{else}}
     <div class="list-social-sidebar fadeLeft">
-    <ul>
-                <li class="social-item smooth">
-            <a href="https://www.facebook.com/CTNAMTHINH/" target="_blank">
-                <img class="drop-shadow" src="/img/icon/fb.png" alt="Facebook">
-            </a>
-        </li>
-                        
-                        <li class="social-item smooth">
-            <a href="https://www.youtube.com/channel/UC7IJyk7xBdRInhjhVAvdsyQ" target="_blank">
-                <img class="drop-shadow" src="/img/icon/ytb.png" alt="Youtube">
-            </a>
-        </li>
-                        <li class="social-item smooth">
-            <a href=" mailto:thuongmainamthinh@gmail.com">
-                <img class="drop-shadow" src="/img/icon/email.png" alt="Mail">
-            </a>
-        </li>
-                        <li class="social-item smooth">
-            <a href=" tel:0839897897">
-                <img class="drop-shadow" src="/img/icon/phone.png" alt="Phone">
-            </a>
-        </li>
-                        <li class="social-item smooth">
-            <a href="https://zalo.me/0839897897">
-                <img class="drop-shadow" src="/img/icon/zalo.png" alt="Zalo">
-            </a>
-        </li>
-                
-            </ul>
-</div>
+        <ul>
+            <li class="social-item smooth">
+                <a href="https://www.facebook.com/CTNAMTHINH/" target="_blank">
+                    <img class="drop-shadow" src="/img/icon/fb.png" alt="Facebook">
+                </a>
+            </li>
+
+            <li class="social-item smooth">
+                <a href="https://www.youtube.com/channel/UC7IJyk7xBdRInhjhVAvdsyQ" target="_blank">
+                    <img class="drop-shadow" src="/img/icon/ytb.png" alt="Youtube">
+                </a>
+            </li>
+            <li class="social-item smooth">
+                <a href=" mailto:thuongmainamthinh@gmail.com">
+                    <img class="drop-shadow" src="/img/icon/email.png" alt="Mail">
+                </a>
+            </li>
+            <li class="social-item smooth">
+                <a href=" tel:0839897897">
+                    <img class="drop-shadow" src="/img/icon/phone.png" alt="Phone">
+                </a>
+            </li>
+            <li class="social-item smooth">
+                <a href="https://zalo.me/0839897897">
+                    <img class="drop-shadow" src="/img/icon/zalo.png" alt="Zalo">
+                </a>
+            </li>
+
+        </ul>
+    </div>
     {{/if}}
 
     {{!-- Pop up tư vấn --}}
-    <div class="modal fade" id="TuVanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="modal-header">
-            <div class="logo-s">
-                
-            </div>
-            <h5 class="modal-title text-center" id="exampleModalLabel"><img style="margin-left: 17px;" width="25%" src="https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/logo%2Flogo.png?alt=media&token=3b904e5b-646e-450e-a41b-601976fb0a79" alt=""><br>&nbsp; ĐĂNG KÝ TƯ VẤN</h5><br>
+    <div class="modal fade" id="TuVanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="logo-s">
 
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-            <div style="padding-top: 20px;" class="w-100 text-center col-md-12">
-                <p class="mb-0">Để nhận được ưu đãi khi mua hàng tại Nam Thịnh, quý khách hàng vui lòng điền thông tin dưới đây, hoặc liên hệ hotline <br><span style="color:red">083 989 7897</span></p>
+                    </div>
+                    <h5 class="modal-title text-center" id="exampleModalLabel"><img style="margin-left: 17px;"
+                            width="25%"
+                            src="https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/logo%2Flogo.png?alt=media&token=3b904e5b-646e-450e-a41b-601976fb0a79"
+                            alt=""><br>&nbsp; ĐĂNG KÝ TƯ VẤN</h5><br>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div style="padding-top: 20px;" class="w-100 text-center col-md-12">
+                    <p class="mb-0">Để nhận được ưu đãi khi mua hàng tại Nam Thịnh, quý khách hàng vui lòng điền thông
+                        tin dưới đây, hoặc liên hệ hotline <br><span style="color:red">083 989 7897</span></p>
+                </div>
+                <div class="modal-body py-0">
+                    <form>
+                        <div class="form-group">
+                            {{!-- <label for="recipient-name" class="col-form-label">Recipient:</label> --}}
+                            <input placeholder="Họ tên" type="text" class="form-control py-4" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            {{!-- <label for="recipient-name" class="col-form-label">Recipient:</label> --}}
+                            <input placeholder="Email" type="text" class="form-control py-4" id="recipient-name">
+                        </div>
+                        <div class="form-group">
+                            {{!-- <label for="recipient-name" class="col-form-label">Recipient:</label> --}}
+                            <input placeholder="Số điện thoại" type="text" class="form-control py-4"
+                                id="recipient-name">
+                        </div>
+                        <label for="message-text" class="col-form-label">Nội dung:</label><br>
+                        <div class="my-0 form-group">
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" style="background-color: #3A5BA0;" class="w-100 py-2 btn btn-success">Đăng
+                        ký</button>
+                </div>
             </div>
-        <div class="modal-body py-0">
-            <form>
-            <div class="form-group">
-                {{!-- <label for="recipient-name" class="col-form-label">Recipient:</label> --}}
-                <input placeholder="Họ tên" type="text" class="form-control py-4" id="recipient-name">
-            </div>
-            <div class="form-group">
-                {{!-- <label for="recipient-name" class="col-form-label">Recipient:</label> --}}
-                <input placeholder="Email" type="text" class="form-control py-4" id="recipient-name">
-            </div>
-            <div class="form-group">
-                {{!-- <label for="recipient-name" class="col-form-label">Recipient:</label> --}}
-                <input placeholder="Số điện thoại" type="text" class="form-control py-4" id="recipient-name">
-            </div>
-                <label for="message-text" class="col-form-label">Nội dung:</label><br>
-            <div class="my-0 form-group">
-                <textarea class="form-control" id="message-text"></textarea>
-            </div>
-            </form>
-        </div>
-        <div class="modal-footer">
-            
-            <button type="button" style="background-color: #3A5BA0;" class="w-100 py-2 btn btn-success">Đăng ký</button>
-        </div>
         </div>
     </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
@@ -248,7 +266,8 @@
         integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
         crossorigin="anonymous"></script>
 
-    {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.6.1/jquery.zoom.min.js"
+    {{!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-zoom/1.6.1/jquery.zoom.min.js"
         integrity="sha512-xhvWWTTHpLC+d+TEOSX2N0V4Se1989D03qp9ByRsiQsYcdKmQhQ8fsSTX3KLlzs0jF4dPmq0nIzvEc3jdYqKkw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 
@@ -258,14 +277,15 @@
 
 </body>
 <script>
-   
 
-    $(document).ready(function() {
-        $(window).on('load', function() {
-            setTimeout(function() {
+
+    $(document).ready(function () {
+        $(window).on('load', function () {
+            setTimeout(function () {
                 $('#TuVanModal').modal('show');
             }, 180000)
         });
     })
 </script>
+
 </html>

@@ -186,13 +186,13 @@ const CollectionController = {
 
         if (signal.includes(0) || level >= 4 || level <= 0 || keys[0] > 3) {
             const title = 'Không tồn tại';
-            return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
+            return res.render('collections', { title, msg: 'Không tìm thấy sản phẩm nào' });
         }
 
-        if (level == 3) {    
+        if (level == 3) {
             const title = menuItems[keys[0]].submenu[keys[1]].role[keys[2]].title || "";
             if (!title) {
-                return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
+                return res.render('collections', { title, msg: 'Không tìm thấy sản phẩm nào' });
             }
 
             const level1 = {
@@ -201,7 +201,7 @@ const CollectionController = {
             }
             submenu = submenu[keys[1]].role;
             Products.find({})
-                .select({product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1})    
+                .select({ product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1 })
                 .where('classes.lv1').equals(keys[0] + 1)
                 .where('classes.lv2').equals(keys[1] + 1)
                 .where('classes.lv3').equals(keys[2] + 1)
@@ -215,7 +215,7 @@ const CollectionController = {
         if (level == 2) {
             const title = menuItems[keys[0]].submenu[keys[1]].title || "";
             if (!title) {
-                return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
+                return res.render('collections', { title, msg: 'Không tìm thấy sản phẩm nào' });
             }
 
             const level1 = {
@@ -223,7 +223,7 @@ const CollectionController = {
                 src: menuItems[keys[0]].src
             }
             Products.find({})
-                .select({product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1})
+                .select({ product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1 })
                 .where('classes.lv1').equals(keys[0] + 1)
                 .where('classes.lv2').equals(keys[1] + 1)
                 .skip(skip * (page - 1)).limit(skip)
@@ -234,18 +234,18 @@ const CollectionController = {
 
         }
 
-        if (level == 1) {    
+        if (level == 1) {
             const title = menuItems[keys[0]].title || '';
             if (!title) {
-                return res.render('collections', {title, msg: 'Không tìm thấy sản phẩm nào'});
-            }   
+                return res.render('collections', { title, msg: 'Không tìm thấy sản phẩm nào' });
+            }
 
             const level1 = {
                 title: menuItems[keys[0]].title,
                 src: menuItems[keys[0]].src
-            }           
+            }
             Products.find({})
-                .select({product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1})
+                .select({ product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1 })
                 .where('classes.lv1').equals(keys[0] + 1)
                 .skip(skip * (page - 1))
                 .limit(skip)
@@ -258,22 +258,22 @@ const CollectionController = {
     },
     getFindProducts: (req, res, next) => {
         var keyword = req.query.key;
-        
+
         const page = parseInt(req.query.page) || 1;
         let skip = 20 * (page - 1);
-        
+
         Products
-            .find({'$or': [{product_name: {$regex: keyword, $options: 'i'}},{product_model: {$regex: keyword, $options: 'i'} }]})
-            .select({product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1})
+            .find({ '$or': [{ product_name: { $regex: keyword, $options: 'i' } }, { product_model: { $regex: keyword, $options: 'i' } }] })
+            .select({ product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1 })
             .skip(skip).limit(20)
             .then(products => {
-                if(products.length == 0) {
+                if (products.length == 0) {
                     return res.render('search', {
                         title: 'Tìm sản phẩm',
                         msg: 'Không tìm thấy sản phẩm nào'
                     })
                 }
-                
+
                 let data = products.map(product => {
                     return {
                         pname: product.product_name,
@@ -281,10 +281,11 @@ const CollectionController = {
                         pimg: product.product_img,
                         pid: product.product_id,
                         brand: product.brand_name,
-                        price: product.price || 'Liên hệ'
+                        numPrice: product.price,
+                        price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
                     }
                 })
-                
+
                 return res.render('search', {
                     title: 'Tìm sản phẩm',
                     keyword,
@@ -294,25 +295,25 @@ const CollectionController = {
     },
     postFindProducts: (req, res, next) => {
         var { keyword } = req.body;
-        if(keyword) {
+        if (keyword) {
             return res.redirect(`/collections/search/?key=${keyword}`);
         }
 
         return res.redirect('/home');
     }
-    
+
 
 }
 
 
 function handleProducts(req, res, view, level1, submenu, title, products, slug) {
     let brand_list = [];
-    
+
     if (products.length == 0) {
-        if(view == 'home') {
+        if (view == 'home') {
             return res.send(`<div class="  text-center h3"></div><div class=" text-center h3"></div><div class="d-flex justified-content-center text-center h5">Không tìm thấy sản phẩm</div>`);
         }
-        return res.render('collections', {title, level1, submenu, slug, msg: 'Không tìm thấy sản phẩm nào'});
+        return res.render('collections', { title, level1, submenu, slug, msg: 'Không tìm thấy sản phẩm nào' });
     }
     const data = products.map(product => {
         if (!brand_list.includes(product.brand_name))
@@ -324,15 +325,16 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
             pid: product.product_id,
             brand: product.brand_name,
             pslug: product.slug,
-            price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
+            numPrice: product.price,
+            price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
         }
     })
 
     var html = '';
     let cart = 'Thêm vào giỏ';
-    if(data.length > 0) {
+    if (data.length > 0) {
         data.forEach((d, index) => {
-            if(index == 10) return;
+            if (index == 10) return;
             html += `
                 <li class="items-product smooth text-center">
                     <span class="ico-product ico-new"> Hot</span>
@@ -358,14 +360,14 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
             `
         });
 
-    }else {
+    } else {
         console.log('passed')
         html += `<div>Không tìm thấy sản phẩm</div>`
     }
-    
-    if(view == 'home')
+
+    if (view == 'home')
         return res.send(html);
-        
+
     return res.render('collections', {
         title,
         level1,
