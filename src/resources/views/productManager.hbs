@@ -351,7 +351,7 @@
                         <img src="{{pimg}}" alt="">
                         {{/if}}
                     </td>
-                    <td><a href="/products/{{pslug}}">{{pname}}</a></td>
+                    <td><a target="_blank" href="/products/{{pslug}}">{{pname}}</a></td>
                     <td>{{model}}</td>
                     <td>{{pid}}</td>
                     <td>{{price}}</td>
@@ -816,7 +816,6 @@
 
     // Create order
     function createOrder() {
-        localStorage.removeItem('admin-cart')
         location.href = "/admin/create-order"
     }
 

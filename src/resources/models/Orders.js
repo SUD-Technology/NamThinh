@@ -20,7 +20,7 @@ const Orders = new Schema({
         required: true
     },
     product_list: {
-        type: [String]
+        type: String
     },
     product_link: {
         type: String

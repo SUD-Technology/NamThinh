@@ -62,13 +62,17 @@
 
 
                 <section class="shopping-cart dark">
+                    <a href="/admin/product-manager" class="btn btn-success">Thêm sản
+                        phẩm</a>
                     <div class="container">
+
                         <div class="block-heading">
                             <h2>Danh sách đơn hàng</h2>
                         </div>
+                        <input id="product_list" name="product_list" class="d-none" type="text">
                         <div class="content">
                             <div class="row">
-                                <div class="col-md-12 col-lg-8">
+                                <div class="col-md-12 col-lg-12">
                                     <div id="cart-products" class="items">
 
                                     </div>
@@ -103,7 +107,7 @@
 
                 <!-- Text input-->
                 <div class="form-footer">
-                    <button type="submit">Tạo đơn hàng</button>
+                    <button onclick="submitForm()" type="submit">Tạo đơn hàng</button>
                 </div>
 
             </fieldset>
@@ -143,6 +147,82 @@
             imageContainer.appendChild(figure);
             reader.readAsDataURL(i)
         }
+    }
+
+
+    const cartItemsEl = document.getElementById('cart-products')
+    const totalPrice = document.getElementById('total')
+    let cart
+    if (localStorage.getItem('admin-cart')) {
+        cart = JSON.parse(localStorage.getItem('admin-cart'))
+        renderCartItem()
+        renderSubtotal()
+    }
+    else
+        cart = JSON.parse(localStorage.setItem('admin-cart', '[]'))
+    if (cart.length > 0) {
+        console.log('cart have items')
+    }
+
+    function submitForm() {
+        let listId = []
+        cart.forEach(item => {
+            item = JSON.parse(item)
+            listId.push(item.id)
+        })
+        document.getElementById('product_list').value = JSON.stringify(cart)
+        localStorage.removeItem('admin-cart')
+    }
+
+    function renderSubtotal() {
+        let total = 0, totalItems = 0;
+        cart.forEach(item => {
+            item = JSON.parse(item)
+            total += Number(item.price) * item.numberOfUnit;
+            totalItems += item.numberOfUnit;
+        })
+        totalPrice.value = total
+    }
+
+    function renderCartItem() {
+        cartItemsEl.innerHTML = ``;
+        cart.forEach(item => {
+            item = JSON.parse(item)
+            cartItemsEl.innerHTML += `<div class="product">
+                                                <div class="row">
+                                                    <div class="col-md-3 mt-auto mb-auto">
+                                                        <img class="img-fluid mx-auto d-block image"
+                                                            src="${item.img}">
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="info">
+                                                            <div class="row">
+                                                                <div class="col-md-5 product-name">
+                                                                    <div class="product-name">
+                                                                        <a href="#">${item.name}</a>
+                                                                        <div class="product-info">
+                                                                            <div>Model: <span class="value">${item.model}</span></div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-4 quantity">
+                                                                    <label for="${item.id}">Số lượng:</label>
+                                                                    <input class="form-control quantity-input d-none">
+                                                                    <div class="units">
+                                                                        <div class="number">${item.numberOfUnit}</div>
+                                                                    </div>
+                                                                    
+                                                                </div>
+                                                                <div class="col-md-3 price">
+                                                                    <span>${item.stringPrice}</span>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>`
+        })
     }
 
 </script>

@@ -244,7 +244,9 @@ app.get('/policy', (req, res) => {
     res.render('policy');
 })
 
-
+app.get('/shopping-cart', (req, res) => {
+    res.render('product-cart')
+})
 
 app.use('/users', UserRouter);
 app.use('/collections', CollectionRouter);
