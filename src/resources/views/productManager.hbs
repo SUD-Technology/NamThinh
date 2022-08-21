@@ -636,10 +636,26 @@
 
 
     // Add product to cart: admin -- start
+    const cartItemsEl = document.getElementById('cart-products')
+    const totalPrice = document.getElementById('total-price')
+    let cart
+    if (localStorage.getItem('admin-cart')) {
+        cart = JSON.parse(localStorage.getItem('admin-cart'))
+        renderCartItem()
+        renderSubtotal()
+    }
+    else
+        cart = JSON.parse(localStorage.setItem('admin-cart', '[]'))
+    if (cart.length > 0) {
+        console.log('cart have items')
+    }
 
-    let cart = []
     function addToCart(id, name, price, img, inventory, model) {
-        if (cart.some(item => item.id === id)) {
+        let checkId = cart.some(item => {
+            item = JSON.parse(item)
+            return item.id === id
+        })
+        if (checkId) {
             changeNumberOfUnit('plus', id)
             alertAddProduct(name)
         } else {
@@ -652,10 +668,10 @@
                 inventory: inventory,
                 model: model
             }
-            cart.push({
+            cart.push(JSON.stringify({
                 ...product,
                 numberOfUnit: 1
-            })
+            }))
             alertAddProduct(name)
         }
         updateCart()
@@ -675,15 +691,20 @@
     function updateCart() {
         renderCartItem()
         renderSubtotal()
+        updateLocalStorage()
     }
 
 
+
     // render cart items
-    const cartItemsEl = document.getElementById('cart-products')
-    const totalPrice = document.getElementById('total-price')
+
+    function updateLocalStorage() {
+        localStorage.setItem('admin-cart', JSON.stringify(cart))
+    }
     function renderCartItem() {
         cartItemsEl.innerHTML = ``;
         cart.forEach(item => {
+            item = JSON.parse(item)
             cartItemsEl.innerHTML += `<div class="product">
                                                 <div class="row">
                                                     <div class="col-md-3 mt-auto mb-auto">
@@ -728,7 +749,8 @@
     function renderSubtotal() {
         let total = 0, totalItems = 0;
         cart.forEach(item => {
-            total += item.price * item.numberOfUnit;
+            item = JSON.parse(item)
+            total += Number(item.price) * item.numberOfUnit;
             totalItems += item.numberOfUnit;
         })
         total = total.toLocaleString('vi', { style: 'currency', currency: 'VND' });
@@ -762,7 +784,11 @@
 
     // delete item
     function deleteItem(id) {
-        cart = cart.filter(item => item.id != id)
+        //cart = cart.filter(item => item.id != id)
+        cart = cart.filter(item => {
+            item = JSON.parse(item)
+            return item.id != id
+        })
         updateCart()
     }
 
@@ -770,6 +796,7 @@
     // Change number of unit
     function changeNumberOfUnit(action, id) {
         cart = cart.map(item => {
+            item = JSON.parse(item)
             let numberOfUnit = item.numberOfUnit
             if (item.id === id) {
                 if (action == 'minus' && numberOfUnit > 1) {
@@ -778,10 +805,10 @@
                     numberOfUnit++
                 }
             }
-            return {
+            return JSON.stringify({
                 ...item,
                 numberOfUnit: numberOfUnit
-            }
+            })
         })
         updateCart()
     }
@@ -790,7 +817,6 @@
     // Create order
     function createOrder() {
         localStorage.removeItem('admin-cart')
-        localStorage.setItem('admin-cart', cart)
         location.href = "/admin/create-order"
     }
 
