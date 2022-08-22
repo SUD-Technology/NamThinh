@@ -11,6 +11,7 @@ const Services = require('../models/Services')
 const Partners = require('../models/Partners')
 const moment = require('moment');
 const About = require('../models/About');
+const { insertMany } = require('../models/About');
 
 function unique(arr) {
     return Array.from(new Set(arr)) //
@@ -484,7 +485,7 @@ const AdminController = {
         res.render('createOrders', { layout: "admin", pageName: "Tạo đơn hàng", position: req.session.position, sale, error, success })
     },
     postCreateOrder: (req, res, next) => {
-        const { fullname, email, phone, address, sale, product_link, total } = req.body;
+        const { fullname, email, phone, address, sale, product_link, total, product_list } = req.body;
 
         Customers.findOne({ fullname: fullname, phone: phone, email: email })
             .then(customer => {
@@ -502,8 +503,8 @@ const AdminController = {
                     sale: sale,
                     total: total,
                     product_link: product_link,
+                    product_list: product_list,
                 }
-
                 new Orders(order).save()
                     .then(() => {
                         req.flash('success', 'Tạo đơn hàng thành công')
@@ -518,7 +519,13 @@ const AdminController = {
 
     },
     getOrders: (req, res, next) => {
-        return Orders.find({})
+        const username = req.session.username
+        let query
+        if (username != 'admin')
+            query = { sale: `${username}` }
+        else
+            query = {}
+        return Orders.find(query)
             .where('complete.success').equals(null)
             .then(orders => {
                 let listOrders = []
@@ -625,9 +632,22 @@ const AdminController = {
             .then(order => {
                 if (order) {
                     if (ops == 'accept') {
-                        order.complete.success = true,
-                            order.complete.date = new Date()
-                        order.save();
+                        const listProduct = JSON.parse(order.product_list)
+                        console.log(listProduct)
+                        listProduct.forEach(item => {
+                            item = JSON.parse(item)
+                            let newInventory = Number(item.inventory) - item.numberOfUnit
+                            Products.findOneAndUpdate({ product_id: item.id }, { $set: { inventory: newInventory } }, (err, doc) => {
+                                if (!err) {
+                                    order.complete.success = true
+                                    order.complete.date = new Date()
+                                    order.save();
+                                } else {
+                                    console.log(err)
+                                }
+                            })
+                        })
+
                     }
                     else {
                         order.complete.success = false,
@@ -640,7 +660,6 @@ const AdminController = {
     },
 
     // -------------------------------------------------------------END------------------------------------------------------------------//
-
 
     // ---------------------------------------------------------News Section-------------------------------------------------------------//
     getAddNews: (req, res, next) => {
@@ -894,13 +913,20 @@ const AdminController = {
     getAddAbout: (req, res, next) => {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
+        About.findOne({})
+            .then(about => {
+                const content = about.content
+                res.render('addAbout', {
+                    layout: 'admin',
+                    pageName: 'Sửa nội dung giới thiệu'
+                    ,
+                    content,
+                    success, error,
+                    position: req.session.position
+                });
+            })
 
-        res.render('addAbout', {
-            layout: 'admin',
-            pageName: 'Sửa nội dung giới thiệu'
-            ,
-            success, error
-        });
+
     },
     postAddAbout: (req, res, next) => {
         const { content } = req.body;
