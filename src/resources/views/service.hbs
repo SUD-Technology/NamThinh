@@ -6,51 +6,24 @@
 
     <div class="row mt-5">
         {{#if services}}
+        {{#each services}}
+        
+        <div onclick="window.location.href='/discount/{{slug}}'" class="service-box col-md-6 mb-5">
+            <div style="width: 100%;" class="service-main-img">
+                <img height="300px" class="w-100 smooth" src="{{image}}" alt="">
+            </div>
+            <div style="height: 120px;" class="service-main-content">
+                <span class="py-3 px-3 h5 d-block">{{title}} <br>
+                <p class="py-3">{{subtitle}}</p></span>       
+            </div>
+            
+        </div>
+        {{/each}}
+
+
         {{else}}
         <div class="container text-center h2">Đang cập nhật</div>
         {{/if}}
-
-        {{#each services}}
-        {{#if @first}}
-        <div class="service-box col-12">
-            <div class="service-main-img">
-                <img height="100%" class="w-100" src="{{image}}" alt="">
-            </div>
-
-            <div class="service-main-content">
-                <div class="service-content">
-                    <div class="captions">
-                        <h3><a href="/service/{{slug}}">{{title}}</a></h3>
-
-                        <div class="des">
-                            {{subtitle}}
-                        </div>
-                    </div>
-                </div>
-                <a style="background-color: rgb(121, 70, 70); color: white" href="/service/{{slug}}"
-                    class="watch-detail px-5 mx-5 py-2">Xem thêm</a>
-            </div>
-        </div>
-        {{else}}
-        <div class="col-md-4 service-box mt-5">
-            <div class="service-img-box">
-                <img class="w-100" src="{{image}}" alt="">
-            </div>
-
-            <div class="service-content">
-                <div class="captions">
-                    <h3><a href="/service/{{slug}}">{{title}}</a>
-                    </h3>
-
-                    <div class="des">
-                        {{subtitle}}
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{/if}}
-        {{/each}}
-
 
     </div>
 </div>

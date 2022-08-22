@@ -3,12 +3,34 @@ const moment = require('moment');
 
 const ServicesController = {
     getServicesList: (req, res, next) => {
-        Services.find()
+        const type = req.query.type || '';
+
+        if(type) {
+            return Services.find({category: type})
             .then(services => {
                 const data = services.map(item => {
                     return {
                         title: item.title,
                         subtitle: item.subtitle,
+                        slug: item.slug,
+                        createdAt: item.createdAt,
+                        content: item.content,
+                        image: item.image
+                    }
+                })
+
+                return res.render('service', {
+                    services: data
+                })
+            })
+        }
+
+        return Services.find()
+            .then(services => {
+                const data = services.map(item => {
+                    return {
+                        title: item.title,
+                        subtitle: item.subtitle.slice(0,150) + '...',
                         slug: item.slug,
                         createdAt: item.createdAt,
                         content: item.content,

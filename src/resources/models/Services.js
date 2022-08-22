@@ -11,6 +11,10 @@ const Services = new Schema({
         type: String,
         required: true
     },
+    category: {
+        type: String,
+        required: true
+    },
     slug: {
         type: String,
         unique: true

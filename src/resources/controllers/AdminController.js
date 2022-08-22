@@ -1104,7 +1104,7 @@ const AdminController = {
     postAddServices: (req, res, next) => {
         const file = req.file;
         const imagePath = "/uploads/" + file.filename
-        const { title, subtitle, content } = req.body
+        const { title, subtitle, category, content } = req.body
         const slug = slugify(title, {
             replacement: '-',
             remove: false,
@@ -1116,6 +1116,7 @@ const AdminController = {
         const service = {
             title: title,
             subtitle: subtitle,
+            category: category,
             slug: slug,
             image: imagePath,
             content: content
@@ -1195,7 +1196,7 @@ const AdminController = {
                 })
             })
             .catch(err => {
-                res.json({ err: err })
+                return res.json({ err: err })
             })
     },
     postUpdateService: (req, res, next) => {
@@ -1207,7 +1208,7 @@ const AdminController = {
             fs.unlink(`source/src/public/${old_image}`, err => {
                 if (err) {
                     req.flash('error', "Cập nhật dịch vụ thất bại")
-                    res.redirect(`/admin/updateService/${id}`)
+                    return res.redirect(`/admin/updateService/${id}`)
 
                 }
             })
@@ -1227,13 +1228,13 @@ const AdminController = {
             image: imagePath,
             content: content
         }
-        Services.findByIdAndUpdate(id, services, (err, doc) => {
+        return Services.findByIdAndUpdate(id, services, (err, doc) => {
             if (!err) {
                 req.flash('success', "Cập nhật dịch vụ thành công")
-                res.redirect(`/admin/updateService/${id}`)
+                return res.redirect(`/admin/updateService/${id}`)
             } else {
                 req.flash('error', "Cập nhật dịch vụ thất bại")
-                res.redirect(`/admin/updateService/${id}`)
+                return res.redirect(`/admin/updateService/${id}`)
             }
         })
     },
