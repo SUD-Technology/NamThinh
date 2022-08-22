@@ -3386,6 +3386,12 @@ a:not([href]):not([tabindex]) {
     width: 50%;
   }
 
+  
+  
+  .s-page-img img {
+    height: 150px !important;
+  }
+
   .p-top {
     display: none;
   }
@@ -3506,6 +3512,10 @@ a:not([href]):not([tabindex]) {
 
   #TuVanModal {
     margin-top: 1vh !important;
+  }
+
+  .s-page-img {
+    height: 150px !important;
   }
   /* .container {
     max-width: 200px;
