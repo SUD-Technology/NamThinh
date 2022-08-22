@@ -90,6 +90,7 @@
 
             </div>
 
+            {{#if data.Lop}}
             <div style="margin-left: 5px" class="col-md-12 product-main">
                 {{#each data.Lop}}
 
@@ -122,6 +123,11 @@
 
 
             </div>
+            {{else}}
+            <div class="updating-box text-center w-100">
+                Đang cập nhật sản phẩm
+            </div>
+            {{/if}}
 
             <div class="text-center w-100 d-flex justify-content-center mt-4">
 
@@ -210,7 +216,7 @@
                 </div>
             </div>
 
-
+            {{#if data.Xe}}
             <div class="col-md-12 product-main">
                 {{#each data.Xe}}
                 <li class="items-product smooth text-center">
@@ -239,6 +245,11 @@
 
 
             </div>
+            {{else}}
+            <div class="updating-box text-center w-100">
+                Đang cập nhật sản phẩm
+            </div>
+            {{/if}}
             <div class="text-center w-100 d-flex justify-content-center mt-4">
 
                 <div class="pagination">
@@ -323,6 +334,7 @@
                 </div>
             </div>
 
+            {{#if data.PhuTung}}
             <div class="col-md-12 product-main">
                 {{#each data.PhuTung}}
                 <li class="items-product smooth text-center">
@@ -348,6 +360,11 @@
                 {{/each}}
 
             </div>
+            {{else}}
+            <div class="updating-box text-center w-100">
+                Đang cập nhật sản phẩm
+            </div>
+            {{/if}}
 
             <div class="text-center w-100 d-flex justify-content-center mt-4">
 
@@ -430,6 +447,7 @@
                 </div>
             </div>
 
+            {{#if data.Dau}}
             <div class="col-md-12 product-main">
                 {{#each data.Dau}}
                 <li class="items-product  text-center">
@@ -456,6 +474,11 @@
                 </li>
                 {{/each}}
             </div>
+            {{else}}
+            <div class="updating-box text-center w-100">
+                Đang cập nhật sản phẩm
+            </div>
+            {{/if}}
 
             <div class="text-center w-100 d-flex justify-content-center mt-4">
 

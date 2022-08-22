@@ -57,6 +57,12 @@ a:hover {
 }
 
 
+.updating-box {
+  height: 660px;
+  font-size: 20px;
+  line-height: 660px;
+}
+
 .service-page {
   min-height: 100vh;
 }
@@ -3373,12 +3379,12 @@ a:not([href]):not([tabindex]) {
   }
 
   .items-product {
-    width: 18.2%;
+    width: 45%;
     display: inline-block;
     float: left;
-    height: 300px;
+    height: 250px;
     position: relative;
-    margin: 10px 10px;
+    margin: 5px;
     text-align: center;
     z-index: 10;
     overflow: hidden;
@@ -3386,15 +3392,9 @@ a:not([href]):not([tabindex]) {
     box-shadow: rgba(34, 124, 226, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   }
 
-  .product-main {
-    display: grid;
-    list-style: none;
-    font-size: 13px;
-    gap: 10px;
-  
-    grid-template-columns: 180px 180px;
-    grid-template-rows: 200px 200px;
-    padding: 0px 5px;
+  .updating-box {
+    height: 1650px;
+    line-height: 1650px;
   }
 
   .pagi img {
