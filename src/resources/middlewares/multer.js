@@ -10,4 +10,8 @@ let storage = multer.diskStorage({
 })
 
 
-module.exports = store = multer({ storage: storage })
+module.exports = store = multer({ 
+  storage: storage,
+  limits: { fieldSize: 2 * 1024 * 1024 }
+})  
+
