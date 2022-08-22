@@ -30,6 +30,7 @@ const NewsController = {
     },
     getPostList: (req, res, next) => {
         Posts.find()
+            .select({content: 0})
             .then(posts => {
                 // const data = posts.map(post => {
                 //     return {
