@@ -140,16 +140,16 @@ function loadProducts(array) {
 
 app.get('/home', async (req, res, next) => {
     const l1 = await Products.find({})
-        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1 })
+        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1, description: 0 })
         .where('classes.lv1').equals(1).limit(10)
     const l2 = await Products.find({})
-        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1 })
+        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1, description: 0 })
         .where('classes.lv1').equals(2).limit(10)
     const l3 = await Products.find({})
-        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1 })
+        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1, description: 0 })
         .where('classes.lv1').equals(3).limit(10)
     const l4 = await Products.find({})
-        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1 })
+        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1, description: 0 })
         .where('classes.lv1').equals(4).limit(10)
 
     let data = {
