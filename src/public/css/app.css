@@ -3378,6 +3378,21 @@ a:not([href]):not([tabindex]) {
     width: 50%;
   }
 
+  .info-box {
+    padding-top: 10px;
+  }
+
+  .items-title a {
+    display: block;
+    width: 100%;
+    font-size: 10px;
+    padding: 0;
+  }
+
+  .owl-item {
+    width: 100px !important;
+  }
+
   .items-product {
     width: 45%;
     display: inline-block;
