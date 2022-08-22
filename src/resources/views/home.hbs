@@ -6,7 +6,7 @@
 
 
     <div class="row mb-5 mt-4">
-        <div class="col-md-3 ">
+        <div class="col-md-3 portfolio-box">
             <ul class="text-left product-portfolio fadeRight">
                 <li class="portfolio-menu-head"><i class="fa fa-bars"></i><span>&nbsp; Danh mục sản phẩm</span></p>
                 </li>
@@ -90,9 +90,10 @@
 
             </div>
 
-            <div class="col-md-12 product-main">
+            <div style="margin-left: 5px" class="col-md-12 product-main">
                 {{#each data.Lop}}
-                <li class="items-product smooth text-center">
+
+                <li style="" class="items-product smooth text-center">
                     <span class="ico-product ico-new"> Hot</span>
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#each pimg}}

@@ -956,7 +956,7 @@ img.bgc-title {
   height: 380px;
 }
 
-.product-main {
+/* .product-main {
   display: grid;
   list-style: none;
   font-size: 13px;
@@ -965,7 +965,7 @@ img.bgc-title {
   grid-template-columns: 230px 230px 230px 230px 230px;
   grid-template-rows: 300px 300px;
   padding: 0px 5px;
-}
+} */
 
 .list-product-main {
   display: grid;
@@ -990,17 +990,15 @@ img.bgc-title {
 }
 
 .items-product {
-  padding: 5px 0px;
-  position: relative;
-  border-color: white;
-  border-style: solid;
-  border-width: 2px;
-  display: list-item;
-  font-size: 13px;
+  width: 18.2%; display: inline-block; float: left; height: 310px; position: relative; margin: 10px 10px;
   text-align: center;
   z-index: 10;
   overflow: hidden;
   /* border-radius: 0.5rem 0.5rem; */
+  
+}
+
+.items-product:hover {
   box-shadow: rgba(34, 124, 226, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
@@ -2207,13 +2205,8 @@ img {
 
   /*  */
   .product-main {
-    display: grid;
-    list-style: none;
-    font-size: 13px;
-    gap: 10px;
-    grid-template-columns: 100%;
-    /* grid-template-rows: 300px; */
-    padding: 0px 10px;
+    width: 100%;
+    min-height: 600px !important;
   }
 
   .product-main .items-product {
@@ -2615,8 +2608,8 @@ img {
 
 span.ico-product.ico-new, .ico-new {
   position: absolute;
-  top: -5px;
-  left: -5px;
+  top: 0;
+  left: 0;
   padding: 5px 16px;
   background: var(--donhat);
   color: #FFF;
@@ -3379,8 +3372,49 @@ a:not([href]):not([tabindex]) {
     width: 50%;
   }
 
+  .items-product {
+    width: 18.2%;
+    display: inline-block;
+    float: left;
+    height: 300px;
+    position: relative;
+    margin: 10px 10px;
+    text-align: center;
+    z-index: 10;
+    overflow: hidden;
+    /* border-radius: 0.5rem 0.5rem; */
+    box-shadow: rgba(34, 124, 226, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  }
+
+  .product-main {
+    display: grid;
+    list-style: none;
+    font-size: 13px;
+    gap: 10px;
+  
+    grid-template-columns: 180px 180px;
+    grid-template-rows: 200px 200px;
+    padding: 0px 5px;
+  }
+
   .pagi img {
     display: none;
+  }
+
+  .service-main-img img {
+    height: 100px;
+  }
+
+  .service-main-img {
+    height: 110px !important;
+  }
+
+  .portfolio-box {
+    margin-right: 10px;
+  }
+
+  .sub-title {
+    padding: 0;
   }
 
   #TuVanModal .modal-content {
