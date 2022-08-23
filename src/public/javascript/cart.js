@@ -19,7 +19,7 @@ function addToShoppingCart(id, name, img, slug, price, strPrice) {
             id: id,
             name: name,
             img: img,
-            price: strPrice == 'Liên hệ' ? 0 : price,
+            price: price,
             slug: slug
         }
         shoppingCart.push(JSON.stringify({

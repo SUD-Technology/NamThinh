@@ -1178,12 +1178,17 @@ img.bgc-title {
 }
 
 .items-product {
-  width: 18.2%; display: inline-block; float: left; height: 310px; position: relative; margin: 10px 10px;
+  width: 18.2%;
+  display: inline-block;
+  float: left;
+  height: 310px;
+  position: relative;
+  margin: 10px 10px;
   text-align: center;
   z-index: 10;
   overflow: hidden;
   /* border-radius: 0.5rem 0.5rem; */
-  
+
 }
 
 .items-product:hover {
@@ -2432,6 +2437,11 @@ img {
     left: 0;
   }
 
+  footer .logo-image {
+    width: 60% !important;
+    margin-left: 0 !important;
+  }
+
   footer iframe {
     width: 100% !important;
   }
@@ -3630,15 +3640,15 @@ a:not([href]):not([tabindex]) {
     font-size: 12px;
     width: 50%;
   }
-  
+
   .titleL h1 {
     font-size: 20px;
   }
-  
+
   .full-size {
     padding: 0;
   }
-  
+
   .s-page-img img {
     height: 150px !important;
   }
@@ -3680,9 +3690,9 @@ a:not([href]):not([tabindex]) {
   }
 
   .list-social-sidebar .social-item {
-      width: 30px;
-      height: 30px;
-  } 
+    width: 30px;
+    height: 30px;
+  }
 
   .captions {
     padding: 10px;
@@ -3724,7 +3734,7 @@ a:not([href]):not([tabindex]) {
     overflow: hidden;
     /* border-radius: 0.5rem 0.5rem; */
   }
-  
+
   .product-main {
     margin-left: 12px;
   }
@@ -3762,7 +3772,7 @@ a:not([href]):not([tabindex]) {
   #TuVanModal .modal-content {
     z-index: 100000;
     background-color: black;
-    
+
   }
 
   #TuVanModal {
@@ -3787,19 +3797,20 @@ a:not([href]):not([tabindex]) {
     opacity: 0;
   }
 
-  .mx-layer3{
+  .mx-layer3 {
     margin: 40px 50px;
   }
-  
+
   .mx-layer2 {
     margin: 50px 25px;
   }
 
-  .hex-layer-3:first-child[class='hex'], .hex-layer-3:last-child {
-    display: none;
-  } */
+  .hex-layer-3 {
+    margin: 0px 0px;
+  }
+
+  .main-hex {
+    background-position-x: 1px;
+    background-position-y: 3px;
+  }
 }
-
-
-
-
