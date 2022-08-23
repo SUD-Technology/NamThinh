@@ -2,7 +2,8 @@ const { validationResult } = require('express-validator')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const Users = require('../models/Users');
-
+const Customers = require('../models/Customers')
+const Orders = require('../models/Orders')
 function hashPassword(password) {
     let saltRounds = 10;
     let salt = bcrypt.genSaltSync(saltRounds)
@@ -165,7 +166,48 @@ const UserController = {
         res.redirect('/users/login');
     },
 
-    
+
+    postReorder: (req, res, next) => {
+        const { fullname, email, phone, address, sale, product_link, total, product_list } = req.body;
+        if (product_list == '[]') {
+            req.flash('error', 'Vui lòng thêm sản phẩm vào giỏ')
+            return res.redirect('/shopping-cart')
+        }
+        Customers.findOne({ fullname: fullname, phone: phone, email: email })
+            .then(customer => {
+                let info = {
+                    fullname: fullname,
+                    email: email,
+                    phone: phone,
+                    address: address
+                }
+
+                if (!customer) {
+                    new Customers(info).save();
+                }
+
+                let order = {
+                    Customer: info,
+                    sale: sale,
+                    total: total,
+                    product_link: product_link || '',
+                    product_list: product_list,
+                    status: 'Đặt hàng online - chờ xác nhận'
+                }
+                new Orders(order).save()
+                    .then(() => {
+                        req.flash('success', 'Tạo đơn hàng thành công')
+                        res.redirect('/shopping-cart')
+                    })
+                    .catch(err => {
+                        req.flash('error', 'Tạo đơn hàng thất bại ' + err)
+                        res.redirect('/shopping-cart')
+                    })
+            })
+            .catch(next);
+    }
+
+
 }
 
 module.exports = UserController;

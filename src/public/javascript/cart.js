@@ -1,71 +1,101 @@
-if (document.readyState == 'loading') {
-    document.addEventListener('DOMContentLoaded', ready)
+// Add to shopping cart
+let shoppingCart
+if (localStorage.getItem('shopping-cart')) {
+    shoppingCart = JSON.parse(localStorage.getItem('shopping-cart'))
 } else {
-    ready()
+    shoppingCart = JSON.parse(localStorage.setItem('shopping-cart', '[]'))
+}
 
+function addToShoppingCart(id, name, img, slug, price, strPrice) {
+    console.log('onclick')
+    let checkID = shoppingCart.some(item => {
+        item = JSON.parse(item)
+        return item.id === id
+    })
+    if (checkID) {
+        changeNumberOfUnit('plus', id)
+    } else {
+        const product = {
+            id: id,
+            name: name,
+            img: img,
+            price: price,
+            slug: slug
+        }
+        shoppingCart.push(JSON.stringify({
+            ...product,
+            numberOfUnit: 1
+        }))
+    }
+    alertAddProduct(name)
+    localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart))
+}
+
+function changeNumberOfUnit(action, id) {
+    shoppingCart = shoppingCart.map(item => {
+        item = JSON.parse(item)
+        let numberOfUnit = Number(item.numberOfUnit)
+        if (item.id === id) {
+            if (action == 'minus' && numberOfUnit > 1) {
+                numberOfUnit--
+            } else if (action == 'plus') {
+                numberOfUnit++
+            }
+        }
+        return JSON.stringify({
+            ...item,
+            numberOfUnit: numberOfUnit
+        })
+    })
+    localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart))
+}
+
+function updateShoppingCart() {
+    renderProductToCart()
+    updateLocalShoppingCart()
+}
+
+const bodyCart = document.getElementById('body-cart')
+function renderProductToCart() {
+    bodyCart.innerHTML = ``
+    shoppingCart.forEach(item => {
+        item = JSON.parse(item)
+        bodyCart.innerHTML += `<tr class="product-item">
+            <th scope="row">
+                <a href="/cart">
+                    <img class="" src="${item.img}" alt="">
+                </a>
+            </th>
+            <td><a href="/cart">
+                    ${item.name}</a></td>
+            <td class="total-product-price"><strong>${item.price}</strong></td>
+            <td>
+
+                <input class="product-quantity w-25 pl-1" value="${item.numberOfUnit}" type="number">
+            </td>
+            <td><strong class="total-product"></strong></td>
+            <td>
+                <button class="btn btn-danger" type="button">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>`
+    })
 }
 
 
 
-function ready() {
-    // Remove item
-    let removeCartButton = document.querySelectorAll('#cart-container table tbody i')
-    for (const element of removeCartButton) {
-        let button = element;
-        button.addEventListener('click', function (event) {
-            let buttonClicked = event.target
-            buttonClicked.parentElement.parentElement.parentElement.remove()
-            updateCartTotal()
-        });
-    }
-
-    let quantityInput = document.querySelectorAll('.product-quantity')
-    for (const input of quantityInput) {
-        input.addEventListener('change', quantityChange)
-    }
+function updateLocalShoppingCart() {
+    localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart))
 }
 
 
-// 
-function quantityChange(event) {
-    let input = event.target
-    if (isNaN(input.value) || input.value <= 0) {
-        input.value = 1
-    }
-    updateProductTotal()
-    updateCartTotal()
+function alertAddProduct(name) {
+    document.getElementById('alert-product').innerHTML =
+        `<div style="width: 300px" class="alert alert-success alert-dismissible fade show" role="alert">
+        Đã thêm <strong>${name}</strong> vào giỏ hàng
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>`
 }
-// Update total product
-function updateProductTotal() {
-    let product = document.querySelectorAll('.product-item')
-    for (const element of product) {
-        let total = 0
-        let cartRow = element
-        let priceElement = cartRow.querySelector('.total-product-price').innerText
-        let price = Number(priceElement.replace(/[^0-9,-]+/g, ""));
-        let quantity = (cartRow.querySelector('.product-quantity').value)
-        total += (price * quantity)
-        total = total.toLocaleString('vi', { style: 'currency', currency: 'VND' });
-        cartRow.querySelector('.total-product').innerText = total
-    }
-}
-
-updateProductTotal()
-updateCartTotal()
-// Update total
-function updateCartTotal() {
-    let product = document.querySelectorAll('.product-item')
-    let total = 0
-    for (const element of product) {
-        let cartRow = element
-        let priceElement = cartRow.querySelector('.total-product-price').innerText
-        let price = Number(priceElement.replace(/[^0-9,-]+/g, ""));
-        let quantity = (cartRow.querySelector('.product-quantity').value)
-        total += (price * quantity)
-    }
-    total = total.toLocaleString('vi', { style: 'currency', currency: 'VND' });
-    document.querySelector('#total-cart strong').innerText = 'TỔNG TIỀN THANH TOÁN: ' + total
-}
-
-
-

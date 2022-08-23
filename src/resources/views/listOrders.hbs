@@ -9,10 +9,8 @@
             <th scope="col">Mã đơn hàng</th>
             <th scope="col">Tên khách hàng</th>
             <th scope="col">Sale</th>
-            {{!-- <th scope="col">Danh sách sản phẩm</th> --}}
-
-            <th class="text-center" scope="col">Đơn hàng</th>
-
+            <th scope="col">Danh sách sản phẩm</th>
+            <th class="text-center" scope="col">Link đơn hàng</th>
             <th scope="col">Trạng thái</th>
             <th style="max-width: 150px;" scope="col">Kết quả</th>
           </tr>
@@ -25,6 +23,11 @@
             <td class="code">{{id}}</td>
             <td><a href="/admin/customer-info/?keyWord={{customer.phone}}">{{customer.name}}</a></td>
             <td>{{sale}}</td>
+            <td style="max-width: 250px;" class="text-center">
+              <button class="btn btn-success" data-toggle="modal" data-target=".bd-detail-modal-{{id}}">
+                <i class="fas fa-file-alt"></i>
+              </button>
+            </td>
             <td style="max-width: 250px;" class="text-center"><a class="btn btn-success" href="{{product_link}}"
                 target="_blank">
                 <i class="fas fa-file-alt"></i>
@@ -144,6 +147,74 @@
   </div>
 </div>
 
+{{#each listOrders}}
+<div class="modal fade bd-detail-modal-{{id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <section class="shopping-cart dark">
+        <div class="container">
+          <div class="block-heading">
+            <h2>Danh sách sản phẩm</h2>
+          </div>
+          <div class="content">
+            <div class="row">
+              <div class="col-md-12 col-lg-8">
+                <div id="cart-products" class="items">
+                  {{#each this.list}}
+                  <div class="product">
+                    <div class="row">
+                      <div class="col-md-3 mt-auto mb-auto">
+                        <img class="img-fluid mx-auto d-block image" src="{{img}}">
+                      </div>
+                      <div class="col-md-8">
+                        <div class="info">
+                          <div class="row">
+                            <div class="col-md-5 product-name">
+                              <div class="product-name">
+                                <a href="#">{{name}}</a>
+                                <div class="product-info">
+                                  <div>Model: <span class="value">{{model}}</span></div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-4 quantity">
+                              <label for="${item.id}">Số lượng:</label>
+                              <input class="form-control quantity-input d-none">
+                              <div class="units">
+                                <div class="number">{{numberOfUnit}}</div>
+                              </div>
+
+                            </div>
+                            <div class="col-md-3 price">
+                              <span>{{price}}</span>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {{/each}}
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-4">
+                <div class="summary">
+                  <h3>Tổng giá</h3>
+                  <div id="subtotal" class="summary-item">{{total}}</div>
+                  <div class="summary-item"><span class="text">Khuyến
+                      mãi</span><span id="discount-price" class="price"></span></div>
+                  <div id="total-price" class="summary-item">{{total}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+{{/each}}
 
 <script>
   var index = '';

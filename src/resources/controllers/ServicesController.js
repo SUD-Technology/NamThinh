@@ -7,6 +7,7 @@ const ServicesController = {
 
         if(type) {
             return Services.find({category: type})
+            .select({content: 0})
             .then(services => {
                 const data = services.map(item => {
                     return {
@@ -26,6 +27,7 @@ const ServicesController = {
         }
 
         return Services.find()
+            .select({content: 0})
             .then(services => {
                 const data = services.map(item => {
                     return {

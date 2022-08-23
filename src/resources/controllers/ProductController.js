@@ -3,7 +3,7 @@ const Products = require('../models/Products');
 const ProductController = {
     getProductDetail: (req, res, next) => {
         Products.findOne({ slug: req.params.slug })
-        .select({classes:1, showPrice: 1, product_model: 1, product_size: 1,product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1, description: 1})
+            .select({ classes: 1, showPrice: 1, product_model: 1, product_size: 1, product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1, description: 1 })
             .then(product => {
                 if (!product) {
                     return res.json({ success: false, msg: 'Không tìm thấy sản phẩm nào' });
@@ -17,11 +17,12 @@ const ProductController = {
                     model: product.product_model || '',
                     brand: product.brand_name || '',
                     size: product.size || '',
-                    price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+                    numPrice: product.price,
+                    price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
                 }
 
                 Products.find({})
-                    .select({showPrice: 1, product_name: 1, slug: 1, product_img: 1, product_id: 1, price: 1})
+                    .select({ showPrice: 1, product_name: 1, slug: 1, product_img: 1, product_id: 1, price: 1 })
                     .where('classes').equals(product.classes)
                     .where('product_id').ne(data.pid).limit(5)
                     .then(fr_products => {
@@ -32,7 +33,8 @@ const ProductController = {
                                 product_name: prod.product_name,
                                 product_id: prod.product_id,
                                 product_img: [prod.product_img[0]],
-                                price: prod.showPrice ? prod.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+                                numPrice: product.price,
+                                price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
                                 slug: prod.slug
                             }
                         });

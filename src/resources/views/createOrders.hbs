@@ -10,9 +10,8 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="fullname">TÊN KHÁCH HÀNG</label>
                     <div class="col-md-10">
-                        <input id="fullname" name="fullname" value="{{fullname}}" placeholder="Tên khách hàng"
-                            class="form-control input-md" type="text">
-
+                        <input id="fullname" required="" name="fullname" value="{{fullname}}"
+                            placeholder="Tên khách hàng" class="form-control input-md" type="text">
                     </div>
                 </div>
 
@@ -20,7 +19,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="email">EMAIL</label>
                     <div class="col-md-10">
-                        <input id="email" name="email" value="{{email}}" placeholder="Email khách hàng"
+                        <input id="email" required="" name="email" value="{{email}}" placeholder="Email khách hàng"
                             class="form-control input-md" type="email">
                     </div>
                 </div>
@@ -29,7 +28,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="phone">SỐ ĐIỆN THOẠI</label>
                     <div class="col-md-10">
-                        <input id="phone" value="{{phone}}" name="phone" placeholder="SĐT khách hàng"
+                        <input id="phone" required="" value="{{phone}}" name="phone" placeholder="SĐT khách hàng"
                             class="form-control input-md" type="text">
                     </div>
                 </div>
@@ -37,8 +36,8 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="address">ĐỊA CHỈ</label>
                     <div class="col-md-10">
-                        <input id="address" value="{{address}}" name="address" placeholder="Địa chỉ khách hàng"
-                            class="form-control input-md" type="text">
+                        <input id="address" required="" value="{{address}}" name="address"
+                            placeholder="Địa chỉ khách hàng" class="form-control input-md" type="text">
                     </div>
                 </div>
 
@@ -46,7 +45,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="sale">SALE</label>
                     <div class="col-md-10">
-                        <input id="sale" value="{{sale}}" name="sale" placeholder="Tên sale"
+                        <input id="sale" required="" value="{{sale}}" name="sale" placeholder="Tên sale"
                             class="form-control input-md" type="text">
                     </div>
                 </div>
@@ -55,7 +54,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="product_link">Link đơn hàng</label>
                     <div class="col-md-10">
-                        <input id="product_link" name="product_link" value="{{product_link}}"
+                        <input id="product_link" required="" name="product_link" value="{{product_link}}"
                             placeholder="Link đơn hàng" class="form-control input-md" type="text">
                     </div>
                 </div>
@@ -69,7 +68,7 @@
                         <div class="block-heading">
                             <h2>Danh sách đơn hàng</h2>
                         </div>
-                        <input id="product_list" name="product_list" class="d-none" type="text">
+                        <input id="product_list" required="" name="product_list" class="d-none" type="text">
                         <div class="content">
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
@@ -88,7 +87,7 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="total">TỔNG GIÁ</label>
                     <div class="col-md-10">
-                        <input id="total" name="total" value="{{total}}" placeholder="Tổng tiền"
+                        <input id="total" name="total" required="" value="{{total}}" placeholder="Tổng tiền"
                             class="form-control input-md" type="number">
                     </div>
                 </div>
