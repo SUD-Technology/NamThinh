@@ -447,11 +447,11 @@
                 </div>
             </div>
 
-            {{#if data.Dau}}
+            {{#if data.DauNhot}}
             <div class="col-md-12 product-main">
-                {{#each data.Dau}}
+                {{#each data.DauNhot}}
                 <li class="items-product  text-center">
-                    <span style="background-color: orange;" class="ico-product ico-new"> -30%</span>
+                    {{!-- <span style="background-color: orange;" class="ico-product ico-new"> -30%</span> --}}
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#if pimg}}
 

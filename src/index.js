@@ -159,6 +159,7 @@ app.get('/home', async (req, res, next) => {
         DauNhot: loadProducts(l4)
     }
 
+
     return Discounts.find({}).limit(4)
         .then(discounts => {
             let _discounts = [];
