@@ -201,7 +201,8 @@ const CollectionController = {
             }
             submenu = submenu[keys[1]].role;
             Products.find({})
-                .select({product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1})    
+                .select({description: 0})
+                .sort({createdAt: -1})    
                 .where('classes.lv1').equals(keys[0] + 1)
                 .where('classes.lv2').equals(keys[1] + 1)
                 .where('classes.lv3').equals(keys[2] + 1)
@@ -223,7 +224,8 @@ const CollectionController = {
                 src: menuItems[keys[0]].src
             }
             Products.find({})
-                .select({product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1})
+                .select({description: 0})
+                .sort({createdAt: -1})
                 .where('classes.lv1').equals(keys[0] + 1)
                 .where('classes.lv2').equals(keys[1] + 1)
                 .skip(skip * (page - 1)).limit(skip)
@@ -245,7 +247,8 @@ const CollectionController = {
                 src: menuItems[keys[0]].src
             }           
             Products.find({})
-                .select({product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1})
+                .select({description: 0})
+                .sort({createdAt: -1})
                 .where('classes.lv1').equals(keys[0] + 1)
                 .skip(skip * (page - 1))
                 .limit(skip)
@@ -264,7 +267,8 @@ const CollectionController = {
         
         Products
             .find({'$or': [{product_name: {$regex: keyword, $options: 'i'}},{product_model: {$regex: keyword, $options: 'i'} }]})
-            .select({product_name: 1, slug: 1, product_img: 1, product_id: 1, brand_name: 1, price: 1})
+            .select({description: 0})
+            .sort({createdAt: -1})
             .skip(skip).limit(20)
             .then(products => {
                 if(products.length == 0) {
@@ -359,7 +363,7 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
         });
 
     }else {
-        console.log('passed')
+        
         html += `<div>Không tìm thấy sản phẩm</div>`
     }
     
