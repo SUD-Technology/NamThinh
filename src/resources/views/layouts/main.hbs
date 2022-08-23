@@ -172,6 +172,12 @@
     {{else}}
     <div class="list-social-sidebar fadeLeft">
         <ul>
+            <li style=" background-color: transparent" class="social-item smooth">
+                <a href="/shopping-cart">
+                    <img style="animation: none;" class="" src="/img/cart.png" alt="Facebook">
+                </a>
+                    <div id="count-cart" class="count-cart">0</div>
+            </li>
             <li class="social-item smooth">
                 <a href="https://www.facebook.com/CTNAMTHINH/" target="_blank">
                     <img class="drop-shadow" src="/img/icon/fb.png" alt="Facebook">
@@ -277,9 +283,8 @@
 
 </body>
 <script>
-
-<<<<<<< HEAD
-
+    let count = JSON.parse(localStorage.getItem('shopping-cart')).length;
+    
     $(document).ready(function() {
         $(window).on('load', function() {
                 if($(window).width() > 600) {
@@ -288,6 +293,22 @@
                 }, 180000)
             }
         });
+
+        if(localStorage.getItem('shopping-cart') != null) {
+            $('#count-cart').text(count);
+        }
+
+        $('.items-price').click(function() {
+            
+            if(!$(this).hasClass('added')) {
+                count++;
+                $('#count-cart').text(count);
+                
+            }
+            $(this).addClass('added');
+        })
+        
+        
     })
 </script>
 
