@@ -180,6 +180,40 @@ $(document).ready(function () {
         })
     })
 
+    $(function () {
+        $('#pro-12-list').slideUp();
+        $('#pro-12').click(() => {
+            $('#pro-12-list').slideToggle();
+        })
+    })
+
+    $(function () {
+        $('#pro-13-list').slideUp();
+        $('#pro-13').click(() => {
+            $('#pro-13-list').slideToggle();
+        })
+    })
+
+    $(function () {
+        $('#pro-14-list').slideUp();
+        $('#pro-14').click(() => {
+            $('#pro-14-list').slideToggle();
+        })
+    })
+
+    $(function () {
+        $('#pro-41-list').slideUp();
+        $('#pro-41').click(() => {
+            $('#pro-41-list').slideToggle();
+        })
+    })
+    $(function () {
+        $('#pro-42-list').slideUp();
+        $('#pro-42').click(() => {
+            $('#pro-42-list').slideToggle();
+        })
+    })
+
     // Zoom image
 
     $(".hover-2").mouseleave(
