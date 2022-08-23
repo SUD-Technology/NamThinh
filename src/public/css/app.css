@@ -1928,6 +1928,11 @@ img {
     margin-bottom: 100px;
   }
 
+  body {
+    overflow-x: hidden;
+  }
+
+
   .header-content {
     display: flex;
     justify-content: center;
@@ -3510,7 +3515,7 @@ a:not([href]):not([tabindex]) {
 
   #TuVanModal .modal-content {
     z-index: 100000;
-    background-color: #0d71f2;
+    background-color: black;
     
   }
 

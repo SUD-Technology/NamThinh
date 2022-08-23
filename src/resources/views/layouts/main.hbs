@@ -262,9 +262,11 @@
 
     $(document).ready(function() {
         $(window).on('load', function() {
-            setTimeout(function() {
-                $('#TuVanModal').modal('show');
-            }, 180000)
+                if($(window).width() > 600) {
+                    setTimeout(function() {
+                    $('#TuVanModal').modal('show');
+                }, 180000)
+            }
         });
     })
 </script>
