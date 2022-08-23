@@ -10,9 +10,10 @@
                         <div class="sidebar-body">
 
                             <ul class="list-group">
-                                <li><a class="list-group-item smooth" href="/users/login" title=""> <i
-                                            class="fas fa-user"></i> Đăng nhập</a></li>
-
+                                {{!-- <li><a class="list-group-item smooth" href="/users/login" title=""> <i
+                                            class="fas fa-user"></i> Đăng nhập</a></li> --}}
+                                <li><a class="list-group-item smooth" href="/shopping-cart" title=""> <i
+                                            class="fas fa-shopping-cart"></i>Giỏ hàng</a></li>
                             </ul>
                         </div>
 
@@ -36,8 +37,8 @@
                                     </ul>
 
                                 </li>
-                                <li><a  id="collapse-btn3" class="list-group-item">SẢN PHẨM
-                                        <i class="fas fa-angle-down"></i>
+                                <li><a  class="list-group-item">SẢN PHẨM
+                                        <i id="collapse-btn3" class="fas fa-angle-down"></i>
                                     </a>
                                     <ul id="collapse3" class="list-group">
                                         {{!-- Product 1 --}}
@@ -46,24 +47,29 @@
                                             <i id="pro-1" class="fas fa-angle-down"></i>
                                         </li>
                                         <ul id="pro-1-list">
-                                            <li class="list-group-item"><a class="pl-2" href="/collections/Lop-xe-tai-xe-khach-11">- Lốp xe tải - xe
+                                            <li class="list-group-item"><a class="pl-2"
+                                                    href="/collections/Lop-xe-tai-xe-khach-11">- Lốp xe tải - xe
                                                     khách</a>
                                                 <i id="pro-11" class="fas fa-angle-down"></i>
                                             </li>
                                             <ul id="pro-11-list">
-                                                <li class="list-group-item"><a class="pl-4" href="/collections/Lop-tai-nhe-111"> + Lốp tải nhẹ</a>
+                                                <li class="list-group-item"><a class="pl-4"
+                                                        href="/collections/Lop-tai-nhe-111"> + Lốp tải nhẹ</a>
                                                 </li>
-                                                <li class="list-group-item"><a class="pl-4" href="/collections/Lop-tai-nặng-112"> + Lốp tải nặng</a>
+                                                <li class="list-group-item"><a class="pl-4"
+                                                        href="/collections/Lop-tai-nặng-112"> + Lốp tải nặng</a>
                                                 </li>
-                                                <li class="list-group-item"><a class="pl-4" href="/collections/Lop-xe-khach-xe-bus-113"> + Lốp xe khách -
+                                                <li class="list-group-item"><a class="pl-4"
+                                                        href="/collections/Lop-xe-khach-xe-bus-113"> + Lốp xe khách -
                                                         xe bus</a>
                                                 </li>
                                             </ul>
-                                            <li class="list-group-item"><a class="pl-2" href="/collections/Lop-may-cong-trinh-12">- Lốp máy công
+                                            <li class="list-group-item"><a class="pl-2"
+                                                    href="/collections/Lop-may-cong-trinh-12">- Lốp máy công
                                                     trình</a>
                                                 <i class="fas fa-angle-down"></i>
                                             </li>
-                                            
+
                                             <li class="list-group-item"><a class="pl-2" href="#">- Lốp xe công
                                                     nghiệp</a>
                                                 <i class="fas fa-angle-down"></i>
@@ -72,6 +78,9 @@
                                                 <i class="fas fa-angle-down"></i>
                                             </li>
                                         </ul>
+
+                                        <li class="list-group-item"><a href="">Sơ Mi Rơ Móc </a>
+                                        </li>
 
                                         {{!-- Product 2 --}}
                                         <li class="list-group-item"><a href="">Xe tải/Đầu kéo/Xe ben </a>
@@ -83,8 +92,6 @@
                                             <li class="list-group-item"><a class="pl-2" href="#">- Xe đầu kéo</a>
                                             </li>
                                             <li class="list-group-item"><a class="pl-2" href="#">- Xe ben</a>
-                                            </li>
-                                            <li class="list-group-item"><a class="pl-2" href="#">- Sơ mi rơ móc</a>
                                             </li>
                                         </ul>
 

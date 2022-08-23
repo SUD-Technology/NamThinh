@@ -2442,6 +2442,8 @@ img {
     margin-left: 0 !important;
   }
 
+
+
   footer iframe {
     width: 100% !important;
   }
@@ -2457,7 +2459,13 @@ img {
 
 
 
+
   /* Footer end */
+
+  /* News detail */
+  .news-detail img {
+    width: 100% !important;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
