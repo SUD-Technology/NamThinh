@@ -246,7 +246,7 @@ app.get('/policy', (req, res) => {
 })
 
 app.get('/shopping-cart', (req, res) => {
-    res.render('product-cart', { success: req.flash('success') })
+    res.render('product-cart', { success: req.flash('success'), error: req.flash('error') })
 })
 
 app.use('/users', UserRouter);

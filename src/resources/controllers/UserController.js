@@ -169,6 +169,10 @@ const UserController = {
 
     postReorder: (req, res, next) => {
         const { fullname, email, phone, address, sale, product_link, total, product_list } = req.body;
+        if (product_list == '[]') {
+            req.flash('error', 'Vui lòng thêm sản phẩm vào giỏ')
+            return res.redirect('/shopping-cart')
+        }
         Customers.findOne({ fullname: fullname, phone: phone, email: email })
             .then(customer => {
                 let info = {
@@ -188,6 +192,7 @@ const UserController = {
                     total: total,
                     product_link: product_link || '',
                     product_list: product_list,
+                    status: 'Đặt hàng online - chờ xác nhận'
                 }
                 new Orders(order).save()
                     .then(() => {
@@ -196,6 +201,7 @@ const UserController = {
                     })
                     .catch(err => {
                         req.flash('error', 'Tạo đơn hàng thất bại ' + err)
+                        res.redirect('/shopping-cart')
                     })
             })
             .catch(next);

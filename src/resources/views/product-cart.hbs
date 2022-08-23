@@ -50,11 +50,53 @@
         display: inline-block;
         margin: 0 auto;
     }
+
+    /* cart error*/
+    .card-error h1 {
+        color: red;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-weight: 900;
+        font-size: 40px;
+        margin-bottom: 10px;
+    }
+
+    .card-error p {
+        color: #404F5E;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-size: 20px;
+        margin: 0;
+    }
+
+    .card-error i {
+        color: red;
+        font-size: 100px;
+        line-height: 200px;
+    }
+
+    .card-error {
+        background: white;
+        padding: 60px;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px #C8D0D8;
+        display: inline-block;
+        margin: 0 auto;
+    }
 </style>
 <h2 class="h-title">
     <span><a href="javascript:void(0)">GIỎ HÀNG</a></span>
 </h2>
-
+{{#if error}}
+<div class="success-order">
+    <div class="card-error">
+        <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+            <i class="fas fa-times"></i>
+        </div>
+        <h1>Đơn hàng thất bại</h1>
+        <p>{{error}}<br /> </p>
+        <a href="/collections/Lop-Advance-Samson-1" class="btn btn-info btn-lg mt-4">Tiếp tục mua hàng</a>
+    </div>
+</div>
+{{/if}}
 {{#if success}}
 <div class="success-order">
     <div class="card">
@@ -108,20 +150,23 @@
             </div>
             <div class="form-group">
 
-                <input name="email" type="email" required="" class="form-input ml-3" value="{{email}}" placeholder="Email">
+                <input name="email" type="email" required="" class="form-input ml-3" value="{{email}}"
+                    placeholder="Email">
             </div>
             <div class="form-group">
 
-                <input name="phone" type="text" required="" class="form-input ml-3" value="{{phone}}" placeholder="Số điện thoại">
+                <input name="phone" type="text" required="" class="form-input ml-3" value="{{phone}}"
+                    placeholder="Số điện thoại">
             </div>
             <div class="form-group">
 
-                <input name="address" type="text" required="" class="ml-3 form-input" value="{{address}}" placeholder="Địa chỉ">
+                <input name="address" type="text" required="" class="ml-3 form-input" value="{{address}}"
+                    placeholder="Địa chỉ">
             </div>
 
             <input id="product_list" name="product_list" class="d-none" type="text">
             <input id="total" name="total" value="{{total}}" class="d-none" type="number">
-            <input id="sale" value="sale" name="sale" placeholder="Tên sale" class="d-none" type="text">
+            <input id="sale" value="chưa có sale" name="sale" placeholder="Tên sale" class="d-none" type="text">
             <div class="col-12 mb-5 d-flex">
                 <div class="m-auto">
                     <a href="/collections/Lop-Advance-Samson-1" class="btn btn-info btn-lg mr-2 ">Tiếp tục mua hàng</a>

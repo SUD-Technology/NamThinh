@@ -1,0 +1,116 @@
+{{!-- Body: start --}}
+<div class="container">
+    <div class="addProduct-header">
+
+    </div>
+    <div class="addProduct-body">
+        <form class="form-horizontal" method="post">
+            <fieldset>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="fullname">TÊN KHÁCH HÀNG</label>
+                    <div class="col-md-10">
+                        <input id="fullname" name="fullname" value="{{fullname}}" placeholder="Tên khách hàng"
+                            class="form-control input-md" type="text">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="email">EMAIL</label>
+                    <div class="col-md-10">
+                        <input id="email" name="email" value="{{email}}" placeholder="Email khách hàng"
+                            class="form-control input-md" type="email">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="phone">SỐ ĐIỆN THOẠI</label>
+                    <div class="col-md-10">
+                        <input id="phone" value="{{phone}}" name="phone" placeholder="SĐT khách hàng"
+                            class="form-control input-md" type="text">
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="address">ĐỊA CHỈ</label>
+                    <div class="col-md-10">
+                        <input id="address" value="{{address}}" name="address" placeholder="Địa chỉ khách hàng"
+                            class="form-control input-md" type="text">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="sale">SALE</label>
+                    <div class="col-md-10">
+                        <input id="sale" value="{{sale}}" name="sale" placeholder="Tên sale"
+                            class="form-control input-md" type="text">
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="product_link">Link đơn hàng</label>
+                    <div class="col-md-10">
+                        <input id="product_link" name="product_link" value="{{product_link}}"
+                            placeholder="Link đơn hàng" class="form-control input-md" type="text">
+                    </div>
+                </div>
+
+
+                <section class="shopping-cart dark">
+                    <a href="/admin/product-manager" class="btn btn-success">Thêm sản
+                        phẩm</a>
+                    <div class="container">
+
+                        <div class="block-heading">
+                            <h2>Danh sách đơn hàng</h2>
+                        </div>
+                        <input id="product_list" name="product_list" class="d-none" type="text">
+                        <div class="content">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <div id="cart-products" class="items">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="total">TỔNG GIÁ</label>
+                    <div class="col-md-10">
+                        <input id="total" name="total" value="{{total}}" placeholder="Tổng tiền"
+                            class="form-control input-md" type="number">
+                    </div>
+                </div>
+
+                {{#if error}}
+                <div class="alert alert-danger" role="alert">
+                    {{error}}
+                </div>
+                {{/if}}
+
+                {{#if success}}
+                <div class="alert alert-success" role="alert">
+                    {{success}}
+                </div>
+                {{/if}}
+
+                <!-- Text input-->
+                <div class="form-footer">
+                    <button onclick="submitForm()" type="submit">Tạo đơn hàng</button>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
+
+</div>

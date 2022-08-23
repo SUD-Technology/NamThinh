@@ -16,7 +16,7 @@ router.get('/home', checkLogin, (req, res) => {
     res.render('admin', { layout: 'admin', position: req.session.position, pageName: "Trang chủ" })
 })
 
-router.get('/product-manager', checkLogin, authPage(["admin", "accountant"]), AdminController.getProductManager)
+router.get('/product-manager', checkLogin, authPage(["admin", "accountant", "sale"]), AdminController.getProductManager)
 
 // Change Password
 router.get('/changePassword', checkLogin, (req, res) => {
@@ -56,10 +56,10 @@ router.get('/deleteService/:id', checkLogin, authPage(["admin"]), AdminControlle
 router.get('/updateService/:id', AdminController.getUpdateService)
 router.post('/updateServiceById', store.single('image'), AdminController.postUpdateService)
 // Create order 
-router.get('/create-order', checkLogin, authPage(['admin', "sale"]), AdminController.getCreateOrder)
-router.post('/create-order', checkLogin, authPage(['admin', "sale"]), AdminController.postCreateOrder)
-router.get('/getOrders', checkLogin, authPage(['admin', "sale"]), AdminController.getOrders)
-router.post('/getOrders', checkLogin, authPage(['admin', "sale"]), AdminController.postEditStatus)
+router.get('/create-order', checkLogin, authPage(['admin', "sale", "accountant"]), AdminController.getCreateOrder)
+router.post('/create-order', checkLogin, authPage(['admin', "sale", "accountant"]), AdminController.postCreateOrder)
+router.get('/getOrders', checkLogin, authPage(['admin', "sale", "accountant"]), AdminController.getOrders)
+router.post('/getOrders', checkLogin, authPage(['admin', "sale", "accountant"]), AdminController.postEditStatus)
 
 
 router.get('/history', checkLogin, authPage(["admin"]), AdminController.getHistory);

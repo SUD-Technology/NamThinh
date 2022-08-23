@@ -343,7 +343,9 @@
       <div class="logo-details">
         <div class="logo-box">
           <div style="margin-top: 10px; border-radius: 50%">
-            <img width="100%" src="https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/logo%2Flogo.png?alt=media&token=3b904e5b-646e-450e-a41b-601976fb0a79" alt="">
+            <img width="100%"
+              src="https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/logo%2Flogo.png?alt=media&token=3b904e5b-646e-450e-a41b-601976fb0a79"
+              alt="">
           </div>
         </div>
         <a class="mt-4" href="/admin/home"><span class="logo_name">Nam Thịnh</span></a>
@@ -359,7 +361,7 @@
           </div>
         </li>
         {{!-- Sale --}}
-        {{#isAccountant position}}
+
 
         <li>
           <div class="icon-link">
@@ -376,12 +378,15 @@
             {{!-- <li {{#isAdmin position}} class="d-none" {{/isAdmin}}><a href="/admin/product-manager">Kiểm kho</a>
             </li> --}}
             {{!-- {{/isSale }} --}}
-            <li><a href="/admin/product-manager">Kiểm kho</a></li>
-            <li><a href="/admin/add-product">Thêm sản phẩm</a></li>
 
+            <li><a href="/admin/product-manager">Kiểm kho</a></li>
+            {{#isAccountant position}}
+            <li><a href="/admin/add-product">Thêm sản phẩm</a></li>
+            {{/isAccountant}}
           </ul>
         </li>
-        {{/isAccountant}}
+
+
         {{#isAccountant position}}
 
         <li>
@@ -407,7 +412,7 @@
         {{/isAccountant}}
 
         {{!-- {{#isAdmin position}} --}}
-        
+
         <li>
           <div class="icon-link">
             <a href="#">
@@ -422,7 +427,7 @@
             <li><a href="/admin/getOrders">Danh sách đơn hàng</a></li>
           </ul>
         </li>
-      
+
         {{!-- {{/isAdmin }} --}}
         {{!-- Admin --}}
         {{#isAdmin position}}
@@ -535,7 +540,7 @@
         </li>
       </ul>
     </div>
-    
+
 
     <section class="home-section mr-2 ml-2">
       <div class="home-content">

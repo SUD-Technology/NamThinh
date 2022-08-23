@@ -164,7 +164,8 @@ const AdminController = {
                                 origin: product.product_origin,
                                 amount: product.amount,
                                 inventory: product.inventory,
-                                size: product.size
+                                size: product.size,
+                                position: req.session.position
                             }
                             brands.push(product.brand_name)
                             origins.push(product.product_origin)
@@ -486,7 +487,10 @@ const AdminController = {
     },
     postCreateOrder: (req, res, next) => {
         const { fullname, email, phone, address, sale, product_link, total, product_list } = req.body;
-
+        if (product_list == '[]') {
+            req.flash('error', "Vui lòng thêm sản phẩm vào giỏ")
+            return res.redirect('/admin/create-order')
+        }
         Customers.findOne({ fullname: fullname, phone: phone, email: email })
             .then(customer => {
                 let info = {
@@ -538,6 +542,11 @@ const AdminController = {
                             name: order.Customer.fullname
                         }
 
+                        let listProduct = []
+                        JSON.parse(order.product_list).forEach(item => {
+                            listProduct.push(JSON.parse(item))
+                        })
+
                         const current_order = {
                             id: order._id,
                             customer: customer,
@@ -545,6 +554,7 @@ const AdminController = {
                             total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
                             product_link: order.product_link,
                             status: order.status,
+                            list: listProduct,
                             edit: req.session.username == order.sale
                         }
                         listOrders.push(current_order)
@@ -609,13 +619,17 @@ const AdminController = {
                             phone: order.Customer.phone,
                             name: order.Customer.fullname
                         }
-
+                        let listProduct = []
+                        JSON.parse(order.product_list).forEach(item => {
+                            listProduct.push(JSON.parse(item))
+                        })
                         const current_order = {
                             id: order._id,
                             customer: customer,
                             sale: order.sale,
                             total: order.total.toLocaleString('vi', { style: 'currency', currency: 'VND' }),
-                            product_list: order.product_list,
+                            product_link: order.product_link,
+                            list: listProduct,
                             result: (order.complete.success) ? `<p style='color:#28a745'>Hoàn thành</p>` : `<p style='color:#dc3545'>Hủy bỏ</p>`,
                             date: moment(order.complete.date).format('lll'),
                         }
@@ -658,6 +672,31 @@ const AdminController = {
                     }
 
                 }
+            })
+    },
+    getDetailOrder: (req, res, next) => {
+        const id = req.params.id
+        return Orders.findOne({ _id: id })
+            .then(order => {
+                if (order) {
+                    const customer = {
+                        phone: order.Customer.phone,
+                        name: order.Customer.fullname,
+                        email: order.Customer.email,
+                        address: order.Customer.address
+                    }
+                    const current_order = {
+                        id: order._id,
+                        customer: customer,
+                        sale: order.sale,
+                        total: order.total,
+                        product_link: order.product_link || '',
+                        product_list: order.product_list || ''
+                    }
+                    return res.render('detailOrder', { layout: "admin", pageName: "Chi tiết đơn hàng", position: req.session.position })
+                }
+                return res.render('detailOrder', { data: {}, layout: "admin", pageName: "Chi tiết đơn hàng", position: req.session.position })
+
             })
     },
 
