@@ -5,8 +5,8 @@
 
 
 
-    <div class="row mb-5 mt-4">
-        <div class="col-md-3 ">
+    <div class="row mb-md-5 mb-sm-4 mt-4">
+        <div class="col-md-3 portfolio-box">
             <ul class="text-left product-portfolio fadeRight">
                 <li class="portfolio-menu-head"><i class="fa fa-bars"></i><span>&nbsp; Danh mục sản phẩm</span></p>
                 </li>
@@ -46,7 +46,7 @@
             </ul>
         </div>
 
-        <div class="col-md-9 fadeLeft">
+        <div class="col-md-9 fadeLeft full-size">
             <div class="row pagi">
                 <section id="news"></section>
                 <span onclick='window.location.href="/discount"' class="sub-title">Khuyến mãi </span>
@@ -96,9 +96,11 @@
 
             </div>
 
-            <div class="col-md-12 product-main">
+            {{#if data.Lop}}
+            <div style="margin-left: 5px" class="col-md-12 product-main">
                 {{#each data.Lop}}
-                <li class="items-product smooth text-center">
+
+                <li style="" class="items-product smooth text-center">
                     <span class="ico-product ico-new"> Hot</span>
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#each pimg}}
@@ -129,6 +131,11 @@
 
 
             </div>
+            {{else}}
+            <div class="updating-box text-center w-100">
+                Đang cập nhật sản phẩm
+            </div>
+            {{/if}}
 
             <div class="text-center w-100 d-flex justify-content-center mt-4">
 
@@ -217,7 +224,7 @@
                 </div>
             </div>
 
-
+            {{#if data.Xe}}
             <div class="col-md-12 product-main">
                 {{#each data.Xe}}
                 <li class="items-product smooth text-center">
@@ -247,6 +254,11 @@
 
 
             </div>
+            {{else}}
+            <div class="updating-box text-center w-100">
+                Đang cập nhật sản phẩm
+            </div>
+            {{/if}}
             <div class="text-center w-100 d-flex justify-content-center mt-4">
 
                 <div class="pagination">
@@ -331,6 +343,7 @@
                 </div>
             </div>
 
+            {{#if data.PhuTung}}
             <div class="col-md-12 product-main">
                 {{#each data.PhuTung}}
                 <li class="items-product smooth text-center">
@@ -358,6 +371,11 @@
                 {{/each}}
 
             </div>
+            {{else}}
+            <div class="updating-box text-center w-100">
+                Đang cập nhật sản phẩm
+            </div>
+            {{/if}}
 
             <div class="text-center w-100 d-flex justify-content-center mt-4">
 
@@ -440,10 +458,11 @@
                 </div>
             </div>
 
+            {{#if data.DauNhot}}
             <div class="col-md-12 product-main">
-                {{#each data.Dau}}
+                {{#each data.DauNhot}}
                 <li class="items-product  text-center">
-                    <span style="background-color: orange;" class="ico-product ico-new"> -30%</span>
+                    {{!-- <span style="background-color: orange;" class="ico-product ico-new"> -30%</span> --}}
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#if pimg}}
 
@@ -468,6 +487,11 @@
                 </li>
                 {{/each}}
             </div>
+            {{else}}
+            <div class="updating-box text-center w-100">
+                Đang cập nhật sản phẩm
+            </div>
+            {{/if}}
 
             <div class="text-center w-100 d-flex justify-content-center mt-4">
 
@@ -537,24 +561,25 @@
         </div>
     </div>
 
-    <script>
-        $(document).ready(function () {
-            $('.owl-carousel').owlCarousel({
-                loop: true,
-                margin: 10,
-                nav: true,
-                autoplay: true,
-                responsive: {
-                    0: {
-                        items: 1
-                    },
-                    600: {
-                        items: 3
-                    },
-                    1000: {
-                        items: 8
-                    }
-                }
-            })
-        })
-    </script>
+<script>
+    $(document).ready(function() {
+        $('.owl-carousel').owlCarousel({
+        loop: true,
+        margin: 10,
+        nav: true,
+        autoplay: true,
+        responsive: {
+            0: {
+                items: 3
+            },
+            600: {
+                items: 5
+            },
+            1000: {
+                items: 8
+            }
+        }
+    })
+    })
+</script>
+

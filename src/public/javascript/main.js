@@ -15,13 +15,13 @@ $(document).ready(function () {
     $('.owl-dots').hide()
 
 
-    var old_img = '';
-    $('.hexIn').hover(function () {
-        old_img = $(this).children('.hexImg').attr('src');
-        $(this).children('.hexImg').attr('src', 'https://media.istockphoto.com/photos/hand-using-laptop-and-press-screen-to-search-browsing-on-the-internet-picture-id1271072224?b=1&k=20&m=1271072224&s=170667a&w=0&h=4BaKdYk3VKJO-smyDBRkX1wNErrgZwCJTaj08a7rZHc=')
-    }, function () {
-        $(this).children('.hexImg').attr('src', old_img);
-    })
+    // var old_img = '';
+    // $('.hexIn').hover(function () {
+    //     old_img = $(this).children('.hexImg').attr('src');
+    //     $(this).children('.hexImg').attr('src', 'https://media.istockphoto.com/photos/hand-using-laptop-and-press-screen-to-search-browsing-on-the-internet-picture-id1271072224?b=1&k=20&m=1271072224&s=170667a&w=0&h=4BaKdYk3VKJO-smyDBRkX1wNErrgZwCJTaj08a7rZHc=')
+    // }, function () {
+    //     $(this).children('.hexImg').attr('src', old_img);
+    // })
 
     $('#eye').click(function () {
         $(this).toggleClass('open');
@@ -237,7 +237,7 @@ $(document).ready(function () {
             }
 
             const url = nextUrl || $(this).attr('href') || '';
-            const loader = `<div style="background-color: transparent;" class="loader-wrapper">
+            const loader = `<div style="background-color: transparent;" class="updating-box text-center w-100">
             <div style="border-color: #242f3f; width: 60px;height:60px" class="loader"><div class="loader-inner d-flex justified-content-between align-items-center"><img width="100%" src="/img/logo2.png" alt=""></div></div>
           </div>`
             if (url != '') {
@@ -324,6 +324,8 @@ $(document).ready(function () {
 
 
 });
+
+
 
 // $('.items-price').hover(function() {
 //     $(this).text('Thêm vào giỏ')

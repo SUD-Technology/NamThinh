@@ -278,7 +278,7 @@ const CollectionController = {
                     return {
                         pname: product.product_name,
                         pslug: product.slug,
-                        pimg: product.product_img,
+                        pimg: product.product_img[0],
                         pid: product.product_id,
                         brand: product.brand_name,
                         numPrice: product.price,

@@ -87,8 +87,8 @@ app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'resources/views'))
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use(express.json({ limit: '100mb' }));
-app.use(express.urlencoded({ limit: '100mb', extended: true }));
+app.use(express.json({ limit: '1000mb' }));
+app.use(express.urlencoded({ limit: '1000mb', extended: true }));
 app.use(require("cookie-parser")("abc"));
 app.use(require("express-session")());
 db.connect();
@@ -141,16 +141,20 @@ function loadProducts(array) {
 
 app.get('/home', async (req, res, next) => {
     const l1 = await Products.find({})
-        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1 })
+        .select({ description: 0 })
+        .sort({createdAt: -1})
         .where('classes.lv1').equals(1).limit(10)
     const l2 = await Products.find({})
-        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1 })
+        .select({ description: 0 })
+        .sort({createdAt: -1})
         .where('classes.lv1').equals(2).limit(10)
     const l3 = await Products.find({})
-        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1 })
+        .select({ description: 0 })
+        .sort({createdAt: -1})
         .where('classes.lv1').equals(3).limit(10)
     const l4 = await Products.find({})
-        .select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, classes: 1 })
+        .select({ description: 0 })
+        .sort({createdAt: -1})
         .where('classes.lv1').equals(4).limit(10)
 
     let data = {
@@ -159,6 +163,7 @@ app.get('/home', async (req, res, next) => {
         PhuTung: loadProducts(l3),
         DauNhot: loadProducts(l4)
     }
+
 
     return Discounts.find({}).limit(4)
         .then(discounts => {
@@ -178,59 +183,6 @@ app.get('/home', async (req, res, next) => {
             })
         })
         .catch(next)
-
-    const products = await Products.find({}).select({ product_name: 1, product_img: 1, product_id: 1, slug: 1, price: 1, description: 1, classes: 1 });
-    products.forEach(product => {
-        const type = product.classes.lv1;
-        const current_product = {
-            pname: product.product_name,
-            pimg: [product.product_img[0]] || [''],
-            pid: product.product_id,
-            pslug: product.slug,
-            price: product.price ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
-            description: product.description
-        }
-
-        if (type == 1 && data.Lop.length < 10) {
-            data.Lop.push(current_product);
-        }
-        else if (type == 2 && data.Xe.length < 10) {
-            data.Xe.push(current_product);
-        }
-        else if (type == 3 && data.PhuTung.length < 10) {
-            data.PhuTung.push(current_product);
-        }
-        else if (type == 4 && data.Dau.length < 10) {
-            data.Dau.push(current_product);
-        }
-    })
-    return Posts.find().limit(3)
-        .then(posts => {
-            const dataPosts = posts.map(post => {
-                return {
-                    title: post.title,
-                    subtitle: (post.subtitle.length < 100) ? post.subtitle : post.subtitle.slice(0, 100) + '...',
-                    slug: post.slug,
-                    createdAt: moment(post.createdAt).format('lll'),
-                    content: post.content,
-                    image: post.image,
-                }
-            })
-
-            return res.render('home', {
-                homepage: true,
-                data,
-                position: req.session.position,
-                topnews1: dataPosts[0],
-                topnews2: dataPosts[1],
-                topnews3: dataPosts[2]
-            })
-
-        })
-        .catch(() => {
-            return res.render('home', { homepage: true, data, position: req.session.position })
-        })
-
 })
 
 
