@@ -575,7 +575,7 @@ input[type="file"] {
 /* btn search */
 #btn-search {
   border-radius: unset;
-  margin-left: -2px;
+  margin-left: -3px;
   border-top-right-radius: 2px;
   border-bottom-right-radius: 2px;
   background-color: var(--xanh);
