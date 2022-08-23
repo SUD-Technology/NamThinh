@@ -4,6 +4,7 @@ const moment = require('moment');
 const DiscountController = {
     getDiscountList: (req, res, next) => {
         Discounts.find()
+            .select({content: 0})
             .then(discounts => {
                 const data = discounts.map(dis => {
                     return {
