@@ -135,7 +135,7 @@ function loadProducts(array) {
             pslug: product.slug,
             price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
         }
-    })
+    }).reverse()
 }
 
 app.get('/home', async (req, res, next) => {

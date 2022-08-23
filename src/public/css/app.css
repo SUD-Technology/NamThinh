@@ -3387,11 +3387,17 @@ a:not([href]):not([tabindex]) {
 
 @media (max-width: 500px) {
   .sub-title {
-    font-size: 10px;
+    font-size: 12px;
     width: 50%;
   }
-
   
+  .titleL h1 {
+    font-size: 20px;
+  }
+  
+  .full-size {
+    padding: 0;
+  }
   
   .s-page-img img {
     height: 150px !important;
