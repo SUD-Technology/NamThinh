@@ -64,10 +64,15 @@
                 {{!-- <p><span><a class="hoverred" href="/showroom/86">Xem thêm các sản phẩm khác cùng nhà cung cấp
                             &gt;&gt;&gt;</a></span></p> --}}
 
-
+                <div onclick="addToShoppingCart(`{{data.pid}}`,`{{data.pname}}`, `{{data.pimg}}`, `{{data.pslug}}`, `{{data.numPrice}}`, `{{data.price}}`)"
+                        class="items-price-2 w-100 text-center px-2 py-2 btn btn-primary mt-2"
+                        style="font-size: 20px; background-color:#dd7907; border: 0">
+                        Thêm vào giỏ
+                    </div>
 
 
                 <div class="note-box col-md-12 mt-5">
+                    
                     <div class="ico-new">GHI CHÚ</div>
                     <ul>
                         <li class="my-1"><i class="fas fa-check"></i> Miễn phí lắp đặt tại kho Nam Thịnh</li>

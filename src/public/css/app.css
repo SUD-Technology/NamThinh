@@ -2845,7 +2845,7 @@ span.ico-product.ico-new,
   position: fixed;
   right: 30px;
   top: 40%;
-  z-index: 10;
+  z-index: 11;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -3755,7 +3755,7 @@ a:not([href]):not([tabindex]) {
     width: 45%;
     display: inline-block;
     float: left;
-    height: 235px;
+    height: 250px;
     position: relative;
     margin: 5px;
     text-align: center;
@@ -3813,25 +3813,32 @@ a:not([href]):not([tabindex]) {
   }
 
   .hex {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
   }
 
   .hex-inner {
-    width: 136px;
-    height: 136px;
+    width: 92px;
+    height: 92px;
+    margin-top: 4px;
   }
 
-  .layer-title {
-    opacity: 0;
+ 
+
+  .layer-title span {
+    font-size: 11px;
   }
 
   .mx-layer3 {
-    margin: 40px 50px;
+    margin: 0px 50px;
   }
 
   .mx-layer2 {
-    margin: 50px 25px;
+    margin: 20px 25px;
+  }
+
+  .mg {
+    min-height: 120px !important;
   }
 
   .hex-layer-3 {
@@ -3841,5 +3848,9 @@ a:not([href]):not([tabindex]) {
   .main-hex {
     background-position-x: 1px;
     background-position-y: 3px;
+  }
+
+  .count-cart {
+    top: -5px;
   }
 }
