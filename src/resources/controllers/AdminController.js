@@ -83,7 +83,7 @@ const AdminController = {
         return Products.findOne({product_id: id})
             .then((product) => {
                 if(product) {
-                    fs.unlink(`source/src/public/${product.image}`, (err) => {
+                    fs.unlink(`source/src/public/${product.product_img}`, (err) => {
                         if (!err) {
                             req.flash('success', "Xóa sản phẩm thành công")
                             res.redirect('/admin/productManager')
