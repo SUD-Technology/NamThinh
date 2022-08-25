@@ -80,20 +80,22 @@ const AdminController = {
     },
     deleteProduct: (req, res, next) => {
         const id = req.params.id;
-        return Products.findByIdAndDelete(id)
+        return Products.findOne({product_id: id})
             .then((product) => {
-                fs.unlink(`source/src/public/${product.image}`, (err) => {
-                    if (!err) {
-                        req.flash('success', "Xóa sản phẩm thành công")
-                        res.redirect('/admin/productManager')
-                    } else {
-                        req.flash('error', "Xóa sản phẩm thất bại")
-                        res.redirect('/admin/productManager')
-                    }
-                })
+                if(product) {
+                    fs.unlink(`source/src/public/${product.image}`, (err) => {
+                        if (!err) {
+                            req.flash('success', "Xóa sản phẩm thành công")
+                            res.redirect('/admin/productManager')
+                        } else {
+                            req.flash('error', "Xóa sản phẩm thất bại")
+                            res.redirect('/admin/productManager')
+                        }
+                    })
+                }     
             })
             .catch(() => {
-                req.flash('error', "Xóa bài viết thất bại")
+                req.flash('error', "Xóa sản phẩm thất bại")
                 res.redirect('/admin/productManager')
             })
     },
