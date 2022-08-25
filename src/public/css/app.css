@@ -804,7 +804,7 @@ input[type="file"] {
 
 #cart-container table #thead-cart {
   border-radius: 4px;
-  
+
 }
 
 
@@ -2472,6 +2472,17 @@ img {
   /* News detail */
   .news-detail img {
     width: 100% !important;
+    height: auto !important;
+  }
+
+  .Table {
+    width: 100% !important;
+  }
+
+  /* Product detail */
+  .infoproduct {
+    width: 100%;
+    overflow-x: auto;
   }
 }
 
@@ -3823,7 +3834,7 @@ a:not([href]):not([tabindex]) {
     margin-top: 4px;
   }
 
- 
+
 
   .layer-title span {
     font-size: 11px;
