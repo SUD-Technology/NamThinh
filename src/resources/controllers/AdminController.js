@@ -11,7 +11,6 @@ const Services = require('../models/Services')
 const Partners = require('../models/Partners')
 const moment = require('moment');
 const About = require('../models/About');
-const { insertMany } = require('../models/About');
 
 function unique(arr) {
     return Array.from(new Set(arr)) //
@@ -29,7 +28,8 @@ const AdminController = {
     addProduct: (req, res) => {
         const file = req.files
         console.log(file)
-        const { product_id, product_name, size, product_model, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
+        const { product_id, product_name, size, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
+        let product_model = product_id;
         let listImages = []
         if (!file) {
             res.json({ code: 1, message: "error" })
@@ -79,13 +79,22 @@ const AdminController = {
             })
     },
     deleteProduct: (req, res, next) => {
-        const product_id = req.params.id;
-        Products.findOne({ product_id })
-            .then(product => {
-                if (!product) {
-                    return res.json({ success: false, msg: 'Sản phẩm không tồn tại', product_id });
-                }
-                product.delete().then(res.redirect('/admin/product-manager'));
+        const id = req.params.id;
+        return Products.findByIdAndDelete(id)
+            .then((product) => {
+                fs.unlink(`source/src/public/${product.image}`, (err) => {
+                    if (!err) {
+                        req.flash('success', "Xóa sản phẩm thành công")
+                        res.redirect('/admin/productManager')
+                    } else {
+                        req.flash('error', "Xóa sản phẩm thất bại")
+                        res.redirect('/admin/productManager')
+                    }
+                })
+            })
+            .catch(() => {
+                req.flash('error', "Xóa bài viết thất bại")
+                res.redirect('/admin/productManager')
             })
     },
     getProductManager: (req, res, next) => {
@@ -412,7 +421,8 @@ const AdminController = {
             })
     },
     postUpdateProduct: (req, res, next) => {
-        const { id, product_id, product_name, image, size, product_model, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
+        const { id, product_id, product_name, image, size, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
+        let product_model = product_id;
         const listOldImages = image.split(',')
         let listImages = listOldImages
         if (req.files.length != 0) {
