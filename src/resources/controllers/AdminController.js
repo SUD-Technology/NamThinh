@@ -83,6 +83,7 @@ const AdminController = {
         return Products.findOne({product_id: id})
             .then((product) => {
                 if(product) {
+                    product.delete();
                     fs.unlink(`source/src/public/${product.product_img}`, (err) => {
                         if (!err) {
                             req.flash('success', "Xóa sản phẩm thành công")
