@@ -1118,6 +1118,25 @@ img.bgc-title {
   height: 46px;
   width: 10px;
   left: 50%;
+  
+}
+
+.d-img {
+  animation: beat 1s infinite linear;
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1.015, 1.015);
+  }
+
+  100% {
+    transform: scale(1, 1);
+  }
 }
 
 .sub-title {
@@ -3557,6 +3576,35 @@ a:not([href]):not([tabindex]) {
   background-size: cover;
 }
 
+.hex-1:hover {
+  background: url('../img/default.png');
+  background-size: cover;
+}
+.hex-2:hover {
+  background: url('../img/default.png');
+  background-size: cover;
+}
+.hex-3:hover {
+  background: url('../img/default.png');
+  background-size: cover;
+}
+.hex-4:hover {
+  background: url('../img/default.png');
+  background-size: cover;
+}
+.hex-5:hover {
+  background: url('../img/default.png');
+  background-size: cover;
+}
+.hex-6:hover {
+  background: url('../img/default.png');
+  background-size: cover;
+}
+.hex-7:hover {
+  background: url('../img/default.png');
+  background-size: cover;
+}
+
 .hex-2 {
   background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Flopxe.jpg?alt=media&token=f7c324b3-ed40-4977-9c94-e3f8f4b2ea56);
   background-size: cover;
@@ -3612,6 +3660,56 @@ a:not([href]):not([tabindex]) {
 }
 
 
+
+h1.sixth { position: relative;
+font-weight: 600;
+color: var(--xanh);
+}
+
+h1.sixth:before,
+h1.sixth:after {
+	content: '[';
+	display: inline-block;
+	position: relative;
+	top: 1px;
+	height: 100%;
+	font-size: 1.25em;
+	color: var(--xanh);
+	font-family: 'Open Sans';
+	transition: all 0.5s ease;
+  
+}
+
+h1.sixth:after { content: ']';
+  animation: slideRight 2s infinite ease;
+}
+
+h1.sixth:before {
+  animation: slideLeft 2s infinite ease;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translate(5px);
+  }
+  50% {
+    transform: translate(20px);
+  }
+  100% {
+    transform: translate(5px);
+  }
+}
+@keyframes slideLeft {
+  0% {
+    transform: translate(-5px);
+  }
+  50% {
+    transform: translate(-20px);
+  }
+  100% {
+    transform: translate(-5px);
+  }
+}
 
 
 
