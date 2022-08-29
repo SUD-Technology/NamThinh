@@ -110,15 +110,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 const About = require('./resources/models/About');
 const Discounts = require('./resources/models/Discounts')
-About.find({})
-    .then(abouts => {
-        if (abouts.length == 0) {
-            let defaultAbout = {
-                content: ''
-            }
-            new About(defaultAbout).save()
-        }
-    })
+// About.find({})
+//     .then(abouts => {
+//         if (abouts.length == 0) {
+//             let defaultAbout = {
+//                 content: ''
+//             }
+//             new About(defaultAbout).save()
+//         }
+//     })
 
 app.get('/aboutus', (req, res) => {
     About.findOne({})

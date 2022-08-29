@@ -340,9 +340,10 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
     if (data.length > 0) {
         data.forEach((d, index) => {
             if (index == 10) return;
+            let ico = d.status ? `<span class="ico-product ico-new"> ${d.status}</span>` : ''
             html += `
                 <li class="items-product smooth text-center">
-                    <span class="ico-product ico-new"> Hot</span>
+                    ${ico}
                     <div onclick='window.location.href="/products/${d.pslug}"' class="img-box">
                         <img class="img-product smooth" src="${d.pimg}"
                             alt="">
