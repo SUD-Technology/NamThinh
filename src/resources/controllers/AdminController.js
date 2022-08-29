@@ -141,6 +141,7 @@ const AdminController = {
 
         return Products.find(query)
             .select({ description: 0 })
+            .sort({ createdAt: -1 })
             .skip(skip).limit(pageSize).exec((err, products) => {
                 Products.countDocuments(query, (err, count) => {
                     if (err) return next(err);
@@ -407,7 +408,8 @@ const AdminController = {
                     amount: product.amount,
                     inventory: product.inventory,
                     size: product.size,
-                    classes: classes
+                    classes: classes,
+                    status: product.status
                 }
                 return res.render('updateProduct', {
                     data: data,
@@ -424,7 +426,7 @@ const AdminController = {
             })
     },
     postUpdateProduct: (req, res, next) => {
-        const { id, product_id, product_name, image, size, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
+        const { id, product_id, product_name, status, image, size, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
         let product_model = product_id;
         const listOldImages = image.split(',')
         let listImages = listOldImages
@@ -471,7 +473,8 @@ const AdminController = {
             size: size,
             showPrice: showPrice || '',
             classes: classes,
-            slug: slug
+            slug: slug,
+            status: status
         }
         // res.json({ data: product })
         Products.findByIdAndUpdate(id, product, (err, doc) => {

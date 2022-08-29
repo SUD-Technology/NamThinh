@@ -101,7 +101,9 @@
                 {{#each data.Lop}}
 
                 <li style="" class="items-product smooth text-center">
-                    <span class="ico-product ico-new"> Hot</span>
+                    {{#if status}}
+                    <span class="ico-product ico-new"> {{status}}</span>
+                    {{/if}}
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#each pimg}}
 
@@ -202,7 +204,9 @@
             <div class="col-md-12 product-main">
                 {{#each data.Xe}}
                 <li class="items-product smooth text-center">
-                    <span style="background-color: #00E7FF;" class="ico-product ico-new"> Mới</span>
+                    {{#if status}}
+                    <span class="ico-product ico-new"> {{status}}</span>
+                    {{/if}}
 
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#if pimg}}
@@ -295,7 +299,9 @@
             <div class="col-md-12 product-main">
                 {{#each data.PhuTung}}
                 <li class="items-product smooth text-center">
-                    <span class="ico-product ico-new"> Hot</span>
+                    {{#if status}}
+                        <span class="ico-product ico-new"> {{status}}</span>
+                    {{/if}}
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#if pimg}}
                         <img class="img-product smooth" src="{{pimg}}" alt="">
@@ -384,7 +390,9 @@
             <div class="col-md-12 product-main">
                 {{#each data.DauNhot}}
                 <li class="items-product  text-center">
-                    {{!-- <span style="background-color: orange;" class="ico-product ico-new"> -30%</span> --}}
+                    {{#if status}}
+                    <span class="ico-product ico-new"> {{status}}</span>
+                    {{/if}}
                     <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
                         {{#if pimg}}
 

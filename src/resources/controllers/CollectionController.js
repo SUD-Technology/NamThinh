@@ -330,7 +330,8 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
             brand: product.brand_name,
             pslug: product.slug,
             numPrice: product.price,
-            price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
+            price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+            status: product.status,
         }
     })
 

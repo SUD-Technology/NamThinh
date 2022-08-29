@@ -159,9 +159,9 @@
                     <th scope="col">STT</th>
                     <th scope="col">Ảnh</th>
                     <th scope="col">Tên hàng hóa</th>
-                    <th scope="col">Model</th>
                     <th scope="col">Mã</th>
                     <th scope="col">Giá</th>
+                    <th scope="col">Nhập</th>
                     <th scope="col">Tồn</th>
                     <th scope="col"></th>
                     {{#isAccountant position}}
@@ -169,7 +169,7 @@
                     <th scope="col">Xóa</th>
                     {{/isAccountant}}
                 </tr>
-            </thead>`
+            </thead><br>
             <tbody>
                 {{#if products}}
                 {{#each products}}
@@ -181,9 +181,9 @@
                         {{/if}}
                     </td>
                     <td><a target="_blank" href="/products/{{pslug}}">{{pname}}</a></td>
-                    <td>{{model}}</td>
                     <td>{{pid}}</td>
                     <td>{{price}}</td>
+                    <td>{{amount}}</td>
                     <td>{{inventory}}</td>
                     <td>
                         <!-- Button trigger modal -->

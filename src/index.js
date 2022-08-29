@@ -94,6 +94,14 @@ app.use(require("express-session")());
 db.connect();
 
 
+// Products.find({})
+//     .then(products => {
+//         products.forEach(product => {
+//             product.status = ''
+//             product.save()
+//         })
+//     })
+
 // Session & Cookie
 app.use(cookieParser('tkh'))
 app.use(session({ cookie: { maxAge: 300000 } }))
@@ -135,6 +143,7 @@ function loadProducts(array) {
             pslug: product.slug,
             numPrice: product.price,
             price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+            status: product.status
         }
     })
 }
