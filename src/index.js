@@ -174,7 +174,9 @@ app.get('/home', async (req, res, next) => {
     }
 
 
-    return Discounts.find({}).limit(4)
+    return Discounts.find({})
+    .select({content: 0})
+    .limit(4)
         .then(discounts => {
             let _discounts = [];
             if (discounts) {
@@ -217,4 +219,12 @@ app.use('/admin', AdminRouter);
 app.use('/news', NewsRouter);
 app.use('/discount', DiscountRouter);
 app.use('/service', ServicesRouter)
+
+app.use(function onError(err, req, res, next) {
+    // The error id is attached to `res.sentry` to be returned
+    // and optionally displayed to the user for support.
+    res.statusCode = 500;
+    res.end(res.sentry + "");
+});
+
 app.listen(port, () => console.log('Server started'))
