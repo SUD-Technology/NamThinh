@@ -485,7 +485,7 @@
             return item.id === id
         })
         if (checkId) {
-            changeNumberOfUnit('plus', id)
+            changeNumberOfUnitAdmin('plus', id)
             alertAddToAdminCart(name)
         } else {
             const product = {
@@ -555,9 +555,9 @@
                                                                     <label for="${item.id}">Số lượng:</label>
                                                                     <input class="form-control quantity-input d-none">
                                                                     <div class="units">
-                                                                        <div class="btn minus" onclick="changeNumberOfUnit('minus', '${item.id}')">-</div>
+                                                                        <div class="btn minus" onclick="changeNumberOfUnitAdmin('minus', '${item.id}')">-</div>
                                                                         <div class="number">${item.numberOfUnit}</div>
-                                                                        <div class="btn plus" onclick="changeNumberOfUnit('plus', '${item.id}')">+</div>           
+                                                                        <div class="btn plus" onclick="changeNumberOfUnitAdmin('plus', '${item.id}')">+</div>           
                                                                     </div>
                                                                     
                                                                 </div>
@@ -623,7 +623,7 @@
 
 
     // Change number of unit
-    function changeNumberOfUnit(action, id) {
+    function changeNumberOfUnitAdmin(action, id) {
         cart = cart.map(item => {
             item = JSON.parse(item)
             let numberOfUnit = item.numberOfUnit
