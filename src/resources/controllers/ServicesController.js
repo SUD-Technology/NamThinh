@@ -15,7 +15,6 @@ const ServicesController = {
                         subtitle: item.subtitle,
                         slug: item.slug,
                         createdAt: item.createdAt,
-                        content: item.content,
                         image: item.image
                     }
                 })
@@ -35,7 +34,6 @@ const ServicesController = {
                         subtitle: item.subtitle.slice(0,150) + '...',
                         slug: item.slug,
                         createdAt: item.createdAt,
-                        content: item.content,
                         image: item.image
                     }
                 })
