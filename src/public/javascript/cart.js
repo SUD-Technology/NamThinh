@@ -92,7 +92,7 @@ function updateLocalShoppingCart() {
 
 function alertAddProduct(name) {
     document.getElementById('alert-product').innerHTML =
-        `<div style="width: 300px" class="alert alert-success alert-dismissible fade show" role="alert">
+        `<div style="width: 30%; bottom: 0; position: fixed; z-index: 9999999; " class="alert alert-success alert-dismissible fade show" role="alert">
         Đã thêm <strong>${name}</strong> vào giỏ hàng
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
