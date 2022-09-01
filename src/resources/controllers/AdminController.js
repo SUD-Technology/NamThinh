@@ -1377,7 +1377,8 @@ const AdminController = {
 
         return res.render('updateIndex', {
             success,error,
-            layout: 'admin'
+            layout: 'admin',
+            position: req.session.position
         })
     },
     postUpdateIndex: (req, res, next) => {
