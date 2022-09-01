@@ -3574,31 +3574,35 @@ a:not([href]):not([tabindex]) {
 
 
 .hex-1:hover {
-  background: url('../img/default.png');
+  background: url(../uploads/Wel/xedaukeo2.png);
   background-size: cover;
 }
 .hex-2:hover {
-  background: url('../img/default.png');
+  background: url(../uploads/Wel/lopxe2.png);
   background-size: cover;
 }
 .hex-3:hover {
-  background: url('../img/default.png');
+  background: url(../uploads/Wel/daunhot2.png);
   background-size: cover;
 }
 .hex-4:hover {
-  background: url('../img/default.png');
+  background: url(../uploads/Wel/phutung2.png);
   background-size: cover;
 }
 .hex-5:hover {
-  background: url('../img/default.png');
+  background: url(../uploads/Wel/xeben2.png);
   background-size: cover;
 }
 .hex-6:hover {
-  background: url('../img/default.png');
+  background: url(../uploads/Wel/somi2.png);
   background-size: cover;
 }
 .hex-7:hover {
-  background: url('../img/default.png');
+  background: url(../uploads/Wel/service2.png);
+  background-size: cover;
+}
+.hex-8:hover {
+  background: url(../uploads/Wel/lopcongtrinh2.png);
   background-size: cover;
 }
 
