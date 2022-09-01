@@ -3571,10 +3571,7 @@ a:not([href]):not([tabindex]) {
   text-shadow: -1px 0 var(--cam), 0 1px var(--cam), 1px 0 var(--cam), 0 -1px var(--cam)
 }
 
-.hex-1 {
-  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fxedaukeo.png?alt=media&token=fd226485-09b7-4bdc-8b00-d7d3b89b13b4);
-  background-size: cover;
-}
+
 
 .hex-1:hover {
   background: url('../img/default.png');
@@ -3605,38 +3602,43 @@ a:not([href]):not([tabindex]) {
   background-size: cover;
 }
 
+.hex-1 {
+  background: url(../uploads/Wel/xedaukeo.png);
+  background-size: cover;
+}
+
 .hex-2 {
-  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Flopxe.jpg?alt=media&token=f7c324b3-ed40-4977-9c94-e3f8f4b2ea56);
+  background: url(../uploads/Wel/lopxe.png);
   background-size: cover;
 }
 
 .hex-3 {
-  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fdaunhot.png?alt=media&token=9f1042ae-c80c-42f9-a670-06309805bd83);
+  background: url(../uploads/Wel/daunhot.png);
   background-size: cover;
 }
 
 .hex-4 {
-  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fphutung.png?alt=media&token=29c844ab-b937-40e6-baf7-cfa4525d0b42);
+  background: url(../uploads/Wel/phutung.png);
   background-size: cover;
 }
 
 .hex-5 {
-  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fxeben.jpg?alt=media&token=fd9f9ab4-e586-4a62-a4bd-477750269a5e);
+  background: url(../uploads/Wel/xeben.png);
   background-size: cover;
 }
 
 .hex-6 {
-  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fsomi.png?alt=media&token=4580c65b-c19c-4dc7-bd44-51cf99eb88d8);
+  background: url(../uploads/Wel/somi.png);
   background-size: cover;
 }
 
 .hex-7 {
-  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fservice.jpg?alt=media&token=703ba1c2-3e8e-42a2-8a73-8c6fbb71ad83);
+  background: url(../uploads/Wel/service.png);
   background-size: cover;
 }
 
 .hex-8 {
-  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fdiscount.jpg?alt=media&token=9d2b6850-f21d-460b-86b6-dd7796df3cf4);
+  background: url(../uploads/Wel/lopcongtrinh.png);
   background-size: cover;
 }
 

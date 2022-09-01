@@ -1370,6 +1370,27 @@ const AdminController = {
                 req.flash('error', "Xóa đối tác thất bại")
                 res.redirect('/admin/listPartners')
             })
+    },
+    getUpdateIndex: (req, res, next) => {
+        const error = req.flash('error') || '';
+        const success = req.flash('success') || '';
+
+        return res.render('updateIndex', {
+            success,error,
+            layout: 'admin'
+        })
+    },
+    postUpdateIndex: (req, res, next) => {
+        const file = req.file;
+        // const imagePath = "/uploads/Wel/" + file.filename
+
+        if (!file) {
+            req.flash('error', 'Vui lòng thêm ảnh');
+            return res.redirect('/admin/updateIndex');
+        }
+
+        req.flash('success', 'Thay đổi ảnh thành công');
+        return res.redirect('/admind/updateIndex');
     }
 
     // -----------------------------------------------------------------END--------------------------------------------------------------//

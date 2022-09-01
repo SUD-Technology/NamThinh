@@ -1,0 +1,217 @@
+{{!-- Body: start --}}
+<div class="container">
+    <div class="addProduct-header">
+        <div class="row">
+            <div class="col-md-4">
+                <button onclick="location.href='{{prev}}'" class="btn btn-success"><i
+                        class="fas fa-long-arrow-alt-left"></i> Trở về</button>
+            </div>
+            <div class="col-md-4 ml-auto">
+                {{#if success}}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{success}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {{/if}}
+                {{#if error}}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{error}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-2 mb-2 px-2">
+            <div id="lopxe.png" class="edit-index btn btn-secondary w-100 text-uppercase px-1  "><span class="mb-0 h5">Lốp xe</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="lopxe2.png" class="edit-index btn btn-light w-100 text-uppercase px-1 "><span class="mb-0 h5">Lốp xe 2</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="xeben.png" class="edit-index btn btn-secondary w-100 text-uppercase px-1 "><span class="mb-0 h5">Xe tải</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="xeben2.png" class="edit-index btn btn-light w-100 text-uppercase px-1 "><span class="mb-0 h5">Xe tải 2</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="xedaukeo.png" class="edit-index btn btn-secondary w-100 text-uppercase px-1 "><span class="mb-0 h5">Xe đầu kéo</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="xedaukeo2.png" class="edit-index btn btn-light w-100 text-uppercase px-1 "><span class="mb-0 h5">Xe đầu kéo 2</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="service.png" class="edit-index btn btn-secondary w-100 text-uppercase px-1 "><span class="mb-0 h5">Dịch vụ</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="service2.png" class="edit-index btn btn-light w-100 text-uppercase px-1 "><span class="mb-0 h5">Dịch vụ 2</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="somi.png" class="edit-index btn btn-secondary w-100 text-uppercase px-1 "><span class="mb-0 h5">Sơ mi rơ móoc</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="somi2.png" class="edit-index btn btn-light w-100 text-uppercase px-1 "><span class="mb-0 h5">Sơ mi rơ móoc 2</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="phutung.png" class="edit-index btn btn-secondary w-100 text-uppercase px-1 "><span class="mb-0 h5">Phụ tùng</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="phutung2.png" class="edit-index btn btn-light w-100 text-uppercase px-1 "><span class="mb-0 h5">Phụ tùng 2</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="lopcongtrinh.png" class="edit-index btn btn-secondary w-100 text-uppercase px-1 "><span class="mb-0 h5">Lốp công trình</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="lopcongtrinh2.png" class="edit-index btn btn-light w-100 text-uppercase px-1 "><span class="mb-0 h5">Lốp công trình 2</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="daunhot.png" class="edit-index btn btn-secondary w-100 text-uppercase px-1 "><span class="mb-0 h5">Dầu nhớt</span></div>
+        </div>
+        <div class="col-md-2 mb-2 px-2">
+            <div id="daunhot2.png" class="edit-index btn btn-light w-100 text-uppercase px-1 "><span class="mb-0 h5">Dầu nhớt 2</span></div>
+        </div>
+        
+    </div>
+
+
+    <div class="addProduct-body">
+        <form action="/admin/updateIndex" class="form-horizontal" enctype="multipart/form-data" method="post">
+        <div class="row">
+            <div class="col-md-3 d-flex align-items-center">
+                <img height="170px" src="/uploads/Wel/lopxe.png" alt="" class="w-100 text-uppercase px-1 edit-img">
+            </div>
+            <div class="col-md-9">
+                <div class="form-group border-0 mt-0">
+                    <div class="col-md-12 text-center">
+                       
+                        <div class="form-group-container">
+                            
+                            <input name="image_name" type="text" class="form-control old-name d-none" value="lopxe.png">
+                            
+                            <input id="product-image" accept="image/*" name="image" class="form-control input-md"
+                                onchange="preview()" type="file" multiple>
+                            <label for="product-image">
+                                <i class="fas fa-upload"></i>
+                                Chọn ảnh &nbsp;
+                            </label>
+                            <p id="num-of-file">Chưa có ảnh mới nào được chọn</p>
+                            <div id="images-upload">
+                                <figure>
+                                    <img src="" alt="">
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+        {{!-- <form action="{{action}}" class="form-horizontal" enctype="multipart/form-data" method="post">
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="discount-title">Tiêu đề</label>
+                    <div class="col-md-10">
+                        <input id="discount-title" value="{{data.title}}" name="title" placeholder="Tiêu đề"
+                            class="form-control input-md" required="" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="discount-subtitle">Trích dẫn</label>
+                    <div class="col-md-10">
+                        <input id="discount-subtitle" value="{{data.subtitle}}" name="subtitle" placeholder="Trích dẫn"
+                            class="form-control input-md" required="" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="product-image">HÌNH ẢNH KHUYẾN MÃI</label>
+                    <div class="col-md-10">
+                        <div class="form-group-container">
+                            <input class="d-none" value="{{data.id}}" type="text" name="id">
+                            <input class="d-none" value="{{data.image}}" type="text" name="old_image">
+                            <input id="product-image" accept="image/*" name="image" class="form-control input-md"
+                                onchange="preview()" type="file" multiple>
+                            <label for="product-image">
+                                <i class="fas fa-upload"></i>
+                                Chọn ảnh khuyến mãi &nbsp;
+                            </label>
+                            <p id="num-of-file">Chưa có ảnh mới nào được chọn</p>
+                            <div id="images-upload">
+                                <figure>
+                                    <img src="{{data.image}}" alt="">
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Textarea -->
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="discount-content">Nội dung</label>
+                    <div class="col-md-10">
+                        <textarea id="discount-content" name="content">{{data.content}}</textarea>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-footer">
+                    <button type="submit">Xác nhận</button>
+                </div>
+            </fieldset>
+        </form> --}}
+    </div>
+
+</div>
+
+{{!-- Body: end --}}
+
+<script src="/ckeditor/ckeditor.js"></script>
+
+<!-- Footer -->
+<script>
+    let fileInput = document.getElementById("product-image")
+    let imageContainer = document.getElementById('images-upload')
+    let numOfFiles = document.getElementById('num-of-file')
+
+    function preview() {
+        imageContainer.innerHTML = ""
+        numOfFiles.textContent = `${fileInput.files.length} ảnh đã được chọn`;
+
+        for (i of fileInput.files) {
+            let reader = new FileReader()
+            let figure = document.createElement("figure")
+            let figCap = document.createElement("figcaption")
+
+            figCap.innerText = i.name
+            figure.appendChild(figCap)
+            reader.onload = () => {
+                let img = document.createElement("img");
+                img.setAttribute("src", reader.result);
+                figure.insertBefore(img, figCap);
+            }
+            imageContainer.appendChild(figure);
+            reader.readAsDataURL(i)
+        }
+    }
+
+    CKEDITOR.replace('content')
+    
+    const edit_box = $('.addProduct-body');
+    {{!-- edit_box.hide() --}}
+    $('.edit-index').click(function(e) {
+        e.preventDefault();
+        const curr_img = $(this).attr('id');
+        $('.old-name').val(curr_img);
+        $('.edit-img').attr('src', '/uploads/Wel/' + curr_img)
+        $('#product-image').val('');
+        $('figure').children('img').attr('src', '');
+        $('figcaption').text('');
+        $('#num-of-file').text('Chưa có ảnh mới nào được chọn');
+        edit_box.show()
+        
+    })
+</script>

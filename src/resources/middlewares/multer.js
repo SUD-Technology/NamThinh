@@ -10,9 +10,25 @@ let storage = multer.diskStorage({
   }
 })
 
+let storageWel = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'source/src/public/uploads/Wel')
+  },
+  filename: function (req, file, cb) {
+    cb(null, req.body.image_name)
+  }
+})
 
-module.exports = store = multer({ 
+
+var store = multer({ 
   storage: storage,
   limits: { fieldSize: 1024 * 1024 * 1024 }
-})  
+})
+
+var storeWel = multer({
+  storage: storageWel,
+  limits: { fieldSize: 10 * 1024 * 1024 }
+})
+
+module.exports = {store, storeWel}
 

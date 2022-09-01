@@ -4,8 +4,7 @@ const router = express.Router();
 // Controller
 const AdminController = require('../controllers/AdminController')
 // middleware
-const { uploadImage } = require('../services/firebase');
-const store = require('../middlewares/multer');
+const {store, storeWel} = require('../middlewares/multer');
 const checkLogin = require('../auth/checkLogin')
 const { authPage } = require('../auth/checkUser')
 
@@ -77,6 +76,10 @@ router.get('/addPartner', checkLogin, authPage(['admin']), AdminController.getAd
 router.post('/addPartner', checkLogin, authPage(['admin']), store.single('partner-image'), AdminController.postAddPartner);
 router.get('/listPartners', checkLogin, authPage(['admin']), AdminController.getPartners);
 router.get('/deletePartner/:id', checkLogin, authPage(['admin']), AdminController.getDeletePartner);
+
+// Index Page
+router.get('/updateIndex', checkLogin, authPage(['admin']), AdminController.getUpdateIndex);
+router.post('/updateIndex', storeWel.single('image'), AdminController.postUpdateIndex);
 
 router.use('/', (req, res) => {
     res.redirect('/users/login');
