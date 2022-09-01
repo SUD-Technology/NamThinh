@@ -1390,7 +1390,7 @@ const AdminController = {
         }
 
         req.flash('success', 'Thay đổi ảnh thành công');
-        return res.redirect('/admind/updateIndex');
+        return res.redirect('/admin/updateIndex');
     }
 
     // -----------------------------------------------------------------END--------------------------------------------------------------//
