@@ -167,13 +167,15 @@ app.get('/home', async (req, res, next) => {
         DauNhot: loadProducts(l4)
     }
     
-    const P = await Partners.find({});
-    const partners = P.map(p => {
-        return {
-            name: p.name,
-            image: p.image
-        }
-    })
+    const partners = await Partners.find({})
+        .then(ps => {
+            return ps.map(p => {
+                return {
+                    name: p.partner_name,
+                    image: p.image
+                }
+            })
+        })
     
     return Discounts.find({})
     .select({content: 0})
