@@ -776,6 +776,7 @@ const AdminController = {
     },
     getPosts: (req, res, next) => {
         Posts.find()
+            .select({content: 0})
             .then(posts => {
                 const data = posts.map(item => {
                     return {
@@ -1211,6 +1212,7 @@ const AdminController = {
     },
     getServices: (req, res, next) => {
         Services.find()
+            .select({content: 0})
             .then(services => {
                 const data = services.map(item => {
                     return {
