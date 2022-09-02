@@ -81,6 +81,10 @@ router.get('/deletePartner/:id', checkLogin, authPage(['admin']), AdminControlle
 router.get('/updateIndex', checkLogin, authPage(['admin']), AdminController.getUpdateIndex);
 router.post('/updateIndex', storeWel.single('image'), AdminController.postUpdateIndex);
 
+// Policy
+router.get('/updatePolicy/:slug', checkLogin, authPage(['admin']), AdminController.getUpdatePolicy);
+router.post('/updatePolicy', checkLogin, authPage(['admin']), AdminController.postUpdatePolicy);
+
 router.use('/', (req, res) => {
     res.redirect('/users/login');
 })

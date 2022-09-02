@@ -1,18 +1,28 @@
 <div class="row policy-page">
     <div class="col-md-3">
             <ul style="min-height: 230px" class="text-left product-portfolio sticky mt-4 portfolio-box">
-                <li class="portfolio-menu-head"><i class="fa fa-bars"></i><span>&nbsp; Danh mục chính sách</span></p></li>
-                <li class="portfolio-menu"><a style="font-family: 'Open Sans' !important;" class="menu-link" href="/collections/Lop-Advance-Samson-1"> Chính sách giao hàng </a></li>
-                <li class="portfolio-menu"><a style="font-family: 'Open Sans' !important;" class="menu-link" href="/collections/Xe-tai-dau-keo-xe-ben-2"> Chính sách đại lý</a></li>
-                <li class="portfolio-menu"><a style="font-family: 'Open Sans' !important;" class="menu-link" href="/collections/Phu-tung-o-to-3"> Chính sách cộng tác viên</a></li>
-                <li class="portfolio-menu"><a style="font-family: 'Open Sans' !important;" class="menu-link" href="/collections/Dau-nhot-4"> Chính sách bảo hành</a></li>
+                <li  class="portfolio-menu-head"><i class="fa fa-bars"></i><span>&nbsp; Danh mục chính sách</span></p></li>
+                <li id="chinh-sach-giao-hang" class="portfolio-menu"><a style="font-family: 'Open Sans' !important;" class="menu-link" href="/policy/chinh-sach-giao-hang"> Chính sách giao hàng </a></li>
+                <li id="chinh-sach-dai-ly" class="portfolio-menu"><a style="font-family: 'Open Sans' !important;" class="menu-link" href="/policy/chinh-sach-dai-ly"> Chính sách đại lý</a></li>
+                <li id="chinh-sach-cong-tac-vien" class="portfolio-menu"><a style="font-family: 'Open Sans' !important;" class="menu-link" href="/policy/chinh-sach-cong-tac-vien"> Chính sách cộng tác viên</a></li>
+                <li id="chinh-sach-bao-hanh" class="portfolio-menu"><a style="font-family: 'Open Sans' !important;" class="menu-link" href="/policy/chinh-sach-bao-hanh"> Chính sách bảo hành</a></li>
                 
             </ul>
         </div>
 
-        
+    
     <div class="col-md-9">
-        <div class="all-content col-12">
+        {{#if data.content}}
+        <div class="all-content col-md-12">
+            <div class="textTitle text-uppercase">{{title}}</div>
+            <br>
+            {{{data.content}}}
+        </div>
+        {{else}}
+        <div class="w-100 text-center mt-5"><h5>Đang cập nhật</h5></div>
+        {{/if}}
+
+        {{!-- <div class="all-content col-12 d-none">
             <div class="textTitle ">CHÍNH SÁCH GIAO HÀNG  </div>
             <br>
     
@@ -51,11 +61,14 @@
                 13)&nbsp;Phụ phí liên quan đến bảo hành mà khách hàng phải trả khi thực hiện dịch vụ ngoài phạm vi bảo hành, chính sách đặc biệt hay các chiến dịch điều chỉnh bao gồm nhưng không hạn chế trong các chi phí sau: Phụ phí cho việc liên lạc, ở trọ, ăn uống và các mục khác do xe hỏng tại một địa điểm cách xa đại lý.&ZeroWidthSpace;&ZeroWidthSpace; <br>
                 14)&nbsp;&ZeroWidthSpace;Bất cứ hư hỏng nào gây ra bởi các thảm họa tự nhiên, cháy nổ, va chạm, trộm cắp và hư hỏng xảy ra sau đó do hậu quả của các sự kiện này.&ZeroWidthSpace; <br>
                 15)&nbsp;&ZeroWidthSpace;Bất cứ hư hỏng nào gây ra bởi khói, các chất hóa học, phân chim, nước biển, gió biển, muối, mưa axit hay các hiện tượng hư hỏng khác. Những hư hỏng do ngoại cảnh và môi trường nằm ngoài tầm kiểm soát của Honda Việt Nam sẽ không được bảo hành.&ZeroWidthSpace; <br>
-    </div>
+        </div> --}}
     </div>
     
 </div>
-
+<div class="slug-box d-none">{{slug}}</div>
 <script>
-    
+    $(document).ready(function() {
+        const slug = $('.slug-box').text();
+        $('ul.product-portfolio').children(`#${slug}`).children().css({'color': 'crimson'});
+    })
 </script>

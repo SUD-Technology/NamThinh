@@ -94,14 +94,6 @@ app.use(require("express-session")());
 db.connect();
 
 
-// Products.find({})
-//     .then(products => {
-//         products.forEach(product => {
-//             product.status = ''
-//             product.save()
-//         })
-//     })
-
 // Session & Cookie
 app.use(cookieParser('tkh'))
 app.use(session({ cookie: { maxAge: 300000 } }))
@@ -110,6 +102,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 const About = require('./resources/models/About');
 const Discounts = require('./resources/models/Discounts')
+const Policy = require('./resources/models/Policy')
 // About.find({})
 //     .then(abouts => {
 //         if (abouts.length == 0) {
@@ -204,8 +197,25 @@ app.get('/contact', (req, res) => {
 
 
 
-app.get('/policy', (req, res) => {
-    res.render('policy');
+app.get('/policy/:slug', (req, res) => {
+    const slug = req.params.slug;
+
+    Policy.findOne({slug})
+        .then(policy => {
+            if(policy) {
+                let data = {
+                    content: policy.content,
+                }
+
+                return res.render('policy', {
+                    layout: 'main',
+                    title: policy.name,
+                    slug,
+                    data, 
+                })
+            }
+        })
+    
 })
 
 app.get('/shopping-cart', (req, res) => {

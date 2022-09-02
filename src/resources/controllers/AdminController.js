@@ -11,6 +11,7 @@ const Services = require('../models/Services')
 const Partners = require('../models/Partners')
 const moment = require('moment');
 const About = require('../models/About');
+const Policy = require('../models/Policy');
 
 function unique(arr) {
     return Array.from(new Set(arr)) //
@@ -27,7 +28,7 @@ const AdminController = {
     },
     addProduct: (req, res) => {
         const file = req.files
-        console.log(file)
+        
         const { product_id, product_name, size, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
         let product_model = product_id;
         let listImages = []
@@ -665,7 +666,7 @@ const AdminController = {
                 if (order) {
                     if (ops == 'accept') {
                         const listProduct = JSON.parse(order.product_list)
-                        console.log(listProduct)
+                        
                         listProduct.forEach(item => {
                             item = JSON.parse(item)
                             let newInventory = Number(item.inventory) - item.numberOfUnit
@@ -1392,9 +1393,61 @@ const AdminController = {
 
         req.flash('success', 'Thay đổi ảnh thành công');
         return res.redirect('/admin/updateIndex');
+    },
+
+    // -----------------------------------------------------------------END--------------------------------------------------------------//
+
+    // -----------------------------------------------------------Policy Section--------------------------------------------------------------------//
+
+    getUpdatePolicy: (req, res, next) => {
+        const error = req.flash('error') || '';
+        const success = req.flash('success') || '';
+        const slug = req.params.slug;
+       
+        return Policy.findOne({slug: slug})
+            .then(policy => {        
+                const data = {
+                    id: policy._id,
+                    name: policy.name,
+                    content: policy.content,
+                    slug: policy.slug
+                }
+
+                return res.render('updatePolicy', {
+                    layout: 'admin',
+                    position: req.session.position,
+                    action: `/admin/updatePolicy`,
+                    error, success, data
+                })
+            })
+            .catch(next)
+    },
+    postUpdatePolicy: (req, res, next) => {
+        const { name, id , content, slug } = req.body
+
+        if(!content) {
+            req.flash('error', 'Vui lòng nhập nội dung');
+            return res.redirect(`/admin/updatePolicy/${slug}`)
+        }
+
+        let newP = {
+            name, content, slug
+        }
+
+        return Policy.findByIdAndUpdate(id, newP, (err, doc) => {
+            if (!err) {
+                req.flash('success', "Cập nhật chính sách thành công")
+                return res.redirect(`/admin/updatePolicy/${slug}`)
+            } else {
+                req.flash('error', "Cập nhật chính sách thất bại")
+                return res.redirect(`/admin/updatePolicy/${slug}`)
+            }
+        })
     }
 
     // -----------------------------------------------------------------END--------------------------------------------------------------//
+
+
 }
 
 module.exports = AdminController
