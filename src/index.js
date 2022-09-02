@@ -103,6 +103,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 const About = require('./resources/models/About');
 const Discounts = require('./resources/models/Discounts')
 const Policy = require('./resources/models/Policy')
+const Partners = require('./resources/models/Partners')
 // About.find({})
 //     .then(abouts => {
 //         if (abouts.length == 0) {
@@ -165,8 +166,15 @@ app.get('/home', async (req, res, next) => {
         PhuTung: loadProducts(l3),
         DauNhot: loadProducts(l4)
     }
-
-
+    
+    const P = await Partners.find({});
+    const partners = P.map(p => {
+        return {
+            name: p.name,
+            image: p.image
+        }
+    })
+    
     return Discounts.find({})
     .select({content: 0})
     .limit(4)
@@ -182,7 +190,7 @@ app.get('/home', async (req, res, next) => {
             }
             return res.render('home', {
                 homepage: true,
-                data, _discounts,
+                data, _discounts, partners,
                 position: req.session.position,
             })
         })

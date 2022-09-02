@@ -159,7 +159,77 @@
         <script async defer crossorigin="anonymous"
             src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v14.0" nonce="yImrZYyz"></script>
         {{{body}}}
+
+        
     </div>
+    {{#if homepage}}
+    
+
+    <div class="mt-5" style="background-image: url(https://palletnhuanhapkhau.com/img_data/images/br-khachhang341149918659.jpg);">
+        <div class="mb-5 mt-5" style="color: #ffff; padding-top: 30px; text-align: center; font-size: 2rem;">
+            Ý KIẾN KHÁCH HÀNG
+        </div>
+        <div class="feedback__container">
+            <article class="feedback__article">
+                <div class="feedback__image">
+                    <img src="https://palletnhuanhapkhau.com/img_data/images/AT801829723560.jpg" alt="customer">
+                </div>
+                
+                <div class="feedback__text">
+                    <div class="feedback__text__review">
+                        <p>Công Ty uy tín , tu vấn nhiệt tình , hỗ trợ nhanh chóng </p>
+                    </div>
+                    <div class="feedback__text__name">
+                        <p>--Ms.Liên--</p>
+                    </div>
+                </div>
+            </article>
+            <article class="feedback__article">
+                <div class="feedback__image">
+                    <img src="https://palletnhuanhapkhau.com/img_data/images/tds2_nlij246919308556.png" alt="customer">
+                </div>
+                
+                <div class="feedback__text">
+                    <div class="feedback__text__review">
+                        <p>Lốp xe giá tốt , chất lượng , đa dạng mẫu mã</p>
+                    </div>
+                    <div class="feedback__text__name">
+                        <p>--Mr.Hùng --</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <div class="w-100 text-center">
+        <div class="menu-title mb-5 mt-5">ĐỐI TÁC CỦA NAM THỊNH</div>
+    </div>
+    <div class="classify-product mb-5">
+        <div class="col-md-12">
+            <div class="owl-carousel owl-theme mt-5">
+                {{#each partners}}
+                <div class="item"><img width="100%" src="{{image}}" alt="{{name}}"></div>
+                {{/each}}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="">
+        <div class="menu-title mb-5 mt-5">LIÊN HỆ NGAY HÔM NAY</div>
+        <div class="row">
+        <div class="col-12">
+            <div style="margin-bottom: -6px;" class="contact-map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4965865265362!2d106.62206271397635!3d10.849784160804136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752a266f3fe537%3A0x74054a78ab89263d!2zMjI5MCBRTDFBLCBUcnVuZyBN4bu5IFTDonksIFF14bqtbiAxMiwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oIDcwMDAwMCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1659367891994!5m2!1svi!2s"
+                    width="600" height="460" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+    </div>
+    {{/if}}
+
     {{#if admin}}
     {{> footer}}
     {{else}}

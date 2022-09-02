@@ -572,7 +572,7 @@ const AdminController = {
                             product_link: order.product_link,
                             status: order.status,
                             list: listProduct,
-                            edit: req.session.username == order.sale
+                            edit: req.session.username == order.sale || req.session.position == 'admin'
                         }
                         listOrders.push(current_order)
                     })

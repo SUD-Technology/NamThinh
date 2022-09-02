@@ -903,6 +903,52 @@ input[type="file"] {
   --vang: #ebf374 !important;
 }
 
+.menu-title {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+  text-transform: uppercase;
+  color: var(--xanh);
+  font-weight: 600;
+}
+
+.menu-title::before {
+  position: absolute;
+  content: '';
+  width: 40%;
+  height: 4px;
+  top: 16px;
+  left: 0;
+  background: var(--cam);
+  box-shadow: rgb(17 17 26 / 10%) 0px 8px 24px, rgb(17 17 26 / 10%) 0px 16px 56px, rgb(17 17 26 / 10%) 0px 24px 80px;
+}
+
+.menu-title::after {
+  position: absolute;
+  content: '';
+  width: 40%;
+  height: 4px;
+  top: 16px;
+  background: var(--cam);
+  box-shadow: rgb(17 17 26 / 10%) 0px 8px 24px, rgb(17 17 26 / 10%) 0px 16px 56px, rgb(17 17 26 / 10%) 0px 24px 80px;
+  right: 0;
+}
+
+.contact__now__content {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.contact__now__information {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  gap: 2rem;
+}
+
 /* Product */
 
 .product-page {
@@ -1891,7 +1937,7 @@ footer .form-group input {
 .owl-carousel .item img {
   width: 100%;
   height: 100%;
-  border: 2px solid var(--xanh);
+  border: 1px solid var(--xanh);
   border-radius: .3rem;
 
 }
@@ -3671,6 +3717,52 @@ a:not([href]):not([tabindex]) {
   z-index: 1000;
 }
 
+.feedback__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.swiper-pointer-events {
+  touch-action: pan-y;
+}
+
+.feedback__article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  padding-bottom: 40px;
+}
+
+.feedback__image {
+  height: fit-content;
+  width: 100%;
+}
+
+.feedback__text {
+  font-style: italic;
+  font-weight: 300;
+  margin-top: 20px;
+  color: #fff;
+}
+
+.feedback__image img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0px auto;
+  display: block;
+}
+
+.feedback__icon__quote i {
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
 
 
 h1.sixth { position: relative;
@@ -3680,19 +3772,19 @@ color: var(--xanh);
 
 h1.sixth:before,
 h1.sixth:after {
-	content: '[';
+	content: '<';
 	display: inline-block;
 	position: relative;
 	top: 1px;
 	height: 100%;
-	font-size: 1.25em;
-	color: var(--xanh);
+	font-size: 1em;
+	color: black;
 	font-family: 'Open Sans';
 	transition: all 0.5s ease;
   
 }
 
-h1.sixth:after { content: ']';
+h1.sixth:after { content: '>';
   animation: slideRight 2s infinite ease;
 }
 
