@@ -182,7 +182,7 @@ const CollectionController = {
         var submenu = menuItems[keys[0]].submenu;
         const page = parseInt(req.query.page) || 1;
         const view = req.query.view || '';
-        const skip = view == 'home' ? 10 : 20;
+        const skip = view == 'home' ? 5 : 20;
 
         if (signal.includes(0) || level >= 4 || level <= 0 || keys[0] > 3) {
             const title = 'Không tồn tại';
@@ -339,7 +339,7 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
     let cart = 'Thêm vào giỏ';
     if (data.length > 0) {
         data.forEach((d, index) => {
-            if (index == 10) return;
+            if (index == 5) return;
             let ico = d.status ? `<span class="ico-product ico-new"> ${d.status}</span>` : ''
             html += `
                 <li class="items-product smooth text-center">

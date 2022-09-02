@@ -271,9 +271,9 @@ $(document).ready(function () {
             }
 
             const url = nextUrl || $(this).attr('href') || '';
-            const loader = `<div style="background-color: transparent;" class="updating-box text-center w-100">
+            const loader = `<div style="background-color: transparent;" class="updating-box text-center w-100 mt-5">
             <div style="border-width: 3px;border-top-color: #242f3f; border-bottom-color: #242f3f; width: 60px;height:60px" class="loader">
-            <div style="width: 60px; height:60px" class="loader-inner d-flex justified-content-between align-items-center"><img width="100%" src="/img/logo2.png" alt=""></div></div>
+           </div>
           </div>`
             if (url != '') {
                 $(`#${id}`).children().children('.product-main').html(loader)

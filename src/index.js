@@ -146,19 +146,19 @@ app.get('/home', async (req, res, next) => {
     const l1 = await Products.find({})
         .select({ description: 0 })
         .sort({createdAt: -1})
-        .where('classes.lv1').equals(1).limit(10)
+        .where('classes.lv1').equals(1).limit(5)
     const l2 = await Products.find({})
         .select({ description: 0 })
         .sort({createdAt: -1})
-        .where('classes.lv1').equals(2).limit(10)
+        .where('classes.lv1').equals(2).limit(5)
     const l3 = await Products.find({})
         .select({ description: 0 })
         .sort({createdAt: -1})
-        .where('classes.lv1').equals(3).limit(10)
+        .where('classes.lv1').equals(3).limit(5)
     const l4 = await Products.find({})
         .select({ description: 0 })
         .sort({createdAt: -1})
-        .where('classes.lv1').equals(4).limit(10)
+        .where('classes.lv1').equals(4).limit(5)
 
     let data = {
         Lop: loadProducts(l1),
