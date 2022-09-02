@@ -3887,6 +3887,14 @@ h1.sixth:before {
     font-size: 20px;
   }
 
+  .title-details span  {
+    font-size: 27px !important;
+  }
+
+  .title-details iframe {
+    display: none;
+  }
+
   .full-size {
     padding: 0;
   }
