@@ -167,7 +167,7 @@ app.get('/home', async (req, res, next) => {
         DauNhot: loadProducts(l4)
     }
     
-    const P = Partners.find({});
+    const P = await Partners.find({});
     const partners = P.map(p => {
         return {
             name: p.name,
