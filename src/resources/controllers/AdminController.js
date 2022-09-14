@@ -108,9 +108,9 @@ const AdminController = {
         const query = {
             product_origin: req.query.origin || "",
             brand_name: req.query.brand || "",
-            product_name: p_name
+            product_name: p_name,
         }
-
+        
         for (let x in query) {
             if (query[x] == "")
                 delete query[`${x}`]
@@ -139,8 +139,7 @@ const AdminController = {
         let previousPage = page <= 1 ? 1 : page - 1;
 
         // res.json({ query: query })
-
-        return Products.find(query)
+        return Products.find({'$or': [query, {product_model: {$regex: `${req.query.product_name}`, $options: 'i'}}]})
             .select({ description: 0 })
             .sort({ createdAt: -1 })
             .skip(skip).limit(pageSize).exec((err, products) => {
@@ -233,6 +232,7 @@ const AdminController = {
             if (query[x] == "")
                 delete query[`${x}`]
         }
+
         if (!req.query.lv2 && !req.query.lv3)
             return Products.find(query).skip(skip).limit(pageSize)
                 .where('classes.lv1').equals(classes.lv1)

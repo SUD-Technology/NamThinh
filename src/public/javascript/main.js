@@ -362,6 +362,8 @@ $(document).ready(function () {
 
 
 
+
+
 // $('.items-price').hover(function() {
 //     $(this).text('Thêm vào giỏ')
 // }, function() {

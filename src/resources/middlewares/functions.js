@@ -20,3 +20,4 @@ exports.normalizeDate_vi = function(date) {
 
 	return day + "-" + month + "-" + year;
 }
+
