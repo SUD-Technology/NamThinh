@@ -3567,19 +3567,31 @@ a:not([href]):not([tabindex]) {
 }
 
 .fadeDown {
-  animation: fadeInDown 1s ease;
+  -webkit-animation: fadeInDown 1.5s both;
+  -moz-animation: fadeInDown 1.5s both;
+  -o-animation: fadeInDown 1.5s both;
+  animation: fadeInDown 1.5s both;
 }
 
 .fadeUp {
-  animation: fadeInUp 1s ease;
+  -webkit-animation: fadeInUp 1.5s both;
+  -moz-animation: fadeInUp 1.5s both;
+  -o-animation: fadeInUp 1.5s both;
+  animation: fadeInUp 1.5s both;
 }
 
 .fadeRight {
-  animation: fadeInRight 1s ease;
+  -webkit-animation: fadeInRight 1.5s both;
+  -moz-animation: fadeInRight 1.5s both;
+  -o-animation: fadeInRight 1.5s both;
+  animation: fadeInRight 1.5s both;
 }
 
 .fadeLeft {
-  animation: fadeInLeft 1s ease;
+  -webkit-animation: fadeInLeft 1.5s both;
+  -moz-animation: fadeInLeft 1.5s both;
+  -o-animation: fadeInLeft 1.5s both;
+  animation: fadeInLeft 1.5s both;
 }
 
 
@@ -4044,8 +4056,6 @@ h1.sixth:before {
     margin-top: 4px;
   }
 
-
-
   .layer-title span {
     font-size: 11px;
   }
@@ -4073,5 +4083,12 @@ h1.sixth:before {
 
   .count-cart {
     top: -5px;
+  }
+}
+
+
+@media (max-width: 1400px) {
+  #btn-search {
+    margin-left: 5px;
   }
 }
