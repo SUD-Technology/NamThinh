@@ -173,6 +173,16 @@
         localStorage.removeItem('admin-cart')
     }
 
+    function updateCart() {
+        renderCartItem()
+        renderSubtotal()
+        updateLocalStorage()
+    }
+
+    function updateLocalStorage() {
+        localStorage.setItem('admin-cart', JSON.stringify(cart))
+    }
+
     function renderSubtotal() {
         let total = 0, totalItems = 0;
         cart.forEach(item => {
@@ -181,6 +191,25 @@
             totalItems += item.numberOfUnit;
         })
         totalPrice.value = total
+    }
+    // Change number of unit
+    function changeNumberOfUnitAdmin(action, id) {
+        cart = cart.map(item => {
+            item = JSON.parse(item)
+            let numberOfUnit = item.numberOfUnit
+            if (item.id === id) {
+                if (action == 'minus' && numberOfUnit > 1) {
+                    numberOfUnit--
+                } else if (action == 'plus' && numberOfUnit < item.inventory) {
+                    numberOfUnit++
+                }
+            }
+            return JSON.stringify({
+                ...item,
+                numberOfUnit: numberOfUnit
+            })
+        })
+        updateCart()
     }
 
     function renderCartItem() {
@@ -208,7 +237,9 @@
                                                                     <label for="${item.id}">Số lượng:</label>
                                                                     <input class="form-control quantity-input d-none">
                                                                     <div class="units">
+                                                                        <div class="btn minus" onclick="changeNumberOfUnitAdmin('minus', '${item.id}')">-</div>
                                                                         <div class="number">${item.numberOfUnit}</div>
+                                                                        <div class="btn plus" onclick="changeNumberOfUnitAdmin('plus', '${item.id}')">+</div>  
                                                                     </div>
                                                                     
                                                                 </div>
