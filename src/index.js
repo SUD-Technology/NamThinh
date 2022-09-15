@@ -145,19 +145,19 @@ function loadProducts(array) {
 app.get('/home', async (req, res, next) => {
     const l1 = await Products.find({})
         .select({ description: 0 })
-        .sort({createdAt: -1})
+        .sort({ createdAt: -1 })
         .where('classes.lv1').equals(1).limit(5)
     const l2 = await Products.find({})
         .select({ description: 0 })
-        .sort({createdAt: -1})
+        .sort({ createdAt: -1 })
         .where('classes.lv1').equals(2).limit(5)
     const l3 = await Products.find({})
         .select({ description: 0 })
-        .sort({createdAt: -1})
+        .sort({ createdAt: -1 })
         .where('classes.lv1').equals(3).limit(5)
     const l4 = await Products.find({})
         .select({ description: 0 })
-        .sort({createdAt: -1})
+        .sort({ createdAt: -1 })
         .where('classes.lv1').equals(4).limit(5)
 
     let data = {
@@ -166,7 +166,7 @@ app.get('/home', async (req, res, next) => {
         PhuTung: loadProducts(l3),
         DauNhot: loadProducts(l4)
     }
-    
+
     const partners = await Partners.find({})
         .then(ps => {
             return ps.map(p => {
@@ -176,10 +176,10 @@ app.get('/home', async (req, res, next) => {
                 }
             })
         })
-    
+
     return Discounts.find({})
-    .select({content: 0})
-    .limit(4)
+        .select({ content: 0 })
+        .limit(4)
         .then(discounts => {
             let _discounts = [];
             if (discounts) {
@@ -210,9 +210,9 @@ app.get('/contact', (req, res) => {
 app.get('/policy/:slug', (req, res) => {
     const slug = req.params.slug;
 
-    Policy.findOne({slug})
+    Policy.findOne({ slug })
         .then(policy => {
-            if(policy) {
+            if (policy) {
                 let data = {
                     content: policy.content,
                 }
@@ -221,15 +221,15 @@ app.get('/policy/:slug', (req, res) => {
                     layout: 'main',
                     title: policy.name,
                     slug,
-                    data, 
+                    data,
                 })
             }
         })
-    
+
 })
 
 app.get('/shopping-cart', (req, res) => {
-    res.render('product-cart', { success: req.flash('success'), error: req.flash('error') })
+    res.render('product-cart', { success: req.flash('success'), error: req.flash('error'), total: req.flash('total') })
 })
 
 app.use('/users', UserRouter);
