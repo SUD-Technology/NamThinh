@@ -25,7 +25,7 @@
         integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
-    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    {{!-- <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> --}}
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     {{!--
@@ -368,27 +368,29 @@
             $('#count-cart').text(count);
         }
 
-        $('.items-price').click(function() {
-            
-            if(!$(this).hasClass('added')) {
-                count++;
-                $('#count-cart').text(count);
-                
-            }
-            $(this).addClass('added');
-        })
+        
+        
+        
+    })
 
-        $('.items-price-2').click(function() {
+    $('.items-price').click(function() {
             
-            if(!$(this).hasClass('added')) {
-                count++;
-                $('#count-cart').text(count);
-                
-            }
-            $(this).addClass('added');
-        })
+        if(!$(this).hasClass('added')) {
+            count++;
+            $('#count-cart').text(count);
+            
+        }
+        $(this).addClass('added');
+    })
+
+    $('.items-price-2').click(function() {
         
-        
+        if(!$(this).hasClass('added')) {
+            count++;
+            $('#count-cart').text(count);
+            
+        }
+        $(this).addClass('added');
     })
 </script>
 

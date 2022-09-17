@@ -357,7 +357,7 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
                         
                     </div>
 
-                    <div class="items-price">
+                    <div onclick="addToShoppingCart('${d.pid}','${d.pname}','${d.pimg}','${d.pslug}','${d.numPrice}','${d.price}')" class="items-price">
                         ${d.price}
                     </div>
                     <div class="price-layer">${cart}</div>
