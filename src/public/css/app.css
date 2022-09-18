@@ -533,7 +533,6 @@ input[type="file"] {
 
 .search {
   border-radius: unset;
-  margin: -2px;
 }
 
 .rounded>.mw-50 {
@@ -1164,7 +1163,7 @@ img.bgc-title {
   height: 46px;
   width: 10px;
   left: 50%;
-  
+
 }
 
 .d-img {
@@ -1798,6 +1797,7 @@ img.bgc-title {
 #rounder-search {
   width: 400px !important;
   font-size: 14px !important;
+  display: flex;
 }
 
 .nav-bottom form input {
@@ -2572,6 +2572,13 @@ img {
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+
+  #btn-search {
+    display: inline-block;
+    margin: 0 !important;
+    width: 31.6666%
+  }
+
   .google-map {
     width: 320px !important;
   }
@@ -2580,6 +2587,39 @@ img {
   .addProduct-header {
     margin-top: 20px;
   }
+
+  .hex {
+    height: 200px !important;
+    width: 200px !important;
+    align-self: center;
+    background: var(--do);
+    -webkit-clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+    clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+    /* transition:  0.4s; */
+    position: relative;
+
+  }
+
+  .hex-inner {
+    height: 186px !important;
+    width: 186px !important;
+    margin-top: 7px;
+    align-self: center;
+    background: transparent;
+    -webkit-clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+    clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+    /* transition:  0.4s; */
+    position: relative;
+  }
+
+  .mx-layer2 {
+    margin: -64px 75px !important;
+  }
+
+  .layer-title span {
+    font-size: 18px !important;
+  }
+
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
@@ -3641,30 +3681,37 @@ a:not([href]):not([tabindex]) {
   background: url(../uploads/Wel/xedaukeo2.png);
   background-size: cover;
 }
+
 .hex-2:hover {
   background: url(../uploads/Wel/lopxe2.png);
   background-size: cover;
 }
+
 .hex-3:hover {
   background: url(../uploads/Wel/daunhot2.png);
   background-size: cover;
 }
+
 .hex-4:hover {
   background: url(../uploads/Wel/phutung2.png);
   background-size: cover;
 }
+
 .hex-5:hover {
   background: url(../uploads/Wel/xeben2.png);
   background-size: cover;
 }
+
 .hex-6:hover {
   background: url(../uploads/Wel/somi2.png);
   background-size: cover;
 }
+
 .hex-7:hover {
   background: url(../uploads/Wel/service2.png);
   background-size: cover;
 }
+
 .hex-8:hover {
   background: url(../uploads/Wel/lopcongtrinh2.png);
   background-size: cover;
@@ -3777,26 +3824,28 @@ a:not([href]):not([tabindex]) {
 }
 
 
-h1.sixth { position: relative;
-font-weight: 600;
-color: var(--xanh);
+h1.sixth {
+  position: relative;
+  font-weight: 600;
+  color: var(--xanh);
 }
 
 h1.sixth:before,
 h1.sixth:after {
-	content: '<';
-	display: inline-block;
-	position: relative;
-	top: 1px;
-	height: 100%;
-	font-size: 1em;
-	color: black;
-	font-family: 'Open Sans';
-	transition: all 0.5s ease;
-  
+  content: '<';
+  display: inline-block;
+  position: relative;
+  top: 1px;
+  height: 100%;
+  font-size: 1em;
+  color: black;
+  font-family: 'Open Sans';
+  transition: all 0.5s ease;
+
 }
 
-h1.sixth:after { content: '>';
+h1.sixth:after {
+  content: '>';
   animation: slideRight 2s infinite ease;
 }
 
@@ -3808,20 +3857,25 @@ h1.sixth:before {
   0% {
     transform: translate(5px);
   }
+
   50% {
     transform: translate(20px);
   }
+
   100% {
     transform: translate(5px);
   }
 }
+
 @keyframes slideLeft {
   0% {
     transform: translate(-5px);
   }
+
   50% {
     transform: translate(-20px);
   }
+
   100% {
     transform: translate(-5px);
   }
@@ -3899,7 +3953,7 @@ h1.sixth:before {
     font-size: 20px;
   }
 
-  .title-details span  {
+  .title-details span {
     font-size: 27px !important;
   }
 
@@ -4083,12 +4137,5 @@ h1.sixth:before {
 
   .count-cart {
     top: -5px;
-  }
-}
-
-
-@media (max-width: 1400px) {
-  #btn-search {
-    margin-left: 5px;
   }
 }
