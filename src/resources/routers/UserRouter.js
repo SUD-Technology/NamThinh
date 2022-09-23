@@ -5,7 +5,7 @@ const loginValidator = require('../validators/loginValidator');
 const registerValidator = require('../validators/registerValidator')
 const { authPage } = require('../auth/checkUser')
 
-
+router.post('/sendInfo', UserController.SendInfo);
 router.get('/login', UserController.getLogin);
 
 router.post('/login', loginValidator, UserController.postLogin);

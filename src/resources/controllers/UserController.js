@@ -206,6 +206,19 @@ const UserController = {
             })
             .catch(next);
     }
+    ,
+
+    SendInfo: (req, res, next) => {
+        const { fullname, phone, email, content } = req.body;
+        const customer = {
+            fullname, phone, email, content
+        }
+        Customers.create(customer)
+            .then(() => {
+                req.flash('success', 'Đăng ký nhận tin thành công');
+                res.redirect('/home')
+            })
+    }
 
 
 }

@@ -3,8 +3,7 @@ const Schema = mongoose.Schema
 
 const Customers = new Schema({
     fullname: {
-        type: String,
-        required: true
+        type: String
     },
     phone: {
         type: String,
@@ -14,9 +13,9 @@ const Customers = new Schema({
         type: String,
     },
     address: {
-        type: String,
-        required: true
-    }
+        type: String
+    },
+    content: { type: String }
 })
 
 module.exports = mongoose.model('Customers', Customers)
