@@ -25,7 +25,7 @@
         integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;lang=en" />
-    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    {{!-- <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'> --}}
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
     {{!--
@@ -323,18 +323,17 @@
                         </div>
                         <label for="message-text" class="col-form-label">Nội dung:</label><br>
                         <div class="my-0 form-group">
-                            <textarea name="content" class="form-control" id="message-text"></textarea>
+                            <textarea class="form-control" id="message-text"></textarea>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" style="background-color: #3A5BA0;"
-                                class="w-100 py-2 btn btn-success">Đăng
-                                ký</button>
-                        </div>
-                </form>
-            </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
 
+                    <button type="button" style="background-color: #3A5BA0;" class="w-100 py-2 btn btn-success">Đăng
+                        ký</button>
+                </div>
+            </div>
         </div>
-    </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
         integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
@@ -372,7 +371,17 @@
 
         if (localStorage.getItem('shopping-cart') != null) {
             $('#count-cart').text(count);
-        }
+
+            }
+            $(this).addClass('added');
+        })
+
+
+=======
+        
+        
+        
+    })
 
         $('.items-price').click(function () {
 
@@ -384,17 +393,14 @@
             $(this).addClass('added');
         })
 
-        $('.items-price-2').click(function () {
-
-            if (!$(this).hasClass('added')) {
-                count++;
-                $('#count-cart').text(count);
-
-            }
-            $(this).addClass('added');
-        })
-
-
+    $('.items-price-2').click(function() {
+        
+        if(!$(this).hasClass('added')) {
+            count++;
+            $('#count-cart').text(count);
+            
+        }
+        $(this).addClass('added');
     })
 </script>
 
