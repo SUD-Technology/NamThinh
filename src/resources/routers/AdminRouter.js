@@ -4,7 +4,7 @@ const router = express.Router();
 // Controller
 const AdminController = require('../controllers/AdminController')
 // middleware
-const {store, storeWel} = require('../middlewares/multer');
+const { store, storeWel } = require('../middlewares/multer');
 const checkLogin = require('../auth/checkLogin')
 const { authPage } = require('../auth/checkUser')
 
@@ -34,8 +34,8 @@ router.post('/updateProductById', store.array('update-image', 12), AdminControll
 router.get('/delete/:id', checkLogin, authPage(["admin", "accountant"]), AdminController.deleteProduct)
 
 // News
-router.get('/add-news', checkLogin, authPage(["admin"]), AdminController.getAddNews)
-router.post('/add-news', checkLogin, authPage(["admin"]), store.single('news-image'), AdminController.postANews)
+router.get('/add-news' /*, checkLogin*/, authPage(["admin"]), AdminController.getAddNews)
+router.post('/add-news'/*, checkLogin*/, authPage(["admin"]), store.single('news-image'), AdminController.postANews)
 router.get('/listNews', checkLogin, authPage(["admin"]), AdminController.getPosts)
 router.get('/deleteNews/:id', checkLogin, authPage(["admin"]), AdminController.deletePosts)
 router.get('/updateNews/:id', AdminController.getUpdateNews)
@@ -91,4 +91,3 @@ router.use('/', (req, res) => {
 
 
 module.exports = router;
-

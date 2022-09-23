@@ -7,7 +7,7 @@ const Products = new Schema({
     product_img: { type: [String] },
     description: { type: String, required: true },
     brand_name: { type: String, required: true },
-    product_model: { type: String, required: true, unique: true },
+    product_model: { type: String, required: true },
     product_origin: { type: String, required: true },
     classes: {
         lv1: Number,
@@ -19,7 +19,7 @@ const Products = new Schema({
     size: { type: String },
     amount: { type: Number },
     inventory: { type: Number },
-    status: {type: String, default: ''},
+    status: { type: String, default: '' },
     slug: { type: String, required: true }
 },
     {

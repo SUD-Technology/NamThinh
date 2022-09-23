@@ -25,6 +25,9 @@ const Services = new Schema({
     content: {
         type: String,
         required: true
+    },
+    content_image: {
+        type: [String]
     }
 
 },

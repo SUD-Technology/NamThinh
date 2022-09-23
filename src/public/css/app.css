@@ -211,12 +211,12 @@ input[type="file"] {
   color: #fff;
 }
 
-.form-group-container #num-of-file {
+.form-group-container .num-of-file {
   text-align: center;
   margin: 20px 0 30px 0;
 }
 
-#images-upload {
+.images-upload {
   width: 90%;
   border: 1px solid #000;
   margin: auto;
@@ -3924,7 +3924,7 @@ h1.sixth:before {
 
 #TuVanModal {
   margin-top: 15vh;
-
+  margin-right: 0 !important;
 }
 
 #TuVanModal .form-group {

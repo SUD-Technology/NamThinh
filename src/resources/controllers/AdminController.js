@@ -12,10 +12,11 @@ const Partners = require('../models/Partners')
 const moment = require('moment');
 const About = require('../models/About');
 const Policy = require('../models/Policy');
-
+const ImageContent = require('../models/ImageContent');
 function unique(arr) {
     return Array.from(new Set(arr)) //
 }
+
 
 const AdminController = {
     // -------------------------------------------------------Products Section-----------------------------------------------------------//
@@ -28,7 +29,7 @@ const AdminController = {
     },
     addProduct: (req, res) => {
         const file = req.files
-        
+
         const { product_id, product_name, size, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
         let product_model = product_id;
         let listImages = []
@@ -81,9 +82,9 @@ const AdminController = {
     },
     deleteProduct: (req, res, next) => {
         const id = req.params.id;
-        return Products.findOne({product_id: id})
+        return Products.findOne({ product_id: id })
             .then((product) => {
-                if(product) {
+                if (product) {
                     product.delete();
                     fs.unlink(`source/src/public/${product.product_img}`, (err) => {
                         if (!err) {
@@ -94,7 +95,7 @@ const AdminController = {
                             res.redirect('/admin/productManager')
                         }
                     })
-                }     
+                }
             })
             .catch(() => {
                 req.flash('error', "Xóa sản phẩm thất bại")
@@ -110,7 +111,7 @@ const AdminController = {
             brand_name: req.query.brand || "",
             product_name: p_name,
         }
-        
+
         for (let x in query) {
             if (query[x] == "")
                 delete query[`${x}`]
@@ -139,7 +140,7 @@ const AdminController = {
         let previousPage = page <= 1 ? 1 : page - 1;
 
         // res.json({ query: query })
-        return Products.find({'$or': [query, {product_model: {$regex: `${req.query.product_name}`, $options: 'i'}}]})
+        return Products.find({ '$or': [query, { product_model: { $regex: `${req.query.product_name}`, $options: 'i' } }] })
             .select({ description: 0 })
             .sort({ createdAt: -1 })
             .skip(skip).limit(pageSize).exec((err, products) => {
@@ -666,7 +667,7 @@ const AdminController = {
                 if (order) {
                     if (ops == 'accept') {
                         const listProduct = JSON.parse(order.product_list)
-                        
+
                         listProduct.forEach(item => {
                             item = JSON.parse(item)
                             let newInventory = Number(item.inventory) - item.numberOfUnit
@@ -737,7 +738,7 @@ const AdminController = {
             locale: 'vi',
             trim: true
         })
-        const post = {
+        let post = {
             title: title,
             subtitle: subtitle,
             slug: slug,
@@ -745,9 +746,33 @@ const AdminController = {
             image: imagePath,
             content: content
         }
-        return new Posts(post).save()
+
+        return ImageContent.find()
+            .then(data => {
+                let list = []
+                if (data) {
+                    data.forEach(item => {
+                        list.push(item.url)
+                    })
+                }
+                post = {
+                    ...post,
+                    content_image: list
+                }
+                Posts.create(post)
+            })
             .then(() => {
-                req.flash('success', 'Đăng tin thành công')
+                ImageContent.deleteMany({}, function (err) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        res.end('success');
+                    }
+                }
+                );
+            })
+            .then(() => {
+                req.flash('success', 'Đăng tin thành công');
                 res.redirect('/admin/add-news')
             })
             .catch(() => {
@@ -759,15 +784,26 @@ const AdminController = {
         const id = req.params.id
         return Posts.findByIdAndDelete(id)
             .then((post) => {
-                fs.unlink(`source/src/public/${post.image}`, (err) => {
-                    if (!err) {
-                        req.flash('success', "Xóa bài viết thành công")
-                        res.redirect('/admin/listNews')
-                    } else {
-                        req.flash('error', "Xóa bài viết thất bại")
-                        res.redirect('/admin/listNews')
-                    }
+                let imageList = post.image;
+                imageList.forEach(item => {
+                    fs.unlink(`source/src/public/${item}`, (err) => {
+                        if (err) {
+                            req.flash('error', "Xóa bài viết thất bại")
+                            res.redirect('/admin/listNews')
+                        }
+                    })
                 })
+                let imageContent = post.content_image;
+                imageContent.forEach(item => {
+                    fs.unlink(`source/src/public/${item}`, (err) => {
+                        if (err) {
+                            req.flash('error', "Xóa bài viết thất bại")
+                            res.redirect('/admin/listNews')
+                        }
+                    })
+                })
+                req.flash('success', "Xóa bài viết thành công")
+                res.redirect('/admin/listNews')
             })
             .catch(() => {
                 req.flash('error', "Xóa bài viết thất bại")
@@ -776,7 +812,7 @@ const AdminController = {
     },
     getPosts: (req, res, next) => {
         Posts.find()
-            .select({content: 0})
+            .select({ content: 0 })
             .then(posts => {
                 const data = posts.map(item => {
                     return {
@@ -844,22 +880,38 @@ const AdminController = {
             locale: 'vi',
             trim: true
         })
-        const post = {
-            title: title,
-            subtitle: subtitle,
-            slug: slug,
-            image: imagePath,
-            content: content
-        }
-        Posts.findByIdAndUpdate(id, post, (err, doc) => {
-            if (!err) {
+        return Posts.findById(id)
+            .then(post => {
+                let imageList = post.content_image
+                post.title = title
+                post.subtitle = subtitle
+                post.slug = slug
+                post.image = imagePath
+                post.content = content
+                ImageContent.find()
+                    .then(data => {
+                        if (data) {
+                            data.forEach(item => {
+                                imageList.push(item.url)
+                            })
+                        }
+                        post.save()
+                    })
+                ImageContent.deleteMany({}, function (err) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        res.end('success');
+                    }
+                }
+                );
                 req.flash('success', "Cập nhật bài viết thành công")
                 res.redirect(`/admin/updateNews/${id}`)
-            } else {
+            })
+            .catch(err => {
                 req.flash('error', "Cập nhật bài viết thất bại")
                 res.redirect(`/admin/updateNews/${id}`)
-            }
-        })
+            })
     },
 
     // --------------------------------------------------------------END-----------------------------------------------------------------//
@@ -1026,7 +1078,7 @@ const AdminController = {
             locale: 'vi',
             trim: true
         })
-        const discount = {
+        let discount = {
             title: title,
             subtitle: subtitle,
             slug: slug,
@@ -1034,7 +1086,30 @@ const AdminController = {
             content: content
         }
 
-        return new Discounts(discount).save()
+        return ImageContent.find()
+            .then(data => {
+                let list = []
+                if (data) {
+                    data.forEach(item => {
+                        list.push(item.url)
+                    })
+                }
+                discount = {
+                    ...discount,
+                    content_image: list
+                }
+                Discounts.create(discount)
+            })
+            .then(() => {
+                ImageContent.deleteMany({}, function (err) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        res.end('success');
+                    }
+                }
+                );
+            })
             .then(() => {
                 req.flash('success', 'Thêm khuyến mãi thành công')
                 res.redirect('/admin/add-discount')
@@ -1057,6 +1132,21 @@ const AdminController = {
                         res.redirect('/admin/listDiscounts')
                     }
                 })
+
+                let imageContent = dis.content_image;
+                imageContent.forEach(item => {
+                    fs.unlink(`source/src/public/${item}`, (err) => {
+                        if (err) {
+                            req.flash('success', "Xóa chương trình khuyến mãi thành công")
+                            return res.redirect('/admin/listDiscounts')
+                        } else {
+                            req.flash('error', "Xóa chương trình khuyến mãi thất bại")
+                            return res.redirect('/admin/listDiscounts')
+
+                        }
+                    })
+                })
+
             })
             .catch(() => {
                 req.flash('error', "Xóa chương trình khuyến mãi thất bại")
@@ -1132,22 +1222,38 @@ const AdminController = {
             locale: 'vi',
             trim: true
         })
-        const discount = {
-            title: title,
-            subtitle: subtitle,
-            slug: slug,
-            image: imagePath,
-            content: content
-        }
-        Discounts.findByIdAndUpdate(id, discount, (err, doc) => {
-            if (!err) {
+        return Discounts.findById(id)
+            .then(discount => {
+                let imageList = discount.content_image
+                discount.title = title
+                discount.subtitle = subtitle
+                discount.slug = slug
+                discount.image = imagePath
+                discount.content = content
+                ImageContent.find()
+                    .then(data => {
+                        if (data) {
+                            data.forEach(item => {
+                                imageList.push(item.url)
+                            })
+                        }
+                        discount.save()
+                    })
+                ImageContent.deleteMany({}, function (err) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        res.end('success');
+                    }
+                }
+                );
                 req.flash('success', "Cập nhật khuyến mãi thành công")
                 res.redirect(`/admin/updateDiscount/${id}`)
-            } else {
+            })
+            .catch(err => {
                 req.flash('error', "Cập nhật khuyến mãi thất bại")
                 res.redirect(`/admin/updateDiscount/${id}`)
-            }
-        })
+            })
     },
 
     // -----------------------------------------------------------------END--------------------------------------------------------------//
@@ -1172,7 +1278,7 @@ const AdminController = {
             locale: 'vi',
             trim: true
         })
-        const service = {
+        let service = {
             title: title,
             subtitle: subtitle,
             category: category,
@@ -1181,7 +1287,30 @@ const AdminController = {
             content: content
         }
 
-        return new Services(service).save()
+        return ImageContent.find()
+            .then(data => {
+                let list = []
+                if (data) {
+                    data.forEach(item => {
+                        list.push(item.url)
+                    })
+                }
+                service = {
+                    ...service,
+                    content_image: list
+                }
+                Services.create(service)
+            })
+            .then(() => {
+                ImageContent.deleteMany({}, function (err) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        res.end('success');
+                    }
+                }
+                );
+            })
             .then(() => {
                 req.flash('success', 'Thêm dịch vụ thành công')
                 res.redirect('/admin/add-services')
@@ -1195,6 +1324,18 @@ const AdminController = {
         const id = req.params.id
         return Services.findByIdAndDelete(id)
             .then((service) => {
+                let imageContent = service.content_image;
+                imageContent.forEach(item => {
+                    fs.unlink(`source/src/public/${item}`, (err) => {
+                        if (err) {
+                            req.flash('success', "Xóa dịch vụ thành công")
+                            res.redirect('/admin/listServices')
+                        } else {
+                            req.flash('error', "Xóa dịch vụ thất bại")
+                            res.redirect('/admin/listServices')
+                        }
+                    })
+                })
                 fs.unlink(`source/src/public/${service.image}`, (err) => {
                     if (!err) {
                         req.flash('success', "Xóa dịch vụ thành công")
@@ -1212,7 +1353,7 @@ const AdminController = {
     },
     getServices: (req, res, next) => {
         Services.find()
-            .select({content: 0})
+            .select({ content: 0 })
             .then(services => {
                 const data = services.map(item => {
                     return {
@@ -1281,22 +1422,39 @@ const AdminController = {
             locale: 'vi',
             trim: true
         })
-        const services = {
-            title: title,
-            subtitle: subtitle,
-            slug: slug,
-            image: imagePath,
-            content: content
-        }
-        return Services.findByIdAndUpdate(id, services, (err, doc) => {
-            if (!err) {
+        return Services.findById(id)
+            .then(service => {
+                let imageList = service.content_image
+                service.title = title
+                service.subtitle = subtitle
+                service.slug = slug
+                service.image = imagePath
+                service.content = content
+                ImageContent.find()
+                    .then(data => {
+                        if (data) {
+                            data.forEach(item => {
+                                imageList.push(item.url)
+                            })
+                        }
+                        service.save()
+                    })
+                ImageContent.deleteMany({}, function (err) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        res.end('success');
+                    }
+                }
+                );
                 req.flash('success', "Cập nhật dịch vụ thành công")
-                return res.redirect(`/admin/updateService/${id}`)
-            } else {
+                res.redirect(`/admin/updateService/${id}`)
+            })
+            .catch(err => {
                 req.flash('error', "Cập nhật dịch vụ thất bại")
-                return res.redirect(`/admin/updateService/${id}`)
-            }
-        })
+                res.redirect(`/admin/updateService/${id}`)
+            })
+
     },
 
     // -----------------------------------------------------------------END--------------------------------------------------------------//
@@ -1379,7 +1537,7 @@ const AdminController = {
         const success = req.flash('success') || '';
 
         return res.render('updateIndex', {
-            success,error,
+            success, error,
             layout: 'admin',
             position: req.session.position
         })
@@ -1405,9 +1563,9 @@ const AdminController = {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
         const slug = req.params.slug;
-       
-        return Policy.findOne({slug: slug})
-            .then(policy => {        
+
+        return Policy.findOne({ slug: slug })
+            .then(policy => {
                 const data = {
                     id: policy._id,
                     name: policy.name,
@@ -1425,9 +1583,9 @@ const AdminController = {
             .catch(next)
     },
     postUpdatePolicy: (req, res, next) => {
-        const { name, id , content, slug } = req.body
+        const { name, id, content, slug } = req.body
 
-        if(!content) {
+        if (!content) {
             req.flash('error', 'Vui lòng nhập nội dung');
             return res.redirect(`/admin/updatePolicy/${slug}`)
         }

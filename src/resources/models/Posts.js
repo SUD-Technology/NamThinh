@@ -20,16 +20,20 @@ const Posts = new Schema({
         unique: true
     },
     image: {
-        type: String
+        type: String,
+        required: true
     },
     content: {
         type: String,
         required: true
+    },
+    content_image: {
+        type: [String]
     }
 
 },
-{
-    timestamps: true
-})
+    {
+        timestamps: true
+    })
 
 module.exports = mongoose.model('Posts', Posts);

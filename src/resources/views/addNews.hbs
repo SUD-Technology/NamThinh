@@ -30,8 +30,8 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="news-title">Tiêu đề</label>
                     <div class="col-md-10">
-                        <input id="news-title" name="title" placeholder="Tiêu đề" class="form-control input-md"
-                            required="" type="text">
+                        <input onchange="myFunction()" id="news-title" name="title" placeholder="Tiêu đề"
+                            class="form-control input-md" required="" type="text">
                     </div>
                 </div>
                 <div class="form-group">
@@ -48,36 +48,37 @@
                             <option value="">--Chọn loại tin tức--</option>
                             <option value="NT">Tin tức Nam Thịnh</option>
                             <option value="TT">Tin tức thị trường</option>
-                            
+
                         </select>
                     </div>
                 </div>
+                <!-- Image -->
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="product-image">HÌNH ẢNH BÀI VIẾT</label>
+                    <label class="col-md-2 control-label" for="product-image">ẢNH BÌA BÀI VIẾT</label>
                     <div class="col-md-10">
                         <div class="form-group-container">
                             <input id="product-image" accept="image/*" required="" name="news-image"
-                                class="form-control input-md" onchange="preview()" type="file" multiple>
+                                class="form-control input-md"
+                                onchange="preview('product-image','images-upload', 'num-of-file')" type="file">
                             <label for="product-image">
                                 <i class="fas fa-upload"></i>
-                                Chọn ảnh bài viết &nbsp;
+                                Chọn ảnh bìa bài viết &nbsp;
                             </label>
-                            <p id="num-of-file">Chưa có ảnh nào được chọn</p>
-                            <div id="images-upload">
+                            <p class="num-of-file" id="num-of-file">Chưa có ảnh nào được chọn</p>
+                            <div class="images-upload" id="images-upload">
 
                             </div>
                         </div>
 
                     </div>
                 </div>
-                <!-- Textarea -->
+
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="news-content">Nội dung</label>
-                    <div class="col-md-10">
-                        <textarea id="news-content" name="content"></textarea>
+                    <div class="col-md-12">
+                        <textarea id="content" name="content"></textarea>
                     </div>
                 </div>
-                
+
                 <!-- Text input-->
                 <div class="form-footer">
                     <button type="submit">Đăng tin</button>
@@ -94,11 +95,11 @@
 
 <!-- Footer -->
 <script>
-    let fileInput = document.getElementById("product-image")
-    let imageContainer = document.getElementById('images-upload')
-    let numOfFiles = document.getElementById('num-of-file')
 
-    function preview() {
+    function preview(productImage, imageUpload, numOfFile) {
+        let fileInput = document.getElementById(productImage)
+        let imageContainer = document.getElementById(imageUpload)
+        let numOfFiles = document.getElementById(numOfFile)
         imageContainer.innerHTML = ""
         numOfFiles.textContent = `${fileInput.files.length} ảnh đã được chọn`;
 
@@ -118,6 +119,11 @@
             reader.readAsDataURL(i)
         }
     }
+    CKEDITOR.replace('content', {
+        extraPlugins: 'filebrowser',
+        filebrowserBrowseUrl: '/uploads',//upload location
+        filebrowserUploadMethod: 'form',
+        filebrowserUploadUrl: '/news/upload'//route
+    })
 
-    CKEDITOR.replace('content')
 </script>

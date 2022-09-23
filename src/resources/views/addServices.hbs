@@ -119,5 +119,10 @@
         }
     }
 
-    CKEDITOR.replace('content')
+    CKEDITOR.replace('content', {
+        extraPlugins: 'filebrowser',
+        filebrowserBrowseUrl: '/uploads',//upload location
+        filebrowserUploadMethod: 'form',
+        filebrowserUploadUrl: '/news/upload'//route
+    })
 </script>

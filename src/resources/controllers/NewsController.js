@@ -12,12 +12,13 @@ const NewsController = {
 
         Posts.findOne({ slug })
             .then(post => {
-                if(post) {
+                if (post) {
                     const data = {
                         title: post.title,
                         slug: slug,
                         subtitle: post.subtitle,
                         content: post.content,
+                        
                         createdAt: moment(post.createdAt).format('lll')
                     }
                     return res.render('newsdetail', {
@@ -30,20 +31,8 @@ const NewsController = {
     },
     getPostList: (req, res, next) => {
         Posts.find()
-            .select({content: 0})
+            .select({ content: 0 })
             .then(posts => {
-                // const data = posts.map(post => {
-                //     return {
-                //         title: post.title,
-                //         subtitle: (post.subtitle.length < 100) ? post.subtitle : post.subtitle.slice(0, 100) + '...',
-                //         slug: post.slug,
-                //         group: post.group,
-                //         createdAt: moment(post.createdAt).format('lll'),
-                //         content: post.content,
-                //         image: post.image,
-                //     }
-                // })
-
                 const data = posts.reduce((result, post) => {
                     const element = {
                         title: post.title,
@@ -57,7 +46,7 @@ const NewsController = {
 
                     result[element.group == 'NT' ? 0 : 1].push(element)
                     return result;
-                }, [[],[]])
+                }, [[], []])
 
 
                 return res.render('news', {
@@ -72,13 +61,13 @@ const NewsController = {
     getGroupNews: (req, res, next) => {
         const slug = req.params.slug;
 
-        if(!['NT','TT'].includes(slug)) {
+        if (!['NT', 'TT'].includes(slug)) {
             return res.redirect('/news');
         }
 
-        Posts.find({group: slug})
+        Posts.find({ group: slug })
             .then(posts => {
-                if(!posts) {
+                if (!posts) {
                     return res.render('newsGroup', {
                         title: slug == 'NT' ? 'Tin tức Nam Thịnh' : 'Tin tức thị trường',
                         data: []
