@@ -113,6 +113,7 @@ const AdminController = {
             product_name: p_name,
         }
 
+        
         for (let x in query) {
             if (query[x] == "")
                 delete query[`${x}`]
@@ -297,7 +298,7 @@ const AdminController = {
             price: price,
             size: size,
             showPrice: showPrice || '',
-            hot: hot || '',
+            hot: parseInt(hot) || '',
             classes: classes,
             slug: slug,
             status: status
