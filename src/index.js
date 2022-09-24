@@ -167,6 +167,11 @@ app.get('/home', async (req, res, next) => {
         DauNhot: loadProducts(l4)
     }
 
+    let bestsellers = await Products.find({hot: 1})
+        .select({ description: 0 })
+        .sort({ updatedAt: -1 })
+    
+
     const partners = await Partners.find({})
         .then(ps => {
             return ps.map(p => {
@@ -192,6 +197,7 @@ app.get('/home', async (req, res, next) => {
             }
             return res.render('home', {
                 homepage: true,
+                bestsellers,
                 data, _discounts, partners,
                 position: req.session.position,
             })

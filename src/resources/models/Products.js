@@ -20,7 +20,9 @@ const Products = new Schema({
     amount: { type: Number },
     inventory: { type: Number },
     status: { type: String, default: '' },
-    slug: { type: String, required: true }
+    slug: { type: String, required: true },
+    hot: { type: Number }
+
 },
     {
         timestamps: true

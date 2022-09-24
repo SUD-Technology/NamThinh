@@ -37,7 +37,14 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="product_id">MÃ SẢN PHẨM</label>
                     <div class="col-md-10">
-                        <input value="{{data.pid}}" id="product_id" name="product_id" placeholder="Mã sản phẩm"
+                        <input value="{{data.pid}}" id="product_id" name="product_id" placeholder="Mã sản phẩm (Khóa chính - không thể trùng lập)"
+                            class="form-control input-md" required="" type="text">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="product_model">MODEL SẢN PHẨM</label>
+                    <div class="col-md-10">
+                        <input value="{{data.model}}" id="product_model" name="product_model" placeholder="Model sản phẩm (Mẫu mã của sản phẩm)"
                             class="form-control input-md" required="" type="text">
                     </div>
                 </div>
@@ -136,6 +143,11 @@
                             <input {{#if data.showPrice}} checked {{/if}} type="checkbox" name="showPrice" value="1"
                                 class="custom-control-input" id="showPrice">
                             <label class="custom-control-label" for="showPrice">Hiển thị giá bán</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                            <input {{#if data.hot} checked {{/if}} type="checkbox" name="hot" value="1"
+                                class="custom-control-input" id="hot">
+                            <label class="custom-control-label" for="hot">Sản phẩm nổi bật</label>
                         </div>
                     </div>
 

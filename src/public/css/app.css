@@ -342,6 +342,15 @@ input[type="file"] {
 
 /* Welcome page: start */
 
+#lightSlider {
+  height: 340px !important;
+}
+
+.news-detail img {
+  width: 100% !important;
+  height: auto;
+}
+
 .welcome-page {
   width: 100%;
   height: 100vh;
@@ -350,6 +359,11 @@ input[type="file"] {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 

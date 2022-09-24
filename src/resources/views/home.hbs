@@ -76,7 +76,98 @@
         </div>
     </div>
 
+{{!-- Nổi bật --}}
+    <div id="hot-products" class="classify-products">
 
+
+        <div class="row product-list data-metatip=" true"">
+            <div class="row pagi">
+
+
+                <span style="background-color: ;" class="sub-title w-100">Sản phẩm nổi bật </span>
+                {{!-- <img class="bgc-title" src="/img/title.png" alt=""> --}}
+                
+
+            </div>
+            
+            {{#if data.Lop}}
+            {{!-- <div style="margin-left: 5px" class="col-md-12 product-main"> --}}
+                <ul id="lightSlider">
+                    <li class="item">
+                        {{#each data.Lop}}
+                        <div class="items-product  text-center">
+                            {{#if status}}
+                            <span class="ico-product ico-new"> {{status}}</span>
+                            {{/if}}
+                            <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
+                                {{#if pimg}}
+
+                                <img class="img-product smooth" src="{{pimg}}" alt="">
+
+                                {{/if}}
+                            </div>
+
+                            <div class="info-box">
+                                <div class="items-title">
+                                    <a href="/products/{{pslug}}">{{pname}}</a>
+                                    <p>{{pid}}</p>
+                                </div>
+                            </div>
+                            <div onclick="addToShoppingCart(`{{pid}}`,`{{pname}}`, `{{pimg}}`, `{{pslug}}`, `{{numPrice}}`, `{{price}}`)"
+                                class="items-price button_slide slide_right">
+                                {{price}}
+                            </div>
+                            <div class="price-layer">Thêm vào
+                                giỏ</div>
+
+                        </div>
+                        {{/each}}
+                    </li>
+                    <li class="item">
+                        {{#each data.DauNhot}}
+                        <div class="items-product  text-center">
+                            {{#if status}}
+                            <span class="ico-product ico-new"> {{status}}</span>
+                            {{/if}}
+                            <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
+                                {{#if pimg}}
+
+                                <img class="img-product smooth" src="{{pimg}}" alt="">
+
+                                {{/if}}
+                            </div>
+
+                            <div class="info-box">
+                                <div class="items-title">
+                                    <a href="/products/{{pslug}}">{{pname}}</a>
+                                    <p>{{pid}}</p>
+                                </div>
+                            </div>
+                            <div onclick="addToShoppingCart(`{{pid}}`,`{{pname}}`, `{{pimg}}`, `{{pslug}}`, `{{numPrice}}`, `{{price}}`)"
+                                class="items-price button_slide slide_right">
+                                {{price}}
+                            </div>
+                            <div class="price-layer">Thêm vào
+                                giỏ</div>
+
+                        </div>
+                        {{/each}}
+                    </li>
+                        
+                    </ul>
+            </div>
+            {{else}}
+            <div class="updating-box text-center w-100">
+                Đang cập nhật sản phẩm
+            </div>
+            {{/if}}
+
+            
+        {{!-- </div> --}}
+
+
+
+    </div>
 
     {{!-- Lốp xe --}}
     <div id="tire-products" class="classify-products">
@@ -512,12 +603,64 @@
                     
                     document.querySelectorAll(".classify-products")[2].classList.add("fadeLeft");
                     document.querySelectorAll(".classify-products")[3].classList.add("fadeRight");
+                    document.querySelectorAll(".classify-products")[4].classList.add("fadeLeft");
                 }
             })
         })
 
-        observer.observe(document.querySelector("#tire-products"))
-        observer2.observe(document.querySelector("#tool-products"))
+        observer.observe(document.querySelector("#hot-products"))
+        observer2.observe(document.querySelector("#truck-products"))
     })
+</script>
+
+
+<script type="text/javascript">
+
+
+$("#lightSlider").lightSlider({
+    onSliderLoad: function (el) {
+      var maxHeight = 0,
+        container = $(el),
+        children = container.children();
+      children.each(function () {
+        var childHeight = $(this).height();
+        if (childHeight > maxHeight) {
+          maxHeight = childHeight;
+        }
+      });
+      container.height(maxHeight);
+    },
+    item:1,
+    loop:true,
+    slideMove:1,
+    slideMargin: 30,
+    auto:true,
+    pauseOnHover:true,
+    easing: "cubic-bezier(0.25, 0, 0.25, 1)",
+    speed:400,
+    responsive : [
+      {
+        breakpoint:992,
+        settings: {
+          item:3,
+          slideMove:1
+        }
+      },
+      {
+        breakpoint:768,
+        settings: {
+          item:2,
+          slideMove:1
+        }
+      },
+      {
+        breakpoint:576,
+        settings: {
+          item:1,
+          slideMove:1
+        }
+      }
+    ]
+  });
 </script>
 

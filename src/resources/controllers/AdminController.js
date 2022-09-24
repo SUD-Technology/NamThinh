@@ -30,8 +30,8 @@ const AdminController = {
     addProduct: (req, res) => {
         const file = req.files
 
-        const { product_id, product_name, size, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
-        let product_model = product_id;
+        const { product_id, product_name, product_model, size, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
+        
         let listImages = []
         if (!file) {
             res.json({ code: 1, message: "error" })
@@ -67,6 +67,7 @@ const AdminController = {
             price: price,
             size: size,
             showPrice: showPrice,
+            hot: '',
             classes: classes,
             slug: slug
         }
@@ -249,8 +250,8 @@ const AdminController = {
             })
     },
     postUpdateProduct: (req, res, next) => {
-        const { id, product_id, product_name, status, image, size, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
-        let product_model = product_id;
+        const { id, product_id, product_name, product_model, status, image, size, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice, hot } = req.body
+        
         const listOldImages = image.split(',')
         let listImages = listOldImages
         if (req.files.length != 0) {
@@ -295,6 +296,7 @@ const AdminController = {
             price: price,
             size: size,
             showPrice: showPrice || '',
+            hot: hot || '',
             classes: classes,
             slug: slug,
             status: status
@@ -614,7 +616,7 @@ const AdminController = {
                         }
                     })
                 })
-                let imageContent = post.content_image;
+                let imageContent = post.content_image;                
                 imageContent.forEach(item => {
                     fs.unlink(`source/src/public/${item}`, (err) => {
                         if (err) {

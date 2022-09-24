@@ -6,8 +6,12 @@ if (localStorage.getItem('shopping-cart')) {
     shoppingCart = JSON.parse(localStorage.setItem('shopping-cart', '[]'))
 }
 
+var count = parseInt(document.getElementById('count-cart').innerHTML);
+
+
 function addToShoppingCart(id, name, img, slug, price, strPrice) {
     console.log('onclick')
+    
     let checkID = shoppingCart.some(item => {
         item = JSON.parse(item)
         return item.id === id
@@ -15,6 +19,8 @@ function addToShoppingCart(id, name, img, slug, price, strPrice) {
     if (checkID) {
         changeNumberOfUnit('plus', id)
     } else {
+        count++;
+        document.getElementById('count-cart').innerHTML = count;
         const product = {
             id: id,
             name: name,
@@ -27,7 +33,7 @@ function addToShoppingCart(id, name, img, slug, price, strPrice) {
             numberOfUnit: 1
         }))
     }
-    alertAddProduct(name)
+    alertAddProduct(id)
     localStorage.setItem('shopping-cart', JSON.stringify(shoppingCart))
 }
 
@@ -90,10 +96,10 @@ function updateLocalShoppingCart() {
 }
 
 
-function alertAddProduct(name) {
+function alertAddProduct(id) {
     document.getElementById('alert-product').innerHTML =
-        `<div style="width: 30%; bottom: 0; position: fixed; z-index: 9999999; " class="alert alert-success alert-dismissible fade show" role="alert">
-        Đã thêm <strong>${name}</strong> vào giỏ hàng
+        `<div style="width: 20%; top: 10%; right: 0; position: fixed; z-index: 9999999; " class="alert alert-success alert-dismissible fade show" role="alert">
+        Đã thêm <strong>${id}</strong> vào giỏ hàng
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>

@@ -32,8 +32,16 @@
                 <div class="form-group">
                     <label class="col-md-2 control-label" for="product_id">MÃ SẢN PHẨM</label>
                     <div class="col-md-10">
-                        <input id="product_id" name="product_id" placeholder="Mã sản phẩm" class="form-control input-md"
+                        <input id="product_id" name="product_id" placeholder="Mã sản phẩm ( Lưu ý: khóa chính không thể trùng lập )" class="form-control input-md"
                             required="" type="text">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="product_model">MODEL SẢN PHẨM</label>
+                    <div class="col-md-10">
+                        <input value="{{data.model}}" id="product_model" name="product_model" placeholder="Model sản phẩm"
+                            class="form-control input-md" required="" type="text">
                     </div>
                 </div>
 
@@ -46,6 +54,8 @@
 
                     </div>
                 </div>
+
+                
 
                 {{!-- <!-- Text input-->
                 <div class="form-group">
