@@ -21,6 +21,15 @@ exports.normalizeDate_vi = function(date) {
 	return day + "-" + month + "-" + year;
 }
 
+exports.sliceIntoChunks = function(arr, chunkSize) {
+    const res = [];
+    for (let i = 0; i < arr.length; i += chunkSize) {
+        const chunk = arr.slice(i, i + chunkSize);
+        res.push(chunk);
+    }
+    return res;
+}
+
 
 
 

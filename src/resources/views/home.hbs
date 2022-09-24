@@ -90,11 +90,11 @@
 
             </div>
             
-            {{#if data.Lop}}
+            
             {{!-- <div style="margin-left: 5px" class="col-md-12 product-main"> --}}
                 <ul id="lightSlider">
                     <li class="item">
-                        {{#each data.Lop}}
+                        {{#each firstSlide}}
                         <div class="items-product  text-center">
                             {{#if status}}
                             <span class="ico-product ico-new"> {{status}}</span>
@@ -124,7 +124,37 @@
                         {{/each}}
                     </li>
                     <li class="item">
-                        {{#each data.DauNhot}}
+                        {{#each secondSlide}}
+                        <div class="items-product  text-center">
+                            {{#if status}}
+                            <span class="ico-product ico-new"> {{status}}</span>
+                            {{/if}}
+                            <div onclick='window.location.href="/products/{{pslug}}"' class="img-box">
+                                {{#if pimg}}
+
+                                <img class="img-product smooth" src="{{pimg}}" alt="">
+
+                                {{/if}}
+                            </div>
+
+                            <div class="info-box">
+                                <div class="items-title">
+                                    <a href="/products/{{pslug}}">{{pname}}</a>
+                                    <p>{{pid}}</p>
+                                </div>
+                            </div>
+                            <div onclick="addToShoppingCart(`{{pid}}`,`{{pname}}`, `{{pimg}}`, `{{pslug}}`, `{{numPrice}}`, `{{price}}`)"
+                                class="items-price button_slide slide_right">
+                                {{price}}
+                            </div>
+                            <div class="price-layer">Thêm vào
+                                giỏ</div>
+
+                        </div>
+                        {{/each}}
+                    </li>
+                    <li class="item">
+                        {{#each thirdSlide}}
                         <div class="items-product  text-center">
                             {{#if status}}
                             <span class="ico-product ico-new"> {{status}}</span>
@@ -156,11 +186,7 @@
                         
                     </ul>
             </div>
-            {{else}}
-            <div class="updating-box text-center w-100">
-                Đang cập nhật sản phẩm
-            </div>
-            {{/if}}
+            
 
             
         {{!-- </div> --}}

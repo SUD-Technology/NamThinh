@@ -18,6 +18,7 @@ const cookieParser = require('cookie-parser')
 const flash = require('express-flash')
 const bodyParser = require('body-parser')
 const moment = require('moment');
+const { sliceIntoChunks } = require('./resources/middlewares/functions');
 
 app.engine('hbs', handlebars.engine({
     extname: 'hbs',
@@ -170,7 +171,10 @@ app.get('/home', async (req, res, next) => {
     let bestsellers = await Products.find({hot: 1})
         .select({ description: 0 })
         .sort({ updatedAt: -1 })
-    
+        .limit(15)
+        .then(products => {
+            return loadProducts(products);
+        })
 
     const partners = await Partners.find({})
         .then(ps => {
@@ -197,7 +201,9 @@ app.get('/home', async (req, res, next) => {
             }
             return res.render('home', {
                 homepage: true,
-                bestsellers,
+                firstSlide: bestsellers.slice(0,5),
+                secondSlide: bestsellers.slice(5,10),
+                thirdSlide: bestsellers.slice(10,15),
                 data, _discounts, partners,
                 position: req.session.position,
             })
