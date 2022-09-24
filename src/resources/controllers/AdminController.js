@@ -233,7 +233,8 @@ const AdminController = {
                     inventory: product.inventory,
                     size: product.size,
                     classes: classes,
-                    status: product.status
+                    status: product.status,
+                    hot: product.hot || '',
                 }
                 return res.render('updateProduct', {
                     data: data,
