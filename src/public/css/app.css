@@ -3961,6 +3961,12 @@ h1.sixth:before {
 }
 
 
+@media (max-width: 1600px) {
+  .menu-title:before , .menu-title::after {
+    width: 35%;
+  }
+}
+
 @media (max-width: 500px) {
   .sub-title {
     font-size: 12px;

@@ -1,6 +1,5 @@
-const slugify = require('slugify');
+
 const Posts = require('../models/Posts');
-const { normalizeDate_vi } = require('../middlewares/functions');
 const moment = require('moment');
 const { includes } = require('../validators/loginValidator');
 
@@ -19,7 +18,7 @@ const NewsController = {
                         subtitle: post.subtitle,
                         content: post.content,
                         
-                        createdAt: moment(post.createdAt).format('lll')
+                        createdAt: post.createdAt.toLocaleString('vi-vn')
                     }
                     return res.render('newsdetail', {
                         data: data,
@@ -39,7 +38,7 @@ const NewsController = {
                         subtitle: (post.subtitle.length < 100) ? post.subtitle : post.subtitle.slice(0, 100) + '...',
                         slug: post.slug,
                         group: post.group,
-                        createdAt: moment(post.createdAt).format('lll'),
+                        createdAt: post.createdAt.toLocaleString('vi-vn'),
                         content: post.content,
                         image: post.image,
                     }
@@ -80,7 +79,7 @@ const NewsController = {
                         subtitle: (post.subtitle.length < 100) ? post.subtitle : post.subtitle.slice(0, 100) + '...',
                         slug: post.slug,
                         group: post.group,
-                        createdAt: moment(post.createdAt).format('lll'),
+                        createdAt: post.createdAt.toLocaleString('vi-vn'),
                         content: post.content,
                         image: post.image,
                     }
