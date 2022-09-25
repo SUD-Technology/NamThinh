@@ -31,7 +31,7 @@ const AdminController = {
         const file = req.files
 
         const { product_id, product_name, product_model, size, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice } = req.body
-        
+
         let listImages = []
         if (!file) {
             res.json({ code: 1, message: "error" })
@@ -105,15 +105,23 @@ const AdminController = {
     },
     getProductManager: (req, res, next) => {
         let p_name = ""
-        if (req.query.product_name)
+        let query
+        if (req.query.product_name) {
             p_name = { $regex: `${req.query.product_name}`, "$options": "i" }
-        const query = {
-            product_origin: req.query.origin || "",
-            brand_name: req.query.brand || "",
-            product_name: p_name,
+            query = {
+                product_origin: req.query.origin || "",
+                brand_name: req.query.brand || "",
+                "$or": [{ product_name: p_name },
+                { product_model: p_name }]
+            }
+        } else {
+            query = {
+                product_origin: req.query.origin || "",
+                brand_name: req.query.brand || ""
+            }
         }
 
-        
+
         for (let x in query) {
             if (query[x] == "")
                 delete query[`${x}`]
@@ -253,7 +261,7 @@ const AdminController = {
     },
     postUpdateProduct: (req, res, next) => {
         const { id, product_id, product_name, product_model, status, image, size, product_categories, product_branch, product_origin, product_description, product_amount, price, showPrice, hot } = req.body
-        
+
         const listOldImages = image.split(',')
         let listImages = listOldImages
         if (req.files.length != 0) {
@@ -618,7 +626,7 @@ const AdminController = {
                         }
                     })
                 })
-                let imageContent = post.content_image;                
+                let imageContent = post.content_image;
                 imageContent.forEach(item => {
                     fs.unlink(`source/src/public/${item}`, (err) => {
                         if (err) {
