@@ -10,7 +10,7 @@ router.get('/group/:slug', NewsController.getGroupNews);
 router.post('/upload', multipartMiddleware, (req, res) => {
     try {
         fs.readFile(req.files.upload.path, function (err, data) {
-            let newPath = 'src/public/uploads/' + req.files.upload.name;
+            let newPath = 'source/src/public/uploads/' + req.files.upload.name;
             fs.writeFile(newPath, data, function (err) {
                 if (err) console.log({ err: err });
                 else {
