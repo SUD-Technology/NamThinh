@@ -356,7 +356,7 @@ input[type="file"] {
 .welcome-page {
   width: 100%;
   height: 100vh;
-  background: url(https://firebasestorage.googleapis.com/v0/b/namthinh-69ec0.appspot.com/o/index-page%2Fbackground.jpg?alt=media&token=ed6390b7-6725-4f52-9a02-391138cbdc0b) no-repeat center center fixed;
+  background: url(../uploads/Wel/background.png) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
