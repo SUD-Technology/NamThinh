@@ -636,7 +636,12 @@
 
         observer.observe(document.querySelector("#hot-products"))
         observer2.observe(document.querySelector("#truck-products"))
+
+        let numCart = JSON.parse(localStorage.getItem('shopping-cart')).length || 0;
+        $('.count-cart').text(numCart);
     })
+
+    
 </script>
 
 
