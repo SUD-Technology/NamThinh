@@ -1561,6 +1561,13 @@ const AdminController = {
         let recruits = await Recruit.find({})
             .select({ content: 0 })
             .sort({ updatedAt: -1 })
+            .then(results => {
+                return results.map(r => {
+                    return {
+                        _id, position, updatedAt
+                    }
+                })
+            })
 
         return res.render('recruitManager', {
             pageName: 'Danh sách tuyển dụng',
