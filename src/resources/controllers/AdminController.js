@@ -1564,7 +1564,9 @@ const AdminController = {
             .then(results => {
                 return results.map(r => {
                     return {
-                        _id, position, updatedAt
+                        _id: r._id,
+                        position: r.position,
+                        createdAt: r.updatedAt.toLocaleString('vi-vn')
                     }
                 })
             })
