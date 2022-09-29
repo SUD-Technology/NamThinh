@@ -88,10 +88,10 @@ router.post('/updatePolicy', checkLogin, authPage(['admin']), AdminController.po
 // Recruit
 router.get('/addRecruit', checkLogin, authPage(['admin']), AdminController.getAddRecruit);
 router.post('/addRecruit', checkLogin, authPage(['admin']), store.single('recruit-image'), AdminController.postAddRecruit);
-router.get('/updateRecruit', checkLogin, authPage(['admin']), AdminController.getUpdateRecruit);
+router.get('/updateRecruit/:id', checkLogin, authPage(['admin']), AdminController.getUpdateRecruit);
 router.post('/updateRecruit', checkLogin, authPage(['admin']), store.single('recruit-image'), AdminController.postUpdateRecruit);
 router.get('/recruitManager', checkLogin, authPage(['admin']), AdminController.getRecruitManager);
-
+router.get('/deleteRecruit/:id', AdminController.getDeleteRecruit);
 router.use('/', (req, res) => {
     res.redirect('/users/login');
 })

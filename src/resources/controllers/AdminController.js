@@ -1507,10 +1507,10 @@ const AdminController = {
         const success = req.flash('success') || '';
 
         const id = req.params.id;
-        let recruit = await Recruit.findOne({_id: id})
+        let recruit = await Recruit.findById(id)
             .then(result => {
                 return {
-                    _id: result._id,
+                    
                     position: result.position,
                     location: result.location,
                     salary: result.salary,
@@ -1576,7 +1576,8 @@ const AdminController = {
                     return {
                         _id: r._id,
                         position: r.position,
-                        createdAt: r.updatedAt.toLocaleString('vi-vn')
+                        createdAt: r.updatedAt.toLocaleString('vi-vn'),
+                        slug: r.slug
                     }
                 })
             })
