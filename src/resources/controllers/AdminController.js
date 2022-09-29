@@ -1451,6 +1451,7 @@ const AdminController = {
 
         return res.render('addRecruit', {
             layout: 'admin',
+            action: '/admin/addRecruit',
             position: req.session.position,
             pageName: 'Thêm tuyển dụng',
             error, success,
