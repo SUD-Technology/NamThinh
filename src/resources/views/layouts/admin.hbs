@@ -541,11 +541,29 @@
           </div>
         </li>
         {{/isSale}}
+
+        {{#isAdmin position}}
+        <li>
+          <div class="icon-link">
+            <a href="#">
+              <i class="fas fa-archive"></i>
+              <span class="link_name">Tuyển dụng</span>
+            </a>
+            <i class='bx bxs-chevron-down arrow'></i>
+          </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="#">Tuyển dụng</a></li>
+            <li><a href="/admin/recruitManager">Tất cả tuyển dụng</a></li>
+            <li><a href="/admin/addRecruit">Thêm tuyển dụng</a></li>
+
+          </ul>
+        </li>
+        {{/isAdmin}}
         {{#isAdmin position}}
         <li>
           <a href="/admin/history">
             <i class="fas fa-history"></i>
-            <span class="link_name">Lịch sử</span>
+            <span class="link_name">Lịch sử giao dịch</span>
           </a>
 
         </li>

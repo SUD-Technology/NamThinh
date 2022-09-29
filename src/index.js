@@ -4,12 +4,7 @@ const port = process.env.PORT || 8080
 const handlebars = require('express-handlebars')
 const path = require('path')
 const UserRouter = require('./resources/routers/UserRouter');
-const CollectionRouter = require('./resources/routers/CollectionRouter');
-const ProductRouter = require('./resources/routers/ProductRouter');
-const AdminRouter = require('./resources/routers/AdminRouter');
-const NewsRouter = require('./resources/routers/NewsRouter');
-const DiscountRouter = require('./resources/routers/DiscountRouter');
-const ServicesRouter = require('./resources/routers/ServicesRouter');
+
 const db = require('./config/db');
 const Products = require('./resources/models/Products');
 const Posts = require('./resources/models/Posts')
@@ -19,6 +14,15 @@ const flash = require('express-flash')
 const bodyParser = require('body-parser')
 const moment = require('moment');
 const { sliceIntoChunks } = require('./resources/middlewares/functions');
+
+
+const CollectionRouter = require('./resources/routers/CollectionRouter');
+const ProductRouter = require('./resources/routers/ProductRouter');
+const AdminRouter = require('./resources/routers/AdminRouter');
+const NewsRouter = require('./resources/routers/NewsRouter');
+const DiscountRouter = require('./resources/routers/DiscountRouter');
+const ServicesRouter = require('./resources/routers/ServicesRouter');
+const RecruitRouter = require('./resources/routers/RecruitRouter');
 
 app.engine('hbs', handlebars.engine({
     extname: 'hbs',
@@ -105,6 +109,7 @@ const About = require('./resources/models/About');
 const Discounts = require('./resources/models/Discounts')
 const Policy = require('./resources/models/Policy')
 const Partners = require('./resources/models/Partners')
+
 // About.find({})
 //     .then(abouts => {
 //         if (abouts.length == 0) {
@@ -251,6 +256,7 @@ app.use('/admin', AdminRouter);
 app.use('/news', NewsRouter);
 app.use('/discount', DiscountRouter);
 app.use('/service', ServicesRouter)
+app.use('/tuyen-dung', RecruitRouter);
 
 app.use(function onError(err, req, res, next) {
     // The error id is attached to `res.sentry` to be returned

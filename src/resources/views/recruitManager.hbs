@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row m-0">
+        <div class="col-md-12">
+            <table class="table table-hover mt-2">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">STT</th>
+                        <th scope="col">Vị trí</th>
+                        <th scope="col">Ngày đăng</th>
+                        <th scope="col">Chi tiết</th>
+                        <th scope="col">Sửa</th>
+                        <th scope="col">Xóa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#if data}}
+                    {{#each data}}
+                    <tr>
+                        <th scope="row">{{inc @index}}</th>
+                        <td>{{position}}</td>
+                        <td>{{createdAt}}</td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <a type="button" target="_blank" class="btn btn-success w-100" href="/recruits/{{slug}}">
+                                <i class="fas fa-file-alt"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <a type="button" class="btn btn-warning w-100" href="/admin/updateRecruit/{{id}}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <!-- Button trigger modal -->
+                            <a type="button" class="btn btn-danger w-100" data-toggle="modal"
+                                data-target="#myModal{{_id}}">
+                                <i class="fas fa-times-circle"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                    {{else}}
+                    <td colspan="5">Không có bài tuyển dụng nào</td>
+                    {{/if}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+    {{#each data}}
+    <div class="modal fade" id="myModal{{_id}}">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Xóa tài khoản</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Bạn có muốn xóa bài tuyển dụng <strong>{{position}}</strong> ??
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <a type="button" href="/admin/deleteRecruit/{{_id}}" class="btn btn-danger">Xóa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

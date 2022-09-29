@@ -12,6 +12,7 @@ const Partners = require('../models/Partners')
 const moment = require('moment');
 const About = require('../models/About');
 const Policy = require('../models/Policy');
+const Recruit = require('../models/Recruits');
 const ImageContent = require('../models/ImageContent');
 function unique(arr) {
     return Array.from(new Set(arr)) //
@@ -1437,10 +1438,141 @@ const AdminController = {
                 return res.redirect(`/admin/updatePolicy/${slug}`)
             }
         })
-    }
+    },
 
     // -----------------------------------------------------------------END--------------------------------------------------------------//
 
+    
+    // -----------------------------------------------------------Recuir Section--------------------------------------------------------------------//
+
+    getAddRecruit: (req, res, next) => {
+        const error = req.flash('error') || '';
+        const success = req.flash('success') || '';
+
+        return res.render('addRecruit', {
+            layout: 'admin',
+            position: req.session.position,
+            pageName: 'Thêm tuyển dụng',
+            error, success,
+        })
+    },
+    postAddRecruit: async (req, res, next) => {
+        const file = req.file;
+        if(!file) {
+            res.flash('error', "Vui lòng chọn hình ảnh");
+            return res.redirect('/admin/addRecruit');
+        }
+
+        const { position, location, salary, content } = req.body;
+        const slug = slugify(position, {
+            replacement: '-',
+            remove: false,
+            lower: false,
+            strict: false,
+            locale: 'vi',
+            trim: true
+        })
+
+        const recruit = {
+            position, location, salary, slug, content,
+            image: `/uploads/${file.filename}`,
+        }
+
+        await new Recruit(recruit).save()
+            .then(() => {
+                res.flash('success', "Thêm tuyển dụng thành công");
+                return res.redirect('/admin/addRecruit');
+            })
+            .catch((err) => {
+                res.flash('error', "Thêm tuyển dụng thất bại - Error: " + err);
+                return res.redirect('/admin/addRecruit');
+            })
+        
+    },
+    getDeleteRecruit: async (req, res, next) => {
+        const id = req.params.id;
+        await Recruit.findByIdAndDelete(id)
+            .then(product => {
+                fs.unlink(`source/src/public/${product.image}`);
+                res.flash('success', 'Xóa tuyển dụng thành công');
+                return res.redirect('/admin/recruitManager');
+            })
+            .catch(err => {
+                res.flash('error', 'Xóa tuyển dụng thất bại - Error: ' + err);
+                return res.redirect('/admin/recruitManager');
+            })
+    },
+    getUpdateRecruit: async (req, res, next) => {
+        const error = req.flash('error') || '';
+        const success = req.flash('success') || '';
+
+        const id = req.params.id;
+        let recruit = await Recruit.findOne({_id: id});
+        return res.render('updateRecruit', {
+            data: recruit,
+            layout: 'admin',
+            pageName: 'Chỉnh sửa tuyển dụng',
+            position: req.session.position,
+            error, success
+        })
+    },
+    postUpdateRecruit: async (req, res, next) => {
+        const file = req.file;
+        const { id, position, location, salary, content, old_image } = req.body;
+
+        let recruit = {
+            position, location, salary, content,
+            image: ''
+        }
+
+        if(!file) {
+            recruit.image = old_image;
+            await Recruit.findByIdAndUpdate(id, {$set: recruit})
+                .then(product => {
+                    res.flash('success', 'Chỉnh sửa tuyển dụng thành công');
+                    return res.redirect('/admin/updateRecruit');
+                })
+                .catch(err => {
+                    res.flash('error', 'Chỉnh sửa tuyển dụng thất bại - Error: ' + err);
+                    return res.redirect('/admin/updateRecruit');
+                })
+                
+        }
+        else {
+            recruit.image = `/uploads/${file.filename}`;
+            await Recruit.findByIdAndUpdate(id, {$set: recruit})
+                .then(product => {
+                    fs.unlink(`source/src/${product.image}`);
+                    res.flash('success', 'Chỉnh sửa tuyển dụng thành công');
+                    return res.redirect('/admin/updateRecruit');
+                })
+                .catch(err => {
+                    fs.unlink(`source/src/${file.filename}`);
+                    res.flash('error', 'Chỉnh sửa tuyển dụng thất bại - Error: ' + err);
+                    return res.redirect('/admin/updateRecruit');
+                })
+        }
+    },
+
+    getRecruitManager: async (req, res, next) => {
+        const error = req.flash('error') || '';
+        const success = req.flash('success') || '';
+        
+        let recruits = await Recruit.find({})
+            .select({ content: 0 })
+            .sort({ updatedAt: -1 })
+
+        return res.render('recruitManager', {
+            pageName: 'Danh sách tuyển dụng',
+            layout: 'admin',
+            position: req.session.position,
+            data: recruits,
+            success, error
+        })
+
+    }
+
+    // -----------------------------------------------------------------END-------------------------------------------------------------------//
 
 }
 
