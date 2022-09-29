@@ -1507,7 +1507,17 @@ const AdminController = {
         const success = req.flash('success') || '';
 
         const id = req.params.id;
-        let recruit = await Recruit.findOne({_id: id});
+        let recruit = await Recruit.findOne({_id: id})
+            .then(result => {
+                return {
+                    _id: result._id,
+                    position: result.position,
+                    location: result.location,
+                    salary: result.salary,
+                    image: result.image,
+                    content: result.content
+                }
+            })
         return res.render('updateRecruit', {
             data: recruit,
             layout: 'admin',
