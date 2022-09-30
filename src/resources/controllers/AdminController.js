@@ -1488,7 +1488,7 @@ const AdminController = {
         const id = req.params.id;
         await Recruit.findByIdAndDelete(id)
             .then(product => {
-                fs.unlink(`src/public/${product.image}`);
+                fs.unlink(`source/src/public/${product.image}`);
                 req.flash('success', 'Xóa tuyển dụng thành công');
                 return res.redirect('/admin/recruitManager');
             })
