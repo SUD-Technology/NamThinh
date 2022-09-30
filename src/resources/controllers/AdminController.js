@@ -1460,7 +1460,7 @@ const AdminController = {
     postAddRecruit: async (req, res, next) => {
         const file = req.file;
         if(!file) {
-            res.flash('error', "Vui lòng chọn hình ảnh");
+            req.flash('error', "Vui lòng chọn hình ảnh");
             return res.redirect('/admin/addRecruit');
         }
 
@@ -1480,7 +1480,7 @@ const AdminController = {
         }
 
         await new Recruit(recruit).save()
-        res.flash('success', "Thêm tuyển dụng thành công");
+        req.flash('success', "Thêm tuyển dụng thành công");
         return res.redirect('/admin/addRecruit');
         
     },
@@ -1488,12 +1488,12 @@ const AdminController = {
         const id = req.params.id;
         await Recruit.findByIdAndDelete(id)
             .then(product => {
-                fs.unlink(`source/src/public/${product.image}`);
-                res.flash('success', 'Xóa tuyển dụng thành công');
+                fs.unlink(`src/public/${product.image}`);
+                req.flash('success', 'Xóa tuyển dụng thành công');
                 return res.redirect('/admin/recruitManager');
             })
             .catch(err => {
-                res.flash('error', 'Xóa tuyển dụng thất bại - Error: ' + err);
+                req.flash('error', 'Xóa tuyển dụng thất bại - Error: ' + err);
                 return res.redirect('/admin/recruitManager');
             })
     },
@@ -1534,11 +1534,11 @@ const AdminController = {
             recruit.image = old_image;
             await Recruit.findByIdAndUpdate(id, {$set: recruit})
                 .then(product => {
-                    res.flash('success', 'Chỉnh sửa tuyển dụng thành công');
+                    req.flash('success', 'Chỉnh sửa tuyển dụng thành công');
                     return res.redirect('/admin/updateRecruit');
                 })
                 .catch(err => {
-                    res.flash('error', 'Chỉnh sửa tuyển dụng thất bại - Error: ' + err);
+                    req.flash('error', 'Chỉnh sửa tuyển dụng thất bại - Error: ' + err);
                     return res.redirect('/admin/updateRecruit');
                 })
                 
@@ -1548,12 +1548,12 @@ const AdminController = {
             await Recruit.findByIdAndUpdate(id, {$set: recruit})
                 .then(product => {
                     fs.unlink(`source/src/${product.image}`);
-                    res.flash('success', 'Chỉnh sửa tuyển dụng thành công');
+                    req.flash('success', 'Chỉnh sửa tuyển dụng thành công');
                     return res.redirect('/admin/updateRecruit');
                 })
                 .catch(err => {
                     fs.unlink(`source/src/${file.filename}`);
-                    res.flash('error', 'Chỉnh sửa tuyển dụng thất bại - Error: ' + err);
+                    req.flash('error', 'Chỉnh sửa tuyển dụng thất bại - Error: ' + err);
                     return res.redirect('/admin/updateRecruit');
                 })
         }
