@@ -21,7 +21,6 @@ const RecruitController = {
                 })
             })
 
-        console.log(recruits)
         return res.render('recruits', {
             data: recruits,
             layout: 'main',
@@ -33,10 +32,18 @@ const RecruitController = {
     getRecruitDetail: async (req, res, next) => {
         const slug = req.params.slug;
         let recruit = await Recruits.findOne({slug})
+            .then(r => {
+                return {
+                    position: r.position,
+                    slug: r.slug,
+                    content: r.content,
+                    updatedAt: r.updatedAt.toLocaleString('vi-vn')
+                }
+            })
     
         return res.render('recruitDetail', {
             data: recruit,
-            pageName: recruit.location,
+            pageName: recruit.position,
             layout: 'main',
             position: req.session.position
         })   

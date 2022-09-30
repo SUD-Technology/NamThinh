@@ -1,0 +1,30 @@
+<div class="row mt-3">
+    <div class="col-md-12">
+        <h1 class="s-title mt-3">{{data.position}}
+        </h1>
+        <div class="row">
+            <div class="col-md-2">
+                <p class="create-post">{{data.updatedAt}}</p>
+            </div>
+            <div class="col-md-2">
+                <iframe
+                    src="https://www.facebook.com/plugins/like.php?href=https://namthinh.com/discount/{{data.slug}};width=172&amp;layout=button_count&amp;action=like&amp;size=small&amp;show_faces=true&amp;share=true&amp;height=46&amp;appId=663428044065589"
+                    width="172" height="20" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
+                    allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    {{{data.content}}}
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="">
+            <div class="fb-comments" data-href="https://namthinh.com/discount/{{data.slug}}" data-width=""
+                data-numposts="5">
+            </div>
+        </div>
+    </div>
+</div>
