@@ -12,8 +12,6 @@ const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const flash = require('express-flash')
 const bodyParser = require('body-parser')
-const moment = require('moment');
-const { sliceIntoChunks } = require('./resources/middlewares/functions');
 
 
 const CollectionRouter = require('./resources/routers/CollectionRouter');

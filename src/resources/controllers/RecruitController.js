@@ -4,9 +4,24 @@ const RecruitController = {
     getRecruitList: async (req, res, next) => {
         let recruits = await Recruits.find({})
             .select({ content: 0 })
-            .sort({ createdAt: -1 })
+            .sort({ updatedAt: -1 })
             .limit(10)
+            .then(recruits => {
+                return recruits.map(r => {
+                    return {
+                        _id: r._id.toString(),
+                        position: r.position,
+                        location: r.location,
+                        salary: r.salary,
+                        content: r.content,
+                        image: r.image,
+                        slug: r.slug,
+                        updatedAt: r.updatedAt.toLocaleString('vi-vn')
+                    }
+                })
+            })
 
+        console.log(recruits)
         return res.render('recruits', {
             data: recruits,
             layout: 'main',
