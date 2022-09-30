@@ -1480,14 +1480,8 @@ const AdminController = {
         }
 
         await new Recruit(recruit).save()
-            .then(() => {
-                res.flash('success', "Thêm tuyển dụng thành công");
-                return res.redirect('/admin/addRecruit');
-            })
-            .catch((err) => {
-                res.flash('error', "Thêm tuyển dụng thất bại - Error: " + err);
-                return res.redirect('/admin/addRecruit');
-            })
+        res.flash('success', "Thêm tuyển dụng thành công");
+        return res.redirect('/admin/addRecruit');
         
     },
     getDeleteRecruit: async (req, res, next) => {
