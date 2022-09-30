@@ -1490,7 +1490,7 @@ const AdminController = {
         
         await Recruit.findByIdAndDelete(id)
             .then(product => {
-                fs.unlink(`src/public/${product.image}`, (err) => {
+                fs.unlink(`source/src/public/${product.image}`, (err) => {
                     //...
                 });
                 req.flash('success', 'Xóa tuyển dụng thành công');
@@ -1554,14 +1554,14 @@ const AdminController = {
             
             await Recruit.findByIdAndUpdate(id, {$set: recruit})
                 .then(product => {  
-                    fs.unlink(`src/public/${old_image}`, (err) => {
+                    fs.unlink(`source/src/public/${old_image}`, (err) => {
                         console.log('deleted old image');
                     });
                     req.flash('success', 'Chỉnh sửa tuyển dụng thành công');
                     return res.redirect(`/admin/updateRecruit/${id}`);
                 })
                 .catch(err => {
-                    fs.unlink(`src/public/uploads/${file.filename}`);
+                    fs.unlink(`source/src/public/uploads/${file.filename}`);
                     req.flash('error', 'Chỉnh sửa tuyển dụng thất bại - Error: ' + err);
                     return res.redirect(`/admin/updateRecruit/${id}`);
                 })
