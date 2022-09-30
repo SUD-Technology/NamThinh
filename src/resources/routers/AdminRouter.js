@@ -7,7 +7,7 @@ const AdminController = require('../controllers/AdminController')
 const { store, storeWel } = require('../middlewares/multer');
 const checkLogin = require('../auth/checkLogin')
 const { authPage } = require('../auth/checkUser')
-
+const Recruits = require('../models/Recruits');
 
 
 // Home
@@ -92,6 +92,7 @@ router.get('/updateRecruit/:id', checkLogin, authPage(['admin']), AdminControlle
 router.post('/updateRecruit', checkLogin, authPage(['admin']), store.single('recruit-image'), AdminController.postUpdateRecruit);
 router.get('/recruitManager', checkLogin, authPage(['admin']), AdminController.getRecruitManager);
 router.get('/deleteRecruit/:id', AdminController.getDeleteRecruit);
+
 router.use('/', (req, res) => {
     res.redirect('/users/login');
 })

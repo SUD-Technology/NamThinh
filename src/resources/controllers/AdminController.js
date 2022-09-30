@@ -14,6 +14,7 @@ const About = require('../models/About');
 const Policy = require('../models/Policy');
 const Recruit = require('../models/Recruits');
 const ImageContent = require('../models/ImageContent');
+const Recruits = require('../models/Recruits');
 function unique(arr) {
     return Array.from(new Set(arr)) //
 }
@@ -1486,9 +1487,12 @@ const AdminController = {
     },
     getDeleteRecruit: async (req, res, next) => {
         const id = req.params.id;
+        
         await Recruit.findByIdAndDelete(id)
             .then(product => {
-                fs.unlink(`source/src/public/${product.image}`);
+                fs.unlink(`source/src/public/${product.image}`, (err) => {
+                    //...
+                });
                 req.flash('success', 'Xóa tuyển dụng thành công');
                 return res.redirect('/admin/recruitManager');
             })
@@ -1501,11 +1505,12 @@ const AdminController = {
         const error = req.flash('error') || '';
         const success = req.flash('success') || '';
 
-        const id = req.params.id;
+        const id = req.params.id
+        
         let recruit = await Recruit.findById(id)
             .then(result => {
                 return {
-                    
+                    id: result._id.toString(),
                     position: result.position,
                     location: result.location,
                     salary: result.salary,
@@ -1516,6 +1521,7 @@ const AdminController = {
         return res.render('updateRecruit', {
             data: recruit,
             layout: 'admin',
+            action: '/admin/updateRecruit',
             pageName: 'Chỉnh sửa tuyển dụng',
             position: req.session.position,
             error, success
@@ -1535,26 +1541,29 @@ const AdminController = {
             await Recruit.findByIdAndUpdate(id, {$set: recruit})
                 .then(product => {
                     req.flash('success', 'Chỉnh sửa tuyển dụng thành công');
-                    return res.redirect('/admin/updateRecruit');
+                    return res.redirect(`/admin/updateRecruit/${id}`);
                 })
                 .catch(err => {
                     req.flash('error', 'Chỉnh sửa tuyển dụng thất bại - Error: ' + err);
-                    return res.redirect('/admin/updateRecruit');
+                    return res.redirect(`/admin/updateRecruit/${id}`);
                 })
                 
         }
         else {
             recruit.image = `/uploads/${file.filename}`;
+            
             await Recruit.findByIdAndUpdate(id, {$set: recruit})
-                .then(product => {
-                    fs.unlink(`source/src/${product.image}`);
+                .then(product => {  
+                    fs.unlink(`source/src/public/${old_image}`, (err) => {
+                        console.log('deleted old image');
+                    });
                     req.flash('success', 'Chỉnh sửa tuyển dụng thành công');
-                    return res.redirect('/admin/updateRecruit');
+                    return res.redirect(`/admin/updateRecruit/${id}`);
                 })
                 .catch(err => {
-                    fs.unlink(`source/src/${file.filename}`);
+                    fs.unlink(`source/src/public/uploads/${file.filename}`);
                     req.flash('error', 'Chỉnh sửa tuyển dụng thất bại - Error: ' + err);
-                    return res.redirect('/admin/updateRecruit');
+                    return res.redirect(`/admin/updateRecruit/${id}`);
                 })
         }
     },
@@ -1569,7 +1578,7 @@ const AdminController = {
             .then(results => {
                 return results.map(r => {
                     return {
-                        _id: r._id,
+                        _id: r._id.toString(),
                         position: r.position,
                         createdAt: r.updatedAt.toLocaleString('vi-vn'),
                         slug: r.slug
