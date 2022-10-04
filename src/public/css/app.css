@@ -1316,6 +1316,48 @@ img.bgc-title {
   box-shadow: rgba(34, 124, 226, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
 
+.order-box {
+  border: 3px solid #efefef;
+    padding: 15px;
+    margin: auto;
+    min-height: 710px;
+    margin-bottom: 50px;
+}
+
+.order-box .comp-name {
+  font-size: 20px;
+  text-transform: uppercase;
+}
+
+.title-order {
+  display: inline-block;
+  margin: 5px auto 15px;
+  padding: 6px 15px;
+  background: #20b461;
+  color: white;
+}
+
+.totalBlock {
+  background-color: #efefef;
+  border-radius: 10px;
+  padding: 20px 30px;
+  display: inline-block;
+  float: right;
+  margin-top: 15px;
+}
+
+.itemCapture {
+  overflow: hidden;
+  border-bottom: 1px solid #efefef;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.itemCapture div {
+  height: 100px;
+  display: inline-block;
+}
+
 
 .img-box {
   height: 60%;

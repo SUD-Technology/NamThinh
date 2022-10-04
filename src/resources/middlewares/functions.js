@@ -3,6 +3,7 @@ const express = require('express');
 exports.normalizeDate = function (date) {
 	var month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 	return month[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+	// Mar 29, 2022
 }
 
 exports.normalizeDate_vi = function(date) {
@@ -19,6 +20,7 @@ exports.normalizeDate_vi = function(date) {
 	}
 
 	return day + "-" + month + "-" + year;
+	// 03-10-2022
 }
 
 exports.sliceIntoChunks = function(arr, chunkSize) {

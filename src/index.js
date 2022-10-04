@@ -107,7 +107,16 @@ const About = require('./resources/models/About');
 const Discounts = require('./resources/models/Discounts')
 const Policy = require('./resources/models/Policy')
 const Partners = require('./resources/models/Partners')
+const Orders = require('./resources/models/Orders');
 
+Orders.find({})
+    .then(orders => {
+        orders.forEach(order => {
+            let id = order._id.toString();
+            order.product_link = `/admin/order/${id}`;
+            order.save();
+        })
+    })
 // About.find({})
 //     .then(abouts => {
 //         if (abouts.length == 0) {
@@ -219,7 +228,6 @@ app.get('/home', async (req, res, next) => {
 app.get('/contact', (req, res) => {
     res.render('contact')
 })
-
 
 
 app.get('/policy/:slug', (req, res) => {

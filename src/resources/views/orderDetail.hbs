@@ -1,0 +1,53 @@
+<div style="width: 50%; " class="container">
+    <div style="background-color: white" class="order-box mt-5">
+        <div class="text-center">
+            <img src="/img/logo2.png" alt="">
+            <p class="comp-name">CÔNG TY TNHH ĐẦU TƯ THƯƠNG MẠI DỊCH VỤ NAM THỊNH</p>
+            <hr>
+            <p><strong>Địa chỉ: </strong> 2290 QL1A, Phường Trung Mỹ Tây, Quận 12, TP HCM</p>
+            <hr>
+            <div style="background-color: #3A5BA0;" class="title-order w-100">
+            Thông tin khách hàng
+        </div>
+        
+        <br>
+        <div class="info-customer mb-4">
+            <span><strong>Tên:</strong>  {{customer.fullname}}</span><br>
+            <span><strong>Email:</strong> {{customer.email}}</span><br>
+            <span><strong>Số điện thoại:</strong> {{customer.phone}}</span><br>
+            <span><strong>Địa chỉ:</strong> {{customer.address}}</span><br>
+        </div>
+        </div>
+
+        
+
+        <div class="title-order">
+            Danh sách sản phẩm
+        </div>
+
+       
+        
+        {{#each data.product_list}}
+        <div class="w-100 my-4">
+            <div class="row">
+
+                <div class="col-md-2">
+                <img class="w-100" src="{{img}}" alt="">
+            </div>
+            <div class="col-md-8">
+                <span><strong>Tên sản phẩm:</strong> {{name}}</span>
+                <p class="mb-0"><strong>Mẫu sản phẩm:</strong> {{model}}</p>
+                <p class="mb-0"><strong>Số lượng:</strong> {{numberOfUnit}}</p>
+                <span style="color: crimson"><strong style="color: black" >Đơn giá: </strong> {{price}}</span>
+            </div>
+            </div>
+        </div>
+        <hr>
+        {{/each}}
+        
+        <div style="text-align: right" class="totalBlock"><b>
+            Tổng cộng: <big><big style="color: red">{{data.total}}</big></big>
+            </b>
+        </div>
+    </div>
+</div>

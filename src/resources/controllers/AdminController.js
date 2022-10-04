@@ -377,6 +377,36 @@ const AdminController = {
             .catch(next);
 
     },
+    getOrderDetail: async (req, res, next) => {
+        const id = req.params.id;
+        
+        let listProduct = [];
+        let customer = {};
+        let order = await Orders.findById(id)
+            .then(order => {               
+                JSON.parse(order.product_list).forEach(item => {
+                    listProduct.push(JSON.parse(item))
+                })
+
+                customer.fullname = order.Customer.fullname;
+                customer.email = order.Customer.email;
+                customer.phone = order.Customer.phone;
+                customer.address = order.Customer.address;
+                
+                return {
+                    product_list: listProduct,
+                    total: order.total.toLocaleString('vi', {style: 'currency', currency: 'VND'})
+                }
+            })
+
+        return res.render('orderDetail', {
+            layout: 'admin',
+            customer: customer,
+            position: req.session.position,
+            pageName: 'Chi tiết đơn hàng',
+            data: order
+        })
+    },
     getOrders: (req, res, next) => {
         const username = req.session.username
         let query

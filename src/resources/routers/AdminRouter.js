@@ -59,7 +59,7 @@ router.get('/create-order', checkLogin, authPage(['admin', "sale", "accountant"]
 router.post('/create-order', checkLogin, authPage(['admin', "sale", "accountant"]), AdminController.postCreateOrder)
 router.get('/getOrders', checkLogin, authPage(['admin', "sale", "accountant"]), AdminController.getOrders)
 router.post('/getOrders', checkLogin, authPage(['admin', "sale", "accountant"]), AdminController.postEditStatus)
-
+router.get('/order/:id', checkLogin, authPage(['admin', 'sale', 'accountant']), AdminController.getOrderDetail);
 
 router.get('/history', checkLogin, authPage(["admin"]), AdminController.getHistory);
 router.post('/getOrders/finish', checkLogin, authPage(["admin"]), AdminController.finishOrder);
