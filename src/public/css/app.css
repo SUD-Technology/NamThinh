@@ -4214,6 +4214,10 @@ h1.sixth:before {
     width: 50%;
   }
 
+  #lightSlider {
+    overflow: scroll;
+  }
+
   .titleL h1 {
     font-size: 20px;
   }
