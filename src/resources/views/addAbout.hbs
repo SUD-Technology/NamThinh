@@ -1,44 +1,45 @@
-{{! Body: start }}
-<div class='container'>
-    <div class='addProduct-header'>
+{{!-- Body: start --}}
+<div class="container">
+    <div class="addProduct-header">
 
-        <div class='row'>
-            <div class='col-md-4 ml-auto'>
+        <div class="row">
+            <div class="col-md-4 ml-auto">
                 {{#if success}}
-                    <div class='alert alert-success alert-dismissible fade show' role='alert'>
-                        {{success}}
-                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
-                        </button>
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{success}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 {{/if}}
                 {{#if error}}
-                    <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-                        {{error}}
-                        <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
-                            <span aria-hidden='true'>&times;</span>
-                        </button>
-                    </div>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{error}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                 {{/if}}
             </div>
         </div>
     </div>
 
-    <div class='addProduct-body'>
-        <form action='/admin/add-about' class='form-horizontal' method='post'>
+    <div class="addProduct-body">
+        <form action="/admin/add-about" class="form-horizontal" method="post">
             <fieldset>
                 <!-- Textarea -->
-                <div class='form-group'>
-                    <label class='col-md-2 control-label' for='news-content'>Nội dung</label>
-                    <div class='col-md-10'>
-                        <textarea id='news-content' name='content'>{{content}}</textarea>
+                <div class="form-group">
+                    <label class="col-md-2 control-label" for="news-content">Nội dung</label>
+                    <div class="col-md-10">
+                        <textarea id="news-content" name="content">{{content}}</textarea>
                     </div>
                 </div>
 
                 <!-- Text input-->
-                <div class='form-footer'>
-                    <button type='submit'>Đăng tin</button>
+                <div class="form-footer">
+                    <button type="submit">Đăng tin</button>
                 </div>
+
 
             </fieldset>
         </form>
@@ -46,19 +47,41 @@
 
 </div>
 
-{{! Body: end }}
+{{!-- Body: end --}}
 
-<script src='/ckeditor/ckeditor.js'></script>
+<script src="/ckeditor/ckeditor.js"></script>
 
 <!-- Footer -->
 <script>
-    let fileInput = document.getElementById("product-image") let imageContainer =
-    document.getElementById('images-upload') let numOfFiles = document.getElementById('num-of-file') function preview()
-    { imageContainer.innerHTML = "" numOfFiles.textContent = `${fileInput.files.length} ảnh đã được chọn`; for (i of
-    fileInput.files) { let reader = new FileReader() let figure = document.createElement("figure") let figCap =
-    document.createElement("figcaption") figCap.innerText = i.name figure.appendChild(figCap) reader.onload = () => {
-    let img = document.createElement("img"); img.setAttribute("src", reader.result); figure.insertBefore(img, figCap); }
-    imageContainer.appendChild(figure); reader.readAsDataURL(i) } } CKEDITOR.replace('content', { extraPlugins:
-    'filebrowser', filebrowserBrowseUrl: '/uploads',//upload location filebrowserUploadMethod: 'form',
-    filebrowserUploadUrl: '/news/upload'//route })
+    let fileInput = document.getElementById("product-image")
+    let imageContainer = document.getElementById('images-upload')
+    let numOfFiles = document.getElementById('num-of-file')
+
+    function preview() {
+        imageContainer.innerHTML = ""
+        numOfFiles.textContent = `${fileInput.files.length} ảnh đã được chọn`;
+
+        for (i of fileInput.files) {
+            let reader = new FileReader()
+            let figure = document.createElement("figure")
+            let figCap = document.createElement("figcaption")
+
+            figCap.innerText = i.name
+            figure.appendChild(figCap)
+            reader.onload = () => {
+                let img = document.createElement("img");
+                img.setAttribute("src", reader.result);
+                figure.insertBefore(img, figCap);
+            }
+            imageContainer.appendChild(figure);
+            reader.readAsDataURL(i)
+        }
+    }
+
+    CKEDITOR.replace('content', {
+        extraPlugins: 'filebrowser',
+        filebrowserBrowseUrl: '/uploads',//upload location
+        filebrowserUploadMethod: 'form',
+        filebrowserUploadUrl: '/news/upload'//route
+    })
 </script>

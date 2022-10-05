@@ -6,8 +6,8 @@ const RecruitController = {
             .select({ content: 0 })
             .sort({ updatedAt: -1 })
             .limit(10)
-            .then((recruits) => {
-                return recruits.map((r) => {
+            .then(recruits => {
+                return recruits.map(r => {
                     return {
                         _id: r._id.toString(),
                         position: r.position,
@@ -16,37 +16,38 @@ const RecruitController = {
                         content: r.content,
                         image: r.image,
                         slug: r.slug,
-                        updatedAt: r.updatedAt.toLocaleString('vi-vn'),
-                    };
-                });
-            });
+                        updatedAt: r.updatedAt.toLocaleString('vi-vn')
+                    }
+                })
+            })
 
         return res.render('recruits', {
             data: recruits,
             layout: 'main',
             position: req.session.possition,
-            pageName: 'Tuyển dụng',
-        });
+            pageName: 'Tuyển dụng'
+        })
     },
 
     getRecruitDetail: async (req, res, next) => {
         const slug = req.params.slug;
-        let recruit = await Recruits.findOne({ slug }).then((r) => {
-            return {
-                position: r.position,
-                slug: r.slug,
-                content: r.content,
-                updatedAt: r.updatedAt.toLocaleString('vi-vn'),
-            };
-        });
-
+        let recruit = await Recruits.findOne({slug})
+            .then(r => {
+                        return {
+                    position: r.position,
+                    slug: r.slug,
+                    content: r.content,
+                    updatedAt: r.updatedAt.toLocaleString('vi-vn')
+                }
+            })
+    
         return res.render('recruitDetail', {
             data: recruit,
             pageName: recruit.position,
             layout: 'main',
-            position: req.session.position,
-        });
+            position: req.session.position
+        })   
     },
-};
+}
 
 module.exports = RecruitController;
