@@ -22,8 +22,7 @@ const menuItems = [
                         title: 'Lốp xe khách - xe bus',
                         src: 'Lop-tai-nhe-113',
                     },
-
-                ]
+                ],
             },
             {
                 title: 'Lốp máy công trình',
@@ -31,22 +30,21 @@ const menuItems = [
                 role: [
                     {
                         title: 'Lốp xe tải hạng nặng',
-                        src: 'Lop-xe-tai-hang-nang-121'
+                        src: 'Lop-xe-tai-hang-nang-121',
                     },
                     {
                         title: 'Lốp máy xúc',
-                        src: 'Lop-may-xuc-122'
+                        src: 'Lop-may-xuc-122',
                     },
                     {
                         title: 'Lốp xe cẩu',
-                        src: 'Lop-xe-cau-123'
+                        src: 'Lop-xe-cau-123',
                     },
                     {
                         title: 'Lốp xe lu',
-                        src: 'Lop-xe-lu-124'
+                        src: 'Lop-xe-lu-124',
                     },
-
-                ]
+                ],
             },
             {
                 title: 'Lốp xe công nghiệp',
@@ -54,13 +52,13 @@ const menuItems = [
                 role: [
                     {
                         title: 'Lốp đặc',
-                        src: 'Lop-dac-131'
+                        src: 'Lop-dac-131',
                     },
                     {
                         title: 'Lốp công nghiệp khí nén',
-                        src: 'Lop-cong-nghiep-khi-nen-132'
-                    }
-                ]
+                        src: 'Lop-cong-nghiep-khi-nen-132',
+                    },
+                ],
             },
             {
                 title: 'Lốp xe nông nghiệp',
@@ -68,15 +66,15 @@ const menuItems = [
                 role: [
                     {
                         title: 'Lốp nông nghiệp nhỏ',
-                        src: 'Lop-nong-nghiep-nho-141'
+                        src: 'Lop-nong-nghiep-nho-141',
                     },
                     {
                         title: 'Lốp nông nghiệp lớn',
-                        src: 'Lop-nong-nghiep-lon-142'
-                    }
-                ]
-            }
-        ]
+                        src: 'Lop-nong-nghiep-lon-142',
+                    },
+                ],
+            },
+        ],
     },
     // Xe tải
     {
@@ -85,21 +83,21 @@ const menuItems = [
         submenu: [
             {
                 title: 'Xe tải thùng',
-                src: 'Xe-tai-thung-21'
+                src: 'Xe-tai-thung-21',
             },
             {
                 title: 'Xe đầu kéo',
-                src: 'Xe-dau-keo-22'
+                src: 'Xe-dau-keo-22',
             },
             {
                 title: 'Xe ben',
-                src: 'Xe-ben-23'
+                src: 'Xe-ben-23',
             },
             {
                 title: 'Sơ mi rơ mooc',
-                src: 'So-mi-ro-mooc-24'
-            }
-        ]
+                src: 'So-mi-ro-mooc-24',
+            },
+        ],
     },
     // Phụ tùng
     {
@@ -108,21 +106,21 @@ const menuItems = [
         submenu: [
             {
                 title: 'Phụ tùng xe tải thùng',
-                src: 'Phu-tung-xe-tai-thung-31'
+                src: 'Phu-tung-xe-tai-thung-31',
             },
             {
                 title: 'Phụ tùng xe đầu kéo',
-                src: 'Phu-tung-xe-dau-keo-32'
+                src: 'Phu-tung-xe-dau-keo-32',
             },
             {
                 title: 'Phụ tùng xe ben',
-                src: 'Phu-tung-xe-ben-33'
+                src: 'Phu-tung-xe-ben-33',
             },
             {
                 title: 'Phụ tùng sơ mi rơ mooc',
-                src: 'Phu-tung-so-mi-ro-mooc-34'
-            }
-        ]
+                src: 'Phu-tung-so-mi-ro-mooc-34',
+            },
+        ],
     },
     // Dầu nhớt
     {
@@ -135,17 +133,17 @@ const menuItems = [
                 role: [
                     {
                         title: 'Dầu động cơ',
-                        src: 'Dau-dong-co-411'
+                        src: 'Dau-dong-co-411',
                     },
                     {
                         title: 'Dầu hộp số',
-                        src: 'Dau-hop-so-412'
+                        src: 'Dau-hop-so-412',
                     },
                     {
                         title: 'Dầu láp',
-                        src: 'Dau-lap-413'
-                    }
-                ]
+                        src: 'Dau-lap-413',
+                    },
+                ],
             },
             {
                 title: 'Dầu nhớt công nghiệp',
@@ -153,28 +151,28 @@ const menuItems = [
                 role: [
                     {
                         title: 'Dầu đa năng',
-                        src: 'Dau-da-nang-421'
+                        src: 'Dau-da-nang-421',
                     },
                     {
                         title: 'Dầu bôi trơn',
-                        src: 'Dau-boi-tron-422'
+                        src: 'Dau-boi-tron-422',
                     },
                     {
                         title: 'Dầu thủy lực',
-                        src: 'Dau-thuy-luc-423'
-                    }
-                ]
-            }
-        ]
+                        src: 'Dau-thuy-luc-423',
+                    },
+                ],
+            },
+        ],
     },
-]
+];
 
 const CollectionController = {
     getACollection: (req, res, next) => {
         const slug = req.params.slug;
         const parts = slug.split('-');
         const signal = parts[parts.length - 1];
-        const keys = signal.split('').map(el => {
+        const keys = signal.split('').map((el) => {
             return parseInt(el - 1);
         });
 
@@ -190,50 +188,56 @@ const CollectionController = {
         }
 
         if (level == 3) {
-            const title = menuItems[keys[0]].submenu[keys[1]].role[keys[2]].title || "";
+            const title = menuItems[keys[0]].submenu[keys[1]].role[keys[2]].title || '';
             if (!title) {
                 return res.render('collections', { title, msg: 'Không tìm thấy sản phẩm nào' });
             }
 
             const level1 = {
                 title: menuItems[keys[0]].title,
-                src: menuItems[keys[0]].src
-            }
+                src: menuItems[keys[0]].src,
+            };
             submenu = submenu[keys[1]].role;
             Products.find({})
-                .select({description: 0})
-                .sort({createdAt: -1})    
-                .where('classes.lv1').equals(keys[0] + 1)
-                .where('classes.lv2').equals(keys[1] + 1)
-                .where('classes.lv3').equals(keys[2] + 1)
-                .skip(skip * (page - 1)).limit(skip)
-                .then(products => {
+                .select({ description: 0 })
+                .sort({ createdAt: -1 })
+                .where('classes.lv1')
+                .equals(keys[0] + 1)
+                .where('classes.lv2')
+                .equals(keys[1] + 1)
+                .where('classes.lv3')
+                .equals(keys[2] + 1)
+                .skip(skip * (page - 1))
+                .limit(skip)
+                .then((products) => {
                     return handleProducts(req, res, view, level1, submenu, title, products, slug);
                 })
-                .catch(next)
+                .catch(next);
         }
 
         if (level == 2) {
-            const title = menuItems[keys[0]].submenu[keys[1]].title || "";
+            const title = menuItems[keys[0]].submenu[keys[1]].title || '';
             if (!title) {
                 return res.render('collections', { title, msg: 'Không tìm thấy sản phẩm nào' });
             }
 
             const level1 = {
                 title: menuItems[keys[0]].title,
-                src: menuItems[keys[0]].src
-            }
+                src: menuItems[keys[0]].src,
+            };
             Products.find({})
-                .select({description: 0})
-                .sort({createdAt: -1})
-                .where('classes.lv1').equals(keys[0] + 1)
-                .where('classes.lv2').equals(keys[1] + 1)
-                .skip(skip * (page - 1)).limit(skip)
-                .then(products => {
+                .select({ description: 0 })
+                .sort({ createdAt: -1 })
+                .where('classes.lv1')
+                .equals(keys[0] + 1)
+                .where('classes.lv2')
+                .equals(keys[1] + 1)
+                .skip(skip * (page - 1))
+                .limit(skip)
+                .then((products) => {
                     return handleProducts(req, res, view, level1, submenu, title, products, slug);
                 })
-                .catch(next)
-
+                .catch(next);
         }
 
         if (level == 1) {
@@ -244,20 +248,20 @@ const CollectionController = {
 
             const level1 = {
                 title: menuItems[keys[0]].title,
-                src: menuItems[keys[0]].src
-            }
+                src: menuItems[keys[0]].src,
+            };
             Products.find({})
-                .select({description: 0})
-                .sort({createdAt: -1})
-                .where('classes.lv1').equals(keys[0] + 1)
+                .select({ description: 0 })
+                .sort({ createdAt: -1 })
+                .where('classes.lv1')
+                .equals(keys[0] + 1)
                 .skip(skip * (page - 1))
                 .limit(skip)
-                .then(products => {
+                .then((products) => {
                     return handleProducts(req, res, view, level1, submenu, title, products, slug);
                 })
-                .catch(next)
+                .catch(next);
         }
-
     },
     getFindProducts: (req, res, next) => {
         var keyword = req.query.key;
@@ -265,20 +269,25 @@ const CollectionController = {
         const page = parseInt(req.query.page) || 1;
         let skip = 20 * (page - 1);
 
-        Products
-            .find({'$or': [{product_name: {$regex: keyword, $options: 'i'}},{product_model: {$regex: keyword, $options: 'i'} }]})
-            .select({description: 0})
-            .sort({createdAt: -1})
-            .skip(skip).limit(20)
-            .then(products => {
+        Products.find({
+            $or: [
+                { product_name: { $regex: keyword, $options: 'i' } },
+                { product_model: { $regex: keyword, $options: 'i' } },
+            ],
+        })
+            .select({ description: 0 })
+            .sort({ createdAt: -1 })
+            .skip(skip)
+            .limit(20)
+            .then((products) => {
                 if (products.length == 0) {
                     return res.render('search', {
                         title: 'Tìm sản phẩm',
-                        msg: 'Không tìm thấy sản phẩm nào'
-                    })
+                        msg: 'Không tìm thấy sản phẩm nào',
+                    });
                 }
 
-                let data = products.map(product => {
+                let data = products.map((product) => {
                     return {
                         pname: product.product_name,
                         pslug: product.slug,
@@ -286,16 +295,18 @@ const CollectionController = {
                         pid: product.product_id,
                         brand: product.brand_name,
                         numPrice: product.price,
-                        price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ'
-                    }
-                })
+                        price: product.showPrice
+                            ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })
+                            : 'Liên hệ',
+                    };
+                });
 
                 return res.render('search', {
                     title: 'Tìm sản phẩm',
                     keyword,
-                    data: data
-                })
-            })
+                    data: data,
+                });
+            });
     },
     postFindProducts: (req, res, next) => {
         var { keyword } = req.body;
@@ -304,24 +315,22 @@ const CollectionController = {
         }
 
         return res.redirect('/home');
-    }
-
-
-}
-
+    },
+};
 
 function handleProducts(req, res, view, level1, submenu, title, products, slug) {
     let brand_list = [];
 
     if (products.length == 0) {
         if (view == 'home') {
-            return res.send(`<div class="  text-center h3"></div><div class=" text-center h3"></div><div class="d-flex justified-content-center text-center h5">Không tìm thấy sản phẩm</div>`);
+            return res.send(
+                `<div class="  text-center h3"></div><div class=" text-center h3"></div><div class="d-flex justified-content-center text-center h5">Không tìm thấy sản phẩm</div>`,
+            );
         }
         return res.render('collections', { title, level1, submenu, slug, msg: 'Không tìm thấy sản phẩm nào' });
     }
-    const data = products.map(product => {
-        if (!brand_list.includes(product.brand_name))
-            brand_list.push(product.brand_name);
+    const data = products.map((product) => {
+        if (!brand_list.includes(product.brand_name)) brand_list.push(product.brand_name);
 
         return {
             pname: product.product_name,
@@ -330,17 +339,19 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
             brand: product.brand_name,
             pslug: product.slug,
             numPrice: product.price,
-            price: product.showPrice ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' }) : 'Liên hệ',
+            price: product.showPrice
+                ? product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })
+                : 'Liên hệ',
             status: product.status,
-        }
-    })
+        };
+    });
 
     var html = '';
     let cart = 'Thêm vào giỏ';
     if (data.length > 0) {
         data.forEach((d, index) => {
             if (index == 5) return;
-            let ico = d.status ? `<span class="ico-product ico-new"> ${d.status}</span>` : ''
+            let ico = d.status ? `<span class="ico-product ico-new"> ${d.status}</span>` : '';
             html += `
                 <li class="items-product smooth text-center">
                     ${ico}
@@ -363,14 +374,13 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
                     <div class="price-layer">${cart}</div>
 
                 </li>
-            `
+            `;
         });
     } else {
-        html += `<div>Không tìm thấy sản phẩm</div>`
+        html += `<div>Không tìm thấy sản phẩm</div>`;
     }
 
-    if (view == 'home')
-        return res.send(html);
+    if (view == 'home') return res.send(html);
 
     return res.render('collections', {
         title,
@@ -379,12 +389,12 @@ function handleProducts(req, res, view, level1, submenu, title, products, slug) 
         brand_list: brand_list.map((br, idx) => {
             return {
                 id: idx + 1,
-                name: br
-            }
+                name: br,
+            };
         }),
         data,
         slug,
-        position: req.session.position
+        position: req.session.position,
     });
 }
 
