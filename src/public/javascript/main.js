@@ -1,4 +1,8 @@
 $(document).ready(function () {
+
+    let dial = '0839 897 897';
+    $('.dial').text(dial)
+
     setTimeout(function () {
         $('.loader-wrapper').fadeOut(500);
     }, 2000)
