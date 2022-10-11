@@ -2434,6 +2434,10 @@ img {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
 
+  .hide-in-mobile {
+    display: none;
+  }
+
   /* Header */
   .main-bar {
     margin-bottom: 100px;
@@ -4415,5 +4419,9 @@ h1.sixth:before {
 
   .count-cart {
     top: -5px;
+  }
+
+  .menu-title:before, .menu-title:after  {
+    width: 10%;
   }
 }
