@@ -1,5 +1,5 @@
 /**
- * @license Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * @license Copyright (c) 2003-2020, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
  */
 
@@ -11,5 +11,5 @@ CKEDITOR.editorConfig = function( config ) {
 	config.youtube_width = '640';
 	config.youtube_height = '480';
 	config.youtube_responsive = true;
-	// config.allowedContent = true;
+	config.allowedContent = true;
 };
