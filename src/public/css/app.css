@@ -840,6 +840,10 @@ input[type="file"] {
     padding: 4px 10px;
     text-align: center;
   }
+
+  .product-list .product-main .items-product {
+    height: 320px !important;
+  }
 }
 
 #thead-cart {
@@ -2441,6 +2445,23 @@ img {
   /* Header */
   .main-bar {
     margin-bottom: 100px;
+  }
+
+  .title-details h2 ,.title-details span{
+      line-height: 30px;
+      font-size: 20px !important;
+      display: block;
+  } 
+
+  .service-page img {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  
+  .product-desc img {
+    width: 100% !important;
+    height: auto !important;
   }
 
   body {
