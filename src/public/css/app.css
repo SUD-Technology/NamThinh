@@ -2442,6 +2442,10 @@ img {
     display: none;
   }
 
+  #lightSlider {
+    height: 520px !important;
+  }
+
   /* Header */
   .main-bar {
     margin-bottom: 100px;
