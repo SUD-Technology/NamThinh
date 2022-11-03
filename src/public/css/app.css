@@ -3816,7 +3816,8 @@ a:not([href]):not([tabindex]) {
 }
 
 .card-img-left {
-  border: 2px solid var(--xanh);
+  border: 1px solid grey;
+  border-radius: 0.2em;
 }
 
 /* header admin: start */
