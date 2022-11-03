@@ -2428,7 +2428,7 @@ img {
   width: 100%;
 }
 
-.service-page img {
+.service-page img, .news-detail img {
   width: 100% !important;
   height: auto !important;
 }
