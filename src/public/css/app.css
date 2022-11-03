@@ -2428,6 +2428,11 @@ img {
   width: 100%;
 }
 
+.service-page img {
+  width: 100% !important;
+  height: auto !important;
+}
+
 
 
 /* input type number */
