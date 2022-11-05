@@ -96,5 +96,10 @@
         }
     }
 
-    CKEDITOR.replace('content')
+    CKEDITOR.replace('content', {
+        extraPlugins: 'filebrowser, youtube',
+        filebrowserBrowseUrl: '/uploads',//upload location
+        filebrowserUploadMethod: 'form',
+        filebrowserUploadUrl: '/news/upload'//route
+    })
 </script>
