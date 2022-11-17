@@ -31,6 +31,7 @@ const NewsController = {
     getPostList: (req, res, next) => {
         Posts.find()
             .select({ content: 0 })
+            .sort({createdAt: -1})
             .then(posts => {
                 const data = posts.reduce((result, post) => {
                     const element = {
@@ -64,7 +65,7 @@ const NewsController = {
             return res.redirect('/news');
         }
 
-        Posts.find({ group: slug })
+        Posts.find({ group: slug }).sort({createdAt: -1})
             .then(posts => {
                 if (!posts) {
                     return res.render('newsGroup', {
