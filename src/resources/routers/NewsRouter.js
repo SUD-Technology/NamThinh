@@ -32,6 +32,7 @@ router.post('/upload', multipartMiddleware, (req, res) => {
         console.log(error.message);
     }
 })
+
 router.get('/:slug', NewsController.getDetailPost);
 
 module.exports = router;
