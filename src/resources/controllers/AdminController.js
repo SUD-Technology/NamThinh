@@ -1077,7 +1077,7 @@ const AdminController = {
                 res.json({ err: err })
             })
     },
-    postUpdateDiscount: (req, res, next) => {
+    postUpdateDiscount: async (req, res, next) => {
         const { title, subtitle, expire, content, old_image, id } = req.body
         let imagePath = old_image;
         if (req.file) {
@@ -1099,7 +1099,7 @@ const AdminController = {
             trim: true
         })
         return Discounts.findById(id)
-            .then(discount => {
+            .then(async discount => {
                 let imageList = discount.content_image
                 discount.title = title
                 discount.subtitle = subtitle
@@ -1107,7 +1107,7 @@ const AdminController = {
                 discount.image = imagePath
                 discount.content = content
                 discount.expire = expire
-                ImageContent.find()
+                await ImageContent.find()
                     .then(data => {
                         if (data) {
                             data.forEach(item => {
