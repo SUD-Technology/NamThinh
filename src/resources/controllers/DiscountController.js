@@ -14,7 +14,8 @@ const DiscountController = {
                         slug: dis.slug,
                         createdAt: dis.createdAt,
                         content: dis.content,
-                        image: dis.image
+                        image: dis.image,
+                        expire: dis.expire.toLocaleDateString('vi-vn')
                     }
                 })
 

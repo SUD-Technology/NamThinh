@@ -46,10 +46,11 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="col-md-2 control-label" for="services-expire">Ngày hết hạn</label>
+                    <label class="col-md-2 control-label" for="discount-expire">Ngày hết hạn</label>
                     <div class="col-md-10">
-                        <input id="services-expire" name="expire" placeholder="Trích dẫn"
+                        <input id="discount-expire" name="expire" placeholder="Trích dẫn"
                             class="form-control input-md" required="" type="date" value="{{data.expire}}">
+                            {{!-- <div id="current-date" class="current-date">{{data.expire}}</div> --}}
                     </div>
                     <br>
                     
@@ -130,4 +131,6 @@
         filebrowserUploadMethod: 'form',
         filebrowserUploadUrl: '/news/upload'//route
     })
+
+    document.getElementById('discount-expire').value = document.getElementById('current-date').innerText
 </script>

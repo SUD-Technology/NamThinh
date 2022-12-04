@@ -1050,15 +1050,18 @@ const AdminController = {
         const id = req.params.id
         return Discounts.findById(id)
             .then(discount => {
+                let current = discount.expire.toLocaleDateString().split('/');
+                let expire = current[2] + '-' + current[0] + '-' + current[1];
                 const data = {
                     title: discount.title,
                     id: id,
                     content: discount.content,
                     subtitle: discount.subtitle,
                     image: discount.image,
-                    expire: discount.expire
+                    expire: expire
                 }
-                console.log(data);
+
+                // console.log(data);
                 return res.render('update', {
                     data: data,
                     position: req.session.position,
