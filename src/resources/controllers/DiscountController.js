@@ -5,6 +5,7 @@ const DiscountController = {
     getDiscountList: (req, res, next) => {
         Discounts.find()
             .select({content: 0})
+            .sort({createdAt: -1})
             .then(discounts => {
                 const data = discounts.map(dis => {
                     return {

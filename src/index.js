@@ -109,14 +109,14 @@ const Policy = require('./resources/models/Policy')
 const Partners = require('./resources/models/Partners')
 const Orders = require('./resources/models/Orders');
 
-Orders.find({})
-    .then(orders => {
-        orders.forEach(order => {
-            let id = order._id.toString();
-            order.product_link = `/admin/order/${id}`;
-            order.save();
-        })
-    })
+// Orders.find({})
+//     .then(orders => {
+//         orders.forEach(order => {
+//             let id = order._id.toString();
+//             order.product_link = `/admin/order/${id}`;
+//             order.save();
+//         })
+//     })
 // About.find({})
 //     .then(abouts => {
 //         if (abouts.length == 0) {
@@ -201,6 +201,7 @@ app.get('/home', async (req, res, next) => {
     return Discounts.find({})
         .select({ content: 0 })
         .limit(4)
+        .sort({createdAt: -1})
         .then(discounts => {
             let _discounts = [];
             if (discounts) {

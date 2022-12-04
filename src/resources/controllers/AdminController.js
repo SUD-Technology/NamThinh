@@ -938,7 +938,7 @@ const AdminController = {
     postAddDiscount: (req, res, next) => {
         const file = req.file;
         const imagePath = "/uploads/" + file.filename
-        const { title, subtitle, content } = req.body
+        const { title, subtitle, expire, content } = req.body
         const slug = slugify(title, {
             replacement: '-',
             remove: false,
@@ -952,6 +952,7 @@ const AdminController = {
             subtitle: subtitle,
             slug: slug,
             image: imagePath,
+            expire: expire,
             content: content
         }
 
@@ -1024,6 +1025,7 @@ const AdminController = {
     },
     getDiscounts: (req, res, next) => {
         Discounts.find()
+            .sort({createdAt: -1})
             .then(discounts => {
                 const data = discounts.map(item => {
                     return {
@@ -1053,7 +1055,8 @@ const AdminController = {
                     id: id,
                     content: discount.content,
                     subtitle: discount.subtitle,
-                    image: discount.image
+                    image: discount.image,
+                    expire: discount.expire
                 }
                 return res.render('update', {
                     data: data,
@@ -1071,7 +1074,7 @@ const AdminController = {
             })
     },
     postUpdateDiscount: (req, res, next) => {
-        const { title, subtitle, content, old_image, id } = req.body
+        const { title, subtitle, expire, content, old_image, id } = req.body
         let imagePath = old_image;
         if (req.file) {
             const file = req.file;
@@ -1099,6 +1102,7 @@ const AdminController = {
                 discount.slug = slug
                 discount.image = imagePath
                 discount.content = content
+                discount.expire = expire
                 ImageContent.find()
                     .then(data => {
                         if (data) {

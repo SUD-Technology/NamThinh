@@ -28,6 +28,9 @@ const Services = new Schema({
     },
     content_image: {
         type: [String]
+    },
+    expire: {
+        type: Date
     }
 
 },
