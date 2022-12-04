@@ -952,7 +952,7 @@ const AdminController = {
             subtitle: subtitle,
             slug: slug,
             image: imagePath,
-            expire: expire,
+            expire: new Date(expire),
             content: content
         }
 
@@ -1058,6 +1058,7 @@ const AdminController = {
                     image: discount.image,
                     expire: discount.expire
                 }
+                console.log(data);
                 return res.render('update', {
                     data: data,
                     position: req.session.position,
