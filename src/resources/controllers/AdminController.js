@@ -720,7 +720,8 @@ const AdminController = {
                     error,
                     success,
                     prev: '/admin/listNews',
-                    action: "/admin/updateNewsById"
+                    action: "/admin/updateNewsById",
+                    hide: true
                 })
             })
             .catch(err => {
