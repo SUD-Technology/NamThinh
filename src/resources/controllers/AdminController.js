@@ -1271,7 +1271,8 @@ const AdminController = {
                     error,
                     success,
                     prev: '/admin/listServices',
-                    action: "/admin/updateServiceById"
+                    action: "/admin/updateServiceById",
+                    hide: true
                 })
             })
             .catch(err => {
