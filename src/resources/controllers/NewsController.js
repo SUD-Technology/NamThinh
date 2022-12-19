@@ -4,13 +4,26 @@ const moment = require('moment');
 const { includes } = require('../validators/loginValidator');
 
 const NewsController = {
-    getDetailPost: (req, res, next) => {
+    getDetailPost: async (req, res, next) => {
         const error = req.flash('error') || '';
         const message = req.flash('message') || '';
         const slug = req.params.slug || '';
 
-        Posts.findOne({ slug })
-            .then(post => {
+        await Posts.findOne({ slug })
+            .then(async post => {
+                let relates = await Posts.find({group: post.group}).select({content: 0, content_image: 0,}).lean()
+                    .then(posts => {
+                        return posts.filter(p => p.title != post.title).slice(0,3).map(p => {
+                            return {
+                                title: p.title,
+                                slug: p.slug,
+                                subtitle: p.subtitle.slice(0,100) + '...',
+                                image: p.image,
+                                createdAt: p.createdAt.toLocaleString('vi-vn'),
+                            }
+                        });
+                    })
+                console.log(relates)
                 if (post) {
                     const data = {
                         title: post.title,
@@ -23,7 +36,8 @@ const NewsController = {
                     return res.render('newsdetail', {
                         data: data,
                         error: error,
-                        message: message
+                        message: message,
+                        relates: relates
                     })
                 }
             })

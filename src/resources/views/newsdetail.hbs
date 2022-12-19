@@ -28,3 +28,26 @@
         </div>
     </div>
 </div>
+
+<div class="w-100 mt-5">
+    <h5>Các bài viết liên quan</h5>
+</div>
+
+<div class="row mt-4 mb-4">
+        {{#each relates}}
+        
+        <div onclick="window.location.href='/news/{{slug}}'" class="service-box col-md-4 mb-5">
+            <div style="width: 100%;" class="service-main-img">
+                <img height="220px" class="w-100 smooth" src="{{image}}" alt="">
+            </div>
+            <div style="height: auto;" class="service-main-content">
+                <span class="py-3 px-3 h5 d-block">{{title}} <br>
+                <span class="py-2 d-block">{{createdAt}} <br>
+                <p class="py-3">{{subtitle}}</p></span>       
+            </div>
+            
+        </div>
+        {{/each}}
+
+    </div>
+        

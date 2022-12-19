@@ -3569,6 +3569,7 @@ a:not([href]):not([tabindex]) {
 }
 
 .captions {
+  width: 100%;
   padding: 25px 30px;
   background-color: #f4f4f0 !important;
 }
