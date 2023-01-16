@@ -30,7 +30,7 @@ const Users = new Schema({
     },
     avatar: {
         type: String
-    }
+    },
 })
 
 module.exports = mongoose.model('Users', Users)

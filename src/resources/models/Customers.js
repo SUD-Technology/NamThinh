@@ -15,7 +15,8 @@ const Customers = new Schema({
     address: {
         type: String
     },
-    content: { type: String }
+    content: { type: String },
+    follower: { type: Schema.Types.ObjectId, ref: 'Users'}
 })
 
 module.exports = mongoose.model('Customers', Customers)

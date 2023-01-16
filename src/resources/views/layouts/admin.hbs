@@ -529,12 +529,19 @@
         {{#isSale position}}
         <li>
           <div class="icon-link">
-            <a href="/admin/customer-info">
+            <a href="#">
               <i class="fas fa-users"></i>
               <span class="link_name">Khách hàng</span>
             </a>
+            <i class='bx bxs-chevron-down arrow'></i>
 
           </div>
+          <ul class="sub-menu">
+            <li><a class="link_name" href="">Tất cả</a></li>
+            <li><a href="/admin/customer-info">Tất cả</a></li>
+            <li><a href="/admin/customer-staff">Đang theo</a></li>
+            
+          </ul>
         </li>
         {{/isSale}}
 

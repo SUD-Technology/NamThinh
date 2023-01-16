@@ -8,6 +8,8 @@ const { store, storeWel } = require('../middlewares/multer');
 const checkLogin = require('../auth/checkLogin')
 const { authPage } = require('../auth/checkUser')
 const Recruits = require('../models/Recruits');
+const Users = require('../models/Users');
+const Customers = require('../models/Customers');
 
 
 // Home
@@ -92,6 +94,143 @@ router.get('/updateRecruit/:id', checkLogin, authPage(['admin']), AdminControlle
 router.post('/updateRecruit', checkLogin, authPage(['admin']), store.single('recruit-image'), AdminController.postUpdateRecruit);
 router.get('/recruitManager', checkLogin, authPage(['admin']), AdminController.getRecruitManager);
 router.get('/deleteRecruit/:id', AdminController.getDeleteRecruit);
+
+// Customers
+router.get('/change-support/:uid/:cid',checkLogin,authPage(['admin', 'sale']), async (req, res, next) => {
+    const uid = req.params.uid;
+    const cid = req.params.cid;
+
+    return await Users.findById(uid)
+        .then(async user => { 
+            return await Customers.findByIdAndUpdate(cid, {$set: {follower: user._id}})
+                .then(async customer => {
+                    req.flash('success', 'Tiếp nhận khách hàng thành công');
+                    return res.redirect('/admin/customer-info');
+                })
+
+        })
+        .catch(err => {
+            req.flash('error', 'Không tìm thấy nhân viên này');
+            return res.redirect('/admin/customer-info');
+        })
+})
+
+router.get('/remove-customer/:cid', checkLogin,authPage(['admin', 'sale']), async (req, res, next) => {
+    const cid = req.params.cid;
+    
+    return await Customers.findByIdAndRemove(cid)
+        .then(customer => {
+            req.flash('success', 'Xóa khách hàng thành công');
+            return res.redirect('/admin/customer-info');
+        })
+        .catch(err => {
+            req.flash('error', 'Xóa khách hàng thất bại ' + err);
+            return res.redirect('/admin/customer-info');
+        })
+})
+
+router.get('/edit-customer/:cid', checkLogin,authPage(['admin', 'sale']), async (req, res, next) => {
+    const cid = req.params.cid;
+    
+    let customer = await Customers.findById(cid).lean();
+    
+    return res.render('updateCustomer', {
+        data: customer,
+        success: req.flash('success'),
+        error: req.flash('error'),
+        action: `/admin/edit-customer/${cid}`
+    })
+})
+
+router.get('/customer-staff', checkLogin,authPage(['admin', 'sale']), (req, res, next) => {
+    let query;
+        if (req.query.keyWord) {
+            if (!isNaN(parseInt(req.query.keyWord)))
+                query = {
+                    phone: { $regex: `${req.query.keyWord}`, $options: 'i' },
+                };
+            else {
+                query = {
+                    fullname: { $regex: `${req.query.keyWord}`, $options: 'i' },
+                };
+            }
+        } else {
+            query = {};
+        }
+        return Customers.find({follower: req.session.uid})
+            .populate({ path: 'follower' })
+            .lean()
+            .then((users) => {
+                var listCustomers = [];
+            
+                if (users.length > 0) {
+                    listCustomers = users.map((user) => {
+                        
+                        return {
+                            cid: user._id,
+                            fullname: user.fullname,
+                            phone: user.phone,
+                            email: user.email,
+                            address: user.address,
+                            content: user.content,
+                            follower: user.follower
+                        };
+                    });
+                    return res.render('customersByStaff', {
+                        success: req.flash('success'),
+                        error: req.flash('error'),
+                        uid: req.session.uid,
+                        position: req.session.position,
+                        listCustomers,
+                        layout: 'admin',
+                        pageName: 'Danh sách khách hàng',
+                        position: req.session.position,
+                        keyWord: req.query.keyWord,
+                    });
+                } else {
+                    return res.render('customersByStaff', {
+                        success: req.flash('success'),
+                        error: req.flash('error'),
+                        uid: req.session.uid,
+                        position: req.session.position,
+                        listCustomers,
+                        layout: 'admin',
+                        pageName: 'Danh sách khách hàng',
+                        position: req.session.position,
+                        keyWord: req.query.keyWord,
+                    });
+                }
+            });
+})
+
+router.post('/edit-customer/:cid', checkLogin,authPage(['admin', 'sale']), async (req, res, next) => {
+    const cid = req.params.cid;
+    const { fullname, email, phone, content } = req.body;
+
+    return await Customers.findByIdAndUpdate(cid, {$set: req.body})
+        .then(customer => {
+            req.flash('success', 'Sửa thông tin khách hàng thành công');
+            return res.redirect('/admin/customer-info');
+        })
+        .catch(err => {
+            req.flash('error', err);
+            return res.redirect(`/admin/edit-customer/${cid}`);
+        })
+})
+
+router.get('/withdraw-customer/:cid', checkLogin,authPage(['admin', 'sale']), async (req, res, next) => {
+    const cid = req.params.cid;
+    
+    return await Customers.findByIdAndUpdate(cid, {$set: {follower: null}})
+        .then(customer => {
+            req.flash('success', 'Ngừng tiếp nhận khách hàng thành công');
+            return res.redirect('/admin/customer-info');
+        })
+        .catch(err => {
+            req.flash('error', err);
+            return res.redirect('/admin/customer-info');
+        })
+})
 
 router.use('/', (req, res) => {
     res.redirect('/users/login');
