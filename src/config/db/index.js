@@ -6,7 +6,7 @@ async function connect() {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
-        console.log('Success');
+        console.log('Connect to db successfully');
     } catch (error) {
         console.log('Fail')
     }
